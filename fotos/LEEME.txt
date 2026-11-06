@@ -1,0 +1,11 @@
+FOTOS DE LAS REUNIONES
+
+Al tocar una reunión en la sección "Nuestras reuniones" se despliegan hasta 3 fotos.
+Colocá imágenes JPG en esta carpeta con estos nombres:
+
+Ayuno congregacional (martes):   ayuno-1.jpg, ayuno-2.jpg, ayuno-3.jpg
+Red de adulto mayor (jueves):    adulto-mayor-1.jpg, adulto-mayor-2.jpg, adulto-mayor-3.jpg
+Red de jóvenes (viernes):        jovenes-1.jpg, jovenes-2.jpg, jovenes-3.jpg
+Culto congregacional (sábado):   culto-1.jpg, culto-2.jpg, culto-3.jpg
+
+Evitá espacios y tildes en los nombres. Si una foto no existe, se muestra un espacio de reserva.

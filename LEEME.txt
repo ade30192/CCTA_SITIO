@@ -1,0 +1,48 @@
+CENTRO CRISTIANO TABERNÁCULO DE ADORACIÓN
+Sitio web actualizado
+=========================================
+
+ARCHIVOS PRINCIPALES
+- index.html: contenido de la página.
+- styles.css: diseño, colores y adaptación a móviles.
+- script.js: menú móvil y carrusel inicial.
+- logo-iglesia.jpg: logo actual.
+- fotos/: espacio para fotografías de actividades.
+- pastores/: carpeta reservada para fotos de los pastores (gabriel.jpg y danixa.jpg).
+
+CAMBIOS INCLUIDOS
+- Se retiraron las secciones y nombres de ministerios; se muestran únicamente los pastores.
+- La galería se eliminó; las fotos ahora se despliegan al tocar cada reunión (ver fotos/LEEME.txt).
+- Se quitó Discipulado / Módulo 2 de la agenda. Se dejaron ayuno congregacional, red de adulto mayor, red de jóvenes y culto congregacional. Se especificó que estas actividades se realizan en la nueva sede, en Paquera, Puntarenas.
+- Se aclaró el mensaje de vestimenta respetuosa.
+- Se agregaron contactos de los pastores, correo y redes sociales.
+- Se agregaron las dos ubicaciones con los enlaces de Google Maps y campos visibles para completar sus direcciones escritas.
+- Se incluyó información de reservación de ambos templos, sujeta a disponibilidad, aprobación y restricciones.
+- Se agregó la sección Donaciones con SINPE Móvil habilitado, cuenta principal y cuenta pro-construcción.
+- Se agregó la sección Próximas actividades en formato tipo blog: cada ficha se abre al hacer clic y muestra detalles de campamentos, congresos y campañas evangelísticas. Los ejemplos están en estado “Próximamente” y no contienen fechas inventadas.
+- Se agregó la carpeta actividades/ con espacios para imágenes o afiches de cada anuncio.
+- Se agregó la sección Nuevos proyectos en proceso con tres cuadros vacíos para incorporar imágenes cuando se definan los proyectos.
+
+DATOS PENDIENTES DE COMPLETAR
+- Reemplazá los campos [Espacio reservado...] con la dirección formal de cada sede, revisada por la iglesia.
+- Agregá las fotografías de actividades dentro de fotos/ con los nombres indicados en fotos/LEEME.txt.
+- Las fotografías de pastores son opcionales. Si se agregan, usá pastores/gabriel.jpg y pastores/danixa.jpg.
+- Para personalizar la sección “Próximas actividades”, abrí index.html y buscá el bloque id="actividades". Cada actividad empieza con <details class="activity-entry">. Reemplazá los textos “por anunciar/por confirmar” cuando la iglesia confirme la información y cambiá los títulos, descripciones, fecha, horario, lugar, inscripción y teléfono de consulta.
+- Guardá las imágenes o afiches dentro de actividades/ con estos nombres: campamento.jpg, congreso.jpg y campana-evangelistica.jpg. Las imágenes son opcionales; si todavía no existen, se mostrarán cuadros vacíos para agregarlas después.
+- La sección Nuevos proyectos incluye tres espacios de reserva. Para colocar imágenes, editá index.html, reemplazá cada bloque .project-placeholder por una etiqueta <img src="fotos/nombre-de-la-imagen.jpg" alt="Descripción del proyecto"> y usá una imagen dentro de la carpeta fotos/.
+- Confirmá que los horarios habituales de la agenda sigan vigentes antes de publicar.
+
+NOTAS IMPORTANTES
+- Los datos de cuentas y teléfonos se incorporaron a partir de la información suministrada para este sitio. Verificalos con la iglesia antes de compartir o recibir transferencias.
+- El formulario de contacto anterior se sustituyó por teléfonos, correo y enlaces directos porque los formularios HTML estáticos no envían mensajes por sí solos en GitHub Pages.
+- La portada conserva imágenes remotas de Unsplash, por lo que requiere conexión a Internet.
+
+PUBLICAR EN GITHUB PAGES
+Subí index.html, styles.css, script.js, logo-iglesia.jpg y las carpetas fotos/ y pastores/ al directorio raíz del repositorio.
+
+
+PÁGINA EXCLUSIVA DE PRÓXIMAS ACTIVIDADES
+- El menú Acerca > Próximas actividades abre actividades.html.
+- La página tiene un botón “Regresar a la página principal”.
+- Las tarjetas se editan en actividades.html. Se pueden agregar afiches en la carpeta actividades/ con los nombres campamento.jpg, congreso.jpg y campana-evangelistica.jpg.
+- Al publicar en GitHub Pages, subí también actividades.html junto con los archivos de siempre.
