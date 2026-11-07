@@ -1,6 +1,5 @@
 /* =====================================================
    CCTA - FUNCIONES PRINCIPALES
-   Sin botón de pausa del carrusel
    ===================================================== */
 
 
@@ -12,6 +11,7 @@ const menuButton = document.querySelector('.menu-toggle');
 const mainNav = document.querySelector('#main-nav');
 
 function closeMenu() {
+
   if (!menuButton || !mainNav) return;
 
   mainNav.classList.remove('open');
@@ -22,6 +22,7 @@ function closeMenu() {
   document.querySelectorAll('.has-sub.open').forEach(item => {
     item.classList.remove('open');
   });
+
 }
 
 if (menuButton && mainNav) {
@@ -30,7 +31,10 @@ if (menuButton && mainNav) {
 
     const isOpen = mainNav.classList.toggle('open');
 
-    menuButton.setAttribute('aria-expanded', String(isOpen));
+    menuButton.setAttribute(
+      'aria-expanded',
+      String(isOpen)
+    );
 
     menuButton.setAttribute(
       'aria-label',
@@ -39,21 +43,29 @@ if (menuButton && mainNav) {
 
   });
 
+
   mainNav.querySelectorAll('a').forEach(link => {
 
     link.addEventListener('click', event => {
 
       const parent = link.closest('.has-sub');
-      const isMobile = window.matchMedia('(max-width: 760px)').matches;
+
+      const isMobile = window.matchMedia(
+        '(max-width: 760px)'
+      ).matches;
 
       if (
         parent &&
         link.classList.contains('sub-toggle') &&
         isMobile
       ) {
+
         event.preventDefault();
+
         parent.classList.toggle('open');
+
         return;
+
       }
 
       closeMenu();
@@ -62,6 +74,7 @@ if (menuButton && mainNav) {
 
   });
 
+
   document.addEventListener('keydown', event => {
 
     if (event.key === 'Escape') {
@@ -69,6 +82,7 @@ if (menuButton && mainNav) {
     }
 
   });
+
 
   window.addEventListener('resize', () => {
 
@@ -83,11 +97,16 @@ if (menuButton && mainNav) {
 
 /* =====================================================
    2. CARRUSEL AUTOMÁTICO
-   Sin botones de pausa
+   SIN BOTÓN DE PAUSA
    ===================================================== */
 
-const slides = Array.from(document.querySelectorAll('.slide'));
-const dots = Array.from(document.querySelectorAll('.dot'));
+const slides = Array.from(
+  document.querySelectorAll('.slide')
+);
+
+const dots = Array.from(
+  document.querySelectorAll('.dot')
+);
 
 const reducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)'
@@ -101,7 +120,10 @@ function showSlide(index) {
 
   if (!slides.length) return;
 
-  currentSlide = (index + slides.length) % slides.length;
+  currentSlide = (
+    index + slides.length
+  ) % slides.length;
+
 
   slides.forEach((slide, i) => {
 
@@ -115,6 +137,7 @@ function showSlide(index) {
     );
 
   });
+
 
   dots.forEach((dot, i) => {
 
@@ -169,6 +192,7 @@ function startCarousel() {
 document.querySelector('.prev')?.addEventListener('click', () => {
 
   showSlide(currentSlide - 1);
+
   startCarousel();
 
 });
@@ -179,18 +203,20 @@ document.querySelector('.prev')?.addEventListener('click', () => {
 document.querySelector('.next')?.addEventListener('click', () => {
 
   showSlide(currentSlide + 1);
+
   startCarousel();
 
 });
 
 
-// Indicadores del carrusel
+// Indicadores inferiores
 
 dots.forEach((dot, index) => {
 
   dot.addEventListener('click', () => {
 
     showSlide(index);
+
     startCarousel();
 
   });
@@ -203,9 +229,13 @@ dots.forEach((dot, index) => {
 document.addEventListener('visibilitychange', () => {
 
   if (document.hidden) {
+
     stopCarousel();
+
   } else {
+
     startCarousel();
+
   }
 
 });
@@ -214,7 +244,9 @@ document.addEventListener('visibilitychange', () => {
 // Respeto por las preferencias de movimiento
 
 reducedMotion.addEventListener?.('change', () => {
+
   startCarousel();
+
 });
 
 
@@ -223,6 +255,7 @@ reducedMotion.addEventListener?.('change', () => {
 if (slides.length) {
 
   showSlide(0);
+
   startCarousel();
 
 }
@@ -265,7 +298,11 @@ document.querySelectorAll('.event-toggle').forEach(button => {
       String(nextExpanded)
     );
 
-    panel.classList.toggle('open', nextExpanded);
+    panel.classList.toggle(
+      'open',
+      nextExpanded
+    );
+
 
     const label = button.querySelector('.event-more');
 
@@ -308,20 +345,23 @@ document.querySelectorAll('.event-photo img').forEach(image => {
 
   }
 
+
   image.addEventListener('error', showPlaceholder);
 
-  // Comprueba también las imágenes que fallaron
-  // antes de registrar el evento.
+
+  // Comprueba imágenes que ya hayan fallado
 
   if (image.complete && image.naturalWidth === 0) {
+
     showPlaceholder();
+
   }
 
 });
 
 
 /* =====================================================
-   6. COPIAR DATOS DE DONACIONES
+   6. COPIAR INFORMACIÓN DE DONACIONES
    ===================================================== */
 
 const copyStatus = document.querySelector('#copy-status');
@@ -336,14 +376,18 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
     try {
 
-      if (navigator.clipboard && window.isSecureContext) {
+      // Método moderno de copiado
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
 
         await navigator.clipboard.writeText(value);
 
       } else {
 
         // Alternativa para navegadores compatibles
-        // con el método de copiado tradicional.
 
         const temporaryInput =
           document.createElement('textarea');
@@ -364,10 +408,15 @@ document.querySelectorAll('[data-copy]').forEach(button => {
         temporaryInput.remove();
 
         if (!copied) {
+
           throw new Error('No se pudo copiar el contenido.');
+
         }
 
       }
+
+
+      // Confirmación visual
 
       const originalText =
         button.dataset.originalText || button.textContent;
@@ -379,21 +428,29 @@ document.querySelectorAll('[data-copy]').forEach(button => {
       button.classList.add('copied');
 
       if (copyStatus) {
-        copyStatus.textContent = `Se copió correctamente: ${value}`;
+
+        copyStatus.textContent =
+          `Se copió correctamente: ${value}`;
+
       }
+
 
       window.setTimeout(() => {
 
         button.textContent = originalText;
+
         button.classList.remove('copied');
 
       }, 2200);
 
+
     } catch (error) {
 
       if (copyStatus) {
+
         copyStatus.textContent =
           'No se pudo copiar automáticamente. Copiá el dato manualmente.';
+
       }
 
       button.textContent = 'Copiá manualmente';
