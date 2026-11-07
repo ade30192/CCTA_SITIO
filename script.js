@@ -250,6 +250,16 @@ reducedMotion.addEventListener?.('change', () => {
 });
 
 
+// Pausar mientras se usa el carrusel con mouse o teclado
+
+const heroSection = document.querySelector('.hero');
+
+heroSection?.addEventListener('mouseenter', stopCarousel);
+heroSection?.addEventListener('mouseleave', startCarousel);
+heroSection?.addEventListener('focusin', stopCarousel);
+heroSection?.addEventListener('focusout', startCarousel);
+
+
 // Inicialización
 
 if (slides.length) {
@@ -446,14 +456,29 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
     } catch (error) {
 
+      const originalText =
+        button.dataset.originalText || button.textContent;
+
+      button.dataset.originalText = originalText;
+
+      button.textContent = 'No se pudo copiar. Tocá el número para seleccionarlo';
+
+      button.classList.add('copy-error');
+
       if (copyStatus) {
 
         copyStatus.textContent =
-          'No se pudo copiar automáticamente. Copiá el dato manualmente.';
+          'No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.';
 
       }
 
-      button.textContent = 'Copiá manualmente';
+      window.setTimeout(() => {
+
+        button.textContent = originalText;
+
+        button.classList.remove('copy-error');
+
+      }, 4000);
 
     }
 
