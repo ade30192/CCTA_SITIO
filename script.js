@@ -600,10 +600,17 @@ const toTopButton = document.querySelector('#to-top');
 if (toTopButton) {
 
   const updateToTop = () => {
-    toTopButton.classList.toggle('show', window.scrollY > 700);
+    toTopButton.classList.toggle('show', window.scrollY > 500);
   };
 
   window.addEventListener('scroll', updateToTop, { passive: true });
+
+  toTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reducedMotion.matches ? 'auto' : 'smooth'
+    });
+  });
 
   updateToTop();
 
