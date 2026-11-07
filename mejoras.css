@@ -1,0 +1,263 @@
+/* ==========================================
+   CENTRO CRISTIANO TABERNÁCULO DE ADORACIÓN
+   Mejoras de diseño, accesibilidad y usabilidad
+   ========================================== */
+
+
+/* ==========================================
+   ACCESIBILIDAD Y NAVEGACIÓN
+   ========================================== */
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  transform: translateY(-160%);
+  padding: 12px 16px;
+  background: #fff;
+  color: #071d49;
+  border: 2px solid #bd8b2c;
+  border-radius: 4px;
+  font-weight: 800;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+:where(a, button, summary, input, textarea, select):focus-visible {
+  outline: 3px solid #bd8b2c;
+  outline-offset: 3px;
+}
+
+
+/* ==========================================
+   CONTROL DEL CARRUSEL
+   ========================================== */
+
+.carousel-toggle {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: 42px;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255,255,255,.75);
+  border-radius: 3px;
+  padding: 7px 12px;
+  color: #fff;
+  background: rgba(5,13,31,.72);
+  font: 700 .72rem "Manrope", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.carousel-toggle:hover {
+  background: #fff;
+  color: #071d49;
+}
+
+
+/* ==========================================
+   UBICACIONES Y WAZE
+   ========================================== */
+
+.location-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.location-actions .btn {
+  margin: 0;
+}
+
+.btn-waze {
+  background: #e8f5fb;
+  border-color: #9bd5ed;
+  color: #075078;
+}
+
+.btn-waze:hover {
+  background: #d7eef8;
+  color: #073b58;
+}
+
+.map-disclaimer {
+  max-width: 850px;
+  margin: 18px auto 0;
+  color: #66718a;
+  font-size: .82rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+
+/* ==========================================
+   GUÍA PARA NUEVOS VISITANTES
+   ========================================== */
+
+.visitor-guide {
+  margin-top: 28px;
+  padding: 24px 26px;
+  background: #f7f9fc;
+  border-left: 4px solid #e5b957;
+}
+
+.visitor-guide h3 {
+  margin: 0 0 12px;
+  color: #071d49;
+  font-size: 1.15rem;
+}
+
+.visitor-guide ol {
+  margin: 0;
+  padding-left: 22px;
+  color: #66718a;
+}
+
+.visitor-guide li {
+  padding: 5px 0 5px 4px;
+  line-height: 1.65;
+}
+
+.visitor-guide strong {
+  color: #12213d;
+}
+
+
+/* ==========================================
+   BOTONES PARA COPIAR DONACIONES
+   ========================================== */
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px 8px 4px 0;
+  padding: 8px 12px;
+  border: 1px solid #bdcbe0;
+  border-radius: 4px;
+  background: #f7f9fc;
+  color: #173b70;
+  font: 800 .72rem "Manrope", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.copy-button:hover,
+.copy-button.copied {
+  border-color: #6c9f31;
+  background: #eef5e8;
+  color: #42651f;
+}
+
+.donation-card .iban,
+.donation-card .bank-account {
+  overflow-wrap: anywhere;
+}
+
+
+/* ==========================================
+   SECCIÓN DE PROYECTOS
+   ========================================== */
+
+.projects-note {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e3e9f2;
+  border-top: 4px solid #e5b957;
+  box-shadow: 0 12px 30px rgba(7,29,73,.06);
+}
+
+.projects-note h3 {
+  margin: 0 0 8px;
+  color: #071d49;
+  font-size: 1.35rem;
+}
+
+.projects-note p {
+  margin: 0 auto 16px;
+  max-width: 600px;
+  color: #66718a;
+}
+
+.projects-note .btn {
+  margin-top: 4px;
+}
+
+
+/* ==========================================
+   CONTACTO POR WHATSAPP
+   ========================================== */
+
+.whatsapp-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #f5df9d;
+  font-size: .78rem;
+  font-weight: 800;
+}
+
+.whatsapp-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ==========================================
+   RESPONSIVE PARA CELULARES
+   ========================================== */
+
+@media (max-width: 760px) {
+
+  .carousel-toggle {
+    bottom: 38px;
+  }
+
+  .location-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .location-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .visitor-guide {
+    padding: 21px 19px;
+  }
+
+  .projects-note {
+    padding: 25px 20px;
+  }
+
+}
+
+
+/* ==========================================
+   RESPETAR PREFERENCIAS DE MOVIMIENTO
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .carousel-toggle,
+  .skip-link {
+    transition: none !important;
+  }
+
+}
