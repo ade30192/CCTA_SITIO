@@ -13,6 +13,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=6">
+
+  <!-- Estilos de respaldo para el carrusel -->
+  <style>
+    .hero .slide {
+      background-image: var(--bg);
+    }
+
+    .hero .slide:not(.active) {
+      display: none;
+    }
+
+    .hero .slide.active {
+      display: flex;
+    }
+  </style>
 </head>
 
 <body>
@@ -33,7 +48,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- ENCABEZADO -->
   <header class="masthead">
@@ -91,7 +105,6 @@
     </div>
   </header>
 
-
   <!-- MENÚ DE NAVEGACIÓN -->
   <nav id="main-nav" class="mainnav" aria-label="Menú principal">
     <ul class="container nav-list">
@@ -119,7 +132,6 @@
 
     </ul>
   </nav>
-
 
   <main id="contenido">
 
@@ -167,7 +179,6 @@
 
     </section>
 
-
     <!-- ACCESOS RÁPIDOS -->
     <section class="quick">
       <div class="container quick-grid">
@@ -196,7 +207,6 @@
       </div>
     </section>
 
-
     <!-- VISIÓN -->
     <section class="vision" id="nosotros">
       <div class="container vision-inner">
@@ -214,7 +224,6 @@
 
       </div>
     </section>
-
 
     <!-- SOBRE NOSOTROS -->
     <section class="section about">
@@ -237,7 +246,6 @@
 
       </div>
     </section>
-
 
     <!-- AGENDA SEMANAL -->
     <section class="section agenda" id="agenda">
@@ -295,7 +303,6 @@
             </div>
           </article>
 
-
           <!-- JUEVES -->
           <article class="event">
             <button class="event-toggle" type="button"
@@ -336,7 +343,6 @@
               </div>
             </div>
           </article>
-
 
           <!-- VIERNES -->
           <article class="event">
@@ -379,7 +385,6 @@
             </div>
           </article>
 
-
           <!-- SÁBADO -->
           <article class="event featured">
             <button class="event-toggle" type="button"
@@ -420,7 +425,6 @@
               </div>
             </div>
           </article>
-
 
           <!-- DOMINGO -->
           <article class="event">
@@ -475,7 +479,6 @@
 
       </div>
     </section>
-
 
     <!-- PASTORES -->
     <section class="section pastors" id="pastores">
@@ -535,7 +538,6 @@
       </div>
     </section>
 
-
     <!-- HISTORIA -->
     <section class="section history" id="historia">
       <div class="container narrow">
@@ -555,7 +557,6 @@
 
       </div>
     </section>
-
 
     <!-- LO QUE CREEMOS -->
     <section class="section faith" id="fe">
@@ -608,7 +609,6 @@
       </div>
     </section>
 
-
     <!-- NUEVOS VISITANTES -->
     <section class="section newhere" id="nuevo">
       <div class="container two-col top">
@@ -649,7 +649,6 @@
             </ol>
           </div>
         </div>
-
 
         <div class="faq">
           <h3>Preguntas frecuentes</h3>
@@ -700,7 +699,6 @@
       </div>
     </section>
 
-
     <!-- UBICACIONES -->
     <section class="section locations" id="ubicaciones">
       <div class="container">
@@ -740,7 +738,6 @@
               </a>
             </div>
           </article>
-
 
           <article class="location-card">
             <span class="location-number">02</span>
@@ -790,7 +787,6 @@
       </div>
     </section>
 
-
     <!-- DONACIONES -->
     <section class="section donations" id="donaciones">
       <div class="container">
@@ -818,7 +814,6 @@
           </div>
         </div>
 
-
         <div class="donation-grid">
 
           <article class="donation-card main-account">
@@ -844,7 +839,6 @@
               Copiar cuenta BN
             </button>
           </article>
-
 
           <article class="donation-card construction-account">
             <span class="donation-eyebrow">Banco Nacional · Pro-construcción</span>
@@ -879,7 +873,6 @@
       </div>
     </section>
 
-
     <!-- PROYECTOS -->
     <section class="section projects" id="proyectos">
       <div class="container">
@@ -905,7 +898,6 @@
 
       </div>
     </section>
-
 
     <!-- CONTACTO -->
     <section class="section contact" id="contacto">
@@ -961,7 +953,6 @@
           </ul>
         </div>
 
-
         <div class="contact-panel">
           <h3>Conectá con nosotros</h3>
 
@@ -1008,7 +999,6 @@
 
   </main>
 
-
   <!-- PIE DE PÁGINA -->
   <footer class="footer">
     <div class="container footer-grid">
@@ -1026,7 +1016,6 @@
         <p class="motto">La iglesia para la familia.</p>
       </div>
 
-
       <div>
         <h4>Quiénes somos</h4>
 
@@ -1037,7 +1026,6 @@
           <li><a href="#fe">Lo que creemos</a></li>
         </ul>
       </div>
-
 
       <div>
         <h4>Visítenos</h4>
@@ -1050,7 +1038,6 @@
           <li><a href="#nuevo">Preguntas frecuentes</a></li>
         </ul>
       </div>
-
 
       <div>
         <h4>Contacto</h4>
@@ -1077,10 +1064,176 @@
     </div>
   </footer>
 
-
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
   <script src="script.js?v=6"></script>
+
+  <!-- FUNCIONAMIENTO DEL CARRUSEL PRINCIPAL -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const hero = document.querySelector(".hero");
+
+      if (!hero) return;
+
+      const slides = Array.from(hero.querySelectorAll(".slide"));
+      const dots = Array.from(hero.querySelectorAll(".dot"));
+
+      const previousButton = hero.querySelector(".arrow.prev");
+      const nextButton = hero.querySelector(".arrow.next");
+
+      if (slides.length === 0) return;
+
+      let currentSlide = Math.max(
+        0,
+        slides.findIndex(slide => slide.classList.contains("active"))
+      );
+
+      let autoplayId = null;
+
+      const autoplayDelay = 5000;
+
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      function showSlide(index) {
+
+        currentSlide = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+
+          const isActive = i === currentSlide;
+
+          slide.classList.toggle("active", isActive);
+
+          slide.setAttribute(
+            "aria-hidden",
+            String(!isActive)
+          );
+
+        });
+
+        dots.forEach((dot, i) => {
+
+          const isActive = i === currentSlide;
+
+          dot.classList.toggle("active", isActive);
+
+          dot.setAttribute(
+            "aria-pressed",
+            String(isActive)
+          );
+
+        });
+
+      }
+
+      function stopAutoplay() {
+
+        if (autoplayId !== null) {
+
+          window.clearInterval(autoplayId);
+
+          autoplayId = null;
+
+        }
+
+      }
+
+      function startAutoplay() {
+
+        stopAutoplay();
+
+        if (reducedMotion || slides.length < 2) return;
+
+        autoplayId = window.setInterval(() => {
+
+          showSlide(currentSlide + 1);
+
+        }, autoplayDelay);
+
+      }
+
+      // Botón siguiente
+      if (nextButton) {
+
+        nextButton.addEventListener("click", () => {
+
+          showSlide(currentSlide + 1);
+
+          startAutoplay();
+
+        });
+
+      }
+
+      // Botón anterior
+      if (previousButton) {
+
+        previousButton.addEventListener("click", () => {
+
+          showSlide(currentSlide - 1);
+
+          startAutoplay();
+
+        });
+
+      }
+
+      // Indicadores inferiores
+      dots.forEach((dot, index) => {
+
+        dot.addEventListener("click", () => {
+
+          showSlide(index);
+
+          startAutoplay();
+
+        });
+
+      });
+
+      // Pausar al colocar el cursor sobre el carrusel
+      hero.addEventListener("mouseenter", stopAutoplay);
+
+      hero.addEventListener("mouseleave", startAutoplay);
+
+      // Pausar mientras se navega con el teclado
+      hero.addEventListener("focusin", stopAutoplay);
+
+      hero.addEventListener("focusout", event => {
+
+        if (!hero.contains(event.relatedTarget)) {
+
+          startAutoplay();
+
+        }
+
+      });
+
+      // Pausar cuando la pestaña no está visible
+      document.addEventListener("visibilitychange", () => {
+
+        if (document.hidden) {
+
+          stopAutoplay();
+
+        } else {
+
+          startAutoplay();
+
+        }
+
+      });
+
+      // Inicializar carrusel
+      showSlide(currentSlide);
+
+      startAutoplay();
+
+    });
+  </script>
 
 </body>
 </html>
