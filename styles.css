@@ -9,7 +9,7 @@
   --ink: #12213d;
   --muted: #66718a;
   --gold: #e5b957;
-  --gold-dark: #bd8b2c;
+  --gold-dark: #8f6516;
   --gold-light: #f5df9d;
   --cream: #fbf8f0;
   --bg: #f7f9fc;
@@ -194,7 +194,7 @@ ul {
 }
 
 .info a {
-  color: #2a7de1;
+  color: #1d63b8;
 }
 
 .info a:hover {
@@ -410,6 +410,14 @@ ul {
   letter-spacing: -.04em;
   font-weight: 800;
 }
+
+
+
+
+
+
+
+
 
 .arrow {
   position: absolute;
@@ -820,7 +828,7 @@ ul {
 }
 
 .center-note a {
-  color: #2a7de1;
+  color: #1d63b8;
   font-weight: 700;
 }
 
@@ -1108,7 +1116,7 @@ details p {
 }
 
 details a {
-  color: #2a7de1;
+  color: #1d63b8;
   font-weight: 700;
 }
 
@@ -1761,6 +1769,9 @@ details a {
     font-size: .72rem;
   }
 
+
+
+
   .arrow {
     display: none;
   }
@@ -1770,7 +1781,7 @@ details a {
   }
 
 
-  /* TARJETAS DE ACCESO RÁPIDO
+    /* TARJETAS DE ACCESO RÁPIDO
      SIN MONTAJE SOBRE EL CARRUSEL */
 
   .quick {
@@ -2185,4 +2196,113 @@ details a {
   border-color: #b3261e;
   background: #fdecea;
   color: #8c1d18;
+}
+
+
+/* =====================================================
+   ICONOS (mismo estilo en todo el sitio)
+   ===================================================== */
+
+.icon {
+  display: block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.social a .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.info-icon .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.contact-list li > span .icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 3px;
+}
+
+
+/* =====================================================
+   SECCIÓN ACTIVA EN EL MENÚ
+   ===================================================== */
+
+.nav-list > li > a.active {
+  color: var(--gold);
+  box-shadow: inset 0 -3px 0 var(--gold);
+}
+
+@media (max-width: 760px) {
+
+  .nav-list > li > a.active {
+    box-shadow: inset 4px 0 0 var(--gold);
+  }
+
+}
+
+
+/* =====================================================
+   FOTOS PENDIENTES
+   ===================================================== */
+
+.event-photos.all-empty .event-photo {
+  display: none;
+}
+
+.event-photos-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 18px 10px;
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+}
+
+
+/* =====================================================
+   VOLVER ARRIBA
+   ===================================================== */
+
+.to-top {
+  position: fixed;
+  z-index: 50;
+  right: 18px;
+  bottom: 18px;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  box-shadow: 0 8px 20px rgba(5,13,31,.28);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s, transform .25s, visibility .25s, background .2s, color .2s;
+}
+
+.to-top .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.to-top:hover {
+  background: var(--gold);
+  color: var(--navy);
 }
