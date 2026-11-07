@@ -2142,3 +2142,47 @@ details a {
   }
 
 }
+
+
+/* =====================================================
+   ACCESIBILIDAD Y COPIADO
+   ===================================================== */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  left: 10px;
+  padding: 12px 16px;
+  transform: translateY(-160%);
+  background: white;
+  color: var(--navy);
+  border: 2px solid var(--gold-dark);
+  font-weight: 800;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.sinpe-number,
+.iban,
+.bank-account {
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.copy-button.copy-error {
+  border-color: #b3261e;
+  background: #fdecea;
+  color: #8c1d18;
+}
