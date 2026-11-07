@@ -12,10 +12,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 
 <body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
   <!-- BARRA SUPERIOR -->
   <div class="topbar">
@@ -119,7 +121,7 @@
   </nav>
 
 
-  <main>
+  <main id="contenido">
 
     <!-- CARRUSEL PRINCIPAL -->
     <section class="hero" id="inicio" aria-label="Presentación de la iglesia">
@@ -803,12 +805,14 @@
         </header>
 
         <div class="donation-sinpe">
-          <div class="donation-symbol">₡</div>
+          <div class="donation-symbol" aria-hidden="true">₡</div>
 
           <div>
             <span class="donation-eyebrow">SINPE Móvil de la iglesia</span>
             <strong class="sinpe-number">8678-2826</strong>
-            <button class="copy-button" type="button" data-copy="8678-2826">
+            <button class="copy-button" type="button"
+                    data-copy="86782826"
+                    aria-label="Copiar número de SINPE Móvil">
               Copiar SINPE
             </button>
           </div>
@@ -826,7 +830,8 @@
             <p class="iban">CR180151191100100000595</p>
 
             <button class="copy-button" type="button"
-                    data-copy="CR180151191100100000595">
+                    data-copy="CR180151191100100000595"
+                    aria-label="Copiar IBAN de la cuenta principal">
               Copiar IBAN
             </button>
 
@@ -834,7 +839,8 @@
             <p class="bank-account">100-01-191-000059-3</p>
 
             <button class="copy-button" type="button"
-                    data-copy="100-01-191-000059-3">
+                    data-copy="100011910000593"
+                    aria-label="Copiar número de cuenta BN de la cuenta principal">
               Copiar cuenta BN
             </button>
           </article>
@@ -849,7 +855,8 @@
             <p class="iban">CR81015109010010014807</p>
 
             <button class="copy-button" type="button"
-                    data-copy="CR81015109010010014807">
+                    data-copy="CR81015109010010014807"
+                    aria-label="Copiar IBAN de la cuenta pro-construcción">
               Copiar IBAN
             </button>
 
@@ -857,7 +864,8 @@
             <p class="bank-account">100-01-090-001480-8</p>
 
             <button class="copy-button" type="button"
-                    data-copy="100-01-090-001480-8">
+                    data-copy="100010900014808"
+                    aria-label="Copiar número de cuenta BN de la cuenta pro-construcción">
               Copiar cuenta BN
             </button>
           </article>
@@ -1053,6 +1061,10 @@
           <a href="https://www.facebook.com/share/1DuQMBURgQ/"
              target="_blank" rel="noopener noreferrer"
              aria-label="Facebook">f</a>
+
+          <a href="https://www.instagram.com/tabernaculodeadoracion1?cplk=bXNycDRzZTFvM3R6"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Instagram">◎</a>
         </div>
       </div>
 
@@ -1068,7 +1080,7 @@
 
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=6"></script>
 
 </body>
 </html>
