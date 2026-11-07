@@ -341,6 +341,39 @@ document.querySelectorAll('.event-toggle').forEach(button => {
    5. FOTOGRAFÍAS NO DISPONIBLES
    ===================================================== */
 
+// Si una reunión todavía no tiene fotos, muestra un mensaje
+// en lugar de cuadros vacíos
+
+function updatePhotoNote(gallery) {
+
+  if (!gallery) return;
+
+  const figures = Array.from(
+    gallery.querySelectorAll('.event-photo')
+  );
+
+  const allEmpty = figures.every(
+    figure => figure.classList.contains('is-empty')
+  );
+
+  gallery.classList.toggle('all-empty', allEmpty);
+
+  if (allEmpty && !gallery.querySelector('.event-photos-note')) {
+
+    const note = document.createElement('p');
+
+    note.className = 'event-photos-note';
+
+    note.textContent =
+      'Pronto compartiremos fotos de esta reunión.';
+
+    gallery.appendChild(note);
+
+  }
+
+}
+
+
 document.querySelectorAll('.event-photo img').forEach(image => {
 
   function showPlaceholder() {
@@ -352,6 +385,8 @@ document.querySelectorAll('.event-photo img').forEach(image => {
     image.remove();
 
     figure.classList.add('is-empty');
+
+    updatePhotoNote(figure.closest('.event-photos'));
 
   }
 
@@ -485,3 +520,91 @@ document.querySelectorAll('[data-copy]').forEach(button => {
   });
 
 });
+
+
+/* =====================================================
+   7. SECCIÓN ACTIVA EN EL MENÚ
+   ===================================================== */
+
+const navTargets = new Map();
+
+document.querySelectorAll('.nav-list > li > a').forEach(link => {
+
+  const href = link.getAttribute('href');
+
+  if (href && href.startsWith('#')) {
+    navTargets.set(href.slice(1), link);
+  }
+
+});
+
+const aboutLink = document.querySelector('.nav-list .sub-toggle');
+
+if (aboutLink) {
+
+  ['nosotros', 'historia', 'pastores', 'fe'].forEach(id => {
+    navTargets.set(id, aboutLink);
+  });
+
+}
+
+
+function setActiveLink(id) {
+
+  document.querySelectorAll('.nav-list a.active').forEach(link => {
+
+    link.classList.remove('active');
+    link.removeAttribute('aria-current');
+
+  });
+
+  const target = navTargets.get(id);
+
+  if (target) {
+
+    target.classList.add('active');
+    target.setAttribute('aria-current', 'location');
+
+  }
+
+}
+
+
+if ('IntersectionObserver' in window) {
+
+  const sectionObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if (entry.isIntersecting) {
+        setActiveLink(entry.target.id);
+      }
+
+    });
+
+  }, { rootMargin: '-45% 0px -50% 0px' });
+
+  document.querySelectorAll('main section[id]').forEach(section => {
+    sectionObserver.observe(section);
+  });
+
+}
+
+
+/* =====================================================
+   8. BOTÓN VOLVER ARRIBA
+   ===================================================== */
+
+const toTopButton = document.querySelector('#to-top');
+
+if (toTopButton) {
+
+  const updateToTop = () => {
+    toTopButton.classList.toggle('show', window.scrollY > 700);
+  };
+
+  window.addEventListener('scroll', updateToTop, { passive: true });
+
+  updateToTop();
+
+}
