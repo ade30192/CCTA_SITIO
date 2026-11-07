@@ -10,8 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mejoras.css">
 </head>
 <body>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
 
   <!-- Barra superior -->
   <div class="topbar">
@@ -42,11 +45,15 @@
         </div>
         <div class="info">
           <span class="info-icon" aria-hidden="true">◷</span>
-          <p>Culto congregacional<br><a href="#agenda">Sábados 7:00 p. m.</a></p>
+          <p>Reuniones principales<br>
+            <a href="#agenda">Sábados 7:00 p. m. · Domingos 10:00 a. m.</a>
+          </p>
         </div>
         <div class="info">
           <span class="info-icon" aria-hidden="true">✉</span>
-          <p>Escribinos por<br><a href="mailto:tabernaculodeadoracion1952@gmail.com">Correo electrónico</a></p>
+          <p>Escribinos por<br>
+            <a href="mailto:tabernaculodeadoracion1952@gmail.com">Correo electrónico</a>
+          </p>
         </div>
       </div>
 
@@ -77,10 +84,11 @@
     </ul>
   </nav>
 
-  <main>
+  <main id="contenido">
 
-    <!-- HERO / slider -->
-    <section class="hero" id="inicio" aria-roledescription="carrusel">
+    <!-- Presentación / carrusel -->
+    <section class="hero" id="inicio" aria-label="Presentación de la iglesia" aria-roledescription="carrusel">
+
       <div class="slide active" style="--bg:url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=1800&q=80')">
         <div class="container slide-copy">
           <span class="script">te esperamos</span>
@@ -107,34 +115,43 @@
 
       <button class="arrow prev" aria-label="Anterior">‹</button>
       <button class="arrow next" aria-label="Siguiente">›</button>
-      <div class="dots" role="tablist">
-        <button class="dot active" aria-label="Diapositiva 1"></button>
-        <button class="dot" aria-label="Diapositiva 2"></button>
-        <button class="dot" aria-label="Diapositiva 3"></button>
+
+      <div class="dots" role="group" aria-label="Elegir diapositiva">
+        <button class="dot active" type="button" aria-label="Mostrar diapositiva 1" aria-pressed="true"></button>
+        <button class="dot" type="button" aria-label="Mostrar diapositiva 2" aria-pressed="false"></button>
+        <button class="dot" type="button" aria-label="Mostrar diapositiva 3" aria-pressed="false"></button>
       </div>
+
+      <button class="carousel-toggle" id="carousel-toggle" type="button" aria-pressed="false">
+        Pausar carrusel
+      </button>
     </section>
 
-    <!-- Tres accesos rápidos -->
+    <!-- Accesos rápidos -->
     <section class="quick">
       <div class="container quick-grid">
+
         <a class="quick-card" href="#nuevo">
           <small>te esperamos</small>
           <h3>¿Nuevo aquí?</h3>
           <p>Queremos que seas parte de nuestra familia. Conocé cómo son nuestras reuniones.</p>
           <span class="more">Conocer más →</span>
         </a>
+
         <a class="quick-card" href="#agenda">
           <small>reuniones</small>
           <h3>Agenda semanal</h3>
           <p>Revisá los días y horarios en que nos reunimos durante la semana.</p>
           <span class="more">Ver agenda →</span>
         </a>
+
         <a class="quick-card" href="#contacto">
           <small>contacto</small>
           <h3>Contáctenos</h3>
           <p>Escribinos, estamos para servir y ayudar en lo que ocupés.</p>
           <span class="more">Escribir →</span>
         </a>
+
       </div>
     </section>
 
@@ -142,7 +159,9 @@
     <section class="vision" id="nosotros">
       <div class="container vision-inner">
         <span class="label">Nuestra visión</span>
-        <h2>Ser una iglesia para la familia: <em>adorar a Dios, crecer en su Palabra y servir con amor.</em></h2>
+        <h2>Ser una iglesia para la familia:
+          <em>adorar a Dios, crecer en su Palabra y servir con amor.</em>
+        </h2>
         <a class="btn btn-outline-light" href="#historia">Conocé nuestra historia</a>
       </div>
     </section>
@@ -161,14 +180,17 @@
       </div>
     </section>
 
-    <!-- Próximas reuniones -->
+    <!-- Agenda semanal -->
     <section class="section agenda" id="agenda">
       <div class="container">
 
         <header class="sec-head">
           <span class="label dark">Eventos</span>
           <h2 class="title center">Nuestras <em>reuniones</em></h2>
-          <p class="sub-note">Todas estas actividades se realizan en la nueva sede de la iglesia, en Paquera, Puntarenas. Estos son los horarios habituales; cualquier cambio se anunciará en nuestros canales oficiales.</p>
+          <p class="sub-note">
+            Todas estas actividades se realizan en la nueva sede de la iglesia, en Paquera, Puntarenas.
+            Estos son los horarios habituales; cualquier cambio se anunciará en nuestros canales oficiales.
+          </p>
         </header>
 
         <div class="agenda-grid">
@@ -185,7 +207,6 @@
                 <span class="event-more">Ver fotos <i aria-hidden="true">+</i></span>
               </span>
             </button>
-
             <div class="event-panel" id="fotos-ayuno">
               <div class="event-panel-inner">
                 <div class="event-photos">
@@ -218,7 +239,6 @@
                 <span class="event-more">Ver fotos <i aria-hidden="true">+</i></span>
               </span>
             </button>
-
             <div class="event-panel" id="fotos-adulto-mayor">
               <div class="event-panel-inner">
                 <div class="event-photos">
@@ -251,7 +271,6 @@
                 <span class="event-more">Ver fotos <i aria-hidden="true">+</i></span>
               </span>
             </button>
-
             <div class="event-panel" id="fotos-jovenes">
               <div class="event-panel-inner">
                 <div class="event-photos">
@@ -284,7 +303,6 @@
                 <span class="event-more">Ver fotos <i aria-hidden="true">+</i></span>
               </span>
             </button>
-
             <div class="event-panel" id="fotos-culto">
               <div class="event-panel-inner">
                 <div class="event-photos">
@@ -305,7 +323,7 @@
             </div>
           </article>
 
-          <!-- DOMINGO: NUEVA REUNIÓN -->
+          <!-- DOMINGO -->
           <article class="event">
             <button class="event-toggle" type="button" aria-expanded="false" aria-controls="fotos-domingo">
               <span class="event-day">Domingo</span>
@@ -317,7 +335,6 @@
                 <span class="event-more">Ver fotos <i aria-hidden="true">+</i></span>
               </span>
             </button>
-
             <div class="event-panel" id="fotos-domingo">
               <div class="event-panel-inner">
                 <div class="event-photos">
@@ -365,6 +382,7 @@
             <h3>Gabriel Quirós Leal</h3>
             <small>Pastor</small>
             <a class="pastor-phone" href="tel:+50688302005">+506 8830 2005</a>
+            <a class="whatsapp-link" href="https://wa.me/50688302005?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20la%20iglesia." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp ↗</a>
           </article>
 
           <article class="pastor">
@@ -375,6 +393,7 @@
             <h3>Danixa Villalobos Gutiérrez</h3>
             <small>Pastora</small>
             <a class="pastor-phone" href="tel:+50687572168">+506 8757 2168</a>
+            <a class="whatsapp-link" href="https://wa.me/50687572168?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20la%20iglesia." target="_blank" rel="noopener noreferrer">Escribir por WhatsApp ↗</a>
           </article>
         </div>
       </div>
@@ -437,15 +456,25 @@
       </div>
     </section>
 
-    <!-- Nuevo aquí + preguntas frecuentes -->
+    <!-- Bienvenida y preguntas frecuentes -->
     <section class="section newhere" id="nuevo">
       <div class="container two-col top">
+
         <div>
           <span class="label dark">Bienvenido a casa</span>
           <h2 class="title">¿Primera vez<br><em>con nosotros?</em></h2>
           <div class="prose">
             <p>¡Hola y bienvenido! Aquí encontrarás personas que aman a Dios, un equipo pastoral cercano y una congregación que te recibirá con los brazos abiertos. Vení tal como sos.</p>
             <a class="btn btn-navy" href="#agenda">Nuestras próximas reuniones</a>
+          </div>
+
+          <div class="visitor-guide" aria-label="Guía para tu primera visita">
+            <h3>Tu primera visita</h3>
+            <ol>
+              <li><strong>Elegí una reunión.</strong> Revisá los días y horarios de nuestra agenda.</li>
+              <li><strong>Consultá cómo llegar.</strong> Abrí la ubicación en Google Maps o buscala en Waze.</li>
+              <li><strong>Escribinos.</strong> Los pastores pueden ayudarte con cualquier consulta antes de llegar.</li>
+            </ol>
           </div>
         </div>
 
@@ -464,7 +493,7 @@
 
           <details>
             <summary>¿Dónde se encuentran los templos?</summary>
-            <p>Contamos con la sede actual y una antigua sede. Encontrarás sus enlaces de Google Maps y espacios para completar sus direcciones formales en la sección de <a href="#ubicaciones">ubicaciones</a>.</p>
+            <p>Contamos con la sede actual y una antigua sede. Encontrarás sus enlaces de Google Maps y Waze en la sección de <a href="#ubicaciones">ubicaciones</a>.</p>
           </details>
 
           <details>
@@ -481,36 +510,56 @@
             <summary>¿Cómo me comunico con los pastores?</summary>
             <p>Llamá o escribí a Danixa Villalobos Gutiérrez al <a href="tel:+50687572168">+506 8757 2168</a> o a Gabriel Quirós Leal al <a href="tel:+50688302005">+506 8830 2005</a>. También podés escribir al correo <a href="mailto:tabernaculodeadoracion1952@gmail.com">tabernaculodeadoracion1952@gmail.com</a>.</p>
           </details>
+
         </div>
       </div>
     </section>
 
-    <!-- Ubicaciones de los dos templos y reservaciones -->
+    <!-- Ubicaciones -->
     <section class="section locations" id="ubicaciones">
       <div class="container">
+
         <header class="sec-head">
           <span class="label dark">Cómo encontrarnos</span>
           <h2 class="title center">Nuestras <em>ubicaciones</em></h2>
-          <p class="sub-note">Las reuniones habituales y actividades de la congregación se realizan en la nueva sede, en Paquera, Puntarenas. La antigua sede se muestra por separado para consultas y reservaciones. Consultá las rutas en Google Maps; las direcciones escritas se completarán cuando la iglesia confirme su redacción formal.</p>
+          <p class="sub-note">
+            Las reuniones habituales y actividades de la congregación se realizan en la nueva sede, en Paquera, Puntarenas.
+            La antigua sede se muestra por separado para consultas y reservaciones.
+          </p>
         </header>
 
         <div class="location-grid">
+
           <article class="location-card">
             <span class="location-number">01</span>
             <h3>Nueva sede · Paquera</h3>
-            <p class="address-label">Dirección formal</p>
-            <p class="address-pending">[Espacio reservado para agregar la dirección completa en palabras]</p>
-            <a class="btn btn-navy" href="https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>
+            <p class="address-label">Ubicación</p>
+            <p class="address-pending">Paquera, Puntarenas, Costa Rica. Abrí el mapa y confirmá que el marcador corresponda a la nueva sede antes de iniciar el recorrido.</p>
+
+            <div class="location-actions">
+              <a class="btn btn-navy" href="https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+              <a class="btn btn-waze" href="https://waze.com/ul?q=Centro%20Cristiano%20Tabernaculo%20de%20Adoracion%2C%20Paquera%2C%20Puntarenas%2C%20Costa%20Rica" target="_blank" rel="noopener noreferrer">Buscar en Waze ↗</a>
+            </div>
           </article>
 
           <article class="location-card">
             <span class="location-number">02</span>
             <h3>Antigua sede</h3>
-            <p class="address-label">Dirección formal</p>
-            <p class="address-pending">[Espacio reservado para agregar la dirección completa en palabras]</p>
-            <a class="btn btn-navy" href="https://maps.app.goo.gl/YrNSQynUugQfBkUW6" target="_blank" rel="noopener noreferrer">Abrir en Google Maps ↗</a>
+            <p class="address-label">Ubicación</p>
+            <p class="address-pending">Antigua sede del Centro Cristiano Tabernáculo de Adoración, Paquera, Puntarenas. Confirmá el punto exacto en la aplicación.</p>
+
+            <div class="location-actions">
+              <a class="btn btn-navy" href="https://maps.app.goo.gl/YrNSQynUugQfBkUW6" target="_blank" rel="noopener noreferrer">Google Maps ↗</a>
+              <a class="btn btn-waze" href="https://waze.com/ul?q=Antigua%20sede%20Centro%20Cristiano%20Tabernaculo%20de%20Adoracion%2C%20Paquera%2C%20Puntarenas%2C%20Costa%20Rica" target="_blank" rel="noopener noreferrer">Buscar en Waze ↗</a>
+            </div>
           </article>
+
         </div>
+
+        <p class="map-disclaimer">
+          Waze abrirá una búsqueda por nombre y localidad, no una coordenada verificada.
+          Antes de iniciar la navegación, seleccioná y confirmá el marcador correcto.
+        </p>
 
         <div class="reservation-note">
           <span class="label dark">Reservación de espacios</span>
@@ -521,12 +570,14 @@
             <a href="tel:+50688302005">Gabriel: +506 8830 2005</a>
           </div>
         </div>
+
       </div>
     </section>
 
     <!-- Donaciones -->
     <section class="section donations" id="donaciones">
       <div class="container">
+
         <header class="sec-head">
           <span class="label dark">Generosidad y servicio</span>
           <h2 class="title center">Donaciones para <em>seguir construyendo</em></h2>
@@ -538,17 +589,21 @@
           <div>
             <span class="donation-eyebrow">SINPE Móvil de la iglesia</span>
             <strong class="sinpe-number">8678-2826</strong>
+            <button class="copy-button" type="button" data-copy="8678-2826">Copiar SINPE</button>
           </div>
         </div>
 
         <div class="donation-grid">
+
           <article class="donation-card main-account">
             <span class="donation-eyebrow">Banco Nacional · Cuenta principal de la iglesia</span>
             <h3>Cuenta principal</h3>
             <p class="account-type">IBAN</p>
             <p class="iban">CR180151191100100000595</p>
+            <button class="copy-button" type="button" data-copy="CR180151191100100000595">Copiar IBAN</button>
             <p class="account-type">Cuenta BN</p>
             <p class="bank-account">100-01-191-000059-3</p>
+            <button class="copy-button" type="button" data-copy="100-01-191-000059-3">Copiar cuenta BN</button>
           </article>
 
           <article class="donation-card construction-account">
@@ -556,43 +611,43 @@
             <h3>Cuenta pro-construcción</h3>
             <p class="account-type">IBAN</p>
             <p class="iban">CR81015109010010014807</p>
+            <button class="copy-button" type="button" data-copy="CR81015109010010014807">Copiar IBAN</button>
             <p class="account-type">Cuenta BN</p>
             <p class="bank-account">100-01-090-001480-8</p>
+            <button class="copy-button" type="button" data-copy="100-01-090-001480-8">Copiar cuenta BN</button>
           </article>
+
         </div>
 
-        <p class="donation-disclaimer">Gracias por tu generosidad y fidelidad. Te recomendamos verificar los datos y confirmar cualquier consulta directamente con los pastores antes de realizar una transferencia.</p>
+        <p class="donation-disclaimer">
+          Gracias por tu generosidad y fidelidad. Te recomendamos verificar los datos y confirmar cualquier consulta directamente con los pastores antes de realizar una transferencia.
+        </p>
+
       </div>
     </section>
 
     <!-- Proyectos -->
     <section class="section projects" id="proyectos">
       <div class="container">
+
         <header class="sec-head">
           <span class="label dark">Seguimos avanzando</span>
           <h2 class="title center">Nuevos proyectos <em>en proceso</em></h2>
         </header>
 
-        <div class="projects-grid" aria-label="Espacios reservados para futuras imágenes de proyectos">
-          <div class="project-placeholder" role="img" aria-label="Espacio reservado para la imagen del primer proyecto">
-            <span class="project-placeholder-plus" aria-hidden="true">+</span>
-            <span class="project-placeholder-label">Espacio para imagen</span>
-          </div>
-          <div class="project-placeholder" role="img" aria-label="Espacio reservado para la imagen del segundo proyecto">
-            <span class="project-placeholder-plus" aria-hidden="true">+</span>
-            <span class="project-placeholder-label">Espacio para imagen</span>
-          </div>
-          <div class="project-placeholder" role="img" aria-label="Espacio reservado para la imagen del tercer proyecto">
-            <span class="project-placeholder-plus" aria-hidden="true">+</span>
-            <span class="project-placeholder-label">Espacio para imagen</span>
-          </div>
+        <div class="projects-note">
+          <h3>Seguimos trabajando por nuestra comunidad</h3>
+          <p>Pronto compartiremos por este medio información sobre los próximos proyectos e iniciativas de la iglesia.</p>
+          <a class="btn btn-navy" href="https://www.facebook.com/share/1DuQMBURgQ/" target="_blank" rel="noopener noreferrer">Ver novedades en Facebook ↗</a>
         </div>
+
       </div>
     </section>
 
     <!-- Contacto -->
     <section class="section contact" id="contacto">
       <div class="container two-col top">
+
         <div>
           <span class="label light">Estamos para servirte</span>
           <h2 class="title light">Hablemos <em>con confianza.</em></h2>
@@ -633,11 +688,16 @@
         <div class="contact-panel">
           <h3>Conectá con nosotros</h3>
           <p>Seguinos en nuestras redes para conocer anuncios, reuniones y actividades de la congregación.</p>
-          <a class="btn btn-gold contact-action" href="https://www.facebook.com/share/1DuQMBURgQ/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+
+          <a class="btn btn-gold contact-action" href="https://wa.me/50687572168?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20la%20iglesia." target="_blank" rel="noopener noreferrer">WhatsApp · Pastora Danixa ↗</a>
+          <a class="btn btn-gold contact-action" href="https://wa.me/50688302005?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20la%20iglesia." target="_blank" rel="noopener noreferrer">WhatsApp · Pastor Gabriel ↗</a>
+          <a class="btn btn-outline-navy contact-action" href="https://www.facebook.com/share/1DuQMBURgQ/" target="_blank" rel="noopener noreferrer">Facebook ↗</a>
           <a class="btn btn-gold contact-action" href="https://www.instagram.com/tabernaculodeadoracion1?cplk=bXNycDRzZTFvM3R6" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
           <a class="btn btn-outline-navy contact-action" href="mailto:tabernaculodeadoracion1952@gmail.com">Enviar un correo</a>
+
           <p class="contact-small">Para reservar cualquiera de los dos templos, contactá primero a los pastores. Las solicitudes están sujetas a disponibilidad y aprobación.</p>
         </div>
+
       </div>
     </section>
 
@@ -646,6 +706,7 @@
   <!-- Pie de página -->
   <footer class="footer">
     <div class="container footer-grid">
+
       <div class="f-brand">
         <img src="logo-iglesia.jpg" alt="" class="brand-logo">
         <p><strong>Centro Cristiano<br>Tabernáculo de Adoración</strong></p>
@@ -680,12 +741,15 @@
           <a href="https://www.facebook.com/share/1DuQMBURgQ/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
         </div>
       </div>
+
     </div>
 
     <div class="container footer-bottom">
       <span>© <span id="year"></span> Centro Cristiano Tabernáculo de Adoración. Todos los derechos reservados.</span>
     </div>
   </footer>
+
+  <p id="copy-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
 
   <script src="script.js"></script>
 </body>
