@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d49">
+  <meta name="description" content="Datos para donar al Centro Cristiano Tabernáculo de Adoración: SINPE Móvil y cuentas del Banco Nacional.">
+
+  <title>Donaciones | Centro Cristiano Tabernáculo de Adoración</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="extras.css?v=2">
+
+  <!-- Ícono de pestaña y vista previa al compartir -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CR">
+  <meta property="og:site_name" content="Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:title" content="Donaciones | Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:description" content="Datos para donar al Centro Cristiano Tabernáculo de Adoración: SINPE Móvil y cuentas del Banco Nacional.">
+  <meta property="og:url" content="https://ade30192.github.io/CCTA_SITIO/donar.html">
+  <meta property="og:image" content="https://ade30192.github.io/CCTA_SITIO/logo-compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+  <!-- ENCABEZADO SIMPLE -->
+  <header class="masthead">
+    <div class="container masthead-inner">
+
+      <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <img src="logo-iglesia.jpg"
+             alt="Logo del Centro Cristiano Tabernáculo de Adoración"
+             class="brand-logo">
+
+        <span class="brand-copy">
+          <strong>Centro Cristiano</strong>
+          <span>Tabernáculo de Adoración</span>
+        </span>
+      </a>
+
+      <a class="btn btn-outline-navy sub-top-btn" href="index.html">← Volver al sitio</a>
+
+    </div>
+  </header>
+
+
+  <main id="contenido" class="sub-page">
+
+    <section class="section donations" id="donaciones">
+      <div class="container">
+
+        <header class="sec-head">
+          <span class="label dark">Generosidad y servicio</span>
+          <h1 class="title center">Donaciones para <em>seguir construyendo</em></h1>
+
+          <p class="sub-note wide">
+            Las donaciones se destinan a proyectos y necesidades de la iglesia, incluyendo construcción, mantenimiento, alimentación, servicios básicos y otras iniciativas de servicio a la comunidad.
+          </p>
+        </header>
+
+        <div class="donation-sinpe">
+          <div class="donation-symbol" aria-hidden="true">₡</div>
+
+          <div>
+            <span class="donation-eyebrow">SINPE Móvil de la iglesia</span>
+            <strong class="sinpe-number">8678-2826</strong>
+            <button class="copy-button" type="button"
+                    data-copy="86782826"
+                    aria-label="Copiar número de SINPE Móvil">
+              Copiar SINPE
+            </button>
+          </div>
+        </div>
+
+
+        <div class="donation-grid">
+
+          <article class="donation-card main-account">
+            <span class="donation-eyebrow">Banco Nacional · Cuenta principal de la iglesia</span>
+
+            <h3>Cuenta principal</h3>
+
+            <p class="account-type">IBAN</p>
+            <p class="iban">CR180151191100100000595</p>
+
+            <button class="copy-button" type="button"
+                    data-copy="CR180151191100100000595"
+                    aria-label="Copiar IBAN de la cuenta principal">
+              Copiar IBAN
+            </button>
+
+            <p class="account-type">Cuenta BN</p>
+            <p class="bank-account">100-01-191-000059-3</p>
+
+            <button class="copy-button" type="button"
+                    data-copy="100011910000593"
+                    aria-label="Copiar número de cuenta BN de la cuenta principal">
+              Copiar cuenta BN
+            </button>
+          </article>
+
+
+          <article class="donation-card construction-account">
+            <span class="donation-eyebrow">Banco Nacional · Pro-construcción</span>
+
+            <h3>Cuenta pro-construcción</h3>
+
+            <p class="account-type">IBAN</p>
+            <p class="iban">CR81015109010010014807</p>
+
+            <button class="copy-button" type="button"
+                    data-copy="CR81015109010010014807"
+                    aria-label="Copiar IBAN de la cuenta pro-construcción">
+              Copiar IBAN
+            </button>
+
+            <p class="account-type">Cuenta BN</p>
+            <p class="bank-account">100-01-090-001480-8</p>
+
+            <button class="copy-button" type="button"
+                    data-copy="100010900014808"
+                    aria-label="Copiar número de cuenta BN de la cuenta pro-construcción">
+              Copiar cuenta BN
+            </button>
+          </article>
+
+        </div>
+
+        <p class="donation-disclaimer">
+          Gracias por tu generosidad y fidelidad. Te recomendamos verificar los datos y confirmar cualquier consulta directamente con los pastores antes de realizar una transferencia.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- PIE DE PÁGINA SIMPLE -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <span>
+        © <span id="year"></span> Centro Cristiano Tabernáculo de Adoración. Todos los derechos reservados.
+      </span>
+    </div>
+  </footer>
+
+
+  <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
+
+  <script>
+    (function () {
+      var year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+  <script>
+const copyStatus = document.querySelector('#copy-status');
+
+document.querySelectorAll('[data-copy]').forEach(button => {
+
+  button.addEventListener('click', async () => {
+
+    const value = button.getAttribute('data-copy');
+
+    if (!value) return;
+
+    try {
+
+      // Método moderno de copiado
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+
+        await navigator.clipboard.writeText(value);
+
+      } else {
+
+        // Alternativa para navegadores compatibles
+
+        const temporaryInput =
+          document.createElement('textarea');
+
+        temporaryInput.value = value;
+
+        temporaryInput.setAttribute('readonly', '');
+
+        temporaryInput.style.position = 'fixed';
+        temporaryInput.style.opacity = '0';
+
+        document.body.appendChild(temporaryInput);
+
+        temporaryInput.select();
+
+        const copied = document.execCommand('copy');
+
+        temporaryInput.remove();
+
+        if (!copied) {
+
+          throw new Error('No se pudo copiar el contenido.');
+
+        }
+
+      }
+
+
+      // Confirmación visual
+
+      const originalText =
+        button.dataset.originalText || button.textContent;
+
+      button.dataset.originalText = originalText;
+
+      button.textContent = 'Copiado ✓';
+
+      button.classList.add('copied');
+
+      if (copyStatus) {
+
+        copyStatus.textContent =
+          `Se copió correctamente: ${value}`;
+
+      }
+
+
+      window.setTimeout(() => {
+
+        button.textContent = originalText;
+
+        button.classList.remove('copied');
+
+      }, 2200);
+
+
+    } catch (error) {
+
+      const originalText =
+        button.dataset.originalText || button.textContent;
+
+      button.dataset.originalText = originalText;
+
+      button.textContent = 'No se pudo copiar. Tocá el número para seleccionarlo';
+
+      button.classList.add('copy-error');
+
+      if (copyStatus) {
+
+        copyStatus.textContent =
+          'No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.';
+
+      }
+
+      window.setTimeout(() => {
+
+        button.textContent = originalText;
+
+        button.classList.remove('copy-error');
+
+      }, 4000);
+
+    }
+
+  });
+
+});
+  </script>
+
+</body>
+</html>

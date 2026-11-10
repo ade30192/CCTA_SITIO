@@ -195,6 +195,26 @@
 }
 
 
+/* ---------- Donaciones compactas en la página principal ---------- */
+
+.don-bank-btn {
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 760px) {
+  .donation-sinpe {
+    flex-wrap: wrap;
+  }
+
+  .donation-sinpe .don-bank-btn {
+    flex: 1 1 100%;
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+
 /* ---------- Mapas incrustados en Ubicaciones ---------- */
 
 .map-embed {
