@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d49">
+  <meta name="robots" content="noindex">
+
+  <title>Página no encontrada | Centro Cristiano Tabernáculo de Adoración</title>
+
+  <!--
+    GitHub Pages muestra este archivo desde cualquier dirección que no existe,
+    por eso todas las rutas son absolutas (/CCTA_SITIO/...).
+    Si algún día el sitio pasa a un dominio propio, cambiá /CCTA_SITIO/ por /
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/CCTA_SITIO/styles.css?v=8">
+  <link rel="stylesheet" href="/CCTA_SITIO/extras.css?v=1">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/CCTA_SITIO/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/CCTA_SITIO/favicon-192.png">
+  <link rel="apple-touch-icon" href="/CCTA_SITIO/apple-touch-icon.png">
+</head>
+
+<body>
+
+  <header class="masthead">
+    <div class="container masthead-inner">
+
+      <a class="brand" href="/CCTA_SITIO/" aria-label="Ir al inicio">
+        <img src="/CCTA_SITIO/logo-iglesia.jpg"
+             alt="Logo del Centro Cristiano Tabernáculo de Adoración"
+             class="brand-logo">
+
+        <span class="brand-copy">
+          <strong>Centro Cristiano</strong>
+          <span>Tabernáculo de Adoración</span>
+        </span>
+      </a>
+
+    </div>
+  </header>
+
+  <main class="err-page">
+    <div class="container">
+      <div class="err-card">
+
+        <p class="err-code" aria-hidden="true">404</p>
+
+        <h1>Esta página no existe</h1>
+
+        <p>
+          Puede que el enlace esté mal escrito o que la página haya cambiado de lugar. No te preocupés, te ayudamos a encontrar lo que buscás.
+        </p>
+
+        <div class="err-actions">
+          <a class="btn btn-gold" href="/CCTA_SITIO/">Ir al inicio</a>
+          <a class="btn btn-outline-navy" href="/CCTA_SITIO/#agenda">Ver reuniones</a>
+          <a class="btn btn-outline-navy" href="/CCTA_SITIO/#contacto">Contactar a los pastores</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <span>
+        © <span id="year"></span> Centro Cristiano Tabernáculo de Adoración. Todos los derechos reservados.
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+</body>
+</html>
