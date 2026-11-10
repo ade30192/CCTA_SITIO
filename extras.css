@@ -551,6 +551,89 @@
 }
 
 
+/* ---------- Botón "Ver fotos" más grande y fácil de tocar ---------- */
+
+.event-more {
+  min-height: 46px;
+  margin-top: 18px;
+  padding: 9px 14px 9px 16px;
+  gap: 10px;
+  border: 2px solid #23549a;
+  border-radius: 999px;
+  background: #eaf2fd;
+  color: #1d4f93;
+  font-size: .9rem;
+  letter-spacing: .01em;
+  line-height: 1;
+  transition: background .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+
+.event-more::before {
+  content: "";
+  flex: none;
+  width: 20px;
+  height: 20px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z'/%3E%3Ccircle cx='12' cy='13' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z'/%3E%3Ccircle cx='12' cy='13' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.event-more i {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: #23549a;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.event-toggle:hover .event-more,
+.event-toggle:focus-visible .event-more,
+.event-toggle[aria-expanded="true"] .event-more {
+  border-color: var(--navy, #071d49);
+  background: var(--navy, #071d49);
+  color: white;
+  box-shadow: 0 6px 16px rgba(7, 29, 73, .22);
+}
+
+.event-toggle:hover .event-more i,
+.event-toggle:focus-visible .event-more i,
+.event-toggle[aria-expanded="true"] .event-more i {
+  background: var(--gold, #e5b957);
+  color: var(--navy, #071d49);
+}
+
+/* El texto del ícono ya cambia de + a −; no hace falta girarlo */
+.event-toggle[aria-expanded="true"] .event-more i {
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .event-more {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .event-more i {
+    margin-left: auto;
+  }
+
+  .event-more {
+    justify-content: flex-start;
+  }
+
+  .event-more::before {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+
 /* ---------- Mapas incrustados en Ubicaciones ---------- */
 
 .map-embed {
