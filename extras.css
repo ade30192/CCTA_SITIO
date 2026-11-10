@@ -98,6 +98,8 @@
   width: 100%;
   height: 240px;
   border: 0;
+  /* Colores más suaves para que el mapa contraste menos con el resto del sitio */
+  filter: grayscale(.35) saturate(.8) contrast(.92);
 }
 
 
