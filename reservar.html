@@ -53,6 +53,12 @@
     .rsv-msg.rsv-ok{color:#1f6b3a}
     .rsv-phones{display:flex;flex-wrap:wrap;gap:12px 25px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line,#e3e9f2);font-size:.92rem;color:var(--muted,#66718a)}
     .rsv-phones a{color:#23549a;font-weight:800}
+    .rsv-err{font-size:.8rem;font-weight:700;color:#a12a2a;line-height:1.4}
+    .rsv-err:empty{display:none}
+    .rsv-field input[aria-invalid="true"],.rsv-field select[aria-invalid="true"],.rsv-field textarea[aria-invalid="true"]{border-color:#a12a2a;background:#fff8f8}
+    .rsv-check.rsv-check-invalid span{color:#a12a2a}
+    .rsv-aviso{margin:22px 0 0;padding:14px 18px;background:#f7f9fc;border-left:4px solid var(--gold,#e5b957);color:var(--ink,#12213d);font-size:.9rem;line-height:1.7}
+    .rsv-aviso strong{color:var(--navy,#071d49)}
     @media (max-width:700px){
       .rsv-top-btn{display:none}
       .rsv-page{padding:36px 0 56px}
@@ -104,27 +110,32 @@
 
               <div class="rsv-field">
                 <label for="rsv-nombre">Nombre completo *</label>
-                <input type="text" id="rsv-nombre" name="nombre" autocomplete="name" required>
+                <input type="text" id="rsv-nombre" name="nombre" autocomplete="name" maxlength="80" aria-describedby="hint-nombre err-nombre" required>
+                <span class="rsv-hint" id="hint-nombre">Nombre y apellido.</span>
+                <span class="rsv-err" id="err-nombre"></span>
               </div>
 
               <div class="rsv-field">
                 <label for="rsv-telefono">Teléfono de contacto *</label>
-                <input type="tel" id="rsv-telefono" name="telefono" autocomplete="tel" inputmode="tel" placeholder="Ej.: 8888 8888" required>
+                <input type="tel" id="rsv-telefono" name="telefono" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="Ej.: 8765 4321" aria-describedby="hint-telefono err-telefono" required>
+                <span class="rsv-hint" id="hint-telefono">8 dígitos. Te llamaremos a este número para confirmar.</span>
+                <span class="rsv-err" id="err-telefono"></span>
               </div>
 
               <div class="rsv-field">
                 <label for="rsv-templo">Templo que deseás solicitar *</label>
-                <select id="rsv-templo" name="templo" required>
+                <select id="rsv-templo" name="templo" aria-describedby="err-templo" required>
                   <option value="">Elegí una opción</option>
                   <option>Nueva sede</option>
                   <option>Antigua sede</option>
                   <option>Cualquiera de los dos</option>
                 </select>
+                <span class="rsv-err" id="err-templo"></span>
               </div>
 
               <div class="rsv-field">
                 <label for="rsv-tipo">Tipo de actividad *</label>
-                <select id="rsv-tipo" name="tipo" required>
+                <select id="rsv-tipo" name="tipo" aria-describedby="err-tipo" required>
                   <option value="">Elegí una opción</option>
                   <option>Fiesta</option>
                   <option>Cumpleaños</option>
@@ -132,11 +143,14 @@
                   <option>Reunión gerencial</option>
                   <option>Otra actividad</option>
                 </select>
+                <span class="rsv-err" id="err-tipo"></span>
               </div>
 
               <div class="rsv-field">
                 <label for="rsv-fecha">Fecha tentativa *</label>
-                <input type="date" id="rsv-fecha" name="fecha" required>
+                <input type="date" id="rsv-fecha" name="fecha" aria-describedby="hint-fecha err-fecha" required>
+                <span class="rsv-hint" id="hint-fecha">Con al menos 7 días de anticipación.</span>
+                <span class="rsv-err" id="err-fecha"></span>
               </div>
 
               <div class="rsv-field">
@@ -145,33 +159,41 @@
               </div>
 
               <div class="rsv-field">
-                <label for="rsv-personas">Cantidad aproximada de personas</label>
-                <input type="number" id="rsv-personas" name="personas" min="1" max="2000" inputmode="numeric">
+                <label for="rsv-personas">Cantidad aproximada de personas *</label>
+                <input type="number" id="rsv-personas" name="personas" min="1" max="1000" inputmode="numeric" aria-describedby="err-personas" required>
+                <span class="rsv-err" id="err-personas"></span>
               </div>
 
               <div class="rsv-field">
                 <label for="rsv-pastor">¿A quién querés enviar la solicitud? *</label>
-                <select id="rsv-pastor" name="pastor" required>
+                <select id="rsv-pastor" name="pastor" aria-describedby="hint-pastor err-pastor" required>
                   <option value="">Elegí una opción</option>
                   <option value="50687572168">Pastora Danixa</option>
                   <option value="50688302005">Pastor Gabriel</option>
                 </select>
-                <span class="rsv-hint">El correo siempre se envía a la dirección oficial de la iglesia.</span>
+                <span class="rsv-hint" id="hint-pastor">El correo siempre se envía a la dirección oficial de la iglesia.</span>
+                <span class="rsv-err" id="err-pastor"></span>
               </div>
 
               <div class="rsv-field rsv-full">
-                <label for="rsv-detalles">Detalles adicionales</label>
-                <textarea id="rsv-detalles" name="detalles" placeholder="Contanos más sobre la actividad, el horario o cualquier necesidad especial."></textarea>
+                <label for="rsv-detalles">Detalles adicionales <span id="rsv-detalles-req"></span></label>
+                <textarea id="rsv-detalles" name="detalles" maxlength="600" placeholder="Contanos más sobre la actividad, el horario o cualquier necesidad especial." aria-describedby="err-detalles"></textarea>
+                <span class="rsv-err" id="err-detalles"></span>
               </div>
 
               <div class="rsv-field rsv-full">
-                <label class="rsv-check" for="rsv-acepto">
-                  <input type="checkbox" id="rsv-acepto" required>
+                <label class="rsv-check" for="rsv-acepto" id="rsv-check-label">
+                  <input type="checkbox" id="rsv-acepto" aria-describedby="err-acepto" required>
                   <span>Entiendo que esto es una solicitud y que la reservación está sujeta a disponibilidad, aprobación y a las normas de la iglesia. *</span>
                 </label>
+                <span class="rsv-err" id="err-acepto"></span>
               </div>
 
             </div>
+
+            <p class="rsv-aviso">
+              <strong>Importante:</strong> un pastor te llamará al número que dejés para confirmar la solicitud. Las solicitudes con datos falsos o incompletos no serán atendidas.
+            </p>
 
             <div class="rsv-actions">
               <button type="button" class="btn btn-gold" id="rsv-btn-wa">Enviar por WhatsApp</button>
@@ -212,61 +234,197 @@
       if (!form) return;
 
       var msg = document.getElementById('rsv-msg');
-      var fecha = document.getElementById('rsv-fecha');
       var CORREO = 'tabernaculodeadoracion1952@gmail.com';
+      var DIAS_ANTICIPACION = 7;
+      var MESES_MAXIMO = 18;
 
-      try {
-        var hoy = new Date();
-        var mm = String(hoy.getMonth() + 1).padStart(2, '0');
-        var dd = String(hoy.getDate()).padStart(2, '0');
-        fecha.min = hoy.getFullYear() + '-' + mm + '-' + dd;
-      } catch (e) {}
+      /* ---------- Utilidades ---------- */
+
+      function $(id) { return document.getElementById(id); }
 
       function val(id) {
-        return (document.getElementById(id).value || '').trim();
+        return ($(id).value || '').replace(/\s+/g, ' ').trim();
       }
 
-      function formatoFecha(iso) {
-        var p = iso.split('-');
-        return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : iso;
+      function iso(d) {
+        var mm = String(d.getMonth() + 1).padStart(2, '0');
+        var dd = String(d.getDate()).padStart(2, '0');
+        return d.getFullYear() + '-' + mm + '-' + dd;
       }
+
+      function fechaMinima() {
+        var d = new Date();
+        d.setHours(12, 0, 0, 0);
+        d.setDate(d.getDate() + DIAS_ANTICIPACION);
+        return iso(d);
+      }
+
+      function fechaMaxima() {
+        var d = new Date();
+        d.setHours(12, 0, 0, 0);
+        d.setMonth(d.getMonth() + MESES_MAXIMO);
+        return iso(d);
+      }
+
+      function formatoFecha(isoStr) {
+        var p = isoStr.split('-');
+        return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : isoStr;
+      }
+
+      // Devuelve los 8 dígitos del teléfono o '' si no es válido
+      function digitosTelefono(valor) {
+        var d = String(valor).replace(/[\s\-().]/g, '');
+        if (/^\+506/.test(d)) d = d.slice(4);
+        else if (/^00506/.test(d)) d = d.slice(5);
+        else if (/^506\d{8}$/.test(d)) d = d.slice(3);
+        if (!/^\d{8}$/.test(d)) return '';
+        return d;
+      }
+
+      function telefonoBonito(d) {
+        return d.slice(0, 4) + '-' + d.slice(4);
+      }
+
+      try { $('rsv-fecha').min = fechaMinima(); $('rsv-fecha').max = fechaMaxima(); } catch (e) {}
+
+      /* ---------- Reglas de validación ---------- */
+
+      var reglas = [
+        { id: 'rsv-nombre', err: 'err-nombre', check: function () {
+            var v = val('rsv-nombre');
+            if (!v) return 'Escribí tu nombre completo.';
+            var partes = v.split(' ');
+            if (partes.length < 2) return 'Escribí tu nombre y apellido.';
+            if (!/^[\p{L}][\p{L}'’.\- ]*$/u.test(v)) return 'El nombre solo puede tener letras.';
+            for (var i = 0; i < partes.length; i++) {
+              if (partes[i].replace(/[^\p{L}]/gu, '').length < 2) return 'Escribí tu nombre y apellido completos.';
+            }
+            if (v.length < 5) return 'El nombre es demasiado corto.';
+            return '';
+        } },
+        { id: 'rsv-telefono', err: 'err-telefono', check: function () {
+            var v = val('rsv-telefono');
+            if (!v) return 'Escribí un teléfono para poder llamarte.';
+            var d = digitosTelefono(v);
+            if (!d) return 'Escribí un número de 8 dígitos, por ejemplo 8765 4321.';
+            if (!/^[2456789]/.test(d)) return 'Ese número no parece de Costa Rica. Revisalo, por favor.';
+            if (/^(\d)\1{7}$/.test(d)) return 'Revisá el número: parece inválido.';
+            return '';
+        } },
+        { id: 'rsv-templo', err: 'err-templo', check: function () {
+            return val('rsv-templo') ? '' : 'Elegí el templo que querés solicitar.';
+        } },
+        { id: 'rsv-tipo', err: 'err-tipo', check: function () {
+            return val('rsv-tipo') ? '' : 'Elegí el tipo de actividad.';
+        } },
+        { id: 'rsv-fecha', err: 'err-fecha', check: function () {
+            var v = val('rsv-fecha');
+            if (!v) return 'Elegí una fecha tentativa.';
+            if (v < fechaMinima()) return 'La fecha debe ser con al menos ' + DIAS_ANTICIPACION + ' días de anticipación (desde el ' + formatoFecha(fechaMinima()) + ').';
+            if (v > fechaMaxima()) return 'Elegí una fecha dentro de los próximos ' + MESES_MAXIMO + ' meses.';
+            return '';
+        } },
+        { id: 'rsv-personas', err: 'err-personas', check: function () {
+            var v = val('rsv-personas');
+            if (!v) return 'Indicá la cantidad aproximada de personas.';
+            var n = Number(v);
+            if (!/^\d+$/.test(v) || n < 1 || n > 1000) return 'Escribí un número entre 1 y 1000.';
+            return '';
+        } },
+        { id: 'rsv-pastor', err: 'err-pastor', check: function () {
+            return val('rsv-pastor') ? '' : 'Elegí a quién querés enviar la solicitud.';
+        } },
+        { id: 'rsv-detalles', err: 'err-detalles', check: function () {
+            var v = val('rsv-detalles');
+            if (val('rsv-tipo') === 'Otra actividad' && v.length < 10) return 'Contanos brevemente qué actividad es (mínimo 10 caracteres).';
+            return '';
+        } },
+        { id: 'rsv-acepto', err: 'err-acepto', check: function () {
+            return $('rsv-acepto').checked ? '' : 'Tenés que aceptar para poder enviar la solicitud.';
+        } }
+      ];
+
+      function marcar(regla, mensaje) {
+        var campo = $(regla.id);
+        $(regla.err).textContent = mensaje;
+        if (mensaje) campo.setAttribute('aria-invalid', 'true');
+        else campo.removeAttribute('aria-invalid');
+        if (regla.id === 'rsv-acepto') {
+          $('rsv-check-label').classList.toggle('rsv-check-invalid', !!mensaje);
+        }
+      }
+
+      function validarCampo(regla) {
+        var m = regla.check();
+        marcar(regla, m);
+        return m;
+      }
+
+      function validarTodo() {
+        msg.className = 'rsv-msg';
+        var primero = null;
+        reglas.forEach(function (r) {
+          if (validarCampo(r) && !primero) primero = $(r.id);
+        });
+        if (primero) {
+          msg.textContent = 'Revisá los campos marcados antes de enviar.';
+          primero.focus();
+          return false;
+        }
+        msg.textContent = '';
+        return true;
+      }
+
+      // Detalles obligatorios solo si es "Otra actividad"
+      function actualizarDetalles() {
+        $('rsv-detalles-req').textContent = val('rsv-tipo') === 'Otra actividad' ? '*' : '';
+      }
+
+      // Validar al salir de cada campo y limpiar el error al corregir
+      reglas.forEach(function (r) {
+        var el = $(r.id);
+        el.addEventListener('blur', function () { if (el.value || el.checked || el.getAttribute('aria-invalid')) validarCampo(r); });
+        el.addEventListener('input', function () { if (el.getAttribute('aria-invalid')) validarCampo(r); });
+        el.addEventListener('change', function () { if (el.getAttribute('aria-invalid')) validarCampo(r); });
+      });
+      $('rsv-tipo').addEventListener('change', function () {
+        actualizarDetalles();
+        var d = reglas.filter(function (r) { return r.id === 'rsv-detalles'; })[0];
+        if ($('rsv-detalles').getAttribute('aria-invalid')) validarCampo(d);
+      });
+      actualizarDetalles();
+
+      /* ---------- Mensaje ---------- */
 
       function construirMensaje() {
         var lineas = [
           'Hola, quisiera solicitar la reservación de un templo.',
           '',
           'Nombre: ' + val('rsv-nombre'),
-          'Teléfono: ' + val('rsv-telefono'),
+          'Teléfono: ' + telefonoBonito(digitosTelefono(val('rsv-telefono'))),
           'Templo: ' + val('rsv-templo'),
           'Tipo de actividad: ' + val('rsv-tipo'),
           'Fecha tentativa: ' + formatoFecha(val('rsv-fecha'))
         ];
         if (val('rsv-hora')) lineas.push('Hora aproximada: ' + val('rsv-hora'));
-        if (val('rsv-personas')) lineas.push('Cantidad de personas: ' + val('rsv-personas'));
+        lineas.push('Cantidad de personas: ' + val('rsv-personas'));
         if (val('rsv-detalles')) lineas.push('Detalles: ' + val('rsv-detalles'));
-        lineas.push('', 'Entiendo que es una solicitud sujeta a disponibilidad y aprobación.');
+        lineas.push('', 'Entiendo que es una solicitud sujeta a disponibilidad y aprobación, y que me llamarán para confirmarla.');
         return lineas.join('\n');
       }
 
-      function validar() {
-        msg.className = 'rsv-msg';
-        if (!form.reportValidity()) {
-          msg.textContent = 'Revisá los campos marcados con * antes de enviar.';
-          return false;
-        }
-        return true;
-      }
+      /* ---------- Envío ---------- */
 
-      document.getElementById('rsv-btn-wa').addEventListener('click', function () {
-        if (!validar()) return;
+      $('rsv-btn-wa').addEventListener('click', function () {
+        if (!validarTodo()) return;
         var url = 'https://wa.me/' + val('rsv-pastor') + '?text=' + encodeURIComponent(construirMensaje());
         window.open(url, '_blank', 'noopener');
         msg.className = 'rsv-msg rsv-ok';
         msg.textContent = 'Se abrió WhatsApp con tu solicitud. Presioná enviar allí para completarla.';
       });
 
-      document.getElementById('rsv-btn-mail').addEventListener('click', function () {
-        if (!validar()) return;
+      $('rsv-btn-mail').addEventListener('click', function () {
+        if (!validarTodo()) return;
         var asunto = 'Solicitud de reservación de templo - ' + val('rsv-tipo');
         window.location.href = 'mailto:' + CORREO +
           '?subject=' + encodeURIComponent(asunto) +
