@@ -1,0 +1,193 @@
+/* =====================================================
+   CCTA - ESTILOS ADICIONALES
+   Páginas secundarias, franja "Conocé más", mapas y 404.
+   Se carga después de styles.css y no modifica sus reglas.
+   ===================================================== */
+
+/* ---------- Encabezado y pie de las páginas secundarias ---------- */
+
+.sub-top-btn {
+  flex-shrink: 0;
+}
+
+.sub-page {
+  background: var(--bg, #f7f9fc);
+}
+
+.sub-page .section.history,
+.sub-page .section.projects {
+  background: var(--bg, #f7f9fc);
+}
+
+.sub-page .section.newhere {
+  background: white;
+}
+
+.sub-page .container.narrow {
+  max-width: 900px;
+}
+
+.sub-intro {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+
+/* ---------- Franja "Conocé más" en la página principal ---------- */
+
+.more-section {
+  background: var(--bg, #f7f9fc);
+}
+
+.more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.more-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  background: white;
+  border: 1px solid var(--line, #e3e9f2);
+  border-top: 4px solid var(--gold, #e5b957);
+  box-shadow: 0 10px 28px rgba(7, 29, 73, .06);
+  transition: background .2s, box-shadow .2s, transform .2s;
+}
+
+.more-card:hover {
+  background: var(--cream, #fbf8f0);
+  box-shadow: 0 12px 25px rgba(7, 29, 73, .1);
+  transform: translateY(-2px);
+}
+
+.more-card small {
+  color: var(--gold-dark, #8f6516);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.more-card h3 {
+  margin: 6px 0 10px;
+  color: var(--navy, #071d49);
+  font-size: 1.4rem;
+  letter-spacing: -.03em;
+}
+
+.more-card p {
+  margin: 0 0 18px;
+  color: var(--muted, #66718a);
+  font-size: .92rem;
+  line-height: 1.75;
+}
+
+
+/* ---------- Mapas incrustados en Ubicaciones ---------- */
+
+.map-embed {
+  margin: 0 0 20px;
+  border: 1px solid var(--line, #e3e9f2);
+  background: #eef2f8;
+}
+
+.map-embed iframe {
+  display: block;
+  width: 100%;
+  height: 240px;
+  border: 0;
+}
+
+
+/* ---------- Página 404 ---------- */
+
+.err-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: 70px 0 90px;
+  background: var(--bg, #f7f9fc);
+  text-align: center;
+}
+
+.err-card {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 46px 32px;
+  background: white;
+  border-top: 4px solid var(--gold, #e5b957);
+  box-shadow: 0 10px 28px rgba(7, 29, 73, .06);
+}
+
+.err-logo {
+  width: 110px;
+  height: 110px;
+  margin: 0 auto 14px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.err-code {
+  margin: 0;
+  color: var(--gold, #e5b957);
+  font-size: clamp(4rem, 12vw, 6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.05em;
+}
+
+.err-card h1 {
+  margin: 10px 0 12px;
+  color: var(--navy, #071d49);
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.2;
+}
+
+.err-card p {
+  margin: 0 auto;
+  max-width: 520px;
+  color: var(--muted, #66718a);
+  line-height: 1.8;
+}
+
+.err-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.err-actions .btn {
+  margin-top: 0;
+}
+
+
+/* ---------- Celulares ---------- */
+
+@media (max-width: 900px) {
+  .more-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .sub-top-btn {
+    padding: 10px 14px;
+    font-size: .7rem;
+  }
+
+  .map-embed iframe {
+    height: 210px;
+  }
+
+  .err-card {
+    padding: 34px 20px;
+  }
+
+  .err-actions .btn {
+    width: 100%;
+  }
+}

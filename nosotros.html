@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d49">
+  <meta name="description" content="Conocé la historia y las creencias del Centro Cristiano Tabernáculo de Adoración, la iglesia para la familia en Paquera, Puntarenas.">
+
+  <title>Nuestra historia y lo que creemos | Centro Cristiano Tabernáculo de Adoración</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="extras.css?v=1">
+
+  <!-- Ícono de pestaña y vista previa al compartir -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CR">
+  <meta property="og:site_name" content="Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:title" content="Nuestra historia y lo que creemos | Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:description" content="Conocé la historia y las creencias del Centro Cristiano Tabernáculo de Adoración, la iglesia para la familia en Paquera, Puntarenas.">
+  <meta property="og:url" content="https://ade30192.github.io/CCTA_SITIO/nosotros.html">
+  <meta property="og:image" content="https://ade30192.github.io/CCTA_SITIO/logo-compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+  <!-- ENCABEZADO SIMPLE -->
+  <header class="masthead">
+    <div class="container masthead-inner">
+
+      <a class="brand" href="index.html" aria-label="Volver al inicio">
+        <img src="logo-iglesia.jpg"
+             alt="Logo del Centro Cristiano Tabernáculo de Adoración"
+             class="brand-logo">
+
+        <span class="brand-copy">
+          <strong>Centro Cristiano</strong>
+          <span>Tabernáculo de Adoración</span>
+        </span>
+      </a>
+
+      <a class="btn btn-outline-navy sub-top-btn" href="index.html">← Volver al sitio</a>
+
+    </div>
+  </header>
+
+
+  <main id="contenido" class="sub-page">
+
+    <!-- HISTORIA -->
+    <section class="section history" id="historia">
+      <div class="container narrow">
+
+        <header class="sec-head">
+          <span class="label dark">Nuestra historia</span>
+          <h1 class="title center">Un camino <em>de fe y servicio</em></h1>
+        </header>
+
+        <div class="history-intro">
+          <p class="lead">Una historia de fe, adoración y servicio.</p>
+
+          <p>
+            La vida de nuestra congregación se construye con cada reunión, cada familia y cada oportunidad de compartir el amor de Dios. Próximamente incorporaremos una reseña histórica oficial preparada por la iglesia.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- LO QUE CREEMOS -->
+    <section class="section faith" id="fe">
+      <div class="container">
+
+        <header class="sec-head">
+          <span class="label light">Lo que creemos</span>
+          <h2 class="title center light">La fe en la que <em>nos basamos</em></h2>
+        </header>
+
+        <div class="faith-grid">
+
+          <article>
+            <span>01</span>
+            <h3>La Biblia</h3>
+            <p>Creemos que la Biblia es la Palabra de Dios y la guía para nuestra fe y nuestra vida.</p>
+          </article>
+
+          <article>
+            <span>02</span>
+            <h3>Un solo Dios</h3>
+            <p>Creemos en un solo Dios, Padre, Hijo y Espíritu Santo.</p>
+          </article>
+
+          <article>
+            <span>03</span>
+            <h3>Jesucristo</h3>
+            <p>Creemos en Jesucristo, quien murió y resucitó para darnos salvación y vida eterna.</p>
+          </article>
+
+          <article>
+            <span>04</span>
+            <h3>El Espíritu Santo</h3>
+            <p>Creemos que el Espíritu Santo nos guía, nos fortalece y transforma nuestro corazón.</p>
+          </article>
+
+          <article>
+            <span>05</span>
+            <h3>La salvación</h3>
+            <p>Creemos que la salvación es un regalo de Dios, recibido por gracia mediante la fe.</p>
+          </article>
+
+          <article>
+            <span>06</span>
+            <h3>La iglesia</h3>
+            <p>Creemos en una iglesia que adora, se ama y sirve unida como una familia.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- PIE DE PÁGINA SIMPLE -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <span>
+        © <span id="year"></span> Centro Cristiano Tabernáculo de Adoración. Todos los derechos reservados.
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+</body>
+</html>
