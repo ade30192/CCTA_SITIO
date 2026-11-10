@@ -805,6 +805,194 @@
           </div>
         </div>
 
+        <!-- ===== INICIO: FORMULARIO DE SOLICITUD DE RESERVACIÓN (bloque agregado) ===== -->
+        <style>
+          .rsv-form-wrap{margin-top:28px;padding:32px;background:#fff;border-top:4px solid var(--gold,#e5b957);box-shadow:0 10px 28px rgba(7,29,73,.06)}
+          .rsv-form-wrap h3{margin:8px 0 10px;color:var(--navy,#071d49);font-size:1.45rem}
+          .rsv-intro{margin:0 0 22px;max-width:900px;color:var(--muted,#66718a);line-height:1.8}
+          .rsv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 22px}
+          .rsv-field{display:flex;flex-direction:column;gap:6px}
+          .rsv-field.rsv-full{grid-column:1/-1}
+          .rsv-field label{font-size:.82rem;font-weight:800;color:var(--navy,#071d49)}
+          .rsv-field input,.rsv-field select,.rsv-field textarea{width:100%;padding:12px 14px;border:1px solid var(--line,#e3e9f2);border-radius:3px;background:#fff;color:var(--ink,#12213d);font-family:inherit;font-size:1rem;line-height:1.4}
+          .rsv-field textarea{min-height:110px;resize:vertical}
+          .rsv-field input:focus,.rsv-field select:focus,.rsv-field textarea:focus{outline:3px solid var(--gold,#e5b957);outline-offset:1px;border-color:var(--navy,#071d49)}
+          .rsv-hint{font-size:.78rem;color:var(--muted,#66718a)}
+          .rsv-check{display:flex;align-items:flex-start;gap:10px;margin-top:6px;color:var(--ink,#12213d);font-size:.92rem;line-height:1.6}
+          .rsv-check input{margin-top:5px;width:18px;height:18px;flex:none;accent-color:var(--navy,#071d49)}
+          .rsv-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+          .rsv-actions .btn{margin-top:0}
+          .rsv-msg{margin:14px 0 0;font-size:.9rem;font-weight:700;color:#a12a2a;min-height:1.4em}
+          .rsv-msg.rsv-ok{color:#1f6b3a}
+          @media (max-width:700px){
+            .rsv-form-wrap{padding:23px 19px}
+            .rsv-grid{grid-template-columns:1fr}
+            .rsv-actions .btn{width:100%}
+          }
+        </style>
+
+        <div class="rsv-form-wrap" id="solicitud-reservacion">
+          <span class="label dark">Solicitud de reservación</span>
+          <h3>Pedí tu espacio en línea</h3>
+          <p class="rsv-intro">
+            Completá estos datos y envialos directamente a los pastores por WhatsApp o por correo. Esto es únicamente una solicitud: la reservación queda sujeta a disponibilidad, autorización previa y las condiciones de la iglesia.
+          </p>
+
+          <form id="rsv-form" novalidate>
+            <div class="rsv-grid">
+
+              <div class="rsv-field">
+                <label for="rsv-nombre">Nombre completo *</label>
+                <input type="text" id="rsv-nombre" name="nombre" autocomplete="name" required>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-telefono">Teléfono de contacto *</label>
+                <input type="tel" id="rsv-telefono" name="telefono" autocomplete="tel" inputmode="tel" placeholder="Ej.: 8888 8888" required>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-templo">Templo que deseás solicitar *</label>
+                <select id="rsv-templo" name="templo" required>
+                  <option value="">Elegí una opción</option>
+                  <option>Nueva sede</option>
+                  <option>Antigua sede</option>
+                  <option>Cualquiera de los dos</option>
+                </select>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-tipo">Tipo de actividad *</label>
+                <select id="rsv-tipo" name="tipo" required>
+                  <option value="">Elegí una opción</option>
+                  <option>Fiesta</option>
+                  <option>Cumpleaños</option>
+                  <option>Boda</option>
+                  <option>Reunión gerencial</option>
+                  <option>Otra actividad</option>
+                </select>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-fecha">Fecha tentativa *</label>
+                <input type="date" id="rsv-fecha" name="fecha" required>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-hora">Hora aproximada de inicio</label>
+                <input type="time" id="rsv-hora" name="hora">
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-personas">Cantidad aproximada de personas</label>
+                <input type="number" id="rsv-personas" name="personas" min="1" max="2000" inputmode="numeric">
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-pastor">¿A quién querés enviar la solicitud? *</label>
+                <select id="rsv-pastor" name="pastor" required>
+                  <option value="">Elegí una opción</option>
+                  <option value="50687572168">Pastora Danixa</option>
+                  <option value="50688302005">Pastor Gabriel</option>
+                </select>
+                <span class="rsv-hint">El correo siempre se envía a la dirección oficial de la iglesia.</span>
+              </div>
+
+              <div class="rsv-field rsv-full">
+                <label for="rsv-detalles">Detalles adicionales</label>
+                <textarea id="rsv-detalles" name="detalles" placeholder="Contanos más sobre la actividad, el horario o cualquier necesidad especial."></textarea>
+              </div>
+
+              <div class="rsv-field rsv-full">
+                <label class="rsv-check" for="rsv-acepto">
+                  <input type="checkbox" id="rsv-acepto" required>
+                  <span>Entiendo que esto es una solicitud y que la reservación está sujeta a disponibilidad, aprobación y a las normas de la iglesia. *</span>
+                </label>
+              </div>
+
+            </div>
+
+            <div class="rsv-actions">
+              <button type="button" class="btn btn-gold" id="rsv-btn-wa">Enviar por WhatsApp</button>
+              <button type="button" class="btn btn-outline-navy" id="rsv-btn-mail">Enviar por correo</button>
+            </div>
+
+            <p class="rsv-msg" id="rsv-msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <script>
+          (function () {
+            var form = document.getElementById('rsv-form');
+            if (!form) return;
+
+            var msg = document.getElementById('rsv-msg');
+            var fecha = document.getElementById('rsv-fecha');
+            var CORREO = 'tabernaculodeadoracion1952@gmail.com';
+
+            try {
+              var hoy = new Date();
+              var mm = String(hoy.getMonth() + 1).padStart(2, '0');
+              var dd = String(hoy.getDate()).padStart(2, '0');
+              fecha.min = hoy.getFullYear() + '-' + mm + '-' + dd;
+            } catch (e) {}
+
+            function val(id) {
+              return (document.getElementById(id).value || '').trim();
+            }
+
+            function formatoFecha(iso) {
+              var p = iso.split('-');
+              return p.length === 3 ? p[2] + '/' + p[1] + '/' + p[0] : iso;
+            }
+
+            function construirMensaje() {
+              var lineas = [
+                'Hola, quisiera solicitar la reservación de un templo.',
+                '',
+                'Nombre: ' + val('rsv-nombre'),
+                'Teléfono: ' + val('rsv-telefono'),
+                'Templo: ' + val('rsv-templo'),
+                'Tipo de actividad: ' + val('rsv-tipo'),
+                'Fecha tentativa: ' + formatoFecha(val('rsv-fecha'))
+              ];
+              if (val('rsv-hora')) lineas.push('Hora aproximada: ' + val('rsv-hora'));
+              if (val('rsv-personas')) lineas.push('Cantidad de personas: ' + val('rsv-personas'));
+              if (val('rsv-detalles')) lineas.push('Detalles: ' + val('rsv-detalles'));
+              lineas.push('', 'Entiendo que es una solicitud sujeta a disponibilidad y aprobación.');
+              return lineas.join('\n');
+            }
+
+            function validar() {
+              msg.className = 'rsv-msg';
+              if (!form.reportValidity()) {
+                msg.textContent = 'Revisá los campos marcados con * antes de enviar.';
+                return false;
+              }
+              return true;
+            }
+
+            document.getElementById('rsv-btn-wa').addEventListener('click', function () {
+              if (!validar()) return;
+              var url = 'https://wa.me/' + val('rsv-pastor') + '?text=' + encodeURIComponent(construirMensaje());
+              window.open(url, '_blank', 'noopener');
+              msg.className = 'rsv-msg rsv-ok';
+              msg.textContent = 'Se abrió WhatsApp con tu solicitud. Presioná enviar allí para completarla.';
+            });
+
+            document.getElementById('rsv-btn-mail').addEventListener('click', function () {
+              if (!validar()) return;
+              var asunto = 'Solicitud de reservación de templo - ' + val('rsv-tipo');
+              window.location.href = 'mailto:' + CORREO +
+                '?subject=' + encodeURIComponent(asunto) +
+                '&body=' + encodeURIComponent(construirMensaje());
+              msg.className = 'rsv-msg rsv-ok';
+              msg.textContent = 'Se abrió tu aplicación de correo con la solicitud lista para enviar.';
+            });
+          })();
+        </script>
+        <!-- ===== FIN: FORMULARIO DE SOLICITUD DE RESERVACIÓN ===== -->
+
       </div>
     </section>
 
