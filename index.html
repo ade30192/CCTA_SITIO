@@ -504,6 +504,21 @@
     </section>
 
 
+    <!-- ANUNCIOS Y PRÓXIMOS EVENTOS (se muestra solo si hay anuncios en anuncios.json) -->
+    <section class="section announcements" id="anuncios" aria-labelledby="anuncios-titulo" hidden>
+      <div class="container">
+
+        <header class="sec-head">
+          <span class="label dark">Anuncios</span>
+          <h2 class="title center" id="anuncios-titulo">Próximos <em>eventos</em></h2>
+        </header>
+
+        <ul class="ann-grid" id="anuncios-lista"></ul>
+
+      </div>
+    </section>
+
+
     <!-- PASTORES -->
     <section class="section pastors" id="pastores">
       <div class="container">
@@ -1048,6 +1063,7 @@
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
   <script src="script.js?v=8"></script>
+  <script src="anuncios.js?v=1" defer></script>
 
 </body>
 </html>
