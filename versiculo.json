@@ -1,0 +1,37 @@
+{
+  "_nota": "Versículos en Reina-Valera 1960. Cada semana se muestra uno distinto, en orden. Podés agregar, quitar o cambiar versículos con el formato {\"texto\": \"...\", \"cita\": \"Libro 1:1\"}.",
+  "versiculos": [
+    {
+      "texto": "Yo me alegré con los que me decían: A la casa de Jehová iremos.",
+      "cita": "Salmos 122:1"
+    },
+    {
+      "texto": "¡Mirad cuán bueno y cuán delicioso es habitar los hermanos juntos en armonía!",
+      "cita": "Salmos 133:1"
+    },
+    {
+      "texto": "Servid a Jehová con alegría; venid ante su presencia con regocijo.",
+      "cita": "Salmos 100:2"
+    },
+    {
+      "texto": "Venid a mí todos los que estáis trabajados y cargados, y yo os haré descansar.",
+      "cita": "Mateo 11:28"
+    },
+    {
+      "texto": "Pero yo y mi casa serviremos a Jehová.",
+      "cita": "Josué 24:15"
+    },
+    {
+      "texto": "Y considerémonos unos a otros para estimularnos al amor y a las buenas obras; no dejando de congregarnos.",
+      "cita": "Hebreos 10:24-25"
+    },
+    {
+      "texto": "Jehová es mi pastor; nada me faltará.",
+      "cita": "Salmos 23:1"
+    },
+    {
+      "texto": "Jehová es mi luz y mi salvación; ¿de quién temeré?",
+      "cita": "Salmos 27:1"
+    }
+  ]
+}

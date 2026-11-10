@@ -318,6 +318,239 @@
 }
 
 
+/* ---------- Próxima reunión ---------- */
+
+.next-meeting {
+  background: var(--navy, #071d49);
+  color: white;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+
+.next-meeting[hidden] {
+  display: none;
+}
+
+.next-meeting-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 22px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  font-size: .92rem;
+}
+
+.next-meeting-label {
+  padding: 3px 12px;
+  background: var(--gold, #e5b957);
+  color: #101f3b;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.next-meeting-text strong {
+  color: var(--gold-light, #f5df9d);
+}
+
+.next-meeting-link {
+  color: white;
+  font-size: .8rem;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.next-meeting-link:hover {
+  color: var(--gold-light, #f5df9d);
+}
+
+
+/* ---------- Íconos en accesos rápidos ---------- */
+
+.quick-card {
+  position: relative;
+}
+
+.qc-icon {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cream, #fbf8f0);
+  color: var(--gold-dark, #8f6516);
+  font-size: 1.25rem;
+}
+
+.quick-card:last-child .qc-icon {
+  background: rgba(229, 185, 87, .16);
+  color: var(--gold, #e5b957);
+}
+
+.quick-card small,
+.quick-card h3 {
+  padding-right: 54px;
+}
+
+
+/* ---------- Pasos numerados de "Tu primera visita" ---------- */
+
+.visitor-guide ol {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: paso;
+}
+
+.visitor-guide li {
+  position: relative;
+  min-height: 34px;
+  padding: 6px 0 6px 48px;
+  counter-increment: paso;
+}
+
+.visitor-guide li::before {
+  content: counter(paso);
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--navy, #071d49);
+  color: var(--gold-light, #f5df9d);
+  font-size: .85rem;
+  font-weight: 800;
+}
+
+
+/* ---------- Versículo de la semana ---------- */
+
+.verse-band {
+  padding: 64px 0;
+  background: var(--cream, #fbf8f0);
+  text-align: center;
+}
+
+.verse-band .container {
+  max-width: 820px;
+}
+
+.verse-kicker {
+  display: inline-block;
+  color: var(--gold-dark, #8f6516);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.verse-text {
+  position: relative;
+  margin: 16px 0 14px;
+  padding: 0;
+  color: var(--navy, #071d49);
+  font-family: Georgia, "Roboto Slab", serif;
+  font-size: clamp(1.3rem, 3.2vw, 1.9rem);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.verse-text::before {
+  content: "\201C";
+  display: block;
+  height: .5em;
+  color: var(--gold, #e5b957);
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.verse-ref {
+  color: var(--gold-dark, #8f6516);
+  font-size: .86rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+
+/* ---------- Separadores curvos entre secciones ---------- */
+
+.vision::after,
+.pastors::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 40px;
+  clip-path: ellipse(58% 100% at 50% 100%);
+  pointer-events: none;
+}
+
+.vision::after {
+  background: var(--white, #fff);
+}
+
+.pastors {
+  position: relative;
+}
+
+.pastors::after {
+  background: var(--cream, #fbf8f0);
+}
+
+.pastors {
+  padding-bottom: 130px;
+}
+
+.vision {
+  padding-bottom: 140px;
+}
+
+@media (max-width: 900px) {
+  .vision {
+    padding-bottom: 100px;
+  }
+
+  .pastors {
+    padding-bottom: 100px;
+  }
+}
+
+
+/* ---------- Aparición suave al hacer scroll ---------- */
+
+.js-reveal .reveal:not(.in) {
+  opacity: 0;
+}
+
+.reveal.in {
+  animation: rv-up .65s ease var(--rv-delay, 0ms) backwards;
+}
+
+@keyframes rv-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
 /* ---------- Mapas incrustados en Ubicaciones ---------- */
 
 .map-embed {
