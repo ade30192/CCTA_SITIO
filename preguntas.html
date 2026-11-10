@@ -48,7 +48,7 @@
         </span>
       </a>
 
-      <a class="btn btn-outline-navy sub-top-btn" href="index.html">← Volver al sitio</a>
+      <a class="btn btn-outline-navy sub-top-btn" href="index.html#nuevo">← Volver al sitio</a>
 
     </div>
   </header>
@@ -137,6 +137,24 @@
     (function () {
       var year = document.getElementById('year');
       if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+
+
+  <script>
+    /* Botón "Volver": regresa a la página principal justo donde estaba el visitante. */
+    (function () {
+      var btn = document.querySelector('.sub-top-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function (e) {
+        try {
+          var ref = document.referrer ? new URL(document.referrer) : null;
+          if (ref && ref.origin === location.origin && /\/(index\.html)?$/.test(ref.pathname) && history.length > 1) {
+            e.preventDefault();
+            history.back();
+          }
+        } catch (err) { /* si falla, se usa el enlace normal */ }
+      });
     })();
   </script>
 
