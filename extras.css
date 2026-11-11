@@ -932,3 +932,61 @@
     min-height: calc(1.7em * 2);
   }
 }
+
+
+/* ---------- Carrusel en celular: flechas y puntos más fáciles de tocar ---------- */
+@media (max-width: 900px) {
+  .hero .arrow {
+    display: grid;
+    place-items: center;
+    top: auto;
+    bottom: 8px;
+    width: 44px;
+    height: 44px;
+    padding: 0 0 3px;
+    transform: none;
+    border-radius: 50%;
+    border: 1.5px solid rgba(245, 223, 157, .85);
+    background: rgba(5, 13, 31, .55);
+    color: #fff;
+    font-size: 1.7rem;
+    line-height: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .hero .arrow.prev {
+    left: 14px;
+  }
+
+  .hero .arrow.next {
+    right: 14px;
+  }
+
+  .hero .arrow:hover {
+    background: rgba(5, 13, 31, .55);
+    color: #fff;
+  }
+
+  .hero .arrow:active {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .hero .dots {
+    bottom: 22px;
+    gap: 16px;
+    pointer-events: none; /* la franja de puntos no tapa las flechas */
+  }
+
+  /* zona táctil más grande en cada punto, sin cambiar cómo se ve */
+  .hero .dot {
+    position: relative;
+    pointer-events: auto;
+  }
+
+  .hero .dot::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+  }
+}
