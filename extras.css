@@ -621,9 +621,59 @@
 
 /* ---------- Encuadre de las fotos del carrusel (primera capa = degradado) ---------- */
 
-.hero .slide:nth-of-type(1) { background-position: 0 0, center 82%; }
+.hero .slide:nth-of-type(1) { background-position: 0 0, center 58%; }
 .hero .slide:nth-of-type(2) { background-position: 0 0, center 65%; }
 .hero .slide:nth-of-type(3) { background-position: 0 0, center 22%; }
+
+
+/* ---------- Culto principal: primero, a todo el ancho y con más fotos ---------- */
+
+.event-principal {
+  grid-column: 1 / -1;
+  border-top: 4px solid var(--gold, #e5b957);
+  box-shadow: 0 14px 34px rgba(7, 29, 73, .1);
+}
+
+.event-principal .event-body {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.event-principal h3 {
+  font-size: 1.45rem;
+}
+
+.event-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 5px 11px;
+  background: var(--navy, #071d49);
+  color: var(--gold-light, #f5df9d);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+/* Con 6 fotos: 3 columnas en computadora y 2 en celular, sin foto suelta al final */
+.event-principal .event-photos {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px;
+}
+
+@media (max-width: 900px) {
+  .event-principal .event-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .event-principal .event-photo:last-child {
+    grid-column: auto;
+  }
+}
 
 
 /* ---------- Mapas incrustados en Ubicaciones ---------- */
