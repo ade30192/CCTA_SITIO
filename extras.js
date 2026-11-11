@@ -84,6 +84,28 @@
     return Math.floor((d.getTime() - base) / (7 * 86400000));
   }
 
+  // Orden aleatorio pero estable: todos ven el mismo versículo esa semana y no se
+  // repite ninguno hasta haber pasado toda la lista (luego se vuelve a barajar).
+  function indiceAleatorio(semana, n) {
+    var ciclo = Math.floor(semana / n);
+    var pos = ((semana % n) + n) % n;
+    var a = [];
+    for (var i = 0; i < n; i++) a.push(i);
+    var seed = (ciclo * 2654435761 + 12345) >>> 0;
+    function rnd() {
+      seed = (seed + 0x6D2B79F5) >>> 0;
+      var t = seed;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+    for (var j = n - 1; j > 0; j--) {
+      var k = Math.floor(rnd() * (j + 1));
+      var x = a[j]; a[j] = a[k]; a[k] = x;
+    }
+    return a[pos];
+  }
+
   function iniciarVersiculo() {
     var t = document.getElementById('verse-text');
     var r = document.getElementById('verse-ref');
@@ -96,7 +118,7 @@
           return v && typeof v.texto === 'string' && typeof v.cita === 'string' && v.texto && v.cita;
         }) : [];
         if (!lista.length) return;
-        var v = lista[((numeroSemana() % lista.length) + lista.length) % lista.length];
+        var v = lista[indiceAleatorio(numeroSemana(), lista.length)];
         t.textContent = v.texto;
         r.textContent = v.cita;
       })

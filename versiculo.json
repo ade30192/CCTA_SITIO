@@ -1,5 +1,5 @@
 {
-  "_nota": "Versículos en Reina-Valera 1960. Cada semana se muestra uno distinto, en orden. Podés agregar, quitar o cambiar versículos con el formato {\"texto\": \"...\", \"cita\": \"Libro 1:1\"}.",
+  "_nota": "Versículos en Reina-Valera 1960. Cada semana se muestra uno al azar (el mismo para todos los visitantes esa semana) y no se repite ninguno hasta haber pasado todos. Podés agregar, quitar o cambiar versículos con el formato {\"texto\": \"...\", \"cita\": \"Libro 1:1\"}.",
   "versiculos": [
     {
       "texto": "Yo me alegré con los que me decían: A la casa de Jehová iremos.",
@@ -32,6 +32,182 @@
     {
       "texto": "Jehová es mi luz y mi salvación; ¿de quién temeré?",
       "cita": "Salmos 27:1"
+    },
+    {
+      "texto": "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.",
+      "cita": "Salmos 46:1"
+    },
+    {
+      "texto": "Mi socorro viene de Jehová, que hizo los cielos y la tierra.",
+      "cita": "Salmos 121:2"
+    },
+    {
+      "texto": "El que habita al abrigo del Altísimo morará bajo la sombra del Omnipotente.",
+      "cita": "Salmos 91:1"
+    },
+    {
+      "texto": "Gustad, y ved que es bueno Jehová; dichoso el hombre que confía en él.",
+      "cita": "Salmos 34:8"
+    },
+    {
+      "texto": "Deléitate asimismo en Jehová, y él te concederá las peticiones de tu corazón.",
+      "cita": "Salmos 37:4"
+    },
+    {
+      "texto": "Este es el día que hizo Jehová; nos gozaremos y alegraremos en él.",
+      "cita": "Salmos 118:24"
+    },
+    {
+      "texto": "Lámpara es a mis pies tu palabra, y lumbrera a mi camino.",
+      "cita": "Salmos 119:105"
+    },
+    {
+      "texto": "Todo lo que respira alabe a JAH. Aleluya.",
+      "cita": "Salmos 150:6"
+    },
+    {
+      "texto": "Venid, adoremos y postrémonos; arrodillémonos delante de Jehová nuestro Hacedor.",
+      "cita": "Salmos 95:6"
+    },
+    {
+      "texto": "Dad a Jehová la gloria debida a su nombre; adorad a Jehová en la hermosura de la santidad.",
+      "cita": "Salmos 29:2"
+    },
+    {
+      "texto": "En tu presencia hay plenitud de gozo; delicias a tu diestra para siempre.",
+      "cita": "Salmos 16:11"
+    },
+    {
+      "texto": "Echa sobre Jehová tu carga, y él te sustentará; no dejará para siempre caído al justo.",
+      "cita": "Salmos 55:22"
+    },
+    {
+      "texto": "Alabad a Jehová, porque él es bueno; porque para siempre es su misericordia.",
+      "cita": "Salmos 107:1"
+    },
+    {
+      "texto": "Bendice, alma mía, a Jehová, y bendigan todas mis entrañas su santo nombre.",
+      "cita": "Salmos 103:1"
+    },
+    {
+      "texto": "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas.",
+      "cita": "Proverbios 3:5-6"
+    },
+    {
+      "texto": "Torre fuerte es el nombre de Jehová; a él correrá el justo, y será levantado.",
+      "cita": "Proverbios 18:10"
+    },
+    {
+      "texto": "Los que esperan a Jehová tendrán nuevas fuerzas; levantarán alas como las águilas; correrán, y no se cansarán; caminarán, y no se fatigarán.",
+      "cita": "Isaías 40:31"
+    },
+    {
+      "texto": "No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te esfuerzo; siempre te ayudaré.",
+      "cita": "Isaías 41:10"
+    },
+    {
+      "texto": "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal, para daros el fin que esperáis.",
+      "cita": "Jeremías 29:11"
+    },
+    {
+      "texto": "Nuevas son cada mañana; grande es tu fidelidad.",
+      "cita": "Lamentaciones 3:23"
+    },
+    {
+      "texto": "Mira que te mando que te esfuerces y seas valiente; no temas ni desmayes, porque Jehová tu Dios estará contigo en dondequiera que vayas.",
+      "cita": "Josué 1:9"
+    },
+    {
+      "texto": "Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas.",
+      "cita": "Mateo 6:33"
+    },
+    {
+      "texto": "Así alumbre vuestra luz delante de los hombres, para que vean vuestras buenas obras, y glorifiquen a vuestro Padre que está en los cielos.",
+      "cita": "Mateo 5:16"
+    },
+    {
+      "texto": "Porque donde están dos o tres congregados en mi nombre, allí estoy yo en medio de ellos.",
+      "cita": "Mateo 18:20"
+    },
+    {
+      "texto": "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.",
+      "cita": "Juan 3:16"
+    },
+    {
+      "texto": "Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.",
+      "cita": "Juan 14:6"
+    },
+    {
+      "texto": "La paz os dejo, mi paz os doy; yo no os la doy como el mundo la da. No se turbe vuestro corazón, ni tenga miedo.",
+      "cita": "Juan 14:27"
+    },
+    {
+      "texto": "Un mandamiento nuevo os doy: Que os améis unos a otros; como yo os he amado, que también os améis unos a otros.",
+      "cita": "Juan 13:34"
+    },
+    {
+      "texto": "Yo soy la luz del mundo; el que me sigue, no andará en tinieblas, sino que tendrá la luz de la vida.",
+      "cita": "Juan 8:12"
+    },
+    {
+      "texto": "Y sabemos que a los que aman a Dios, todas las cosas les ayudan a bien, esto es, a los que conforme a su propósito son llamados.",
+      "cita": "Romanos 8:28"
+    },
+    {
+      "texto": "Y el Dios de esperanza os llene de todo gozo y paz en el creer, para que abundéis en esperanza por el poder del Espíritu Santo.",
+      "cita": "Romanos 15:13"
+    },
+    {
+      "texto": "Y ahora permanecen la fe, la esperanza y el amor, estos tres; pero el mayor de ellos es el amor.",
+      "cita": "1 Corintios 13:13"
+    },
+    {
+      "texto": "De modo que si alguno está en Cristo, nueva criatura es; las cosas viejas pasaron; he aquí todas son hechas nuevas.",
+      "cita": "2 Corintios 5:17"
+    },
+    {
+      "texto": "Porque por gracia sois salvos por medio de la fe; y esto no de vosotros, pues es don de Dios.",
+      "cita": "Efesios 2:8"
+    },
+    {
+      "texto": "Todo lo puedo en Cristo que me fortalece.",
+      "cita": "Filipenses 4:13"
+    },
+    {
+      "texto": "Regocijaos en el Señor siempre. Otra vez digo: ¡Regocijaos!",
+      "cita": "Filipenses 4:4"
+    },
+    {
+      "texto": "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.",
+      "cita": "Colosenses 3:23"
+    },
+    {
+      "texto": "Estad siempre gozosos. Orad sin cesar. Dad gracias en todo, porque esta es la voluntad de Dios para con vosotros en Cristo Jesús.",
+      "cita": "1 Tesalonicenses 5:16-18"
+    },
+    {
+      "texto": "Porque no nos ha dado Dios espíritu de cobardía, sino de poder, de amor y de dominio propio.",
+      "cita": "2 Timoteo 1:7"
+    },
+    {
+      "texto": "Es, pues, la fe la certeza de lo que se espera, la convicción de lo que no se ve.",
+      "cita": "Hebreos 11:1"
+    },
+    {
+      "texto": "Jesucristo es el mismo ayer, y hoy, y por los siglos.",
+      "cita": "Hebreos 13:8"
+    },
+    {
+      "texto": "Acercaos a Dios, y él se acercará a vosotros.",
+      "cita": "Santiago 4:8"
+    },
+    {
+      "texto": "Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros.",
+      "cita": "1 Pedro 5:7"
+    },
+    {
+      "texto": "Nosotros le amamos a él, porque él nos amó primero.",
+      "cita": "1 Juan 4:19"
     }
   ]
 }
