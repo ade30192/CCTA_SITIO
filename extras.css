@@ -789,3 +789,58 @@
     width: 100%;
   }
 }
+
+
+/* ---------- Fondo decorado del cuadro de fotos (no toca las fotos) ---------- */
+.event-photos,
+.event-principal .event-photos {
+  position: relative;
+  gap: 12px;
+  padding: 44px 16px 20px;
+  border-top: 3px solid var(--gold);
+  background-color: #071d49;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cpolygon points='34.0,36.0 35.9,42.1 42.0,44.0 35.9,45.9 34.0,52.0 32.1,45.9 26.0,44.0 32.1,42.1' fill='%23f5df9d' opacity='0.85'/%3E%3Cpolygon points='158.0,17.5 159.1,20.9 162.5,22.0 159.1,23.1 158.0,26.5 156.9,23.1 153.5,22.0 156.9,20.9' fill='%23f5df9d' opacity='0.6'/%3E%3Cpolygon points='214.0,119.0 216.2,125.8 223.0,128.0 216.2,130.2 214.0,137.0 211.8,130.2 205.0,128.0 211.8,125.8' fill='%23f5df9d' opacity='0.8'/%3E%3Cpolygon points='88.0,170.5 89.3,174.7 93.5,176.0 89.3,177.3 88.0,181.5 86.7,177.3 82.5,176.0 86.7,174.7' fill='%23f5df9d' opacity='0.65'/%3E%3Cpolygon points='24.0,222.5 24.8,225.2 27.5,226.0 24.8,226.8 24.0,229.5 23.2,226.8 20.5,226.0 23.2,225.2' fill='%23f5df9d' opacity='0.5'/%3E%3Cpolygon points='146.0,219.0 147.7,224.3 153.0,226.0 147.7,227.7 146.0,233.0 144.3,227.7 139.0,226.0 144.3,224.3' fill='%23f5df9d' opacity='0.75'/%3E%3Cpolygon points='236.0,33.0 236.7,35.3 239.0,36.0 236.7,36.7 236.0,39.0 235.3,36.7 233.0,36.0 235.3,35.3' fill='%23f5df9d' opacity='0.45'/%3E%3Cpolygon points='104.0,95.0 104.7,97.3 107.0,98.0 104.7,98.7 104.0,101.0 103.3,98.7 101.0,98.0 103.3,97.3' fill='%23f5df9d' opacity='0.4'/%3E%3Ccircle cx='60' cy='120' r='1.4' fill='%23f5df9d' opacity='.55'/%3E%3Ccircle cx='190' cy='190' r='1.4' fill='%23f5df9d' opacity='.55'/%3E%3Ccircle cx='120' cy='60' r='1.4' fill='%23f5df9d' opacity='.55'/%3E%3Ccircle cx='240' cy='230' r='1.4' fill='%23f5df9d' opacity='.55'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 200' preserveAspectRatio='none'%3E%3Cg fill='none' stroke-linecap='round' vector-effect='non-scaling-stroke'%3E%3Cpath d='M-10 150 C 120 40, 260 220, 420 110 S 580 60, 620 90' stroke='%236ea5ff' stroke-opacity='.30' stroke-width='1.3' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M-10 175 C 140 80, 290 235, 450 135 S 590 95, 620 120' stroke='%236ea5ff' stroke-opacity='.20' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M-10 125 C 100 20, 240 190, 400 85 S 570 30, 620 60' stroke='%23e5b957' stroke-opacity='.28' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3Cpath d='M-10 40 C 140 120, 300 -10, 460 70 S 580 140, 620 110' stroke='%236ea5ff' stroke-opacity='.16' stroke-width='1' vector-effect='non-scaling-stroke'/%3E%3C/g%3E%3C/svg%3E"),
+    repeating-linear-gradient(135deg, rgba(120, 170, 255, .07) 0 1px, transparent 1px 22px),
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(229, 185, 87, .26), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, rgba(60, 120, 230, .35), transparent 70%),
+    linear-gradient(165deg, #0d2e68 0%, #071d49 55%, #0a2559 100%);
+  background-size: 260px 260px, 100% 100%, auto, auto, auto, auto;
+  background-repeat: repeat, no-repeat, repeat, no-repeat, no-repeat, no-repeat;
+}
+
+/* Lazo dorado arriba, al centro */
+.event-photos::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: min(300px, 80%);
+  height: 34px;
+  transform: translateX(-50%);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23fbeab0'/%3E%3Cstop offset='1' stop-color='%23d9a43a'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23e5b957' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23e5b957' stop-opacity='.9'/%3E%3C/linearGradient%3E%3ClinearGradient id='r' x1='1' x2='0'%3E%3Cstop offset='0' stop-color='%23e5b957' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23e5b957' stop-opacity='.9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='19.2' width='118' height='1.6' fill='url(%23l)'/%3E%3Crect x='182' y='19.2' width='118' height='1.6' fill='url(%23r)'/%3E%3Cpath d='M150 20 C 132 2, 108 3, 112 18 C 114 32, 136 31, 150 20Z' fill='url(%23g)'/%3E%3Cpath d='M150 20 C 168 2, 192 3, 188 18 C 186 32, 164 31, 150 20Z' fill='url(%23g)'/%3E%3Cpath d='M147 23 C 140 31, 136 36, 128 39 L 138 39 C 144 35, 148 30, 151 25Z' fill='%23d9a43a'/%3E%3Cpath d='M153 23 C 160 31, 164 36, 172 39 L 162 39 C 156 35, 152 30, 149 25Z' fill='%23d9a43a'/%3E%3Ccircle cx='150' cy='20' r='4.6' fill='%23fff3c4' stroke='%23c9922c' stroke-width='1'/%3E%3Cpath d='M120 16 C 126 12, 134 12, 142 18' stroke='%23fff8dc' stroke-opacity='.7' stroke-width='1' fill='none'/%3E%3Cpath d='M180 16 C 174 12, 166 12, 158 18' stroke='%23fff8dc' stroke-opacity='.7' stroke-width='1' fill='none'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+
+.event-photos .event-photo {
+  background: #0d2e68;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px rgba(245, 223, 157, .75), 0 10px 22px rgba(2, 10, 30, .45);
+}
+
+.event-photos-note {
+  color: #dbe6f7;
+}
+
+@media (max-width: 900px) {
+  .event-photos,
+  .event-principal .event-photos {
+    gap: 10px;
+    padding: 42px 12px 16px;
+  }
+  .event-photos::before {
+    top: 5px;
+    height: 32px;
+  }
+}
