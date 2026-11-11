@@ -924,3 +924,11 @@
     margin: -32px 0 0 -32px;
   }
 }
+
+
+/* ---------- Tarjetas de reuniones: misma altura en computadora ---------- */
+@media (min-width: 901px) {
+  .agenda-grid .event:not(.event-principal) .event-body p {
+    min-height: calc(1.7em * 2);
+  }
+}
