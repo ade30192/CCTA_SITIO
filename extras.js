@@ -126,6 +126,54 @@
   }
 
 
+  /* ---------- Video de los pastores (YouTube o .mp4) ---------- */
+
+  function idYoutube(valor) {
+    var m = String(valor).match(/(?:youtu\.be\/|youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/);
+    if (m) return m[1];
+    return /^[\w-]{11}$/.test(valor) ? valor : '';
+  }
+
+  function iniciarVideoPastores() {
+    var caja = document.getElementById('video-pastores');
+    var marco = document.getElementById('video-pastores-frame');
+    if (!caja || !marco) return;
+    var valor = (caja.getAttribute('data-video') || '').trim();
+    if (!valor) return;
+
+    if (/\.(mp4|webm)(\?.*)?$/i.test(valor)) {
+      var v = document.createElement('video');
+      v.src = valor;
+      v.controls = true;
+      v.preload = 'metadata';
+      v.setAttribute('playsinline', '');
+      v.setAttribute('aria-label', 'Video de los pastores');
+      marco.appendChild(v);
+      caja.hidden = false;
+      return;
+    }
+
+    var id = idYoutube(valor);
+    if (!id) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'pv-play';
+    btn.setAttribute('aria-label', 'Reproducir el video de los pastores');
+    btn.style.backgroundImage = 'url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)';
+    btn.innerHTML = '<span class="pv-play-icon" aria-hidden="true"></span>';
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      f.title = 'Video de los pastores';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.setAttribute('allowfullscreen', '');
+      marco.replaceChild(f, btn);
+    });
+    marco.appendChild(btn);
+    caja.hidden = false;
+  }
+
+
   /* ---------- 3) Aparición suave al hacer scroll ---------- */
 
   function iniciarReveal() {
@@ -175,6 +223,7 @@
   function iniciar() {
     try { iniciarProxima(); } catch (e) {}
     try { iniciarVersiculo(); } catch (e) {}
+    try { iniciarVideoPastores(); } catch (e) {}
     try { iniciarReveal(); } catch (e) {}
   }
 

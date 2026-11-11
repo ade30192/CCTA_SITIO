@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="extras.css?v=12">
+  <link rel="stylesheet" href="extras.css?v=13">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -612,6 +612,13 @@
           </article>
 
         </div>
+
+        <!-- Video de los pastores: pegá el link de YouTube (o la ruta de un .mp4) en data-video y aparece solo -->
+        <div class="pastor-video" id="video-pastores" data-video="" hidden>
+          <span class="pv-kicker">Un mensaje para vos</span>
+          <h3 class="pv-title">Conocé a nuestros pastores</h3>
+          <div class="pv-frame" id="video-pastores-frame"></div>
+        </div>
       </div>
     </section>
 
@@ -1061,7 +1068,7 @@
 
   <script src="script.js?v=9"></script>
   <script src="anuncios.js?v=1" defer></script>
-  <script src="extras.js?v=2" defer></script>
+  <script src="extras.js?v=3" defer></script>
 
 </body>
 </html>
