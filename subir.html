@@ -56,7 +56,7 @@
   <header>
     <img src="logo-iglesia.jpg" alt="">
     <h1>Subir anuncio</h1>
-    <a href="./#anuncios">Ver el sitio →</a>
+    <a href="anuncios.html">Ver anuncios →</a>
   </header>
 
   <main>
@@ -119,8 +119,11 @@
           </div>
         </div>
 
-        <label for="descripcion">Descripción <span class="hint">(opcional)</span></label>
-        <textarea id="descripcion" maxlength="220" placeholder="Un texto corto o un versículo"></textarea>
+        <label for="descripcion">Descripción corta <span class="hint">(opcional, una frase o un versículo)</span></label>
+        <textarea id="descripcion" maxlength="220" placeholder="Ej: El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32"></textarea>
+
+        <label for="detalle">Explicación <span class="hint">(opcional, qué es la actividad y a quién va dirigida)</span></label>
+        <textarea id="detalle" maxlength="900" style="min-height:120px" placeholder="Ej: Un tiempo para buscar a Dios juntos como congregación. Te esperamos…"></textarea>
 
         <p class="hint">El anuncio desaparece solo del sitio cuando pasa la fecha.</p>
         <button class="btn-main" id="publicar" type="submit">Publicar anuncio</button>
@@ -298,6 +301,7 @@
     if ($('hora').value.trim()) nuevo.hora = $('hora').value.trim();
     if ($('lugar').value.trim()) nuevo.lugar = $('lugar').value.trim();
     if ($('descripcion').value.trim()) nuevo.descripcion = $('descripcion').value.trim();
+    if ($('detalle').value.trim()) nuevo.detalle = $('detalle').value.trim();
 
     var archivo = $('imagen').files[0];
     var boton = $('publicar');
@@ -323,7 +327,7 @@
       lista.sort(function (a, b) { return a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0; });
       return guardarAnuncios(lista, actual.sha, 'Anuncio: ' + titulo);
     }).then(function () {
-      mensaje('msg-form', 'ok', '✅ ¡Publicado! Aparecerá en el sitio en 1 o 2 minutos.');
+      mensaje('msg-form', 'ok', '✅ ¡Publicado! Aparecerá en la página de Anuncios en 1 o 2 minutos.');
       $('form').reset();
       $('preview').style.display = 'none';
       cargarLista();

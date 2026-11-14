@@ -4,8 +4,9 @@
       "titulo": "No habrá culto: limpieza y proyecto cocina",
       "fecha": "2026-11-15",
       "lugar": "Templo C.C.T.A",
-      "descripcion": "Continuamos con la construcción de la cocina y la limpieza general del templo. ¡Invitamos a todos los hermanos a sumarse!",
-      "imagen": "anuncios/2026-11-15_aviso-no-hay-culto.jpg"
+      "descripcion": "No habrá culto: nos unimos para trabajar en el templo.",
+      "imagen": "anuncios/2026-11-15_aviso-no-hay-culto.jpg",
+      "detalle": "Este domingo no tendremos culto. Nos reunimos para continuar con la construcción de la cocina y hacer la limpieza general del templo.\nJuntos seguimos trabajando para la obra de Dios. ¡Tu colaboración es importante!"
     },
     {
       "titulo": "Ayuno congregacional",
@@ -13,29 +14,33 @@
       "hora": "9:30 a.m.",
       "lugar": "Iglesia C.C.T.A",
       "descripcion": "El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32",
-      "imagen": "anuncios/2026-11-17_ayuno-congregacional.jpg"
+      "imagen": "anuncios/2026-11-17_ayuno-congregacional.jpg",
+      "detalle": "Un tiempo para buscar a Dios juntos como congregación, en ayuno y oración. Te esperamos en la iglesia."
     },
     {
       "titulo": "Red Adulto Mayor",
       "fecha": "2026-11-19",
       "hora": "11:00 a.m.",
       "descripcion": "Corona de honra es la vejez que se halla en el camino de justicia. Proverbios 16:31",
-      "imagen": "anuncios/2026-11-19_red-adulto-mayor.jpg"
+      "imagen": "anuncios/2026-11-19_red-adulto-mayor.jpg",
+      "detalle": "Una reunión especial para nuestros adultos mayores. ¡Los esperamos con mucho cariño!"
     },
     {
       "titulo": "Red Juvenil: Filtro Activado",
       "fecha": "2026-11-20",
       "hora": "7:00 p.m.",
       "lugar": "Tabernáculo de Adoración",
-      "imagen": "anuncios/2026-11-20_red-juvenil-filtro-activado.jpg"
+      "imagen": "anuncios/2026-11-20_red-juvenil-filtro-activado.jpg",
+      "detalle": "Reunión de la Red Juvenil. Este viernes activamos el filtro: no te lo perdás y traé a un amigo."
     },
     {
       "titulo": "Bautismo",
       "fecha": "2026-11-29",
       "hora": "10:00 a.m.",
       "lugar": "Playa Margarita",
-      "descripcion": "Bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo.",
-      "imagen": "anuncios/2026-11-29_bautismo-playa-margarita.jpg"
+      "descripcion": "Bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo. Mateo 28:19",
+      "imagen": "anuncios/2026-11-29_bautismo-playa-margarita.jpg",
+      "detalle": "Celebramos juntos el bautismo en agua de quienes decidieron seguir a Jesús. Acompañanos en Playa Margarita para ser parte de este momento tan especial."
     }
   ]
 }

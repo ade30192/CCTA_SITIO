@@ -54,6 +54,7 @@ SUBIR ANUNCIOS DESDE LA PÁGINA (subir.html)
   solo en este repositorio). Queda guardada en ese dispositivo.
 - Se llena título, fecha, hora, lugar, descripción y opcionalmente el afiche. La imagen se achica sola
   y se guarda en la carpeta anuncios/; los datos se agregan a anuncios.json.
-- El anuncio sale en "Próximos eventos" de la portada y desaparece solo cuando pasa la fecha.
+- El anuncio sale en la página anuncios.html (menú > Anuncios), con su afiche, descripción corta y explicación,
+  y desaparece solo cuando pasa la fecha. La portada ya no muestra anuncios para no saturarla.
 - En la misma página se pueden quitar anuncios publicados.
 - Si el sitio se muda a la cuenta de GitHub de la iglesia, cambiar USUARIO y REPO al inicio del script de subir.html.
