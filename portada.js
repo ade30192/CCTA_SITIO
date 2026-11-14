@@ -90,9 +90,6 @@
           img.src = ev.imagen;
         }
 
-        tarjeta.setAttribute('aria-label',
-          'Anuncios: ' + eventos.length + (eventos.length === 1 ? ' anuncio' : ' anuncios') +
-          '. Próximo: ' + ev.titulo + ', ' + texto + '. Ver todos los anuncios.');
       })
       .catch(function () { /* se queda el texto general "Anuncios y próximos eventos" */ });
   }

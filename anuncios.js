@@ -164,7 +164,7 @@
     if (ev.imagen) {
       var marco = el('button', 'anx-poster');
       marco.type = 'button';
-      marco.setAttribute('aria-label', 'Ver afiche completo: ' + ev.titulo);
+      marco.setAttribute('aria-label', 'Ver en grande el afiche de ' + ev.titulo);
       var fondo = el('span', 'anx-poster-bg');
       fondo.style.backgroundImage = 'url("' + ev.imagen + '")';
       fondo.setAttribute('aria-hidden', 'true');

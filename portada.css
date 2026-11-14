@@ -952,3 +952,72 @@
     animation: none;
   }
 }
+
+
+/* ---------- Carrusel: fotos más livianas en celular ---------- */
+
+@media (max-width: 760px) {
+  .slide {
+    background:
+      linear-gradient(90deg, rgba(7,29,73,.88), rgba(7,29,73,.35)),
+      var(--bg-m, var(--bg)) center / cover no-repeat;
+  }
+}
+
+
+/* ---------- Donaciones: enlace a los proyectos ---------- */
+
+.don-proy {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 600px;
+  margin: 22px auto 0;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: var(--cream, #fbf8f0);
+  border: 1px solid #efe4c8;
+  color: var(--ink, #12213d);
+  font-size: .92rem;
+  line-height: 1.5;
+  transition: border-color .25s ease, transform .25s ease;
+}
+
+.don-proy strong {
+  color: var(--navy, #071d49);
+}
+
+.don-proy .icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-left: auto;
+  color: var(--gold-dark, #8f6516);
+  transition: transform .25s ease;
+}
+
+.don-proy:hover {
+  border-color: var(--gold, #e5b957);
+  transform: translateY(-2px);
+}
+
+.don-proy:hover .icon {
+  transform: translateX(3px);
+}
+
+.don-proy-dot {
+  position: relative;
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold, #e5b957);
+  box-shadow: 0 0 0 5px rgba(229, 185, 87, .25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .don-proy,
+  .don-proy .icon {
+    transition: none;
+  }
+}

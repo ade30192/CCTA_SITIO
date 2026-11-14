@@ -12,9 +12,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="extras.css?v=24">
-  <link rel="stylesheet" href="portada.css?v=1">
+  <link rel="stylesheet" href="portada.css?v=2">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -54,7 +54,7 @@
   </svg>
 
   <!-- BARRA SUPERIOR -->
-  <div class="topbar">
+  <div class="topbar" role="complementary" aria-label="Redes sociales">
     <div class="container topbar-inner">
       <span>La iglesia para la familia</span>
 
@@ -73,7 +73,7 @@
   <header class="masthead">
     <div class="container masthead-inner">
 
-      <a class="brand" href="#inicio" aria-label="Inicio">
+      <a class="brand" href="#inicio" aria-label="Centro Cristiano Tabernáculo de Adoración, ir al inicio">
         <img src="logo-iglesia.jpg"
              alt="Logo del Centro Cristiano Tabernáculo de Adoración"
              class="brand-logo">
@@ -98,7 +98,7 @@
           <span class="info-icon" aria-hidden="true"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></span>
           <p>
             Reuniones principales<br>
-            <a href="#agenda">Sábados 7:00 p. m. · Domingos 10:00 a. m.</a>
+            <a href="#agenda" id="header-horario">Sábados 7:00 p. m. · Domingos 10:00 a. m.</a>
           </p>
         </div>
 
@@ -159,32 +159,34 @@
     <!-- CARRUSEL PRINCIPAL -->
     <section class="hero" id="inicio" aria-label="Presentación de la iglesia">
 
+      <h1 class="sr-only">Centro Cristiano Tabernáculo de Adoración · Paquera, Puntarenas</h1>
+
       <div class="slide active"
-           style="--bg:url('fotos/hero-1.jpg?v=3')">
+           style="--bg:url('fotos/hero-1.jpg?v=3'); --bg-m:url('fotos/hero-1-m.jpg?v=1')">
 
         <div class="container slide-copy">
           <span class="script">te esperamos</span>
-          <h1>UNA CASA PARA<br>TODA LA FAMILIA</h1>
+          <h2 class="slide-title">UNA CASA PARA<br>TODA LA FAMILIA</h2>
           <a class="btn btn-gold" href="#nuevo">Quiero visitarlos</a>
         </div>
       </div>
 
       <div class="slide"
-           style="--bg:url('fotos/hero-2.jpg?v=3')">
+           style="--bg:url('fotos/hero-2.jpg?v=3'); --bg-m:url('fotos/hero-2-m.jpg?v=1')">
 
         <div class="container slide-copy">
           <span class="script">dios tiene un lugar</span>
-          <h1>PARA VOS<br>TAMBIÉN</h1>
+          <h2 class="slide-title">PARA VOS<br>TAMBIÉN</h2>
           <a class="btn btn-gold" href="#agenda">Ver reuniones</a>
         </div>
       </div>
 
       <div class="slide"
-           style="--bg:url('fotos/hero-3.jpg?v=3')">
+           style="--bg:url('fotos/hero-3.jpg?v=3'); --bg-m:url('fotos/hero-3-m.jpg?v=1')">
 
         <div class="container slide-copy">
           <span class="script">creciendo juntos</span>
-          <h1>EN FE, AMOR<br>Y SERVICIO</h1>
+          <h2 class="slide-title">EN FE, AMOR<br>Y SERVICIO</h2>
           <a class="btn btn-gold" href="#contacto">Contactanos</a>
         </div>
       </div>
@@ -277,8 +279,8 @@
         </ul>
 
         <div class="who-actions">
-          <a class="btn btn-gold" href="nosotros.html#historia">Nuestra historia</a>
-          <a class="btn btn-outline-light" href="nosotros.html#fe">Lo que creemos</a>
+          <a class="btn btn-gold" href="nosotros.html#fe">Lo que creemos</a>
+          <a class="btn btn-outline-light" href="nosotros.html#historia">Nuestra historia</a>
         </div>
 
       </div>
@@ -634,7 +636,7 @@
 
         <div class="loc-panels">
 
-          <article class="location-card loc-panel" id="sede-nueva" role="tabpanel" aria-labelledby="tab-nueva">
+          <div class="location-card loc-panel" id="sede-nueva" role="tabpanel" aria-labelledby="tab-nueva">
             <div class="loc-info">
               <span class="location-number">01</span>
               <h3>Nueva sede · Paquera</h3>
@@ -668,10 +670,10 @@
                       referrerpolicy="no-referrer-when-downgrade"
                       allowfullscreen></iframe>
             </div>
-          </article>
+          </div>
 
 
-          <article class="location-card loc-panel" id="sede-antigua" role="tabpanel" aria-labelledby="tab-antigua">
+          <div class="location-card loc-panel" id="sede-antigua" role="tabpanel" aria-labelledby="tab-antigua">
             <div class="loc-info">
               <span class="location-number">02</span>
               <h3>Antigua sede</h3>
@@ -705,7 +707,7 @@
                       referrerpolicy="no-referrer-when-downgrade"
                       allowfullscreen></iframe>
             </div>
-          </article>
+          </div>
 
         </div>
 
@@ -753,13 +755,19 @@
             <strong class="sinpe-number">8678-2826</strong>
             <button class="copy-button" type="button"
                     data-copy="86782826"
-                    aria-label="Copiar número de SINPE Móvil">
+                    aria-label="Copiar SINPE Móvil de la iglesia">
               Copiar SINPE
             </button>
           </div>
 
           <a class="btn btn-outline-light don-bank-btn" href="donar.html">Ver cuentas bancarias</a>
         </div>
+
+        <a class="don-proy" href="anuncios.html#proyectos">
+          <span class="don-proy-dot" aria-hidden="true"></span>
+          <span><strong>¿Qué estamos construyendo?</strong> Mirá los proyectos en proceso</span>
+          <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>
+        </a>
 
 
         <p class="donation-disclaimer">
@@ -951,8 +959,8 @@
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
   <script src="script.js?v=9"></script>
-  <script src="extras.js?v=7" defer></script>
-  <script src="portada.js?v=1" defer></script>
+  <script src="extras.js?v=8" defer></script>
+  <script src="portada.js?v=2" defer></script>
 
 </body>
 </html>

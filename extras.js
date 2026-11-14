@@ -33,6 +33,49 @@
     return h12 + ':' + (m < 10 ? '0' + m : m) + ' ' + suf;
   }
 
+  // Lee los horarios directamente de las tarjetas de "Nuestras reuniones",
+  // así un cambio de horario se hace en un solo lugar (index.html).
+  // Si algo no se puede leer, se usa la lista de arriba.
+  var NOMBRES_DIA = { domingo: 0, lunes: 1, martes: 2, miercoles: 3, jueves: 4, viernes: 5, sabado: 6 };
+
+  function sinTildes(t) {
+    return String(t || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+
+  function leerAgenda() {
+    var lista = [];
+    document.querySelectorAll('#agenda .event').forEach(function (card) {
+      var dia = NOMBRES_DIA[sinTildes((card.querySelector('.event-day') || {}).textContent)];
+      var hora = /(\d{1,2}):(\d{2})\s*([ap])/i.exec((card.querySelector('.time') || {}).textContent || '');
+      var nombre = ((card.querySelector('h3') || {}).textContent || '').trim();
+      if (dia === undefined || !hora || !nombre) return;
+      var h = Number(hora[1]) % 12 + (hora[3].toLowerCase() === 'p' ? 12 : 0);
+      lista.push({ dia: dia, h: h, m: Number(hora[2]), nombre: nombre });
+    });
+    return lista;
+  }
+
+  (function () {
+    var desdeAgenda = leerAgenda();
+    if (desdeAgenda.length) REUNIONES = desdeAgenda;
+  })();
+
+  // Resumen del encabezado ("Sábados 7:00 p. m. · Domingos 10:00 a. m."): los cultos de la agenda
+  function iniciarResumenHorario() {
+    var el = document.getElementById('header-horario');
+    if (!el) return;
+    var cultos = REUNIONES.filter(function (r) { return /^culto/i.test(r.nombre); });
+    if (!cultos.length) return;
+    var orden = [6, 0, 1, 2, 3, 4, 5];
+    cultos.sort(function (a, b) { return orden.indexOf(a.dia) - orden.indexOf(b.dia); });
+    el.textContent = cultos.map(function (r) {
+      var d = DIAS[r.dia];
+      d = d.charAt(0).toUpperCase() + d.slice(1);
+      if (!/s$/.test(d)) d += 's';
+      return d + ' ' + formatoHora(r.h, r.m);
+    }).join(' · ');
+  }
+
   function proxima() {
     var now = ahoraCR();
     var mejor = null;
@@ -241,6 +284,7 @@
 
 
   function iniciar() {
+    try { iniciarResumenHorario(); } catch (e) {}
     try { iniciarProxima(); } catch (e) {}
     try { iniciarVersiculo(); } catch (e) {}
     try { iniciarVideoPastores(); } catch (e) {}
