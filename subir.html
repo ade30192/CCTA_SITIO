@@ -126,6 +126,19 @@
     .ed-session { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
     .ed-link { border:0; background:none; color:#23549a; font:inherit; font-size:.82rem; font-weight:800; cursor:pointer; text-decoration:underline; }
 
+    /* Pedido a la IA */
+    .ed-pedido { margin-top:16px; padding-top:16px; border-top:1px dashed #d6dfec; }
+    .ed-pedido .ed-label { margin-top:0; }
+    .ed-pedido textarea { min-height:96px; }
+    .ed-pedido-acc { display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-top:10px; }
+    .ed-pedido-acc .ed-hint { margin:0; font-size:.8rem; }
+
+    /* Afiche automático */
+    .ed-auto { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-bottom:14px; padding:14px 16px; border-radius:14px; background:var(--cream); border:1px solid #efe4c8; }
+    .ed-auto-ico { font-size:1.5rem; }
+    .ed-auto-txt { flex:1 1 220px; color:var(--ink); font-size:.86rem; line-height:1.5; }
+    .ed-auto-txt strong { color:var(--navy); }
+
     [hidden] { display:none !important; }
 
     @media (max-width:560px) {
@@ -240,8 +253,8 @@
 
       <!-- 1. Afiche -->
       <section class="ed-card">
-        <h2>1. Afiche o imagen</h2>
-        <p class="ed-hint">Subí el afiche del evento. Si el asistente IA está activo, los datos se llenan solos.</p>
+        <h2>1. Afiche y borrador</h2>
+        <p class="ed-hint">Subí el afiche del evento, contale a la IA qué querés anunciar, o las dos cosas. La IA arma el borrador y vos lo revisás.</p>
 
         <label class="ed-drop" id="drop">
           <span class="ed-drop-ico" id="drop-ico">🖼️</span>
@@ -251,6 +264,15 @@
           </span>
           <input id="imagen" type="file" accept="image/*" aria-label="Elegir afiche">
         </label>
+
+        <div class="ed-pedido">
+          <label class="ed-label" for="ia-texto">✨ Contale a la IA qué querés anunciar <small>(opcional)</small></label>
+          <textarea id="ia-texto" maxlength="1200" placeholder="Ej: El sábado 6 de diciembre a las 6 p. m. hacemos una vigilia de oración en la nueva sede. Es para toda la familia, traigan una cobija. Usá Salmos 121."></textarea>
+          <div class="ed-pedido-acc">
+            <button class="ed-btn navy" id="generar-borrador" type="button">✨ Generar borrador</button>
+            <span class="ed-hint" id="pedido-nota">Si también subiste un afiche, la IA usa los dos.</span>
+          </div>
+        </div>
 
         <div class="ed-ia" id="ia-estado" role="status" aria-live="polite"></div>
       </section>
@@ -312,6 +334,12 @@
         <h2>3. Vista previa</h2>
         <p class="ed-hint">Así se verá en la página de anuncios. Se actualiza mientras escribís.</p>
 
+        <div class="ed-auto" id="auto-afiche">
+          <span class="ed-auto-ico" aria-hidden="true">🎨</span>
+          <span class="ed-auto-txt"><strong>¿No tenés afiche?</strong> Creamos uno con el diseño de la iglesia usando los datos del anuncio.</span>
+          <button class="ed-btn soft" id="crear-afiche" type="button">Crear afiche</button>
+        </div>
+
         <div class="ed-preview-wrap" id="preview">
           <p class="ed-preview-vacio">Escribí al menos el título y la fecha para ver la vista previa.</p>
         </div>
@@ -369,6 +397,7 @@
   var estado = {
     imagenB64: '',       // afiche ya achicado (JPG en base64)
     imagenURL: '',       // para la vista previa
+    imagenGenerada: false, // true si el afiche lo creó el editor
     editando: null       // anuncio publicado que se está editando
   };
 
@@ -474,12 +503,15 @@
     $('chip-ia').className = 'ed-chip' + (c && c.llave ? ' ok' : '');
   }
 
-  function instrucciones() {
+  function instrucciones(pedido, conImagen) {
     var hoy = new Date();
     var dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
     return [
       'Sos el asistente del equipo de tecnología del Centro Cristiano Tabernáculo de Adoración (iglesia evangélica en Paquera, Puntarenas, Costa Rica).',
-      'Te paso el afiche de una actividad. Leé TODO el texto del afiche y devolvé SOLO un objeto JSON, sin texto adicional, con estas claves:',
+      conImagen
+        ? 'Te paso el afiche de una actividad. Leé TODO el texto del afiche' + (pedido ? ' y tené en cuenta las indicaciones del equipo que van al final' : '') + '.'
+        : 'El equipo te describe con sus palabras una actividad que quiere anunciar (va al final). Armá el borrador del anuncio a partir de eso.',
+      'Devolvé SOLO un objeto JSON, sin texto adicional, con estas claves:',
       '"titulo": nombre corto de la actividad (máx. 70 caracteres), como lo diría la iglesia. Ej: "Red Juvenil: Filtro Activado".',
       '"fecha": fecha de inicio en formato AAAA-MM-DD. Hoy es ' + dias[hoy.getDay()] + ' ' + hoyTexto(hoy) + '. Si el afiche solo dice un día de la semana, usá la próxima vez que caiga ese día (puede ser hoy). Si dice día y mes sin año, usá el año más cercano hacia adelante. Si no hay ninguna fecha, null.',
       '"hasta": fecha final AAAA-MM-DD solo si dura varios días; si no, null.',
@@ -487,7 +519,9 @@
       '"lugar": lugar tal como aparece (ej. "Playa Margarita", "Iglesia C.C.T.A"); si no aparece, null.',
       '"descripcion": el versículo o frase destacada del afiche, copiado tal cual con su cita (máx. 200 caracteres). Si no hay, una frase corta e invitadora basada en el afiche.',
       '"detalle": 1 a 3 oraciones cálidas en español de Costa Rica con voseo (ej. "Acompañanos", "no te lo perdás") que expliquen de qué se trata y a quién va dirigida. Usá SOLO información del afiche; no inventes nombres, precios, requisitos ni datos que no estén.',
-      '"dudas": lista corta de cosas que no pudiste leer o que el equipo debería revisar (ej. "El afiche no dice el año"). Lista vacía si todo está claro.'
+      '"dudas": lista corta de cosas que no pudiste leer o que el equipo debería revisar (ej. "El afiche no dice el año", "No se indicó el lugar"). Lista vacía si todo está claro.',
+      'Si el equipo pide un versículo por su cita, escribilo completo en Reina-Valera 1960. No inventes datos que el equipo no dio; si falta algo, dejalo en null y mencionalo en "dudas".',
+      pedido ? '\nIndicaciones del equipo:\n"""' + pedido + '"""' : ''
     ].join('\n');
   }
 
@@ -498,14 +532,14 @@
     return JSON.parse(t.slice(a, b + 1));
   }
 
-  function pedirGemini(llave, b64) {
+  function pedirGemini(llave, b64, pedido) {
     var modelos = ['gemini-flash-latest', 'gemini-2.5-flash'];
     function intentar(i) {
       return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + modelos[i] + ':generateContent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': llave },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: instrucciones() }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] }],
+          contents: [{ parts: [{ text: instrucciones(pedido, !!b64) }].concat(b64 ? [{ inline_data: { mime_type: 'image/jpeg', data: b64 } }] : []) }],
           generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
         })
       }).then(function (r) {
@@ -522,7 +556,7 @@
     return intentar(0);
   }
 
-  function pedirClaude(llave, b64) {
+  function pedirClaude(llave, b64, pedido) {
     return fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -534,16 +568,14 @@
       body: JSON.stringify({
         model: 'claude-haiku-5-5',
         max_tokens: 900,
-        messages: [{ role: 'user', content: [
-          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } },
-          { type: 'text', text: instrucciones() }
-        ] }]
+        messages: [{ role: 'user', content: (b64 ? [{ type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } }] : [])
+          .concat([{ type: 'text', text: instrucciones(pedido, !!b64) }]) }]
       })
     }).then(function (r) {
       if (r.status === 401 || r.status === 403) throw new Error('La llave de Claude no es válida.');
       if (r.status === 400) return r.json().then(function (d) {
         var m = d && d.error && d.error.message || '';
-        throw new Error(/credit|balance/i.test(m) ? 'La cuenta de Claude no tiene saldo.' : 'Claude no pudo leer la imagen.');
+        throw new Error(/credit|balance/i.test(m) ? 'La cuenta de Claude no tiene saldo.' : 'Claude no pudo procesar el pedido.');
       });
       if (r.status === 429) throw new Error('Claude está ocupado. Probá en un momento.');
       if (!r.ok) throw new Error('Claude respondió con error ' + r.status + '.');
@@ -561,25 +593,33 @@
 
   function analizar() {
     var c = configIA();
-    if (!estado.imagenB64) return;
+    var texto = $('ia-texto').value.trim();
+    var b64 = estado.imagenGenerada ? '' : estado.imagenB64;   // un afiche hecho aquí no aporta datos nuevos
+    if (!b64 && !texto) {
+      iaEstado('sin', '<span>Subí un afiche o escribí qué querés anunciar en el cuadro de arriba.</span>');
+      return;
+    }
     if (!c || !c.llave) {
-      iaEstado('sin', '<span>Llená los detalles a mano. Para que se llenen solos, activá el <b>asistente IA</b>.</span><button type="button" id="ia-activar">Activar</button>');
+      iaEstado('sin', '<span>Llená los detalles a mano. Para que la IA arme el borrador, activá el <b>asistente IA</b>.</span><button type="button" id="ia-activar">Activar</button>');
       $('ia-activar').onclick = abrirIA;
       return;
     }
-    iaEstado('trabajando', '<span class="ed-spin" aria-hidden="true"></span><span>Leyendo el afiche con IA…</span>');
-    var pedido = c.proveedor === 'claude' ? pedirClaude(c.llave, estado.imagenB64) : pedirGemini(c.llave, estado.imagenB64);
+    $('generar-borrador').disabled = true;
+    iaEstado('trabajando', '<span class="ed-spin" aria-hidden="true"></span><span>' + (b64 ? 'Leyendo el afiche' + (texto ? ' y tus indicaciones' : '') : 'Armando el borrador') + ' con IA…</span>');
+    var pedido = c.proveedor === 'claude' ? pedirClaude(c.llave, b64, texto) : pedirGemini(c.llave, b64, texto);
     pedido.then(function (d) {
       aplicarIA(d);
       var dudas = Array.isArray(d.dudas) ? d.dudas.filter(Boolean).slice(0, 3) : [];
       var txt = dudas.length ? 'Revisá: ' + dudas.map(escapar).join(' · ') : 'Los campos marcados con ✨ los llenó la IA. Revisalos y cambiá lo que quieras.';
-      iaEstado('listo', '<span>✨ ' + txt + '</span><button type="button" id="ia-otra">Volver a leer</button>');
+      iaEstado('listo', '<span>✨ ' + txt + '</span><button type="button" id="ia-otra">Generar otra vez</button>');
       $('ia-otra').onclick = analizar;
     }).catch(function (err) {
-      iaEstado('error', '<span>' + escapar(err.message || 'No se pudo leer el afiche.') + ' Podés llenar los datos a mano.</span><button type="button" id="ia-otra">Reintentar</button>');
+      iaEstado('error', '<span>' + escapar(err.message || 'La IA no pudo armar el borrador.') + ' Podés llenar los datos a mano.</span><button type="button" id="ia-otra">Reintentar</button>');
       $('ia-otra').onclick = analizar;
-    });
+    }).then(function () { $('generar-borrador').disabled = false; });
   }
+
+  $('generar-borrador').addEventListener('click', analizar);
 
   function aplicarIA(d) {
     d = d || {};
@@ -605,6 +645,162 @@
     actualizarPrevia();
     marcarPasos();
   }
+
+  // ---------- Afiche automático con el diseño de la iglesia ----------
+
+  var logo = new Image();
+  logo.src = 'logo-iglesia.jpg';
+
+  function lineas(ctx, texto, ancho, max) {
+    var palabras = String(texto).split(/\s+/), filas = [], fila = '';
+    palabras.forEach(function (p) {
+      var prueba = fila ? fila + ' ' + p : p;
+      if (ctx.measureText(prueba).width > ancho && fila) { filas.push(fila); fila = p; }
+      else fila = prueba;
+    });
+    if (fila) filas.push(fila);
+    if (filas.length > max) {
+      filas = filas.slice(0, max);
+      filas[max - 1] = filas[max - 1].replace(/\s+\S*$/, '') + '…';
+    }
+    return filas;
+  }
+
+  function redondeado(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+
+  function dibujarAfiche(d) {
+    var W = 1080, H = 1350;
+    var NAVY = '#071d49', NAVY2 = '#0d2e68', GOLD = '#e5b957', GOLD_L = '#f5df9d';
+    var MESES = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
+    var DIAS = ['DOMINGO', 'LUNES', 'MARTES', 'MIÉRCOLES', 'JUEVES', 'VIERNES', 'SÁBADO'];
+    var c = document.createElement('canvas');
+    c.width = W; c.height = H;
+    var ctx = c.getContext('2d');
+
+    // Fondo azul con brillo dorado y puntos
+    var g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, NAVY); g.addColorStop(1, NAVY2);
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    var r = ctx.createRadialGradient(W * 0.88, H * 0.1, 0, W * 0.88, H * 0.1, 620);
+    r.addColorStop(0, 'rgba(229,185,87,.32)'); r.addColorStop(1, 'rgba(229,185,87,0)');
+    ctx.fillStyle = r; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(255,255,255,.06)';
+    for (var px = 20; px < W; px += 36) for (var py = 20; py < H; py += 36) { ctx.beginPath(); ctx.arc(px, py, 2, 0, 7); ctx.fill(); }
+
+    // Logo y nombre
+    ctx.save();
+    ctx.beginPath(); ctx.arc(140, 140, 64, 0, 7); ctx.fillStyle = '#fff'; ctx.fill();
+    ctx.lineWidth = 6; ctx.strokeStyle = GOLD; ctx.stroke();
+    ctx.clip();
+    if (logo.complete && logo.naturalWidth) ctx.drawImage(logo, 76, 76, 128, 128);
+    ctx.restore();
+    ctx.fillStyle = '#fff';
+    ctx.font = '800 34px Manrope, Arial, sans-serif';
+    ctx.fillText('Centro Cristiano', 232, 128);
+    ctx.fillStyle = GOLD_L;
+    ctx.font = '600 30px Manrope, Arial, sans-serif';
+    ctx.fillText('Tabernáculo de Adoración', 232, 172);
+
+    // Invitación + título
+    var y = 360;
+    ctx.fillStyle = GOLD;
+    ctx.font = 'italic 52px Georgia, serif';
+    ctx.fillText('te invitamos', 76, y);
+    y += 30;
+
+    var titulo = (d.titulo || 'Anuncio').toUpperCase();
+    var tam = 118, filas;
+    do {
+      ctx.font = '800 ' + tam + 'px Manrope, Arial, sans-serif';
+      filas = lineas(ctx, titulo, W - 152, 4);
+      tam -= 6;
+    } while ((filas.length > 3 || filas.some(function (f) { return ctx.measureText(f).width > W - 152; })) && tam > 60);
+    ctx.fillStyle = '#fff';
+    filas.forEach(function (f) { y += tam + 8; ctx.fillText(f, 76, y); });
+
+    // Línea dorada
+    y += 46;
+    ctx.fillStyle = GOLD; ctx.fillRect(76, y, 140, 8);
+
+    // Frase o versículo
+    var panelY = H - 330;
+    if (d.descripcion) {
+      y += 70;
+      var caben = Math.min(4, Math.floor((panelY - 40 - y) / 54) + 1);
+      if (caben > 0) {
+        ctx.fillStyle = GOLD_L;
+        ctx.font = 'italic 38px Georgia, serif';
+        lineas(ctx, d.descripcion, W - 152, caben).forEach(function (f, i) { ctx.fillText(f, 76, y + i * 54); });
+      }
+    }
+
+    // Panel inferior con fecha, hora y lugar
+    redondeado(ctx, 56, panelY, W - 112, 250, 28);
+    ctx.fillStyle = 'rgba(255,255,255,.08)'; ctx.fill();
+    ctx.lineWidth = 2; ctx.strokeStyle = 'rgba(229,185,87,.5)'; ctx.stroke();
+
+    var f = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d.fecha || '');
+    if (f) {
+      var fecha = new Date(+f[1], +f[2] - 1, +f[3]);
+      redondeado(ctx, 92, panelY + 36, 178, 178, 20);
+      ctx.fillStyle = GOLD; ctx.fill();
+      ctx.fillStyle = NAVY; ctx.textAlign = 'center';
+      ctx.font = '800 92px Manrope, Arial, sans-serif';
+      ctx.fillText(String(fecha.getDate()), 181, panelY + 140);
+      ctx.font = '800 26px Manrope, Arial, sans-serif';
+      ctx.fillText(MESES[fecha.getMonth()].slice(0, 3), 181, panelY + 186);
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#fff';
+      ctx.font = '800 40px Manrope, Arial, sans-serif';
+      ctx.fillText(DIAS[fecha.getDay()] + ' ' + fecha.getDate() + ' DE ' + MESES[fecha.getMonth()], 310, panelY + 92);
+    }
+    ctx.textAlign = 'left';
+    ctx.font = '600 34px Manrope, Arial, sans-serif';
+    var datosY = panelY + 148;
+    if (d.hora) { ctx.fillStyle = GOLD_L; ctx.fillText('Hora:', 310, datosY); ctx.fillStyle = '#fff'; ctx.fillText(d.hora, 410, datosY); datosY += 52; }
+    if (d.lugar) {
+      ctx.fillStyle = GOLD_L; ctx.fillText('Lugar:', 310, datosY);
+      ctx.fillStyle = '#fff';
+      ctx.fillText(lineas(ctx, d.lugar, W - 460, 1)[0], 425, datosY);
+    }
+
+    // Pie
+    ctx.fillStyle = 'rgba(255,255,255,.7)';
+    ctx.font = 'italic 30px Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('La iglesia para la familia', W / 2, H - 34);
+    ctx.textAlign = 'left';
+
+    return c.toDataURL('image/jpeg', 0.88);
+  }
+
+  $('crear-afiche').addEventListener('click', function () {
+    var d = datos();
+    if (!d.titulo || !d.fecha) {
+      mensaje('msg-publicar', 'err', 'Para crear el afiche escribí al menos el título y la fecha.');
+      return;
+    }
+    limpiar('msg-publicar');
+    var listo = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    listo.then(function () {
+      var url = dibujarAfiche(d);
+      estado.imagenURL = url;
+      estado.imagenB64 = url.split(',')[1];
+      estado.imagenGenerada = true;
+      mostrarAfiche(url, 'Afiche creado con el diseño de la iglesia', 'Si cambiás los datos, tocá "Crear afiche" otra vez');
+      $('crear-afiche').textContent = 'Volver a crear';
+      actualizarPrevia();
+      marcarPasos();
+    });
+  });
 
   // ---------- Formulario ----------
 
@@ -659,12 +855,15 @@
     CAMPOS.forEach(function (k) { document.querySelector('.ed-campo[data-campo="' + k + '"]').classList.remove('ia'); });
     estado.imagenB64 = '';
     estado.imagenURL = '';
+    estado.imagenGenerada = false;
     estado.editando = null;
+    $('ia-texto').value = '';
     $('imagen').value = '';
     $('drop-ico').innerHTML = '🖼️';
     $('drop-titulo').textContent = 'Tocá para elegir el afiche';
     $('drop-sub').textContent = 'JPG o PNG · se achica solo para que el sitio cargue rápido';
     $('ia-estado').className = 'ed-ia';
+    $('crear-afiche').textContent = 'Crear afiche';
     $('editando').classList.remove('show');
     ['msg-form', 'msg-publicar'].forEach(limpiar);
     contar();
@@ -688,6 +887,7 @@
     prepararImagen(archivo).then(function (r) {
       estado.imagenB64 = r.b64;
       estado.imagenURL = r.url;
+      estado.imagenGenerada = false;
       mostrarAfiche(r.url, archivo.name, 'Tocá para cambiar el afiche');
       actualizarPrevia();
       marcarPasos();

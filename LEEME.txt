@@ -86,3 +86,5 @@ EDITOR DE ANUNCIOS CON IA (subir.html)
   La llave de la IA se guarda solo en el dispositivo, igual que la de GitHub.
 - En "Anuncios publicados" cada anuncio tiene Editar y Quitar.
 - En anuncios.html aparece el botón "Seguir editando" SOLO en los dispositivos que entraron al editor.
+- Cuadro "Contale a la IA qué querés anunciar": la IA arma el borrador desde el texto (con o sin afiche).
+- Botón "Crear afiche": si no hay afiche, crea uno con el diseño de la iglesia (azul y dorado) con los datos del anuncio.
