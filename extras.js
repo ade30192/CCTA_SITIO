@@ -310,7 +310,9 @@
     var fuera = !entradas[0].isIntersecting;
     activa(fuera && movil.matches);
     // Si se vuelve arriba con el menú abierto, se cierra para no dejarlo flotando
-    if (!fuera && nav.classList.contains('open') && document.body.classList.contains('menu-desde-barra')) {
+    // y lo mismo al bajar con el menú del encabezado abierto
+    var desdeBarra = document.body.classList.contains('menu-desde-barra');
+    if (nav.classList.contains('open') && movil.matches && (fuera !== desdeBarra)) {
       toggle.click();
     }
   }, { threshold: 0 }).observe(masthead);
