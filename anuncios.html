@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="extras.css?v=24">
-  <link rel="stylesheet" href="anuncios.css?v=2">
+  <link rel="stylesheet" href="anuncios.css?v=3">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -144,7 +144,22 @@
     })();
   </script>
 
-  <script src="anuncios.js?v=6" defer></script>
+  <script src="anuncios.js?v=7" defer></script>
+
+  <script>
+    /* Botón privado del equipo: solo aparece en los dispositivos que ya entraron al editor */
+    (function () {
+      var llave = '';
+      try { llave = localStorage.getItem('ccta-llave-anuncios') || ''; } catch (e) {}
+      if (!llave) return;
+      var a = document.createElement('a');
+      a.className = 'anx-editar';
+      a.href = 'subir.html';
+      a.innerHTML = '<span aria-hidden="true">✎</span> Seguir editando';
+      a.title = 'Solo lo ve el equipo en este dispositivo';
+      document.body.appendChild(a);
+    })();
+  </script>
 
 </body>
 </html>

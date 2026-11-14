@@ -9,7 +9,6 @@
   'use strict';
 
   var lista = document.getElementById('anuncios-lista');
-  if (!lista) return;
 
   var MESES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
   var MESES_LARGOS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
@@ -250,6 +249,18 @@
 
   // Si se llegó con un enlace a una parte de la página (ej. #proyectos),
   // se vuelve a ubicar después de cargar los anuncios, porque la lista cambia de altura.
+  // Vista previa para subir.html: dibuja la tarjeta exactamente como se verá en la página
+  window.CCTAAnuncios = {
+    previsualizar: function (item, imagenURL) {
+      var ev = normalizar(item);
+      if (!ev) return null;
+      if (imagenURL) ev.imagen = imagenURL;
+      return tarjeta(ev, hoy());
+    }
+  };
+
+  if (!lista) return;
+
   var tocado = false;
   ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
     window.addEventListener(ev, function () { tocado = true; }, { passive: true, once: true });

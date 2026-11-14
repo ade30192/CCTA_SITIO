@@ -5,140 +5,351 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071d49">
   <meta name="robots" content="noindex, nofollow">
-  <title>Subir anuncio | C.C.T.A</title>
+  <title>Editor de anuncios | C.C.T.A</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 
+  <!-- Los mismos estilos de la página de anuncios, para que la vista previa sea idéntica -->
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="extras.css?v=24">
+  <link rel="stylesheet" href="anuncios.css?v=2">
+
   <style>
-    :root { --navy:#071d49; --gold:#e5b957; --cream:#fbf8f0; --line:#e3e9f2; --muted:#66718a; --ok:#1d7a46; --err:#b42318; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:"Manrope",Arial,sans-serif; background:var(--cream); color:#12213d; }
-    header { background:var(--navy); color:#fff; padding:18px 20px; display:flex; align-items:center; gap:12px; }
-    header img { width:44px; height:44px; border-radius:50%; background:#fff; }
-    header h1 { font-size:1.1rem; margin:0; }
-    header a { margin-left:auto; color:var(--gold); font-weight:700; font-size:.85rem; text-decoration:none; }
-    main { max-width:620px; margin:0 auto; padding:20px 16px 60px; }
-    .card { background:#fff; border:1px solid var(--line); border-top:4px solid var(--gold); padding:20px; margin-bottom:20px; box-shadow:0 10px 28px rgba(7,29,73,.06); }
-    h2 { margin:0 0 12px; font-size:1.15rem; color:var(--navy); }
-    label { display:block; font-weight:700; font-size:.88rem; margin:14px 0 6px; }
-    .hint { font-weight:500; color:var(--muted); font-size:.8rem; }
-    input, textarea { width:100%; padding:12px; border:1px solid #c9d3e3; border-radius:8px; font:inherit; font-size:16px; background:#fff; }
-    textarea { min-height:80px; resize:vertical; }
-    .row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-    button { font:inherit; font-weight:800; border:0; border-radius:8px; padding:13px 18px; cursor:pointer; }
-    .btn-main { width:100%; margin-top:20px; background:var(--navy); color:#fff; font-size:1rem; }
-    .btn-main:disabled { opacity:.55; cursor:wait; }
-    .btn-small { background:var(--cream); color:var(--navy); border:1px solid var(--line); padding:8px 12px; font-size:.8rem; }
-    .btn-del { background:#fdecea; color:var(--err); padding:8px 12px; font-size:.8rem; }
-    #preview { display:none; margin-top:10px; max-width:180px; border-radius:8px; border:1px solid var(--line); }
-    .msg { margin-top:14px; padding:12px; border-radius:8px; font-weight:700; font-size:.9rem; display:none; }
-    .msg.ok { display:block; background:#e8f5ee; color:var(--ok); }
-    .msg.err { display:block; background:#fdecea; color:var(--err); }
-    .msg.info { display:block; background:#eef3fb; color:var(--navy); }
-    .list { list-style:none; margin:0; padding:0; }
-    .list li { display:flex; gap:12px; align-items:center; padding:10px 0; border-bottom:1px solid var(--line); }
-    .list img { width:54px; height:68px; object-fit:cover; border-radius:6px; background:var(--line); flex:none; }
-    .list .info { flex:1; min-width:0; }
-    .list strong { display:block; overflow-wrap:anywhere; }
-    .list small { color:var(--muted); }
-    .pasado { opacity:.5; }
-    details summary { cursor:pointer; font-weight:700; color:var(--navy); }
-    ol { padding-left:20px; line-height:1.7; font-size:.9rem; }
-    code { background:var(--cream); padding:1px 5px; border-radius:4px; }
+    :root { --ok:#1d7a46; --err:#b42318; }
+    body { background:var(--bg); }
+    .ed-top { position:sticky; top:0; z-index:30; background:var(--navy); color:#fff; box-shadow:0 6px 20px rgba(5,13,31,.18); }
+    .ed-top-in { display:flex; align-items:center; gap:12px; max-width:860px; margin:0 auto; padding:12px 16px; }
+    .ed-top img { width:40px; height:40px; border-radius:50%; background:#fff; border:2px solid rgba(229,185,87,.7); }
+    .ed-top h1 { margin:0; font-size:1.05rem; line-height:1.2; }
+    .ed-top h1 small { display:block; color:var(--gold-light); font-size:.66rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; }
+    .ed-top a { margin-left:auto; padding:9px 14px; border:1px solid rgba(229,185,87,.6); border-radius:999px; color:var(--gold-light); font-size:.76rem; font-weight:800; white-space:nowrap; }
+    .ed-top a:hover { background:var(--gold); color:var(--navy); }
+
+    .ed-main { max-width:860px; margin:0 auto; padding:22px 16px 80px; }
+    .ed-card { background:#fff; border:1px solid var(--line); border-radius:16px; padding:22px; margin-bottom:18px; box-shadow:0 10px 28px rgba(7,29,73,.06); }
+    .ed-card h2 { margin:0 0 6px; color:var(--navy); font-size:1.2rem; }
+    .ed-hint { margin:0 0 14px; color:var(--muted); font-size:.86rem; line-height:1.6; }
+
+    .ed-label { display:block; margin:14px 0 6px; color:var(--ink); font-size:.86rem; font-weight:800; }
+    .ed-label small { color:var(--muted); font-weight:600; }
+    .ed-input, .ed-card textarea, .ed-card select { width:100%; padding:12px 13px; border:1px solid #c9d3e3; border-radius:10px; background:#fff; color:var(--ink); font:inherit; font-size:16px; }
+    .ed-card textarea { min-height:84px; resize:vertical; line-height:1.6; }
+    .ed-input:focus, .ed-card textarea:focus, .ed-card select:focus { outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold); }
+    .ed-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+
+    .ed-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:46px; padding:0 18px; border:0; border-radius:10px; font:inherit; font-size:.9rem; font-weight:800; cursor:pointer; transition:transform .15s, opacity .15s; }
+    .ed-btn:active { transform:scale(.98); }
+    .ed-btn:disabled { opacity:.55; cursor:wait; }
+    .ed-btn.navy { background:var(--navy); color:#fff; }
+    .ed-btn.gold { background:var(--gold); color:#101f3b; }
+    .ed-btn.line { background:#fff; color:var(--navy); border:1px solid #c9d3e3; }
+    .ed-btn.soft { background:var(--cream); color:var(--navy); border:1px solid #efe4c8; }
+    .ed-btn.del { background:#fdecea; color:var(--err); min-height:38px; padding:0 12px; font-size:.78rem; }
+    .ed-btn.full { width:100%; }
+    .ed-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+    .ed-actions .ed-btn { flex:1 1 180px; }
+
+    .ed-msg { display:none; margin-top:14px; padding:12px 14px; border-radius:10px; font-size:.88rem; font-weight:700; line-height:1.5; }
+    .ed-msg.ok { display:block; background:#e8f5ee; color:var(--ok); }
+    .ed-msg.err { display:block; background:#fdecea; color:var(--err); }
+    .ed-msg.info { display:block; background:#eef3fb; color:var(--navy); }
+
+    /* Pasos */
+    .ed-steps { display:flex; gap:6px; margin:0 0 18px; padding:0; list-style:none; counter-reset:paso; }
+    .ed-steps li { flex:1; display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; background:#fff; border:1px solid var(--line); color:var(--muted); font-size:.78rem; font-weight:800; }
+    .ed-steps li::before { counter-increment:paso; content:counter(paso); display:grid; place-items:center; flex:none; width:24px; height:24px; border-radius:50%; background:var(--line); color:var(--navy); font-size:.75rem; }
+    .ed-steps li.on { border-color:var(--gold); color:var(--navy); }
+    .ed-steps li.on::before { background:var(--navy); color:var(--gold); }
+    .ed-steps li.done::before { content:"✓"; background:var(--gold); color:var(--navy); }
+
+    /* Afiche */
+    .ed-drop { position:relative; display:flex; align-items:center; gap:16px; padding:18px; border:2px dashed #c9d3e3; border-radius:14px; background:var(--bg); cursor:pointer; transition:border-color .2s, background .2s; }
+    .ed-drop:hover, .ed-drop.over { border-color:var(--gold); background:var(--cream); }
+    .ed-drop input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+    .ed-drop-ico { display:grid; place-items:center; flex:none; width:64px; height:80px; overflow:hidden; border-radius:10px; background:var(--navy); color:var(--gold); font-size:1.6rem; }
+    .ed-drop-ico img { width:100%; height:100%; object-fit:cover; }
+    .ed-drop strong { display:block; color:var(--navy); }
+    .ed-drop span { color:var(--muted); font-size:.84rem; }
+    .ed-ia { display:none; align-items:center; gap:10px; margin-top:12px; padding:12px 14px; border-radius:12px; font-size:.86rem; font-weight:700; line-height:1.5; }
+    .ed-ia.show { display:flex; }
+    .ed-ia.trabajando { background:#eef3fb; color:var(--navy); }
+    .ed-ia.listo { background:#fff6dc; color:#6b4b0f; }
+    .ed-ia.error { background:#fdecea; color:var(--err); }
+    .ed-ia.sin { background:var(--bg); color:var(--muted); }
+    .ed-spin { flex:none; width:18px; height:18px; border:3px solid rgba(7,29,73,.15); border-top-color:var(--navy); border-radius:50%; animation:giro .8s linear infinite; }
+    @keyframes giro { to { transform:rotate(360deg); } }
+    .ed-ia button { margin-left:auto; flex:none; padding:7px 12px; border:1px solid currentColor; border-radius:999px; background:transparent; color:inherit; font:inherit; font-size:.74rem; cursor:pointer; }
+
+    /* Campos llenados por la IA */
+    .ed-campo { position:relative; }
+    .ed-campo.ia .ed-input, .ed-campo.ia textarea { border-color:#e9cf8a; background:#fffdf6; }
+    .ed-campo.ia .ed-label::after { content:"✨ IA"; white-space:nowrap; display:inline-block; margin-left:8px; padding:1px 7px; border-radius:999px; background:var(--gold-light); color:#6b4b0f; font-size:.64rem; letter-spacing:.06em; }
+    .ed-count { float:right; color:var(--muted); font-size:.72rem; font-weight:600; }
+
+    /* Vista previa */
+    .ed-preview-wrap { margin-top:6px; padding:16px; border-radius:16px; background:var(--bg); border:1px solid var(--line); }
+    .ed-preview-wrap .anx-card,
+    .ed-preview-wrap .anx-card:nth-child(even) { grid-template-columns:1fr; animation:none; }
+    .ed-preview-wrap .anx-poster { order:0 !important; max-height:440px; }
+    .ed-preview-wrap .anx-poster img { max-height:400px; }
+    .ed-preview-wrap .anx-body { padding:26px 22px; }
+    .ed-preview-vacio { padding:30px 16px; color:var(--muted); text-align:center; font-size:.9rem; }
+
+    /* Editando uno publicado */
+    .ed-editando { display:none; align-items:center; gap:10px; margin-bottom:16px; padding:12px 14px; border-radius:12px; background:#fff6dc; color:#6b4b0f; font-size:.86rem; font-weight:700; }
+    .ed-editando.show { display:flex; }
+    .ed-editando button { margin-left:auto; }
+
+    /* Lista de publicados */
+    .ed-list { margin:0; padding:0; list-style:none; }
+    .ed-list li { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .ed-list li:last-child { border-bottom:0; }
+    .ed-list img, .ed-list .sin-img { flex:none; width:52px; height:66px; border-radius:8px; object-fit:cover; background:var(--line); }
+    .ed-list .ed-info { flex:1; min-width:0; }
+    .ed-list strong { display:block; color:var(--navy); font-size:.92rem; overflow-wrap:anywhere; }
+    .ed-list small { color:var(--muted); font-size:.78rem; }
+    .ed-list .btns { display:flex; flex-direction:column; gap:6px; }
+    .ed-list .pasado { opacity:.5; }
+
+    /* Listo */
+    .ed-done { text-align:center; padding:34px 22px; }
+    .ed-done .check { display:grid; place-items:center; width:64px; height:64px; margin:0 auto 14px; border-radius:50%; background:var(--gold); color:var(--navy); font-size:2rem; font-weight:800; }
+
+    details.ed-help summary { cursor:pointer; color:#23549a; font-size:.86rem; font-weight:800; }
+    details.ed-help ol { margin:10px 0 0; padding-left:20px; color:var(--ink); font-size:.86rem; line-height:1.7; }
+    details.ed-help code { padding:1px 5px; border-radius:4px; background:var(--cream); }
+    .ed-chip { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:var(--bg); border:1px solid var(--line); color:var(--navy); font-size:.76rem; font-weight:800; }
+    .ed-chip.ok { background:#e8f5ee; border-color:#bfe3cd; color:var(--ok); }
+    .ed-session { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+    .ed-link { border:0; background:none; color:#23549a; font:inherit; font-size:.82rem; font-weight:800; cursor:pointer; text-decoration:underline; }
+
     [hidden] { display:none !important; }
+
+    @media (max-width:560px) {
+      .ed-row { grid-template-columns:1fr; gap:0; }
+      .ed-steps li { flex-direction:column; gap:4px; padding:8px 4px; font-size:.68rem; text-align:center; }
+      .ed-card { padding:18px 16px; }
+      .ed-top a span { display:none; }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="logo-iglesia.jpg" alt="">
-    <h1>Subir anuncio</h1>
-    <a href="anuncios.html">Ver anuncios →</a>
+  <header class="ed-top">
+    <div class="ed-top-in">
+      <img src="logo-iglesia.jpg" alt="">
+      <h1><small>Equipo de tecnología</small>Editor de anuncios</h1>
+      <a href="anuncios.html">Ver anuncios <span>publicados</span> →</a>
+    </div>
   </header>
 
-  <main>
+  <main class="ed-main">
 
-    <!-- 1. ACCESO -->
-    <section class="card" id="acceso">
-      <h2>Acceso del equipo</h2>
+    <!-- ACCESO -->
+    <section class="ed-card" id="acceso">
       <div id="sin-llave">
-        <p class="hint">Pegá tu llave de GitHub. Se guarda solo en este dispositivo; no hay que volver a ponerla.</p>
-        <label for="llave">Llave de acceso</label>
-        <input id="llave" type="password" autocomplete="off" placeholder="github_pat_...">
-        <button class="btn-main" id="guardar-llave" type="button">Entrar</button>
-        <details style="margin-top:16px">
+        <h2>Acceso del equipo</h2>
+        <p class="ed-hint">Pegá tu llave de GitHub. Se guarda solo en este dispositivo; no hay que volver a ponerla.</p>
+        <label class="ed-label" for="llave">Llave de GitHub</label>
+        <input class="ed-input" id="llave" type="password" autocomplete="off" placeholder="github_pat_...">
+        <button class="ed-btn navy full" id="guardar-llave" type="button" style="margin-top:14px">Entrar</button>
+        <details class="ed-help" style="margin-top:14px">
           <summary>¿Cómo consigo una llave?</summary>
           <ol>
-            <li>Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained token</a> (con una cuenta que tenga acceso al repositorio del sitio).</li>
+            <li>Entrá a <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Fine-grained token</a> con la cuenta que tiene el repositorio del sitio.</li>
             <li>Nombre: <code>Anuncios sitio</code>. Vencimiento: el que quieran (ej. 1 año).</li>
-            <li><b>Repository access</b> → <i>Only select repositories</i> → escogé el repositorio del sitio.</li>
+            <li><b>Repository access</b> → <i>Only select repositories</i> → el repositorio del sitio.</li>
             <li><b>Permissions</b> → <i>Contents</i> → <b>Read and write</b>.</li>
-            <li>Tocá <b>Generate token</b>, copiá la llave y pegala aquí.</li>
+            <li><b>Generate token</b>, copiá la llave y pegala aquí.</li>
           </ol>
         </details>
       </div>
+
       <div id="con-llave" hidden>
-        <p style="margin:0">✅ Conectado<span id="quien"></span>. <button class="btn-small" id="salir" type="button">Cerrar sesión</button></p>
+        <div class="ed-session">
+          <span class="ed-chip ok">✓ Conectado<span id="quien"></span></span>
+          <span class="ed-chip" id="chip-ia">✨ IA: sin configurar</span>
+          <button class="ed-link" id="abrir-ia" type="button">Asistente IA</button>
+          <button class="ed-link" id="salir" type="button">Cerrar sesión</button>
+        </div>
       </div>
-      <div class="msg" id="msg-acceso"></div>
+      <div class="ed-msg" id="msg-acceso"></div>
     </section>
 
-    <!-- 2. FORMULARIO -->
-    <section class="card" id="formulario" hidden>
-      <h2>Nuevo anuncio</h2>
-      <form id="form">
-        <label for="imagen">Afiche o imagen <span class="hint">(opcional)</span></label>
-        <input id="imagen" type="file" accept="image/*">
-        <img id="preview" alt="Vista previa">
 
-        <label for="titulo">Título *</label>
-        <input id="titulo" required maxlength="90" placeholder="Ej: Red Juvenil: Filtro Activado">
+    <!-- ASISTENTE IA (opcional) -->
+    <section class="ed-card" id="panel-ia" hidden>
+      <h2>✨ Asistente IA</h2>
+      <p class="ed-hint">
+        Al subir un afiche, la IA lee el texto y llena título, fecha, hora, lugar, descripción y explicación.
+        Vos revisás y cambiás lo que quieras antes de publicar. Es opcional: sin IA el editor funciona igual.
+      </p>
 
-        <div class="row">
-          <div>
-            <label for="fecha">Fecha *</label>
-            <input id="fecha" type="date" required>
-          </div>
-          <div>
-            <label for="hasta">Hasta <span class="hint">(si dura varios días)</span></label>
-            <input id="hasta" type="date">
-          </div>
-        </div>
+      <label class="ed-label" for="ia-proveedor">Servicio</label>
+      <select id="ia-proveedor">
+        <option value="gemini">Google Gemini (tiene plan gratis)</option>
+        <option value="claude">Claude de Anthropic (de pago, muy económico)</option>
+      </select>
 
-        <div class="row">
-          <div>
-            <label for="hora">Hora</label>
-            <input id="hora" maxlength="30" placeholder="Ej: 7:00 p.m.">
-          </div>
-          <div>
-            <label for="lugar">Lugar</label>
-            <input id="lugar" maxlength="80" placeholder="Ej: Playa Margarita">
-          </div>
-        </div>
+      <label class="ed-label" for="ia-llave">Llave del servicio</label>
+      <input class="ed-input" id="ia-llave" type="password" autocomplete="off" placeholder="Pegá aquí la llave">
 
-        <label for="descripcion">Descripción corta <span class="hint">(opcional, una frase o un versículo)</span></label>
-        <textarea id="descripcion" maxlength="220" placeholder="Ej: El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32"></textarea>
+      <details class="ed-help" style="margin-top:12px" id="ayuda-gemini">
+        <summary>¿Cómo consigo una llave gratis de Gemini?</summary>
+        <ol>
+          <li>Entrá a <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> con una cuenta de Google (puede ser la de la iglesia).</li>
+          <li>Tocá <b>Create API key</b> y copiala.</li>
+          <li>Pegala aquí y tocá <b>Guardar</b>. No pide tarjeta.</li>
+        </ol>
+      </details>
+      <details class="ed-help" style="margin-top:12px" id="ayuda-claude" hidden>
+        <summary>¿Cómo consigo una llave de Claude?</summary>
+        <ol>
+          <li>Entrá a <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">console.anthropic.com</a> y creá una cuenta.</li>
+          <li>Cargá saldo (unos pocos dólares alcanzan para cientos de afiches).</li>
+          <li>Tocá <b>Create Key</b>, copiala y pegala aquí.</li>
+        </ol>
+      </details>
 
-        <label for="detalle">Explicación <span class="hint">(opcional, qué es la actividad y a quién va dirigida)</span></label>
-        <textarea id="detalle" maxlength="900" style="min-height:120px" placeholder="Ej: Un tiempo para buscar a Dios juntos como congregación. Te esperamos…"></textarea>
-
-        <p class="hint">El anuncio desaparece solo del sitio cuando pasa la fecha.</p>
-        <button class="btn-main" id="publicar" type="submit">Publicar anuncio</button>
-        <div class="msg" id="msg-form"></div>
-      </form>
+      <div class="ed-actions">
+        <button class="ed-btn navy" id="guardar-ia" type="button">Guardar</button>
+        <button class="ed-btn line" id="quitar-ia" type="button">Quitar IA</button>
+        <button class="ed-btn line" id="cerrar-ia" type="button">Cerrar</button>
+      </div>
+      <p class="ed-hint" style="margin:12px 0 0">La llave se guarda solo en este dispositivo. Los afiches que se envían a la IA son los mismos que se publican en el sitio.</p>
+      <div class="ed-msg" id="msg-ia"></div>
     </section>
 
-    <!-- 3. LISTA -->
-    <section class="card" id="publicados" hidden>
+
+    <!-- EDITOR -->
+    <div id="editor" hidden>
+
+      <ol class="ed-steps" aria-label="Pasos">
+        <li id="paso-1" class="on">Afiche</li>
+        <li id="paso-2">Detalles</li>
+        <li id="paso-3">Vista previa</li>
+      </ol>
+
+      <div class="ed-editando" id="editando">
+        ✎ Editando: <span id="editando-titulo"></span>
+        <button class="ed-btn line" id="cancelar-edicion" type="button" style="min-height:34px;padding:0 12px;font-size:.76rem">Cancelar</button>
+      </div>
+
+      <!-- 1. Afiche -->
+      <section class="ed-card">
+        <h2>1. Afiche o imagen</h2>
+        <p class="ed-hint">Subí el afiche del evento. Si el asistente IA está activo, los datos se llenan solos.</p>
+
+        <label class="ed-drop" id="drop">
+          <span class="ed-drop-ico" id="drop-ico">🖼️</span>
+          <span>
+            <strong id="drop-titulo">Tocá para elegir el afiche</strong>
+            <span id="drop-sub">JPG o PNG · se achica solo para que el sitio cargue rápido</span>
+          </span>
+          <input id="imagen" type="file" accept="image/*" aria-label="Elegir afiche">
+        </label>
+
+        <div class="ed-ia" id="ia-estado" role="status" aria-live="polite"></div>
+      </section>
+
+      <!-- 2. Detalles -->
+      <section class="ed-card" id="detalles">
+        <h2>2. Detalles</h2>
+        <p class="ed-hint">Revisá y corregí lo que haga falta. Todo se puede cambiar a mano.</p>
+
+        <form id="form" novalidate>
+          <div class="ed-campo" data-campo="titulo">
+            <label class="ed-label" for="titulo">Título *</label>
+            <input class="ed-input" id="titulo" maxlength="90" placeholder="Ej: Red Juvenil: Filtro Activado">
+          </div>
+
+          <div class="ed-row">
+            <div class="ed-campo" data-campo="fecha">
+              <label class="ed-label" for="fecha">Fecha *</label>
+              <input class="ed-input" id="fecha" type="date">
+            </div>
+            <div class="ed-campo" data-campo="hasta">
+              <label class="ed-label" for="hasta">Hasta <small>(varios días)</small></label>
+              <input class="ed-input" id="hasta" type="date">
+            </div>
+          </div>
+
+          <div class="ed-row">
+            <div class="ed-campo" data-campo="hora">
+              <label class="ed-label" for="hora">Hora</label>
+              <input class="ed-input" id="hora" maxlength="30" placeholder="Ej: 7:00 p. m.">
+            </div>
+            <div class="ed-campo" data-campo="lugar">
+              <label class="ed-label" for="lugar">Lugar</label>
+              <input class="ed-input" id="lugar" maxlength="80" placeholder="Ej: Playa Margarita">
+            </div>
+          </div>
+
+          <div class="ed-campo" data-campo="descripcion">
+            <label class="ed-label" for="descripcion">Frase destacada <small>(versículo o frase corta)</small> <span class="ed-count" id="cuenta-desc">0/220</span></label>
+            <textarea id="descripcion" maxlength="220" placeholder="Ej: El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32"></textarea>
+          </div>
+
+          <div class="ed-campo" data-campo="detalle">
+            <label class="ed-label" for="detalle">Explicación <small>(qué es y a quién va dirigida)</small> <span class="ed-count" id="cuenta-det">0/900</span></label>
+            <textarea id="detalle" maxlength="900" style="min-height:120px" placeholder="Ej: Un tiempo para buscar a Dios juntos como congregación. Te esperamos…"></textarea>
+          </div>
+
+          <p class="ed-hint" style="margin:14px 0 0">El anuncio desaparece solo del sitio cuando pasa la fecha.</p>
+
+          <div class="ed-actions">
+            <button class="ed-btn navy" type="submit">Ver vista previa ↓</button>
+          </div>
+          <div class="ed-msg" id="msg-form"></div>
+        </form>
+      </section>
+
+      <!-- 3. Vista previa -->
+      <section class="ed-card" id="previa">
+        <h2>3. Vista previa</h2>
+        <p class="ed-hint">Así se verá en la página de anuncios. Se actualiza mientras escribís.</p>
+
+        <div class="ed-preview-wrap" id="preview">
+          <p class="ed-preview-vacio">Escribí al menos el título y la fecha para ver la vista previa.</p>
+        </div>
+
+        <div class="ed-actions">
+          <button class="ed-btn line" id="seguir-editando" type="button">✎ Seguir editando</button>
+          <button class="ed-btn gold" id="publicar" type="button">Publicar anuncio</button>
+        </div>
+        <div class="ed-msg" id="msg-publicar"></div>
+      </section>
+
+    </div>
+
+
+    <!-- PUBLICADO -->
+    <section class="ed-card ed-done" id="listo" hidden>
+      <div class="check">✓</div>
+      <h2 id="listo-titulo">¡Anuncio publicado!</h2>
+      <p class="ed-hint">Aparecerá en la página de anuncios en 1 o 2 minutos.</p>
+      <div class="ed-actions" style="justify-content:center">
+        <a class="ed-btn navy" href="anuncios.html">Ver en la página</a>
+        <button class="ed-btn line" id="otro" type="button">Subir otro anuncio</button>
+      </div>
+    </section>
+
+
+    <!-- PUBLICADOS -->
+    <section class="ed-card" id="publicados" hidden>
       <h2>Anuncios publicados</h2>
-      <ul class="list" id="lista"></ul>
-      <div class="msg" id="msg-lista"></div>
+      <p class="ed-hint">Tocá <b>Editar</b> para cambiar uno o <b>Quitar</b> para sacarlo del sitio.</p>
+      <ul class="ed-list" id="lista"></ul>
+      <div class="ed-msg" id="msg-lista"></div>
     </section>
 
   </main>
+
+  <!-- Dibuja la vista previa con el mismo código de la página de anuncios -->
+  <script src="anuncios.js?v=7"></script>
 
 <script>
 (function () {
@@ -151,29 +362,33 @@
 
   var API = 'https://api.github.com/repos/' + USUARIO + '/' + REPO + '/contents/';
   var CLAVE = 'ccta-llave-anuncios';
+  var CLAVE_IA = 'ccta-ia';
   var $ = function (id) { return document.getElementById(id); };
+  var CAMPOS = ['titulo', 'fecha', 'hasta', 'hora', 'lugar', 'descripcion', 'detalle'];
 
-  function leerLlave() { try { return localStorage.getItem(CLAVE) || ''; } catch (e) { return ''; } }
-  function guardarLlave(v) { try { v ? localStorage.setItem(CLAVE, v) : localStorage.removeItem(CLAVE); } catch (e) {} }
+  var estado = {
+    imagenB64: '',       // afiche ya achicado (JPG en base64)
+    imagenURL: '',       // para la vista previa
+    editando: null       // anuncio publicado que se está editando
+  };
 
-  function mensaje(id, tipo, texto) { var m = $(id); m.className = 'msg ' + tipo; m.textContent = texto; }
-  function limpiar(id) { $(id).className = 'msg'; $(id).textContent = ''; }
+  // ---------- Utilidades ----------
 
-  function gh(ruta, opciones) {
-    opciones = opciones || {};
-    opciones.headers = {
-      'Authorization': 'Bearer ' + leerLlave(),
-      'Accept': 'application/vnd.github+json'
-    };
-    return fetch(ruta.indexOf('http') === 0 ? ruta : API + ruta, opciones).then(function (r) {
-      if (r.status === 401) throw new Error('La llave no es válida o ya venció.');
-      if (r.status === 403 || r.status === 404) throw new Error('La llave no tiene permiso de escritura en el repositorio del sitio.');
-      if (!r.ok) throw new Error('GitHub respondió con error ' + r.status + '.');
-      return r.status === 204 ? null : r.json();
-    });
+  function leer(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+  function guardar(k, v) { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch (e) {} }
+  function mensaje(id, tipo, texto) { var m = $(id); m.className = 'ed-msg ' + tipo; m.textContent = texto; }
+  function limpiar(id) { $(id).className = 'ed-msg'; $(id).textContent = ''; }
+
+  function hoyTexto(d) {
+    d = d || new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   }
 
-  // Texto UTF-8 <-> base64 (para tildes y ñ)
+  function slug(t) {
+    return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'anuncio';
+  }
+
   function aBase64(texto) {
     var bytes = new TextEncoder().encode(texto), bin = '';
     for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
@@ -185,17 +400,43 @@
     return new TextDecoder().decode(bytes);
   }
 
-  function slug(t) {
-    return t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
-      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'anuncio';
+  function escapar(t) {
+    return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
   }
 
-  function hoyTexto() {
-    var n = new Date();
-    return n.getFullYear() + '-' + String(n.getMonth() + 1).padStart(2, '0') + '-' + String(n.getDate()).padStart(2, '0');
+  // ---------- GitHub ----------
+
+  function gh(ruta, opciones) {
+    opciones = opciones || {};
+    opciones.headers = { 'Authorization': 'Bearer ' + leer(CLAVE), 'Accept': 'application/vnd.github+json' };
+    return fetch(ruta.indexOf('http') === 0 ? ruta : API + ruta, opciones).then(function (r) {
+      if (r.status === 401) throw new Error('La llave de GitHub no es válida o ya venció.');
+      if (r.status === 403 || r.status === 404) throw new Error('La llave de GitHub no tiene permiso de escritura en el repositorio del sitio.');
+      if (r.status === 409 || r.status === 422) throw new Error('Alguien más guardó un cambio al mismo tiempo. Probá de nuevo en un momento.');
+      if (!r.ok) throw new Error('GitHub respondió con error ' + r.status + '.');
+      return r.status === 204 ? null : r.json();
+    });
   }
 
-  // Achica la imagen (máx. 1080 px de ancho) para que el sitio cargue rápido
+  function leerAnuncios() {
+    return gh('anuncios.json?ref=' + RAMA + '&t=' + Date.now()).then(function (r) {
+      var datos = JSON.parse(deBase64(r.content));
+      return { lista: Array.isArray(datos) ? datos : (datos.anuncios || []), sha: r.sha };
+    });
+  }
+
+  function guardarAnuncios(lista, sha, nota) {
+    var contenido = JSON.stringify({ anuncios: lista }, null, 2) + '\n';
+    return gh('anuncios.json', { method: 'PUT', body: JSON.stringify({ message: nota, content: aBase64(contenido), sha: sha, branch: RAMA }) });
+  }
+
+  function urlImagen(ruta) {
+    return 'https://raw.githubusercontent.com/' + USUARIO + '/' + REPO + '/' + RAMA + '/' + ruta;
+  }
+
+  // ---------- Imagen ----------
+
+  // Achica el afiche (máx. 1080 px de ancho) para que el sitio cargue rápido
   function prepararImagen(archivo) {
     return new Promise(function (ok, mal) {
       var lector = new FileReader();
@@ -212,7 +453,8 @@
           ctx.fillStyle = '#fff';
           ctx.fillRect(0, 0, c.width, c.height);
           ctx.drawImage(img, 0, 0, c.width, c.height);
-          ok(c.toDataURL('image/jpeg', 0.82).split(',')[1]);
+          var url = c.toDataURL('image/jpeg', 0.82);
+          ok({ url: url, b64: url.split(',')[1] });
         };
         img.src = lector.result;
       };
@@ -220,123 +462,355 @@
     });
   }
 
-  // anuncios.json actual (contenido + sha para poder actualizarlo)
-  function leerAnuncios() {
-    return gh('anuncios.json?ref=' + RAMA + '&t=' + Date.now()).then(function (r) {
-      var datos = JSON.parse(deBase64(r.content));
-      var lista = Array.isArray(datos) ? datos : (datos.anuncios || []);
-      return { lista: lista, sha: r.sha };
+  // ---------- Asistente IA ----------
+
+  function configIA() {
+    try { return JSON.parse(leer(CLAVE_IA)) || null; } catch (e) { return null; }
+  }
+
+  function pintarChipIA() {
+    var c = configIA();
+    $('chip-ia').textContent = c && c.llave ? '✨ IA: ' + (c.proveedor === 'claude' ? 'Claude' : 'Gemini') : '✨ IA: sin configurar';
+    $('chip-ia').className = 'ed-chip' + (c && c.llave ? ' ok' : '');
+  }
+
+  function instrucciones() {
+    var hoy = new Date();
+    var dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    return [
+      'Sos el asistente del equipo de tecnología del Centro Cristiano Tabernáculo de Adoración (iglesia evangélica en Paquera, Puntarenas, Costa Rica).',
+      'Te paso el afiche de una actividad. Leé TODO el texto del afiche y devolvé SOLO un objeto JSON, sin texto adicional, con estas claves:',
+      '"titulo": nombre corto de la actividad (máx. 70 caracteres), como lo diría la iglesia. Ej: "Red Juvenil: Filtro Activado".',
+      '"fecha": fecha de inicio en formato AAAA-MM-DD. Hoy es ' + dias[hoy.getDay()] + ' ' + hoyTexto(hoy) + '. Si el afiche solo dice un día de la semana, usá la próxima vez que caiga ese día (puede ser hoy). Si dice día y mes sin año, usá el año más cercano hacia adelante. Si no hay ninguna fecha, null.',
+      '"hasta": fecha final AAAA-MM-DD solo si dura varios días; si no, null.',
+      '"hora": hora como "7:00 p. m." o "9:30 a. m."; si no aparece, null.',
+      '"lugar": lugar tal como aparece (ej. "Playa Margarita", "Iglesia C.C.T.A"); si no aparece, null.',
+      '"descripcion": el versículo o frase destacada del afiche, copiado tal cual con su cita (máx. 200 caracteres). Si no hay, una frase corta e invitadora basada en el afiche.',
+      '"detalle": 1 a 3 oraciones cálidas en español de Costa Rica con voseo (ej. "Acompañanos", "no te lo perdás") que expliquen de qué se trata y a quién va dirigida. Usá SOLO información del afiche; no inventes nombres, precios, requisitos ni datos que no estén.',
+      '"dudas": lista corta de cosas que no pudiste leer o que el equipo debería revisar (ej. "El afiche no dice el año"). Lista vacía si todo está claro.'
+    ].join('\n');
+  }
+
+  function extraerJSON(texto) {
+    var t = String(texto || '').replace(/```json|```/g, '');
+    var a = t.indexOf('{'), b = t.lastIndexOf('}');
+    if (a < 0 || b < a) throw new Error('La IA no devolvió datos legibles.');
+    return JSON.parse(t.slice(a, b + 1));
+  }
+
+  function pedirGemini(llave, b64) {
+    var modelos = ['gemini-flash-latest', 'gemini-2.5-flash'];
+    function intentar(i) {
+      return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + modelos[i] + ':generateContent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': llave },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: instrucciones() }, { inline_data: { mime_type: 'image/jpeg', data: b64 } }] }],
+          generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
+        })
+      }).then(function (r) {
+        if (r.status === 404 && i + 1 < modelos.length) return intentar(i + 1);
+        if (r.status === 400 || r.status === 401 || r.status === 403) throw new Error('La llave de Gemini no es válida.');
+        if (r.status === 429) throw new Error('Se alcanzó el límite gratis de Gemini por ahora. Probá en un rato o llená los datos a mano.');
+        if (!r.ok) throw new Error('Gemini respondió con error ' + r.status + '.');
+        return r.json().then(function (d) {
+          var partes = d && d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts;
+          return extraerJSON(partes && partes.map(function (p) { return p.text || ''; }).join(''));
+        });
+      });
+    }
+    return intentar(0);
+  }
+
+  function pedirClaude(llave, b64) {
+    return fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': llave,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-haiku-5-5',
+        max_tokens: 900,
+        messages: [{ role: 'user', content: [
+          { type: 'image', source: { type: 'base64', media_type: 'image/jpeg', data: b64 } },
+          { type: 'text', text: instrucciones() }
+        ] }]
+      })
+    }).then(function (r) {
+      if (r.status === 401 || r.status === 403) throw new Error('La llave de Claude no es válida.');
+      if (r.status === 400) return r.json().then(function (d) {
+        var m = d && d.error && d.error.message || '';
+        throw new Error(/credit|balance/i.test(m) ? 'La cuenta de Claude no tiene saldo.' : 'Claude no pudo leer la imagen.');
+      });
+      if (r.status === 429) throw new Error('Claude está ocupado. Probá en un momento.');
+      if (!r.ok) throw new Error('Claude respondió con error ' + r.status + '.');
+      return r.json().then(function (d) {
+        return extraerJSON((d.content || []).map(function (p) { return p.text || ''; }).join(''));
+      });
     });
   }
 
-  function guardarAnuncios(lista, sha, nota) {
-    var contenido = JSON.stringify({ anuncios: lista }, null, 2) + '\n';
-    return gh('anuncios.json', {
-      method: 'PUT',
-      body: JSON.stringify({ message: nota, content: aBase64(contenido), sha: sha, branch: RAMA })
+  function iaEstado(tipo, html) {
+    var e = $('ia-estado');
+    e.className = 'ed-ia show ' + tipo;
+    e.innerHTML = html;
+  }
+
+  function analizar() {
+    var c = configIA();
+    if (!estado.imagenB64) return;
+    if (!c || !c.llave) {
+      iaEstado('sin', '<span>Llená los detalles a mano. Para que se llenen solos, activá el <b>asistente IA</b>.</span><button type="button" id="ia-activar">Activar</button>');
+      $('ia-activar').onclick = abrirIA;
+      return;
+    }
+    iaEstado('trabajando', '<span class="ed-spin" aria-hidden="true"></span><span>Leyendo el afiche con IA…</span>');
+    var pedido = c.proveedor === 'claude' ? pedirClaude(c.llave, estado.imagenB64) : pedirGemini(c.llave, estado.imagenB64);
+    pedido.then(function (d) {
+      aplicarIA(d);
+      var dudas = Array.isArray(d.dudas) ? d.dudas.filter(Boolean).slice(0, 3) : [];
+      var txt = dudas.length ? 'Revisá: ' + dudas.map(escapar).join(' · ') : 'Los campos marcados con ✨ los llenó la IA. Revisalos y cambiá lo que quieras.';
+      iaEstado('listo', '<span>✨ ' + txt + '</span><button type="button" id="ia-otra">Volver a leer</button>');
+      $('ia-otra').onclick = analizar;
+    }).catch(function (err) {
+      iaEstado('error', '<span>' + escapar(err.message || 'No se pudo leer el afiche.') + ' Podés llenar los datos a mano.</span><button type="button" id="ia-otra">Reintentar</button>');
+      $('ia-otra').onclick = analizar;
     });
   }
 
-  // ---------- Acceso ----------
-  function mostrarSesion() {
-    var hay = !!leerLlave();
-    $('sin-llave').hidden = hay;
-    $('con-llave').hidden = !hay;
-    $('formulario').hidden = !hay;
-    $('publicados').hidden = !hay;
-    if (hay) cargarLista();
-  }
-
-  $('guardar-llave').addEventListener('click', function () {
-    var v = $('llave').value.trim();
-    if (!v) return mensaje('msg-acceso', 'err', 'Pegá la llave primero.');
-    guardarLlave(v);
-    mensaje('msg-acceso', 'info', 'Verificando…');
-    gh('anuncios.json?ref=' + RAMA).then(function () {
-      return fetch('https://api.github.com/user', { headers: { 'Authorization': 'Bearer ' + v } })
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (u) { if (u && u.login) { try { localStorage.setItem(CLAVE + '-quien', u.login); } catch (e) {} } });
-    }).then(function () {
-      limpiar('msg-acceso');
-      $('llave').value = '';
-      ponerQuien();
-      mostrarSesion();
-    }).catch(function (e) {
-      guardarLlave('');
-      mensaje('msg-acceso', 'err', e.message);
+  function aplicarIA(d) {
+    d = d || {};
+    var fechaOk = function (v) { return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : ''; };
+    var texto = function (v, max) { return typeof v === 'string' ? v.trim().slice(0, max) : ''; };
+    var valores = {
+      titulo: texto(d.titulo, 90),
+      fecha: fechaOk(d.fecha),
+      hasta: fechaOk(d.hasta),
+      hora: texto(d.hora, 30),
+      lugar: texto(d.lugar, 80),
+      descripcion: texto(d.descripcion, 220),
+      detalle: texto(d.detalle, 900)
+    };
+    if (valores.hasta && valores.hasta <= valores.fecha) valores.hasta = '';
+    CAMPOS.forEach(function (k) {
+      var campo = document.querySelector('.ed-campo[data-campo="' + k + '"]');
+      if (!valores[k]) { campo.classList.remove('ia'); return; }
+      $(k).value = valores[k];
+      campo.classList.add('ia');
     });
-  });
-
-  function ponerQuien() {
-    var q = ''; try { q = localStorage.getItem(CLAVE + '-quien') || ''; } catch (e) {}
-    $('quien').textContent = q ? ' como ' + q : '';
+    contar();
+    actualizarPrevia();
+    marcarPasos();
   }
 
-  $('salir').addEventListener('click', function () {
-    guardarLlave('');
-    try { localStorage.removeItem(CLAVE + '-quien'); } catch (e) {}
-    mostrarSesion();
-  });
+  // ---------- Formulario ----------
 
-  // ---------- Vista previa ----------
+  function datos() {
+    var d = { titulo: $('titulo').value.trim(), fecha: $('fecha').value };
+    if ($('hasta').value && $('hasta').value !== d.fecha) d.hasta = $('hasta').value;
+    ['hora', 'lugar', 'descripcion', 'detalle'].forEach(function (k) {
+      var v = $(k).value.trim();
+      if (v) d[k] = v;
+    });
+    return d;
+  }
+
+  function validar(d) {
+    if (!d.titulo) return 'Falta el título.';
+    if (!d.fecha) return 'Falta la fecha.';
+    if (d.hasta && d.hasta < d.fecha) return '"Hasta" no puede ser antes de la fecha.';
+    if ((d.hasta || d.fecha) < hoyTexto()) return 'Esa fecha ya pasó; el anuncio no se mostraría.';
+    return '';
+  }
+
+  function contar() {
+    $('cuenta-desc').textContent = $('descripcion').value.length + '/220';
+    $('cuenta-det').textContent = $('detalle').value.length + '/900';
+  }
+
+  var temporizador = null;
+  function actualizarPrevia() {
+    clearTimeout(temporizador);
+    temporizador = setTimeout(function () {
+      var cont = $('preview');
+      var d = datos();
+      var img = estado.imagenURL || (estado.editando && estado.editando.imagen ? urlImagen(estado.editando.imagen) : '');
+      var tarjeta = d.titulo && d.fecha && window.CCTAAnuncios ? window.CCTAAnuncios.previsualizar(d, img) : null;
+      cont.innerHTML = '';
+      if (tarjeta) cont.appendChild(tarjeta);
+      else cont.innerHTML = '<p class="ed-preview-vacio">Escribí al menos el título y la fecha para ver la vista previa.</p>';
+    }, 150);
+  }
+
+  function marcarPasos() {
+    var tieneImg = !!(estado.imagenURL || (estado.editando && estado.editando.imagen));
+    var d = datos();
+    var completo = !!(d.titulo && d.fecha);
+    $('paso-1').className = tieneImg || completo ? 'done' : 'on';
+    $('paso-2').className = completo ? 'done' : (tieneImg ? 'on' : '');
+    $('paso-3').className = completo ? 'on' : '';
+  }
+
+  function limpiarFormulario() {
+    $('form').reset();
+    CAMPOS.forEach(function (k) { document.querySelector('.ed-campo[data-campo="' + k + '"]').classList.remove('ia'); });
+    estado.imagenB64 = '';
+    estado.imagenURL = '';
+    estado.editando = null;
+    $('imagen').value = '';
+    $('drop-ico').innerHTML = '🖼️';
+    $('drop-titulo').textContent = 'Tocá para elegir el afiche';
+    $('drop-sub').textContent = 'JPG o PNG · se achica solo para que el sitio cargue rápido';
+    $('ia-estado').className = 'ed-ia';
+    $('editando').classList.remove('show');
+    ['msg-form', 'msg-publicar'].forEach(limpiar);
+    contar();
+    actualizarPrevia();
+    marcarPasos();
+  }
+
+  function mostrarAfiche(url, titulo, sub) {
+    $('drop-ico').innerHTML = '';
+    var img = document.createElement('img');
+    img.src = url; img.alt = '';
+    $('drop-ico').appendChild(img);
+    $('drop-titulo').textContent = titulo;
+    $('drop-sub').textContent = sub;
+  }
+
   $('imagen').addEventListener('change', function () {
-    var f = this.files[0], p = $('preview');
-    if (!f) { p.style.display = 'none'; return; }
-    p.src = URL.createObjectURL(f);
-    p.style.display = 'block';
+    var archivo = this.files[0];
+    if (!archivo) return;
+    iaEstado('trabajando', '<span class="ed-spin" aria-hidden="true"></span><span>Preparando la imagen…</span>');
+    prepararImagen(archivo).then(function (r) {
+      estado.imagenB64 = r.b64;
+      estado.imagenURL = r.url;
+      mostrarAfiche(r.url, archivo.name, 'Tocá para cambiar el afiche');
+      actualizarPrevia();
+      marcarPasos();
+      analizar();
+    }).catch(function (e) {
+      iaEstado('error', '<span>' + escapar(e.message) + '</span>');
+    });
+  });
+
+  var drop = $('drop');
+  ['dragenter', 'dragover'].forEach(function (ev) { drop.addEventListener(ev, function () { drop.classList.add('over'); }); });
+  ['dragleave', 'drop'].forEach(function (ev) { drop.addEventListener(ev, function () { drop.classList.remove('over'); }); });
+
+  CAMPOS.forEach(function (k) {
+    $(k).addEventListener('input', function () {
+      // Si la persona cambia un campo, deja de marcarse como "de la IA"
+      document.querySelector('.ed-campo[data-campo="' + k + '"]').classList.remove('ia');
+      contar();
+      actualizarPrevia();
+      marcarPasos();
+    });
+  });
+
+  $('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var error = validar(datos());
+    if (error) return mensaje('msg-form', 'err', error);
+    limpiar('msg-form');
+    actualizarPrevia();
+    $('previa').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  $('seguir-editando').addEventListener('click', function () {
+    $('detalles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(function () { $('titulo').focus({ preventScroll: true }); }, 450);
   });
 
   // ---------- Publicar ----------
-  $('form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    var titulo = $('titulo').value.trim();
-    var fecha = $('fecha').value;
-    var hasta = $('hasta').value;
-    if (!titulo || !fecha) return mensaje('msg-form', 'err', 'Falta el título o la fecha.');
-    if (hasta && hasta < fecha) return mensaje('msg-form', 'err', '"Hasta" no puede ser antes de la fecha.');
-    if ((hasta || fecha) < hoyTexto()) return mensaje('msg-form', 'err', 'Esa fecha ya pasó; el anuncio no se mostraría.');
 
-    var nuevo = { titulo: titulo, fecha: fecha };
-    if (hasta && hasta !== fecha) nuevo.hasta = hasta;
-    if ($('hora').value.trim()) nuevo.hora = $('hora').value.trim();
-    if ($('lugar').value.trim()) nuevo.lugar = $('lugar').value.trim();
-    if ($('descripcion').value.trim()) nuevo.descripcion = $('descripcion').value.trim();
-    if ($('detalle').value.trim()) nuevo.detalle = $('detalle').value.trim();
+  function mismo(a, b) {
+    return a.titulo === b.titulo && a.fecha === b.fecha && (a.imagen || '') === (b.imagen || '');
+  }
 
-    var archivo = $('imagen').files[0];
-    var boton = $('publicar');
+  function borrarImagen(ruta, titulo) {
+    return gh(ruta + '?ref=' + RAMA).then(function (f) {
+      return gh(ruta, { method: 'DELETE', body: JSON.stringify({ message: 'Quitar afiche: ' + titulo, sha: f.sha, branch: RAMA }) });
+    }).catch(function () {});
+  }
+
+  $('publicar').addEventListener('click', function () {
+    var nuevo = datos();
+    var error = validar(nuevo);
+    if (error) {
+      mensaje('msg-publicar', 'err', error + ' Tocá "Seguir editando" para corregirlo.');
+      return;
+    }
+    var boton = this;
+    var anterior = estado.editando;
     boton.disabled = true;
-    mensaje('msg-form', 'info', archivo ? 'Subiendo imagen…' : 'Publicando…');
 
     var paso = Promise.resolve();
-    if (archivo) {
-      var ruta = 'anuncios/' + fecha + '_' + slug(titulo) + '-' + Date.now().toString(36) + '.jpg';
-      paso = prepararImagen(archivo).then(function (b64) {
-        return gh(ruta, { method: 'PUT', body: JSON.stringify({ message: 'Afiche: ' + titulo, content: b64, branch: RAMA }) });
-      }).then(function () { nuevo.imagen = ruta; });
+    if (estado.imagenB64) {
+      var ruta = 'anuncios/' + nuevo.fecha + '_' + slug(nuevo.titulo) + '-' + Date.now().toString(36) + '.jpg';
+      mensaje('msg-publicar', 'info', 'Subiendo el afiche…');
+      paso = gh(ruta, { method: 'PUT', body: JSON.stringify({ message: 'Afiche: ' + nuevo.titulo, content: estado.imagenB64, branch: RAMA }) })
+        .then(function () { nuevo.imagen = ruta; });
+    } else if (anterior && anterior.imagen) {
+      nuevo.imagen = anterior.imagen;
     }
 
     paso.then(function () {
-      mensaje('msg-form', 'info', 'Guardando anuncio…');
+      mensaje('msg-publicar', 'info', 'Guardando el anuncio…');
       return leerAnuncios();
     }).then(function (actual) {
       var hoy = hoyTexto();
-      // Se agrega el nuevo y se limpian los que ya pasaron
-      var lista = actual.lista.filter(function (a) { return (a.hasta || a.fecha) >= hoy; });
+      var lista = actual.lista.filter(function (a) {
+        if ((a.hasta || a.fecha) < hoy) return false;            // se limpian los vencidos
+        if (anterior && mismo(a, anterior)) return false;        // se reemplaza el que se editó
+        return true;
+      });
       lista.push(nuevo);
       lista.sort(function (a, b) { return a.fecha < b.fecha ? -1 : a.fecha > b.fecha ? 1 : 0; });
-      return guardarAnuncios(lista, actual.sha, 'Anuncio: ' + titulo);
+      return guardarAnuncios(lista, actual.sha, (anterior ? 'Editar anuncio: ' : 'Anuncio: ') + nuevo.titulo);
     }).then(function () {
-      mensaje('msg-form', 'ok', '✅ ¡Publicado! Aparecerá en la página de Anuncios en 1 o 2 minutos.');
-      $('form').reset();
-      $('preview').style.display = 'none';
+      // Si se cambió el afiche de uno ya publicado, se borra el viejo (si falla, no pasa nada)
+      if (anterior && anterior.imagen && nuevo.imagen !== anterior.imagen) return borrarImagen(anterior.imagen, anterior.titulo);
+    }).then(function () {
+      $('listo-titulo').textContent = anterior ? '¡Cambios guardados!' : '¡Anuncio publicado!';
+      limpiarFormulario();
+      $('editor').hidden = true;
+      $('listo').hidden = false;
       cargarLista();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }).catch(function (err) {
-      mensaje('msg-form', 'err', '❌ ' + err.message + (/409|422/.test(err.message) ? ' Probá de nuevo en un momento.' : ''));
+      mensaje('msg-publicar', 'err', '❌ ' + err.message);
     }).then(function () { boton.disabled = false; });
   });
 
-  // ---------- Lista y borrar ----------
+  $('otro').addEventListener('click', function () {
+    $('listo').hidden = true;
+    $('editor').hidden = false;
+    limpiarFormulario();
+  });
+
+  // ---------- Publicados: editar y quitar ----------
+
+  function editar(a) {
+    $('listo').hidden = true;
+    $('editor').hidden = false;
+    limpiarFormulario();
+    estado.editando = a;
+    CAMPOS.forEach(function (k) { $(k).value = a[k] || ''; });
+    if (a.imagen) mostrarAfiche(urlImagen(a.imagen), 'Afiche actual', 'Tocá para cambiarlo por otro');
+    $('editando-titulo').textContent = a.titulo;
+    $('editando').classList.add('show');
+    contar();
+    actualizarPrevia();
+    marcarPasos();
+    $('editor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('cancelar-edicion').addEventListener('click', limpiarFormulario);
+
   function cargarLista() {
     var ul = $('lista');
     ul.innerHTML = '<li><small>Cargando…</small></li>';
@@ -344,22 +818,30 @@
       ul.innerHTML = '';
       if (!actual.lista.length) { ul.innerHTML = '<li><small>No hay anuncios todavía.</small></li>'; return; }
       var hoy = hoyTexto();
-      actual.lista.forEach(function (a, i) {
+      actual.lista.forEach(function (a) {
         var li = document.createElement('li');
-        if ((a.hasta || a.fecha) < hoy) li.className = 'pasado';
-        var img = document.createElement('img');
-        img.alt = '';
-        if (a.imagen) img.src = 'https://raw.githubusercontent.com/' + USUARIO + '/' + REPO + '/' + RAMA + '/' + a.imagen;
-        var info = document.createElement('div');
-        info.className = 'info';
+        var pasado = (a.hasta || a.fecha) < hoy;
+        if (pasado) li.className = 'pasado';
+        var img;
+        if (a.imagen) { img = document.createElement('img'); img.src = urlImagen(a.imagen); img.alt = ''; img.loading = 'lazy'; }
+        else { img = document.createElement('span'); img.className = 'sin-img'; }
+        var info = document.createElement('div'); info.className = 'ed-info';
         var t = document.createElement('strong'); t.textContent = a.titulo;
         var s = document.createElement('small');
-        s.textContent = a.fecha + (a.hasta ? ' al ' + a.hasta : '') + (a.hora ? ' · ' + a.hora : '') + (li.className ? ' · ya pasó' : '');
+        s.textContent = a.fecha + (a.hasta ? ' al ' + a.hasta : '') + (a.hora ? ' · ' + a.hora : '') + (pasado ? ' · ya pasó' : '');
         info.appendChild(t); info.appendChild(s);
+        var btns = document.createElement('div'); btns.className = 'btns';
+        if (!pasado) {
+          var ed = document.createElement('button');
+          ed.type = 'button'; ed.className = 'ed-btn soft'; ed.style.minHeight = '38px'; ed.style.fontSize = '.78rem'; ed.textContent = 'Editar';
+          ed.addEventListener('click', function () { editar(a); });
+          btns.appendChild(ed);
+        }
         var del = document.createElement('button');
-        del.type = 'button'; del.className = 'btn-del'; del.textContent = 'Quitar';
+        del.type = 'button'; del.className = 'ed-btn del'; del.textContent = 'Quitar';
         del.addEventListener('click', function () { quitar(a, del); });
-        li.appendChild(img); li.appendChild(info); li.appendChild(del);
+        btns.appendChild(del);
+        li.appendChild(img); li.appendChild(info); li.appendChild(btns);
         ul.appendChild(li);
       });
     }).catch(function (e) {
@@ -368,21 +850,15 @@
     });
   }
 
-  function quitar(anuncio, boton) {
-    if (!confirm('¿Quitar "' + anuncio.titulo + '" del sitio?')) return;
+  function quitar(a, boton) {
+    if (!confirm('¿Quitar "' + a.titulo + '" del sitio?')) return;
     boton.disabled = true;
     leerAnuncios().then(function (actual) {
-      var lista = actual.lista.filter(function (a) {
-        return !(a.titulo === anuncio.titulo && a.fecha === anuncio.fecha && (a.imagen || '') === (anuncio.imagen || ''));
-      });
-      return guardarAnuncios(lista, actual.sha, 'Quitar anuncio: ' + anuncio.titulo);
+      return guardarAnuncios(actual.lista.filter(function (x) { return !mismo(x, a); }), actual.sha, 'Quitar anuncio: ' + a.titulo);
     }).then(function () {
-      if (!anuncio.imagen) return;
-      // Borra también la imagen del repositorio (si falla, no pasa nada)
-      return gh(anuncio.imagen + '?ref=' + RAMA).then(function (f) {
-        return gh(anuncio.imagen, { method: 'DELETE', body: JSON.stringify({ message: 'Quitar afiche: ' + anuncio.titulo, sha: f.sha, branch: RAMA }) });
-      }).catch(function () {});
+      if (a.imagen) return borrarImagen(a.imagen, a.titulo);
     }).then(function () {
+      if (estado.editando && mismo(estado.editando, a)) limpiarFormulario();
       mensaje('msg-lista', 'ok', 'Anuncio quitado. El sitio se actualiza en 1 o 2 minutos.');
       cargarLista();
     }).catch(function (e) {
@@ -391,7 +867,92 @@
     });
   }
 
+  // ---------- Acceso ----------
+
+  function mostrarSesion() {
+    var hay = !!leer(CLAVE);
+    $('sin-llave').hidden = hay;
+    $('con-llave').hidden = !hay;
+    $('editor').hidden = !hay || !$('listo').hidden;
+    $('publicados').hidden = !hay;
+    if (!hay) { $('panel-ia').hidden = true; $('listo').hidden = true; }
+    if (hay) { pintarChipIA(); cargarLista(); }
+  }
+
+  function ponerQuien() {
+    var q = leer(CLAVE + '-quien');
+    $('quien').textContent = q ? ' como ' + q : '';
+  }
+
+  $('guardar-llave').addEventListener('click', function () {
+    var v = $('llave').value.trim();
+    if (!v) return mensaje('msg-acceso', 'err', 'Pegá la llave primero.');
+    guardar(CLAVE, v);
+    mensaje('msg-acceso', 'info', 'Verificando…');
+    gh('anuncios.json?ref=' + RAMA).then(function () {
+      return fetch('https://api.github.com/user', { headers: { 'Authorization': 'Bearer ' + v } })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (u) { if (u && u.login) guardar(CLAVE + '-quien', u.login); })
+        .catch(function () {});
+    }).then(function () {
+      limpiar('msg-acceso');
+      $('llave').value = '';
+      ponerQuien();
+      mostrarSesion();
+    }).catch(function (e) {
+      guardar(CLAVE, '');
+      mensaje('msg-acceso', 'err', e.message);
+    });
+  });
+
+  $('salir').addEventListener('click', function () {
+    guardar(CLAVE, '');
+    guardar(CLAVE + '-quien', '');
+    mostrarSesion();
+  });
+
+  // ---------- Panel de IA ----------
+
+  function abrirIA() {
+    var c = configIA() || { proveedor: 'gemini', llave: '' };
+    $('ia-proveedor').value = c.proveedor || 'gemini';
+    $('ia-llave').value = '';
+    $('ia-llave').placeholder = c.llave ? 'Llave guardada (pegá otra para cambiarla)' : 'Pegá aquí la llave';
+    ayudaIA();
+    limpiar('msg-ia');
+    $('panel-ia').hidden = false;
+    $('panel-ia').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function ayudaIA() {
+    var claude = $('ia-proveedor').value === 'claude';
+    $('ayuda-claude').hidden = !claude;
+    $('ayuda-gemini').hidden = claude;
+  }
+
+  $('abrir-ia').addEventListener('click', abrirIA);
+  $('ia-proveedor').addEventListener('change', ayudaIA);
+  $('cerrar-ia').addEventListener('click', function () { $('panel-ia').hidden = true; });
+
+  $('guardar-ia').addEventListener('click', function () {
+    var anterior = configIA() || {};
+    var proveedor = $('ia-proveedor').value;
+    var llave = $('ia-llave').value.trim() || (anterior.proveedor === proveedor ? anterior.llave : '');
+    if (!llave) return mensaje('msg-ia', 'err', 'Pegá la llave del servicio.');
+    guardar(CLAVE_IA, JSON.stringify({ proveedor: proveedor, llave: llave }));
+    pintarChipIA();
+    mensaje('msg-ia', 'ok', '✓ Guardado. La próxima vez que subás un afiche, la IA llenará los datos.');
+    if (estado.imagenB64) analizar();
+  });
+
+  $('quitar-ia').addEventListener('click', function () {
+    guardar(CLAVE_IA, '');
+    pintarChipIA();
+    mensaje('msg-ia', 'info', 'Asistente IA desactivado en este dispositivo.');
+  });
+
   ponerQuien();
+  contar();
   mostrarSesion();
 })();
 </script>

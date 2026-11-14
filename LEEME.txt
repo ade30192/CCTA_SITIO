@@ -76,3 +76,13 @@ REORGANIZACIÓN DE LA PORTADA (13 de noviembre de 2026)
 RESPALDO
 - La versión anterior completa quedó guardada en la rama "respaldo-antes-reorganizacion" del repositorio.
 - Para volver a ella: en GitHub abrí esa rama y copiá sus archivos a main, o pedile a Claude que la restaure.
+
+
+EDITOR DE ANUNCIOS CON IA (subir.html)
+- Pasos: 1) afiche, 2) detalles, 3) vista previa (idéntica a la página) y Publicar.
+- Asistente IA opcional: al subir el afiche, lee el texto y llena título, fecha, hora, lugar, frase y
+  explicación. Los campos que llenó la IA se marcan con ✨ y todos se pueden cambiar a mano.
+  Servicios: Google Gemini (plan gratis, llave en aistudio.google.com/apikey) o Claude (de pago).
+  La llave de la IA se guarda solo en el dispositivo, igual que la de GitHub.
+- En "Anuncios publicados" cada anuncio tiene Editar y Quitar.
+- En anuncios.html aparece el botón "Seguir editando" SOLO en los dispositivos que entraron al editor.
