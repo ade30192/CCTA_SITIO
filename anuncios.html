@@ -6,15 +6,15 @@
   <meta name="theme-color" content="#071d49">
   <meta name="description" content="Anuncios, avisos y próximos eventos del Centro Cristiano Tabernáculo de Adoración en Paquera, Puntarenas.">
 
-  <title>Anuncios y eventos | Centro Cristiano Tabernáculo de Adoración</title>
+  <title>Anuncios, eventos y proyectos | Centro Cristiano Tabernáculo de Adoración</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="extras.css?v=23">
-  <link rel="stylesheet" href="anuncios.css?v=1">
+  <link rel="stylesheet" href="extras.css?v=24">
+  <link rel="stylesheet" href="anuncios.css?v=2">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -66,6 +66,11 @@
           Aquí vas a encontrar las actividades, los avisos y las fechas importantes de nuestra iglesia.
           Tocá cualquier afiche para verlo en grande.
         </p>
+        <p class="anx-hero-links">
+          <a href="#anuncios-lista">Próximos eventos</a>
+          <span aria-hidden="true">·</span>
+          <a href="#proyectos">Proyectos en proceso</a>
+        </p>
       </div>
     </section>
 
@@ -81,15 +86,42 @@
           <p class="anx-estado">Para ver los anuncios necesitás activar JavaScript en tu navegador.</p>
         </noscript>
 
-        <div class="anx-pie">
-          <p>¿Querés enterarte primero de todo lo que pasa en la iglesia?</p>
-          <a class="btn btn-navy"
-             href="https://www.facebook.com/share/1DuQMBURgQ/"
-             target="_blank" rel="noopener noreferrer">
-            Seguinos en Facebook ↗
-          </a>
-        </div>
+      </div>
+    </section>
 
+    <!-- PROYECTOS EN PROCESO (antes en proyectos.html) -->
+    <section class="anx-proy" id="proyectos" aria-labelledby="proy-titulo">
+      <div class="container">
+        <div class="anx-proy-card">
+
+          <div class="anx-proy-copy">
+            <span class="label dark">Seguimos avanzando</span>
+            <h2 class="title" id="proy-titulo">Proyectos <em>en proceso</em></h2>
+            <p>
+              Seguimos trabajando por nuestra comunidad. Pronto compartiremos por este medio más información sobre los próximos proyectos e iniciativas de la iglesia.
+            </p>
+
+            <ul class="anx-proy-list">
+              <li>
+                <span class="anx-proy-dot" aria-hidden="true"></span>
+                <div>
+                  <strong>Construcción de la cocina del templo</strong>
+                  <small>En proceso · con la ayuda de los hermanos</small>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="anx-proy-actions">
+            <a class="btn btn-gold" href="donar.html">Apoyar con una donación</a>
+            <a class="btn btn-outline-navy"
+               href="https://www.facebook.com/share/1DuQMBURgQ/"
+               target="_blank" rel="noopener noreferrer">
+              Ver novedades en Facebook ↗
+            </a>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -112,7 +144,7 @@
     })();
   </script>
 
-  <script src="anuncios.js?v=3" defer></script>
+  <script src="anuncios.js?v=5" defer></script>
 
 </body>
 </html>

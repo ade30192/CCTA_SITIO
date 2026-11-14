@@ -248,6 +248,28 @@
     lista.appendChild(caja);
   }
 
+  // Si se llegó con un enlace a una parte de la página (ej. #proyectos),
+  // se vuelve a ubicar después de cargar los anuncios, porque la lista cambia de altura.
+  var tocado = false;
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+    window.addEventListener(ev, function () { tocado = true; }, { passive: true, once: true });
+  });
+
+  function reubicar() {
+    var id = decodeURIComponent((location.hash || '').slice(1));
+    if (!id || id === 'anuncios-lista') return;
+    var destino = document.getElementById(id);
+    if (!destino) return;
+    function ir() { if (!tocado) destino.scrollIntoView(); }
+    ir();
+    // Los afiches de arriba cambian la altura al cargar: se reubica mientras el visitante no haya movido la página
+    lista.querySelectorAll('img').forEach(function (img) {
+      img.loading = 'eager';
+      if (!img.complete) img.addEventListener('load', ir, { once: true });
+    });
+    setTimeout(function () { tocado = true; }, 4000);
+  }
+
   // ---------- Carga ----------
 
   fetch('anuncios.json', { cache: 'no-cache' })
@@ -272,5 +294,6 @@
     })
     .catch(function () {
       vacio('No pudimos cargar los anuncios en este momento. Intentá de nuevo en un ratito.');
-    });
+    })
+    .then(reubicar);
 })();

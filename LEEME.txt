@@ -58,3 +58,21 @@ SUBIR ANUNCIOS DESDE LA PÁGINA (subir.html)
   y desaparece solo cuando pasa la fecha. La portada ya no muestra anuncios para no saturarla.
 - En la misma página se pueden quitar anuncios publicados.
 - Si el sitio se muda a la cuenta de GitHub de la iglesia, cambiar USUARIO y REPO al inicio del script de subir.html.
+
+
+REORGANIZACIÓN DE LA PORTADA (13 de noviembre de 2026)
+- Accesos rápidos: tarjeta de Anuncios (muestra el próximo evento, su afiche y cuántos hay) + Reuniones,
+  Cómo llegar y Donar. Se completa sola con anuncios.json (portada.js).
+- "Visión" y "Sobre nosotros" se unieron en "Quiénes somos", con botones a Nuestra historia y Lo que creemos.
+- Se quitó la franja "Conocé más": sus enlaces quedaron en Quiénes somos, en el menú y en Anuncios.
+- "¿Primera vez?": bienvenida, la pregunta de vestimenta y 3 pasos con enlaces. Las demás preguntas
+  están en preguntas.html.
+- Ubicaciones: pestañas Nueva sede / Antigua sede (los dos mapas se conservan) y una tarjeta de reservación.
+- Pastores y Contacto se unieron: tarjetas de los pastores (llamar y WhatsApp) + correo, Facebook,
+  Instagram y ubicación.
+- Proyectos ahora está dentro de anuncios.html (#proyectos); proyectos.html redirige ahí.
+- Estilos nuevos en portada.css; funciones nuevas en portada.js.
+
+RESPALDO
+- La versión anterior completa quedó guardada en la rama "respaldo-antes-reorganizacion" del repositorio.
+- Para volver a ella: en GitHub abrí esa rama y copiá sus archivos a main, o pedile a Claude que la restaure.

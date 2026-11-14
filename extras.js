@@ -200,10 +200,11 @@
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     var grupos = [
-      '.quick-grid > *',
+      '.qa-inner > *',
+      '.nh-steps > *',
+      '.channels-grid > *',
       '.agenda-grid > *',
       '.pastor-grid > *',
-      '.more-grid > *',
       '.location-grid > *',
       '.sec-head',
       '.verse-band .container'
