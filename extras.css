@@ -1054,16 +1054,53 @@
 
 .ann-viewer-close {
   position: absolute;
-  top: 10px;
+  top: max(14px, env(safe-area-inset-top));
   right: 14px;
-  width: 48px;
-  height: 48px;
-  border: 0;
-  background: none;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  border: 1px solid rgba(229, 185, 87, .7);
+  border-radius: 999px;
+  background: rgba(7, 29, 73, .85);
   color: #fff;
-  font-size: 2.4rem;
+  font: inherit;
+  font-size: .9rem;
+  font-weight: 800;
   line-height: 1;
   cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+}
+
+.ann-viewer-close span {
+  color: var(--gold, #e5b957);
+  font-size: 1.05rem;
+}
+
+.ann-viewer-close:hover,
+.ann-viewer-close:focus-visible {
+  background: var(--gold, #e5b957);
+  color: var(--navy, #071d49);
+}
+
+.ann-viewer-close:hover span,
+.ann-viewer-close:focus-visible span {
+  color: var(--navy, #071d49);
+}
+
+/* Segundo botón abajo, cómodo para el pulgar en celular */
+.ann-viewer-close-bottom {
+  top: auto;
+  right: auto;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ann-viewer-img {
+  max-height: calc(100vh - 150px) !important;
+  max-height: calc(100dvh - 150px) !important;
 }
 
 

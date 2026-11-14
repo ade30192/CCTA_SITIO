@@ -109,22 +109,31 @@
   }
 
   // ---------- Visor del afiche a pantalla completa ----------
+  // Se cierra con el botón "Cerrar", tocando fuera de la imagen, con Escape
+  // o con la flecha "atrás" del celular.
 
-  var visor = null, origen = null;
+  var visor = null, origen = null, conHistorial = false;
   function abrirVisor(src, alt, desde) {
     if (!visor) {
       visor = el('div', 'ann-viewer');
       visor.setAttribute('role', 'dialog');
       visor.setAttribute('aria-modal', 'true');
       visor.setAttribute('aria-label', 'Afiche del evento');
-      var cerrar = el('button', 'ann-viewer-close', '×');
+      var cerrar = el('button', 'ann-viewer-close');
       cerrar.type = 'button';
-      cerrar.setAttribute('aria-label', 'Cerrar');
+      cerrar.innerHTML = '<span aria-hidden="true">✕</span> Cerrar';
       var img = el('img', 'ann-viewer-img');
+      var abajo = el('button', 'ann-viewer-close ann-viewer-close-bottom');
+      abajo.type = 'button';
+      abajo.innerHTML = '<span aria-hidden="true">←</span> Volver';
       visor.appendChild(cerrar);
       visor.appendChild(img);
+      visor.appendChild(abajo);
       visor.addEventListener('click', function (e) { if (e.target !== img) cerrarVisor(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarVisor(); });
+      window.addEventListener('popstate', function () {
+        if (visor && !visor.hidden) { conHistorial = false; cerrarVisor(); }
+      });
       document.body.appendChild(visor);
     }
     origen = desde || null;
@@ -133,13 +142,15 @@
     foto.alt = alt;
     visor.hidden = false;
     document.body.style.overflow = 'hidden';
+    try { history.pushState({ visorAfiche: true }, ''); conHistorial = true; } catch (e) { conHistorial = false; }
     visor.querySelector('button').focus();
   }
   function cerrarVisor() {
     if (!visor || visor.hidden) return;
     visor.hidden = true;
     document.body.style.overflow = '';
-    if (origen) origen.focus();
+    if (conHistorial) { conHistorial = false; history.back(); }
+    if (origen) origen.focus({ preventScroll: true });
   }
 
   // ---------- Compartir ----------
