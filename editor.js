@@ -33,6 +33,9 @@
     imagenRemota: '',     // ruta del afiche ya publicado (al editar)
     editando: null,
     tema: 'azul',
+    fondo: '',            // foto de fondo del afiche automático (ruta del sitio o data:)
+    fondoImg: null,
+    ilustracion: '',
     formato: 1350,
     publicados: []
   };
@@ -248,25 +251,25 @@
      ===================================================== */
 
   var PLANTILLAS = [
-    { ico: '🙌', nombre: 'Culto congregacional', dia: 6, titulo: 'Culto congregacional', hora: '7:00 p. m.', lugar: 'Nueva sede · Paquera',
+    { ico: '🙌', nombre: 'Culto congregacional', dia: 6, ilus: 'musica', titulo: 'Culto congregacional', hora: '7:00 p. m.', lugar: 'Nueva sede · Paquera',
       detalle: 'Nos reunimos como iglesia para adorar y compartir la fe. ¡Te esperamos!' },
-    { ico: '📖', nombre: 'Culto dominical', dia: 0, titulo: 'Culto dominical', hora: '10:00 a. m.', lugar: 'Nueva sede · Paquera',
+    { ico: '📖', nombre: 'Culto dominical', dia: 0, ilus: 'biblia', titulo: 'Culto dominical', hora: '10:00 a. m.', lugar: 'Nueva sede · Paquera',
       detalle: 'Nos reunimos para compartir la Palabra, orar y fortalecer nuestra fe en comunidad.' },
-    { ico: '🙏', nombre: 'Ayuno congregacional', dia: 2, titulo: 'Ayuno congregacional', hora: '9:30 a. m.', lugar: 'Iglesia C.C.T.A',
+    { ico: '🙏', nombre: 'Ayuno congregacional', dia: 2, ilus: 'cruz', titulo: 'Ayuno congregacional', hora: '9:30 a. m.', lugar: 'Iglesia C.C.T.A',
       descripcion: 'El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32',
       detalle: 'Un tiempo para buscar a Dios juntos como congregación, en ayuno y oración. Te esperamos en la iglesia.' },
-    { ico: '💛', nombre: 'Red adulto mayor', dia: 4, titulo: 'Red Adulto Mayor', hora: '11:00 a. m.', lugar: 'Nueva sede · Paquera',
+    { ico: '💛', nombre: 'Red adulto mayor', dia: 4, ilus: 'corazon', titulo: 'Red Adulto Mayor', hora: '11:00 a. m.', lugar: 'Nueva sede · Paquera',
       descripcion: 'Corona de honra es la vejez que se halla en el camino de justicia. Proverbios 16:31',
       detalle: 'Encuentro y compañerismo para nuestros adultos mayores. ¡Los esperamos con mucho cariño!' },
-    { ico: '🔥', nombre: 'Red juvenil', dia: 5, titulo: 'Red Juvenil', hora: '7:00 p. m.', lugar: 'Nueva sede · Paquera',
+    { ico: '🔥', nombre: 'Red juvenil', dia: 5, ilus: 'llama', titulo: 'Red Juvenil', hora: '7:00 p. m.', lugar: 'Nueva sede · Paquera',
       detalle: 'Un tiempo para compartir, aprender y crecer juntos. ¡No te lo perdás y traé a un amigo!' },
-    { ico: '🍞', nombre: 'Santa Cena', dia: null, titulo: 'Santa Cena', hora: '7:00 p. m.', lugar: 'Iglesia C.C.T.A',
+    { ico: '🍞', nombre: 'Santa Cena', dia: null, ilus: 'copa', titulo: 'Santa Cena', hora: '7:00 p. m.', lugar: 'Iglesia C.C.T.A',
       descripcion: 'Haced esto en memoria de mí. Lucas 22:19',
       detalle: 'Nos reunimos como iglesia para participar juntos de la Santa Cena.' },
-    { ico: '🌊', nombre: 'Bautismo', dia: null, titulo: 'Bautismo', hora: '10:00 a. m.', lugar: 'Playa Margarita',
+    { ico: '🌊', nombre: 'Bautismo', dia: null, ilus: 'olas', titulo: 'Bautismo', hora: '10:00 a. m.', lugar: 'Playa Margarita',
       descripcion: 'Bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo. Mateo 28:19',
       detalle: 'Celebramos juntos el bautismo en agua de quienes decidieron seguir a Jesús. Acompañanos para ser parte de este momento tan especial.' },
-    { ico: '📢', nombre: 'Aviso importante', dia: null, titulo: 'Aviso importante', hora: '', lugar: '',
+    { ico: '📢', nombre: 'Aviso importante', dia: null, ilus: '', titulo: 'Aviso importante', hora: '', lugar: '',
       detalle: '' }
   ];
 
@@ -286,6 +289,8 @@
         $('lugar').value = p.lugar || '';
         $('descripcion').value = p.descripcion || '';
         $('detalle').value = p.detalle || '';
+        E.ilustracion = p.ilus || '';
+        marcarIlustracion();
         alCambiar();
         toast('Plantilla "' + p.nombre + '" lista. Revisá y ajustá lo que haga falta.');
         if (!$('fecha').value) setTimeout(function () { $('fecha').focus(); }, 300);
@@ -337,6 +342,8 @@
     $('ia-estado').className = 'ed-ia';
     E.imagenB64 = ''; E.imagenURL = ''; E.imagenNombre = ''; E.imagenGenerada = false; E.imagenRemota = '';
     E.editando = null;
+    E.fondo = ''; E.fondoImg = null; E.ilustracion = '';
+    pintarFondo(); marcarIlustracion();
     $('editando').hidden = true;
     limpiarMsg('msg-publicar');
     pintarAfiche();
@@ -355,11 +362,14 @@
         campos: {}, varios: $('varios-dias').checked, ia: $('ia-texto').value,
         img: E.imagenURL && E.imagenURL.indexOf('data:') === 0 && E.imagenURL.length < 2500000 ? E.imagenURL : '',
         imgNombre: E.imagenNombre, imgGenerada: E.imagenGenerada, imgRemota: E.imagenRemota,
-        editando: E.editando, tema: E.tema, formato: E.formato
+        editando: E.editando, tema: E.tema, formato: E.formato,
+        fondo: E.fondo && (E.fondo.indexOf('data:') !== 0 || E.fondo.length < 1500000) ? E.fondo : '',
+        ilustracion: E.ilustracion
       };
       CAMPOS.forEach(function (k) { b.campos[k] = $(k).value; });
       var ok = guardar(CLAVE_BORRADOR, JSON.stringify(b));
       if (!ok && b.img) { b.img = ''; ok = guardar(CLAVE_BORRADOR, JSON.stringify(b)); }
+      if (!ok && b.fondo) { b.fondo = ''; ok = guardar(CLAVE_BORRADOR, JSON.stringify(b)); }
       $('guardado').textContent = ok ? '✓ Guardado en este dispositivo' : '';
     }, 500);
   }
@@ -388,6 +398,8 @@
     $('campo-hasta').hidden = !b.varios;
     $('ia-texto').value = b.ia || '';
     E.tema = b.tema || 'azul'; E.formato = b.formato || 1350;
+    E.fondo = b.fondo || ''; E.fondoImg = null; E.ilustracion = b.ilustracion || '';
+    pintarFondo(); marcarIlustracion();
     E.editando = b.editando || null;
     E.imagenRemota = b.imgRemota || '';
     E.imagenGenerada = !!b.imgGenerada;
@@ -593,13 +605,56 @@
      ===================================================== */
 
   var TEMAS = {
-    azul:   { bg1: '#071d49', bg2: '#0d2e68', brillo: 'rgba(229,185,87,.32)', puntos: 'rgba(255,255,255,.06)', titulo: '#ffffff', acento: '#e5b957', suave: '#f5df9d', nombre: '#ffffff', panel: 'rgba(255,255,255,.08)', borde: 'rgba(229,185,87,.5)', caja: '#e5b957', cajaTxt: '#071d49', dato: '#ffffff', pie: 'rgba(255,255,255,.7)' },
-    dorado: { bg1: '#e5b957', bg2: '#f5df9d', brillo: 'rgba(255,255,255,.45)', puntos: 'rgba(7,29,73,.07)', titulo: '#071d49', acento: '#071d49', suave: '#4a3a12', nombre: '#071d49', panel: 'rgba(255,255,255,.45)', borde: 'rgba(7,29,73,.25)', caja: '#071d49', cajaTxt: '#f5df9d', dato: '#071d49', pie: 'rgba(7,29,73,.7)' },
-    claro:  { bg1: '#fbf8f0', bg2: '#ffffff', brillo: 'rgba(229,185,87,.28)', puntos: 'rgba(7,29,73,.05)', titulo: '#071d49', acento: '#c9962f', suave: '#8f6516', nombre: '#071d49', panel: 'rgba(7,29,73,.04)', borde: 'rgba(229,185,87,.6)', caja: '#071d49', cajaTxt: '#f5df9d', dato: '#071d49', pie: 'rgba(7,29,73,.6)' }
+    azul:   { velo: '7,29,73', bg1: '#071d49', bg2: '#0d2e68', brillo: 'rgba(229,185,87,.32)', puntos: 'rgba(255,255,255,.06)', titulo: '#ffffff', acento: '#e5b957', suave: '#f5df9d', nombre: '#ffffff', panel: 'rgba(255,255,255,.08)', borde: 'rgba(229,185,87,.5)', caja: '#e5b957', cajaTxt: '#071d49', dato: '#ffffff', pie: 'rgba(255,255,255,.7)' },
+    dorado: { velo: '214,170,72', bg1: '#e5b957', bg2: '#f5df9d', brillo: 'rgba(255,255,255,.45)', puntos: 'rgba(7,29,73,.07)', titulo: '#071d49', acento: '#071d49', suave: '#4a3a12', nombre: '#071d49', panel: 'rgba(255,255,255,.45)', borde: 'rgba(7,29,73,.25)', caja: '#071d49', cajaTxt: '#f5df9d', dato: '#071d49', pie: 'rgba(7,29,73,.7)' },
+    claro:  { velo: '251,248,240', bg1: '#fbf8f0', bg2: '#ffffff', brillo: 'rgba(229,185,87,.28)', puntos: 'rgba(7,29,73,.05)', titulo: '#071d49', acento: '#c9962f', suave: '#8f6516', nombre: '#071d49', panel: 'rgba(7,29,73,.04)', borde: 'rgba(229,185,87,.6)', caja: '#071d49', cajaTxt: '#f5df9d', dato: '#071d49', pie: 'rgba(7,29,73,.6)' }
   };
 
   var logo = new Image();
   logo.src = 'logo-iglesia.jpg';
+
+  // Ilustraciones de línea (24×24), mismo estilo de los íconos del sitio
+  var ILUS = {
+    paloma:  { nombre: 'Paloma', p: ['M16 7h.01', 'M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20', 'm20 7 2 .5-2 .5', 'M10 18v3', 'M14 17.75V21', 'M7 18a6 6 0 0 0 3.84-10.61'] },
+    cruz:    { nombre: 'Cruz', p: ['M12 2v20', 'M6 8h12'] },
+    biblia:  { nombre: 'Biblia', p: ['M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z', 'M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z'] },
+    llama:   { nombre: 'Llama', p: ['M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z'] },
+    olas:    { nombre: 'Olas', p: ['M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1', 'M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1', 'M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1'] },
+    copa:    { nombre: 'Copa', p: ['M8 22h8', 'M7 10h10', 'M12 15v7', 'M12 15a5 5 0 0 0 5-5c0-2-.5-4-2-8H9c-1.5 4-2 6-2 8a5 5 0 0 0 5 5Z'] },
+    musica:  { nombre: 'Música', p: ['M9 18V5l12-2v13', 'M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'M18 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'] },
+    familia: { nombre: 'Familia', p: ['M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2', 'M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z', 'M22 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75'] },
+    corazon: { nombre: 'Corazón', p: ['M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z'] },
+    estrella:{ nombre: 'Estrella', p: ['M12 2l2.9 6.9 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.5l7.1-.6z'] }
+  };
+
+  function dibujarIlustracion(ctx, nombre, cx, cy, tam, color, fondoCirculo) {
+    var il = ILUS[nombre];
+    if (!il || !window.Path2D) return;
+    ctx.save();
+    ctx.beginPath(); ctx.arc(cx, cy, tam * 0.62, 0, 7);
+    ctx.fillStyle = fondoCirculo; ctx.fill();
+    ctx.lineWidth = 3; ctx.strokeStyle = color; ctx.globalAlpha = .35; ctx.stroke();
+    ctx.globalAlpha = 1;
+    var e = tam / 24;
+    ctx.translate(cx - tam / 2, cy - tam / 2);
+    ctx.scale(e, e);
+    ctx.lineWidth = 1.5; ctx.strokeStyle = color; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    il.p.forEach(function (d) { ctx.stroke(new Path2D(d)); });
+    ctx.restore();
+  }
+
+  function dibujarFondo(ctx, img, W, H, rgb) {
+    // Foto a todo el afiche (recortada como "cover") y velo del color del estilo para que el texto se lea
+    var esc = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    var w = img.naturalWidth * esc, h = img.naturalHeight * esc;
+    ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+    var v = ctx.createLinearGradient(0, 0, 0, H);
+    v.addColorStop(0, 'rgba(' + rgb + ',.42)');
+    v.addColorStop(.32, 'rgba(' + rgb + ',.72)');
+    v.addColorStop(.6, 'rgba(' + rgb + ',.9)');
+    v.addColorStop(1, 'rgba(' + rgb + ',.96)');
+    ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+  }
 
   function lineas(ctx, texto, ancho, max) {
     var palabras = String(texto).split(/\s+/), filas = [], fila = '';
@@ -639,6 +694,7 @@
     var g = ctx.createLinearGradient(0, 0, W, H);
     g.addColorStop(0, T.bg1); g.addColorStop(1, T.bg2);
     ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    if (E.fondoImg && E.fondoImg.complete && E.fondoImg.naturalWidth) dibujarFondo(ctx, E.fondoImg, W, H, T.velo);
     var r = ctx.createRadialGradient(W * 0.88, H * 0.1, 0, W * 0.88, H * 0.1, 640);
     r.addColorStop(0, T.brillo); r.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = r; ctx.fillRect(0, 0, W, H);
@@ -659,6 +715,11 @@
     ctx.fillStyle = T.suave;
     ctx.font = '600 30px Manrope, Arial, sans-serif';
     ctx.fillText('Tabernáculo de Adoración', 232, ly + 32);
+
+    if (E.ilustracion) {
+      var tamI = H === 1080 ? 150 : 190;
+      dibujarIlustracion(ctx, E.ilustracion, W - 70 - tamI * 0.62, ly + (H === 1080 ? 40 : 90), tamI, T.acento, T.panel);
+    }
 
     // Invitación y título
     var y = (H === 1080 ? 320 : H === 1920 ? 560 : 360);
@@ -763,12 +824,126 @@
       return;
     }
     var listo = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
-    listo.then(function () {
+    Promise.all([listo, cargarFondo()]).then(function () {
       ponerImagen(dibujarAfiche(d, E.tema, E.formato), 'Afiche automático', true);
       toast('Afiche creado');
     });
   }
   $('crear-afiche').addEventListener('click', crearAfiche);
+
+  // ----- Fondo del afiche -----
+
+  function cargarFondo() {
+    if (!E.fondo) { E.fondoImg = null; return Promise.resolve(); }
+    if (E.fondoImg && E.fondoImg.dataset.src === E.fondo && E.fondoImg.complete) return Promise.resolve();
+    return new Promise(function (ok) {
+      var img = new Image();
+      img.dataset.src = E.fondo;
+      img.onload = function () { E.fondoImg = img; ok(); };
+      img.onerror = function () { E.fondoImg = null; toast('No se pudo cargar la imagen de fondo.'); ok(); };
+      img.src = E.fondo;
+    });
+  }
+
+  function ponerFondo(src, aviso) {
+    E.fondo = src || '';
+    E.fondoImg = null;
+    pintarFondo();
+    guardarBorrador();
+    if (aviso) toast(aviso);
+    if (datos().titulo && datos().fecha) crearAfiche();
+  }
+
+  function pintarFondo() {
+    $('fondo-ninguno').classList.toggle('on', !E.fondo);
+    $('fondo-elegido').hidden = !E.fondo;
+    if (E.fondo) $('fondo-mini').src = E.fondo;
+  }
+
+  $('fondo-ninguno').addEventListener('click', function () { ponerFondo('', 'Fondo de color'); });
+  $('fondo-quitar').addEventListener('click', function () { ponerFondo('', 'Fondo quitado'); });
+
+  $('fondo-archivo').addEventListener('change', function () {
+    var f = this.files[0];
+    this.value = '';
+    if (!f) return;
+    leerArchivo(f).then(prepararImagen).then(function (url) { ponerFondo(url, 'Imagen de fondo lista'); })
+      .catch(function (e) { toast(e.message); });
+  });
+
+  $('usar-fondo').addEventListener('click', function () {
+    imagenLocal().then(function (url) {
+      if (E.imagenGenerada) { toast('Ese afiche ya es automático. Subí una foto o imagen para usarla de fondo.'); return; }
+      ponerFondo(url, 'Imagen usada como fondo del afiche');
+      $('sec-afiche').querySelector('.ed-auto').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }).catch(function (e) { toast(e.message); });
+  });
+
+  var FOTOS = ['hero-1', 'hero-2', 'hero-3', 'culto-1', 'culto-2', 'culto-3', 'culto-4', 'culto-5', 'culto-6',
+    'domingo-1', 'domingo-2', 'domingo-3', 'ayuno-1', 'ayuno-2', 'ayuno-3', 'jovenes-1', 'jovenes-2', 'jovenes-3',
+    'adulto-mayor-1', 'adulto-mayor-2', 'adulto-mayor-3'];
+
+  function abrirFotos() {
+    var g = $('lista-fotos');
+    if (!g.children.length) {
+      FOTOS.forEach(function (n) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Usar foto ' + n.replace(/-/g, ' '));
+        b.innerHTML = '<img src="fotos/mini/' + n + '.jpg" alt="" loading="lazy">';
+        b.addEventListener('click', function () {
+          cerrarFotos();
+          ponerFondo('fotos/' + n + '.jpg', 'Foto de la iglesia elegida');
+        });
+        g.appendChild(b);
+      });
+    }
+    $('modal-fotos').hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrarFotos() {
+    $('modal-fotos').hidden = true;
+    document.body.style.overflow = '';
+  }
+  $('fondo-fotos').addEventListener('click', abrirFotos);
+  $('cerrar-fotos').addEventListener('click', cerrarFotos);
+  $('modal-fotos').addEventListener('click', function (e) { if (e.target === this) cerrarFotos(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('modal-fotos').hidden) cerrarFotos(); });
+
+  // ----- Ilustraciones -----
+
+  function pintarIlustraciones() {
+    var cont = $('ilustraciones');
+    var lista = [['', 'Ninguna', null]].concat(Object.keys(ILUS).map(function (k) { return [k, ILUS[k].nombre, ILUS[k].p]; }));
+    lista.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ed-ilu';
+      b.setAttribute('role', 'radio');
+      b.setAttribute('data-ilu', it[0]);
+      b.title = it[1];
+      b.setAttribute('aria-label', it[1]);
+      b.innerHTML = it[2]
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true">' + it[2].map(function (d) { return '<path d="' + d + '"/>'; }).join('') + '</svg>'
+        : '✕';
+      b.addEventListener('click', function () {
+        E.ilustracion = it[0];
+        marcarIlustracion();
+        guardarBorrador();
+        if (E.imagenGenerada || (datos().titulo && datos().fecha)) crearAfiche();
+      });
+      cont.appendChild(b);
+    });
+    marcarIlustracion();
+  }
+
+  function marcarIlustracion() {
+    document.querySelectorAll('.ed-ilu').forEach(function (b) {
+      var on = b.getAttribute('data-ilu') === E.ilustracion;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-checked', String(on));
+    });
+  }
 
 
   /* =====================================================
@@ -1357,6 +1532,8 @@
      ===================================================== */
 
   pintarPlantillas();
+  pintarIlustraciones();
+  pintarFondo();
   pintarAtajos();
   pintarTemas();
   pintarIA();

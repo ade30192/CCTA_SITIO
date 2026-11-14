@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="extras.css?v=25">
   <link rel="stylesheet" href="anuncios.css?v=3">
-  <link rel="stylesheet" href="editor.css?v=3">
+  <link rel="stylesheet" href="editor.css?v=4">
 </head>
 <body class="ed-body">
 
@@ -146,6 +146,7 @@
                   <span id="afiche-sub">Tocá el cuadro para subir una foto, o creá uno abajo.</span>
                   <div class="ed-tools" id="afiche-tools" hidden>
                     <label class="ed-tool ed-file-label">🔄 Cambiar<input type="file" accept="image/*" id="imagen-cambiar" aria-label="Cambiar afiche"></label>
+                    <button class="ed-tool" type="button" id="usar-fondo">🎨 Usar como fondo</button>
                     <button class="ed-tool" type="button" id="girar">⟳ Girar</button>
                     <button class="ed-tool" type="button" id="descargar">⬇ Descargar</button>
                     <button class="ed-tool del" type="button" id="quitar-afiche">✕ Quitar</button>
@@ -170,6 +171,27 @@
                     <button class="ed-chip-btn" type="button" data-formato="1920">Historia</button>
                   </div>
                 </div>
+                <div class="ed-auto-row" style="margin-top:12px">
+                  <span>Fondo</span>
+                  <div class="ed-chips" style="margin:0">
+                    <button class="ed-chip-btn on" type="button" id="fondo-ninguno">Solo color</button>
+                    <button class="ed-chip-btn" type="button" id="fondo-fotos">⛪ Fotos de la iglesia</button>
+                    <label class="ed-chip-btn ed-file-label">📷 Mi imagen<input type="file" accept="image/*" id="fondo-archivo" aria-label="Elegir imagen de fondo"></label>
+                  </div>
+                </div>
+                <div class="ed-fondo-elegido" id="fondo-elegido" hidden>
+                  <img id="fondo-mini" alt="">
+                  <span>Imagen de fondo elegida</span>
+                  <button class="ed-link" type="button" id="fondo-quitar">Quitar</button>
+                </div>
+
+                <div class="ed-auto-row" style="margin-top:12px">
+                  <span>Ilustración</span>
+                  <div class="ed-ilus" id="ilustraciones" role="radiogroup" aria-label="Ilustración del afiche"></div>
+                </div>
+
+                <p class="ed-auto-tip">💡 <b>¿Querés una imagen hecha con IA?</b> Creala gratis en la app de <b>Gemini</b> (ej: "una paloma blanca sobre el mar al atardecer, estilo acuarela"), guardala en tu galería y subila con <b>📷 Mi imagen</b>.</p>
+
                 <div class="ed-actions" style="margin-top:12px">
                   <button class="ed-btn navy" type="button" id="crear-afiche">🎨 Crear afiche</button>
                 </div>
@@ -426,10 +448,22 @@
     </div>
   </div>
 
+  <!-- Ventana de fotos de la iglesia -->
+  <div class="ed-modal" id="modal-fotos" hidden role="dialog" aria-modal="true" aria-labelledby="modal-fotos-titulo">
+    <div class="ed-modal-box">
+      <div class="ed-modal-head">
+        <h2 id="modal-fotos-titulo">⛪ Fotos de la iglesia</h2>
+        <button class="ed-btn line small" type="button" id="cerrar-fotos">✕ Cerrar</button>
+      </div>
+      <p class="ed-hint" style="margin:12px 18px 0">Tocá una foto para usarla de fondo. Se oscurece un poco para que el texto se lea bien.</p>
+      <div class="ed-fotos" id="lista-fotos"></div>
+    </div>
+  </div>
+
   <div class="ed-toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- Dibuja la vista previa con el mismo código de la página de anuncios -->
   <script src="anuncios.js?v=8"></script>
-  <script src="editor.js?v=1"></script>
+  <script src="editor.js?v=2"></script>
 </body>
 </html>

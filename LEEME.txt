@@ -98,3 +98,5 @@ EDITOR NUEVO (subir.html + editor.css + editor.js)
   guardado solo en el dispositivo.
 - Publicados: editar, duplicar y quitar.
 - Ajustes: asistente IA (Gemini o Claude) y cuenta de GitHub.
+- Afiche automático: fondo con fotos de la iglesia (miniaturas en fotos/mini/) o una imagen propia
+  (por ejemplo, creada gratis en la app de Gemini), botón "Usar como fondo" y 10 ilustraciones de línea.
