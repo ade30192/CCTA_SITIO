@@ -88,3 +88,13 @@ EDITOR DE ANUNCIOS CON IA (subir.html)
 - En anuncios.html aparece el botón "Seguir editando" SOLO en los dispositivos que entraron al editor.
 - Cuadro "Contale a la IA qué querés anunciar": la IA arma el borrador desde el texto (con o sin afiche).
 - Botón "Crear afiche": si no hay afiche, crea uno con el diseño de la iglesia (azul y dorado) con los datos del anuncio.
+
+EDITOR NUEVO (subir.html + editor.css + editor.js)
+- Pestañas: Nuevo · Publicados · Ajustes.
+- Nuevo: 4 formas de empezar (afiche, contarle a la IA, plantilla, en blanco) y 8 plantillas de reuniones.
+- Herramientas: atajos de fecha/hora/lugar, selector de versículos (versiculo.json), afiche automático
+  (3 estilos y 3 formatos: vertical, cuadrado, historia), girar/descargar afiche, mejorar texto con IA,
+  copiar texto para WhatsApp, lista de revisión, vista previa al lado (abajo en celular) y borrador
+  guardado solo en el dispositivo.
+- Publicados: editar, duplicar y quitar.
+- Ajustes: asistente IA (Gemini o Claude) y cuenta de GitHub.
