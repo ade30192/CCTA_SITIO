@@ -38,7 +38,10 @@
     .ed-input, .ed-card textarea, .ed-card select { width:100%; padding:12px 13px; border:1px solid #c9d3e3; border-radius:10px; background:#fff; color:var(--ink); font:inherit; font-size:16px; }
     .ed-card textarea { min-height:84px; resize:vertical; line-height:1.6; }
     .ed-input:focus, .ed-card textarea:focus, .ed-card select:focus { outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold); }
-    .ed-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .ed-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:12px; }
+    .ed-row > * { min-width:0; }
+    .ed-input[type="date"] { display:block; min-width:0; max-width:100%; min-height:48px; -webkit-appearance:none; appearance:none; text-align:left; }
+    .ed-input[type="date"]::-webkit-date-and-time-value { text-align:left; }
 
     .ed-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:46px; padding:0 18px; border:0; border-radius:10px; font:inherit; font-size:.9rem; font-weight:800; cursor:pointer; transition:transform .15s, opacity .15s; }
     .ed-btn:active { transform:scale(.98); }
@@ -533,27 +536,47 @@
   }
 
   function pedirGemini(llave, b64, pedido) {
-    var modelos = ['gemini-flash-latest', 'gemini-2.5-flash'];
-    function intentar(i) {
+    // Si un modelo está saturado (503) o sin cupo (429), se reintenta y se prueba con el siguiente.
+    var modelos = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-flash-lite-latest', 'gemini-2.5-flash-lite'];
+    var cuerpo = JSON.stringify({
+      contents: [{ parts: [{ text: instrucciones(pedido, !!b64) }].concat(b64 ? [{ inline_data: { mime_type: 'image/jpeg', data: b64 } }] : []) }],
+      generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
+    });
+    var ultimo = '';
+    function esperar(ms) { return new Promise(function (ok) { setTimeout(ok, ms); }); }
+
+    function intentar(i, vuelta) {
+      if (i >= modelos.length) {
+        throw new Error(ultimo === 'cupo'
+          ? 'Se alcanzó el límite gratis de Gemini por ahora. Esperá un rato o llená los datos a mano.'
+          : 'Gemini está muy ocupado en este momento (no es problema de tu llave). Esperá un minuto y tocá Reintentar.');
+      }
+      if (i > 0 || vuelta > 0) iaEstado('trabajando', '<span class="ed-spin" aria-hidden="true"></span><span>Gemini está ocupado, probando de nuevo…</span>');
       return fetch('https://generativelanguage.googleapis.com/v1beta/models/' + modelos[i] + ':generateContent', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'x-goog-api-key': llave },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: instrucciones(pedido, !!b64) }].concat(b64 ? [{ inline_data: { mime_type: 'image/jpeg', data: b64 } }] : []) }],
-          generationConfig: { temperature: 0.2, responseMimeType: 'application/json' }
-        })
+        body: cuerpo
       }).then(function (r) {
-        if (r.status === 404 && i + 1 < modelos.length) return intentar(i + 1);
         if (r.status === 400 || r.status === 401 || r.status === 403) throw new Error('La llave de Gemini no es válida.');
-        if (r.status === 429) throw new Error('Se alcanzó el límite gratis de Gemini por ahora. Probá en un rato o llená los datos a mano.');
+        if (r.status === 404) return intentar(i + 1, 0);
+        if (r.status === 429) { ultimo = 'cupo'; return intentar(i + 1, 0); }
+        if (r.status >= 500) {
+          ultimo = 'ocupado';
+          return vuelta < 1 ? esperar(1500).then(function () { return intentar(i, vuelta + 1); }) : intentar(i + 1, 0);
+        }
         if (!r.ok) throw new Error('Gemini respondió con error ' + r.status + '.');
         return r.json().then(function (d) {
           var partes = d && d.candidates && d.candidates[0] && d.candidates[0].content && d.candidates[0].content.parts;
           return extraerJSON(partes && partes.map(function (p) { return p.text || ''; }).join(''));
         });
+      }, function () {
+        // Sin conexión o corte de red
+        ultimo = 'ocupado';
+        return vuelta < 1 ? esperar(1500).then(function () { return intentar(i, vuelta + 1); })
+                          : Promise.reject(new Error('No hay conexión con Gemini. Revisá el internet y tocá Reintentar.'));
       });
     }
-    return intentar(0);
+    return intentar(0, 0);
   }
 
   function pedirClaude(llave, b64, pedido) {
