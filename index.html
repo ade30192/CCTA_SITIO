@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css?v=8">
-  <link rel="stylesheet" href="extras.css?v=20">
+  <link rel="stylesheet" href="extras.css?v=21">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -612,9 +612,10 @@
 
 
     <!-- VERSÍCULO DE LA SEMANA (se actualiza con versiculo.json) -->
-    <section class="verse-band" id="versiculo" aria-label="Versículo de la semana">
+    <section class="verse-band is-loading" id="versiculo" aria-label="Versículo de la semana">
       <div class="container">
         <span class="verse-kicker">Versículo de la semana</span>
+        <span class="verse-week" id="verse-week"></span>
         <blockquote class="verse-text" id="verse-text">Yo me alegré con los que me decían: A la casa de Jehová iremos.</blockquote>
         <cite class="verse-ref" id="verse-ref">Salmos 122:1</cite>
       </div>
@@ -1056,7 +1057,7 @@
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
   <script src="script.js?v=9"></script>
-  <script src="extras.js?v=3" defer></script>
+  <script src="extras.js?v=4" defer></script>
 
 </body>
 </html>

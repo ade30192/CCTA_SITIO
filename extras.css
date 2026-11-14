@@ -1065,3 +1065,36 @@
   line-height: 1;
   cursor: pointer;
 }
+
+
+/* ---------- Versículo: fechas de la semana y sin parpadeo al cargar ---------- */
+
+.verse-week {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted, #66718a);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.verse-week:empty {
+  display: none;
+}
+
+.verse-text,
+.verse-ref {
+  transition: opacity .4s ease;
+}
+
+/* Mientras carga el versículo de la semana no se muestra el de respaldo.
+   Si por algo no carga, aparece igual a los 3 segundos. */
+.verse-band.is-loading .verse-text,
+.verse-band.is-loading .verse-ref {
+  opacity: 0;
+  animation: verse-respaldo 0s 3s forwards;
+}
+
+@keyframes verse-respaldo {
+  to { opacity: 1; }
+}
