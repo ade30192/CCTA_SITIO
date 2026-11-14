@@ -146,22 +146,10 @@
 
   <script src="anuncios.js?v=8" defer></script>
 
-  <script>
-    /* Botón privado del equipo: solo aparece en los dispositivos que ya entraron al editor */
-    (function () {
-      var llave = '';
-      try { llave = localStorage.getItem('ccta-llave-anuncios') || ''; } catch (e) {}
-      if (!llave) return;
-      var a = document.createElement('a');
-      a.className = 'anx-editar';
-      a.href = 'subir.html';
-      a.innerHTML = '<span aria-hidden="true">✎</span> Seguir editando';
-      a.title = 'Solo lo ve el equipo en este dispositivo';
-      document.body.appendChild(a);
-    })();
-  </script>
 
   <script src="volver.js?v=1" defer></script>
+
+  <script src="equipo.js?v=1" defer></script>
 
 </body>
 </html>
