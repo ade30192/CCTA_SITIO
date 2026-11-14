@@ -252,3 +252,87 @@
     iniciar();
   }
 })();
+
+
+/* =====================================================
+   BARRA FLOTANTE CON MENÚ (solo celulares)
+   Cuando el visitante baja y el encabezado ya no se ve,
+   aparece una barra compacta arriba con el logo y el botón
+   de menú, para abrirlo desde cualquier parte de la página.
+   ===================================================== */
+
+(function () {
+  'use strict';
+
+  var masthead = document.querySelector('.masthead');
+  var nav = document.getElementById('main-nav');
+  var toggle = document.querySelector('.menu-toggle');
+  if (!masthead || !nav || !toggle || !('IntersectionObserver' in window)) return;
+
+  var movil = window.matchMedia('(max-width: 760px)');
+
+  var barra = document.createElement('div');
+  barra.className = 'mini-bar';
+  barra.setAttribute('aria-hidden', 'true');
+  barra.innerHTML =
+    '<a class="mini-brand" href="#inicio" tabindex="-1">' +
+      '<img src="logo-iglesia.jpg" alt="">' +
+      '<span><strong>Tabernáculo</strong> de Adoración</span>' +
+    '</a>' +
+    '<button class="mini-menu" type="button" tabindex="-1" aria-controls="main-nav" aria-expanded="false">' +
+      '<span class="mini-menu-txt">Menú</span>' +
+      '<span class="mini-lines" aria-hidden="true"><i></i><i></i><i></i></span>' +
+    '</button>';
+  document.body.appendChild(barra);
+
+  var fondo = document.createElement('div');
+  fondo.className = 'mini-backdrop';
+  document.body.appendChild(fondo);
+
+  var boton = barra.querySelector('.mini-menu');
+
+  function activa(si) {
+    document.body.classList.toggle('minibar-on', si);
+    barra.setAttribute('aria-hidden', si ? 'false' : 'true');
+    barra.querySelectorAll('a, button').forEach(function (el) { el.tabIndex = si ? 0 : -1; });
+  }
+
+  function sincronizar() {
+    var abierto = nav.classList.contains('open');
+    document.body.classList.toggle('menu-abierto', abierto);
+    boton.setAttribute('aria-expanded', String(abierto));
+    boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
+    boton.querySelector('.mini-menu-txt').textContent = abierto ? 'Cerrar' : 'Menú';
+  }
+
+  // Mostrar la barra solo cuando el encabezado salió de la pantalla (y en celular)
+  new IntersectionObserver(function (entradas) {
+    var fuera = !entradas[0].isIntersecting;
+    activa(fuera && movil.matches);
+    // Si se vuelve arriba con el menú abierto, se cierra para no dejarlo flotando
+    if (!fuera && nav.classList.contains('open') && document.body.classList.contains('menu-desde-barra')) {
+      toggle.click();
+    }
+  }, { threshold: 0 }).observe(masthead);
+
+  movil.addEventListener && movil.addEventListener('change', function () {
+    if (!movil.matches) activa(false);
+  });
+
+  // El botón de la barra usa el mismo menú de siempre
+  boton.addEventListener('click', function () {
+    document.body.classList.add('menu-desde-barra');
+    toggle.click();
+  });
+
+  fondo.addEventListener('click', function () {
+    if (nav.classList.contains('open')) toggle.click();
+  });
+
+  new MutationObserver(function () {
+    sincronizar();
+    if (!nav.classList.contains('open')) document.body.classList.remove('menu-desde-barra');
+  }).observe(nav, { attributes: true, attributeFilter: ['class'] });
+
+  sincronizar();
+})();
