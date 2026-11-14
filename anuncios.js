@@ -14,7 +14,9 @@
   var MESES_LARGOS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var DIAS = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   var DIA_MS = 24 * 60 * 60 * 1000;
-  var SITIO = 'https://ade30192.github.io/CCTA_SITIO/anuncios.html';
+  // Dirección de esta página (sirve igual si el sitio cambia de cuenta o de dominio)
+  var SITIO = location.origin + location.pathname.replace(/[^/]*$/, '') + 'anuncios.html';
+  if (!/^https?:/.test(SITIO)) SITIO = 'https://ade30192.github.io/CCTA_SITIO/anuncios.html';
 
   // ---------- Utilidades ----------
 
@@ -69,6 +71,11 @@
     return typeof url === 'string' && /^https:\/\/[^\s]+$/i.test(url.trim()) ? url.trim() : '';
   }
 
+  function slug(t) {
+    return String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'anuncio';
+  }
+
   function normalizar(item) {
     if (!item || typeof item !== 'object') return null;
     var titulo = texto(item.titulo, 90);
@@ -86,7 +93,10 @@
       detalle: texto(item.detalle, 900),
       imagen: imagenSegura(item.imagen),
       url: item.enlace ? enlaceSeguro(item.enlace.url) : '',
-      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || 'Más información'
+      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || 'Más información',
+      desde: leerFecha(item.desde),
+      fechaTexto: String(item.fecha),
+      id: 'a-' + item.fecha + '-' + slug(titulo)
     };
   }
 
@@ -153,15 +163,120 @@
     if (origen) origen.focus({ preventScroll: true });
   }
 
+  // ---------- Agregar al calendario ----------
+
+  function leerHora(t) {
+    var m = /(\d{1,2})(?:[:.](\d{2}))?\s*([ap])\.?\s*m/i.exec(t || '') || /^(\d{1,2})[:.](\d{2})$/.exec((t || '').trim());
+    if (!m) return null;
+    var h = Number(m[1]) % 24, min = Number(m[2] || 0);
+    if (m[3]) { h = h % 12 + (m[3].toLowerCase() === 'p' ? 12 : 0); }
+    return { h: h, m: min };
+  }
+
+  function dos(n) { return (n < 10 ? '0' : '') + n; }
+  function soloFecha(d) { return d.getFullYear() + dos(d.getMonth() + 1) + dos(d.getDate()); }
+  // Costa Rica no tiene horario de verano: hora local + 6 = UTC
+  function utc(d, h, m) {
+    var x = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate(), h + 6, m));
+    return x.getUTCFullYear() + dos(x.getUTCMonth() + 1) + dos(x.getUTCDate()) + 'T' + dos(x.getUTCHours()) + dos(x.getUTCMinutes()) + '00Z';
+  }
+
+  function rango(ev) {
+    var hora = leerHora(ev.hora);
+    if (!hora) {
+      var fin = new Date(ev.fin); fin.setDate(fin.getDate() + 1);
+      return { todoDia: true, ini: soloFecha(ev.inicio), fin: soloFecha(fin) };
+    }
+    var finH = hora.h + 2;   // duración aproximada: 2 horas
+    return { todoDia: false, ini: utc(ev.inicio, hora.h, hora.m), fin: utc(ev.fin, finH, hora.m) };
+  }
+
+  function enlaceGoogle(ev) {
+    var r = rango(ev);
+    var p = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: ev.titulo,
+      dates: r.ini + '/' + r.fin,
+      details: [ev.descripcion, ev.detalle, 'Más información: ' + SITIO + '#' + ev.id].filter(Boolean).join('\n\n'),
+      location: ev.lugar || 'Centro Cristiano Tabernáculo de Adoración, Paquera, Puntarenas',
+      ctz: 'America/Costa_Rica'
+    });
+    return 'https://calendar.google.com/calendar/render?' + p.toString();
+  }
+
+  function archivoICS(ev) {
+    var r = rango(ev);
+    var esc = function (t) { return String(t || '').replace(/\\/g, '\\\\').replace(/[,;]/g, function (c) { return '\\' + c; }).replace(/\r?\n/g, '\\n'); };
+    var ahora = new Date();
+    var sello = ahora.getUTCFullYear() + dos(ahora.getUTCMonth() + 1) + dos(ahora.getUTCDate()) + 'T' + dos(ahora.getUTCHours()) + dos(ahora.getUTCMinutes()) + '00Z';
+    var l = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//CCTA//Anuncios//ES', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+      'BEGIN:VEVENT',
+      'UID:' + ev.id + '@ccta-paquera',
+      'DTSTAMP:' + sello,
+      r.todoDia ? 'DTSTART;VALUE=DATE:' + r.ini : 'DTSTART:' + r.ini,
+      r.todoDia ? 'DTEND;VALUE=DATE:' + r.fin : 'DTEND:' + r.fin,
+      'SUMMARY:' + esc(ev.titulo),
+      'LOCATION:' + esc(ev.lugar || 'Centro Cristiano Tabernáculo de Adoración, Paquera, Puntarenas'),
+      'DESCRIPTION:' + esc([ev.descripcion, ev.detalle, 'Más información: ' + SITIO + '#' + ev.id].filter(Boolean).join('\n\n')),
+      'URL:' + SITIO + '#' + ev.id,
+      'BEGIN:VALARM', 'TRIGGER:-PT2H', 'ACTION:DISPLAY', 'DESCRIPTION:' + esc(ev.titulo), 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'
+    ];
+    return l.join('\r\n');
+  }
+
+  function descargarICS(ev) {
+    var ics = archivoICS(ev);
+    var esIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    if (esIOS) {
+      // En iPhone/iPad, abrir el archivo muestra directamente "Agregar al calendario"
+      location.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
+      return;
+    }
+    var url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+    var a = document.createElement('a');
+    a.href = url; a.download = ev.id + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+
+  function botonCalendario(ev) {
+    var cont = el('div', 'anx-cal');
+    var b = el('button', 'btn btn-outline-navy anx-btn', '📅 Agendar');
+    b.type = 'button';
+    b.setAttribute('aria-expanded', 'false');
+    var menu = el('div', 'anx-cal-menu');
+    menu.hidden = true;
+    var g = el('a', '', 'Google Calendar');
+    g.href = enlaceGoogle(ev); g.target = '_blank'; g.rel = 'noopener';
+    var i = el('button', '', 'iPhone, Outlook u otro');
+    i.type = 'button';
+    i.addEventListener('click', function () { descargarICS(ev); cerrar(); });
+    g.addEventListener('click', function () { cerrar(); });
+    menu.appendChild(g); menu.appendChild(i);
+    function cerrar() { menu.hidden = true; b.setAttribute('aria-expanded', 'false'); }
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var abrir = menu.hidden;
+      document.querySelectorAll('.anx-cal-menu').forEach(function (m) { m.hidden = true; });
+      menu.hidden = !abrir;
+      b.setAttribute('aria-expanded', String(abrir));
+    });
+    document.addEventListener('click', function (e) { if (!cont.contains(e.target)) cerrar(); });
+    cont.appendChild(b); cont.appendChild(menu);
+    return cont;
+  }
+
   // ---------- Compartir ----------
 
   function compartir(ev, boton) {
     var msj = ev.titulo + ' · ' + fechaLarga(ev) + (ev.hora ? ', ' + ev.hora : '') + (ev.lugar ? ' · ' + ev.lugar : '');
     if (navigator.share) {
-      navigator.share({ title: ev.titulo, text: msj, url: SITIO }).catch(function () {});
+      navigator.share({ title: ev.titulo, text: msj, url: SITIO + '#' + ev.id }).catch(function () {});
       return;
     }
-    window.open('https://wa.me/?text=' + encodeURIComponent(msj + '\n' + SITIO), '_blank', 'noopener');
+    window.open('https://wa.me/?text=' + encodeURIComponent(msj + '\n' + SITIO + '#' + ev.id), '_blank', 'noopener');
     boton.blur();
   }
 
@@ -169,6 +284,7 @@
 
   function tarjeta(ev, base) {
     var art = el('article', 'anx-card' + (ev.imagen ? '' : ' sin-afiche'));
+    art.id = ev.id;
 
     // Afiche
     if (ev.imagen) {
@@ -233,6 +349,7 @@
       ver.addEventListener('click', function () { abrirVisor(ev.imagen, 'Afiche: ' + ev.titulo, ver); });
       acciones.appendChild(ver);
     }
+    acciones.appendChild(botonCalendario(ev));
     var comp = el('button', 'btn btn-outline-navy anx-btn', 'Compartir');
     comp.type = 'button';
     comp.addEventListener('click', function () { compartir(ev, comp); });
@@ -306,7 +423,7 @@
       var base = hoy();
       var eventos = crudos
         .map(normalizar)
-        .filter(function (ev) { return ev && ev.fin >= base; })
+        .filter(function (ev) { return ev && ev.fin >= base && (!ev.desde || ev.desde <= base); })
         .sort(function (a, b) { return a.inicio - b.inicio; });
 
       if (!eventos.length) return vacio('Volvé pronto o revisá nuestras redes para enterarte de las próximas actividades.');

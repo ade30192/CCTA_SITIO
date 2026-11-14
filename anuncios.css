@@ -580,3 +580,78 @@
 .anx-editar span {
   font-size: 1rem;
 }
+
+
+/* ---------- Agregar al calendario ---------- */
+
+.anx-cal {
+  position: relative;
+}
+
+.anx-cal-menu {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+  overflow: hidden;
+  border: 1px solid var(--line, #e3e9f2);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 16px 34px rgba(7, 29, 73, .2);
+}
+
+.anx-cal-menu[hidden] {
+  display: none;
+}
+
+.anx-cal-menu a,
+.anx-cal-menu button {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--line, #e3e9f2);
+  background: #fff;
+  color: var(--navy, #071d49);
+  font: inherit;
+  font-size: .88rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.anx-cal-menu > :last-child {
+  border-bottom: 0;
+}
+
+.anx-cal-menu a:hover,
+.anx-cal-menu button:hover {
+  background: var(--cream, #fbf8f0);
+}
+
+.anx-card {
+  scroll-margin-top: 20px;
+}
+
+/* Al llegar con un enlace directo, el anuncio se resalta un momento */
+.anx-card:target {
+  box-shadow: 0 0 0 4px var(--gold, #e5b957), 0 18px 44px rgba(7, 29, 73, .14);
+}
+
+@media (max-width: 420px) {
+  .anx-cal {
+    flex: 1 1 auto;
+  }
+
+  .anx-cal .anx-btn {
+    width: 100%;
+  }
+}
+
+.anx-cal .anx-btn[aria-expanded="true"] {
+  background: var(--navy, #071d49);
+  color: #fff;
+}

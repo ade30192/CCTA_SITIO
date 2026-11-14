@@ -1,0 +1,22 @@
+{
+  "name": "Centro Cristiano Tabernáculo de Adoración",
+  "short_name": "CCTA",
+  "description": "La iglesia para la familia. Reuniones, anuncios, ubicaciones y contacto en Paquera, Puntarenas.",
+  "lang": "es-CR",
+  "start_url": "./index.html?app=1",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#071d49",
+  "theme_color": "#071d49",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Anuncios", "url": "./anuncios.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Reuniones", "url": "./index.html#agenda", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "Donaciones", "url": "./donar.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}

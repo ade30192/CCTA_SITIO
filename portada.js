@@ -55,9 +55,10 @@
           var fin = leerFecha(a.hasta);
           if (!fin || fin < ini) fin = ini;
           var imagen = typeof a.imagen === 'string' && /^anuncios\/[\w.\-]+\.(jpe?g|png|webp)$/i.test(a.imagen) ? a.imagen : '';
-          return { titulo: t, ini: ini, fin: fin, hora: limpio(a.hora, 30), imagen: imagen };
+          var desde = leerFecha(a.desde);
+          return { titulo: t, ini: ini, fin: fin, desde: desde, hora: limpio(a.hora, 30), imagen: imagen, fecha: a.fecha };
         }).filter(function (e) {
-          return e && e.fin >= base;
+          return e && e.fin >= base && (!e.desde || e.desde <= base);
         }).sort(function (a, b) {
           return a.ini - b.ini;
         });
@@ -66,6 +67,9 @@
 
         var ev = eventos[0];
         titulo.textContent = ev.titulo;
+        // La tarjeta lleva directo a ese anuncio
+        var sl = ev.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'anuncio';
+        tarjeta.href = 'anuncios.html#a-' + ev.fecha + '-' + sl;
 
         var texto = ev.ini <= base ? 'Hoy' : DIAS[ev.ini.getDay()] + ' ' + ev.ini.getDate() + ' de ' + MESES[ev.ini.getMonth()];
         if (ev.hora) texto += ' · ' + ev.hora;

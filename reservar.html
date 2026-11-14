@@ -18,6 +18,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CCTA">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CR">
   <meta property="og:site_name" content="Centro Cristiano Tabernáculo de Adoración">
@@ -31,6 +35,13 @@
 
   <style>
     .rsv-page{background:var(--bg,#f7f9fc);padding:60px 0 80px}
+    .rsv-cal{margin-bottom:24px;padding:28px 32px;background:#fff;border-top:4px solid var(--navy,#071d49);box-shadow:0 10px 28px rgba(7,29,73,.06)}
+    .rsv-cal[hidden]{display:none}
+    .rsv-cal h2{margin:6px 0 8px;color:var(--navy,#071d49);font-size:1.4rem}
+    .rsv-cal p{margin:0 0 16px;color:var(--muted,#66718a);line-height:1.7}
+    .rsv-cal-frame{position:relative;overflow:hidden;border:1px solid var(--line,#e3e9f2);border-radius:8px;height:520px}
+    .rsv-cal-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    @media (max-width:640px){.rsv-cal{padding:22px 18px}.rsv-cal-frame{height:460px}}
     .rsv-wrap{max-width:900px;margin:0 auto}
     .rsv-back{display:inline-block;margin-bottom:22px;color:#23549a;font-weight:800;font-size:.92rem}
     .rsv-back:hover{text-decoration:underline}
@@ -97,6 +108,16 @@
       <div class="rsv-wrap">
 
         <a class="rsv-back sub-top-btn" href="index.html#ubicaciones">← Volver a ubicaciones</a>
+
+        <!-- Disponibilidad (aparece solo si el calendario está configurado en config.json desde el editor) -->
+        <section class="rsv-cal" id="disponibilidad" hidden aria-labelledby="rsv-cal-titulo">
+          <span class="label dark">Antes de pedir</span>
+          <h2 id="rsv-cal-titulo">Disponibilidad de los templos</h2>
+          <p>Los días marcados como <b>ocupado</b> ya tienen una actividad. Elegí una fecha libre y completá la solicitud de abajo.</p>
+          <div class="rsv-cal-frame">
+            <iframe id="rsv-cal-iframe" title="Calendario de disponibilidad de los templos" loading="lazy"></iframe>
+          </div>
+        </section>
 
         <div class="rsv-form-wrap" id="solicitud-reservacion">
           <span class="label dark">Solicitud de reservación</span>
@@ -435,9 +456,25 @@
     })();
   </script>
 
+  <script>
+    /* Calendario de disponibilidad: se configura en el editor (Ajustes → Configuración del sitio) */
+    (function () {
+      fetch('config.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : {}; }).then(function (c) {
+        var id = String(c && c.calendarioReservas || '').trim();
+        if (!/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(id)) return;
+        var movil = window.matchMedia('(max-width: 640px)').matches;
+        var p = new URLSearchParams({ src: id, ctz: 'America/Costa_Rica', hl: 'es', mode: movil ? 'AGENDA' : 'MONTH',
+          showTitle: '0', showPrint: '0', showCalendars: '0', showTz: '0', wkst: '1', bgcolor: '#ffffff' });
+        document.getElementById('rsv-cal-iframe').src = 'https://calendar.google.com/calendar/embed?' + p.toString();
+        document.getElementById('disponibilidad').hidden = false;
+      }).catch(function () {});
+    })();
+  </script>
   <script src="volver.js?v=1" defer></script>
 
   <script src="equipo.js?v=1" defer></script>
+
+  <script src="app.js?v=1" defer></script>
 
 </body>
 </html>

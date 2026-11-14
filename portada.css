@@ -1021,3 +1021,57 @@
     transition: none;
   }
 }
+
+
+/* ---------- Botones "Instalar la app" ---------- */
+
+.topbar-app {
+  margin-left: auto;
+  margin-right: 12px;
+  padding: 5px 12px;
+  border: 1px solid rgba(229, 185, 87, .6);
+  border-radius: 999px;
+  color: var(--gold-light, #f5df9d);
+  font-size: .74rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.topbar-app:hover {
+  background: var(--gold, #e5b957);
+  color: var(--navy, #071d49);
+}
+
+.topbar-app[hidden],
+.f-app[hidden] {
+  display: none !important;
+}
+
+.f-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--gold, #e5b957);
+  color: var(--navy, #071d49) !important;
+  font-size: .82rem;
+  font-weight: 800;
+}
+
+@media (max-width: 760px) {
+  .topbar-inner {
+    justify-content: space-between !important;
+  }
+
+  .topbar-app {
+    margin: 0;
+  }
+
+  .footer-grid .f-contact .f-app {
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 6px;
+  }
+}

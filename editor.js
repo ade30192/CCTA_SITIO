@@ -9,11 +9,22 @@
 (function () {
   'use strict';
 
-  // ⚙️ Si el sitio se muda a la cuenta de GitHub de la iglesia, cambiar estos dos valores:
+  // La cuenta y el repositorio se detectan solos a partir de la dirección del sitio
+  // (usuario.github.io/REPO/). Así, si el sitio pasa a la cuenta de la iglesia, no hay que cambiar nada.
+  // Los valores de abajo solo se usan al probar el editor fuera de GitHub Pages.
   var USUARIO = 'ade30192';
   var REPO = 'CCTA_SITIO';
   var RAMA = 'main';
   var SITIO = 'https://ade30192.github.io/CCTA_SITIO/';
+  (function () {
+    var m = /^([a-z0-9-]+)\.github\.io$/i.exec(location.hostname);
+    var carpeta = location.pathname.split('/').filter(Boolean)[0];
+    if (m && carpeta && !/\.html$/.test(carpeta)) {
+      USUARIO = m[1];
+      REPO = carpeta;
+      SITIO = location.origin + '/' + carpeta + '/';
+    }
+  })();
 
   var API = 'https://api.github.com/repos/' + USUARIO + '/' + REPO + '/contents/';
   var CLAVE = 'ccta-llave-anuncios';
@@ -36,6 +47,7 @@
     fondo: '',            // foto de fondo del afiche automático (ruta del sitio o data:)
     fondoImg: null,
     ilustracion: '',
+    qr: false,
     formato: 1350,
     publicados: []
   };
@@ -338,6 +350,8 @@
     CAMPOS.forEach(function (k) { $(k).value = ''; marcaIA(k, false); });
     $('varios-dias').checked = false;
     $('campo-hasta').hidden = true;
+    $('programar').checked = false; $('desde').value = ''; $('campo-desde').hidden = true;
+    E.qr = false; $('afiche-qr').checked = false;
     $('ia-texto').value = '';
     $('ia-estado').className = 'ed-ia';
     E.imagenB64 = ''; E.imagenURL = ''; E.imagenNombre = ''; E.imagenGenerada = false; E.imagenRemota = '';
@@ -364,6 +378,7 @@
         imgNombre: E.imagenNombre, imgGenerada: E.imagenGenerada, imgRemota: E.imagenRemota,
         editando: E.editando, tema: E.tema, formato: E.formato,
         fondo: E.fondo && (E.fondo.indexOf('data:') !== 0 || E.fondo.length < 1500000) ? E.fondo : '',
+        desde: $('programar').checked ? $('desde').value : '', qr: E.qr,
         ilustracion: E.ilustracion
       };
       CAMPOS.forEach(function (k) { b.campos[k] = $(k).value; });
@@ -399,6 +414,8 @@
     $('ia-texto').value = b.ia || '';
     E.tema = b.tema || 'azul'; E.formato = b.formato || 1350;
     E.fondo = b.fondo || ''; E.fondoImg = null; E.ilustracion = b.ilustracion || '';
+    $('programar').checked = !!b.desde; $('desde').value = b.desde || ''; $('campo-desde').hidden = !b.desde;
+    E.qr = !!b.qr; $('afiche-qr').checked = E.qr;
     pintarFondo(); marcarIlustracion();
     E.editando = b.editando || null;
     E.imagenRemota = b.imgRemota || '';
@@ -455,6 +472,12 @@
       chip(h, t, function () { $('hora').value = t; alCambiar(); marcaIA('hora', false); });
     });
 
+    var ds = $('chips-desde');
+    chip(ds, '1 día antes', function () { ponerDesde(1); });
+    chip(ds, '3 días antes', function () { ponerDesde(3); });
+    chip(ds, '1 semana antes', function () { ponerDesde(7); });
+    chip(ds, '2 semanas antes', function () { ponerDesde(14); });
+
     var l = $('chips-lugar');
     ['Nueva sede · Paquera', 'Antigua sede · Paquera', 'Iglesia C.C.T.A'].forEach(function (t) {
       chip(l, t, function () { $('lugar').value = t; alCambiar(); marcaIA('lugar', false); });
@@ -464,6 +487,23 @@
   function ponerFecha(v) {
     $('fecha').value = v;
     marcaIA('fecha', false);
+    alCambiar();
+  }
+
+  $('programar').addEventListener('change', function () {
+    $('campo-desde').hidden = !this.checked;
+    if (this.checked && !$('desde').value) ponerDesde(3);
+    alCambiar();
+  });
+  $('desde').addEventListener('input', function () { alCambiar(); });
+
+  function ponerDesde(diasAntes) {
+    var f = deISO($('fecha').value);
+    if (!f) { toast('Elegí primero la fecha del evento.'); return; }
+    f.setDate(f.getDate() - diasAntes);
+    var hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+    if (f <= hoy) { toast('Esa fecha ya llegó: se mostraría desde hoy.'); }
+    $('desde').value = iso(f);
     alCambiar();
   }
 
@@ -769,17 +809,19 @@
       ctx.fillText(MES[fecha.getMonth()].slice(0, 3), 181, panelY + 186);
       ctx.textAlign = 'left';
       ctx.fillStyle = T.dato;
-      ctx.font = '800 40px Manrope, Arial, sans-serif';
       var linea = DIA[fecha.getDay()] + ' ' + fecha.getDate() + ' DE ' + MES[fecha.getMonth()];
       var hasta = deISO(d.hasta);
       if (hasta) linea = 'DEL ' + fecha.getDate() + ' AL ' + hasta.getDate() + ' DE ' + MES[hasta.getMonth()];
-      ctx.fillText(lineas(ctx, linea, W - 400, 1)[0], 310, panelY + 92);
+      var anchoF = W - 400 - (E.qr ? 210 : 0), tamF = 40;
+      do { ctx.font = '800 ' + tamF + 'px Manrope, Arial, sans-serif'; tamF -= 2; } while (ctx.measureText(linea).width > anchoF && tamF > 24);
+      ctx.fillText(lineas(ctx, linea, anchoF, 1)[0], 310, panelY + 92);
     }
     ctx.textAlign = 'left';
     ctx.font = '600 34px Manrope, Arial, sans-serif';
     var dy = panelY + 148;
     if (d.hora) { ctx.fillStyle = T.suave; ctx.fillText('Hora:', 310, dy); ctx.fillStyle = T.dato; ctx.fillText(d.hora, 410, dy); dy += 52; }
-    if (d.lugar) { ctx.fillStyle = T.suave; ctx.fillText('Lugar:', 310, dy); ctx.fillStyle = T.dato; ctx.fillText(lineas(ctx, d.lugar, W - 460, 1)[0], 425, dy); }
+    if (d.lugar) { ctx.fillStyle = T.suave; ctx.fillText('Lugar:', 310, dy); ctx.fillStyle = T.dato; ctx.fillText(lineas(ctx, d.lugar, W - 460 - (E.qr ? 210 : 0), 1)[0], 425, dy); }
+    if (E.qr) dibujarQR(ctx, enlaceAnuncio(d), W - 56 - 26 - 196, panelY + 27, 196, '#071d49');
 
     ctx.fillStyle = T.pie;
     ctx.font = 'italic 30px Georgia, serif';
@@ -944,6 +986,86 @@
       b.setAttribute('aria-checked', String(on));
     });
   }
+
+
+  /* =====================================================
+     CÓDIGOS QR
+     ===================================================== */
+
+  function idAnuncio(a) { return 'a-' + a.fecha + '-' + slug(a.titulo); }
+  function enlaceAnuncio(a) { return SITIO + 'anuncios.html#' + idAnuncio(a); }
+
+  function matrizQR(texto) {
+    if (typeof window.qrcode !== 'function') return null;
+    var q = window.qrcode(0, 'M');
+    q.addData(texto);
+    q.make();
+    return q;
+  }
+
+  function dibujarQR(ctx, texto, x, y, tam, color) {
+    var q = matrizQR(texto);
+    if (!q) return;
+    var n = q.getModuleCount();
+    var margen = 4;
+    var celda = tam / (n + margen * 2);
+    ctx.fillStyle = '#ffffff';
+    redondeado(ctx, x, y, tam, tam, 14); ctx.fill();
+    ctx.fillStyle = color || '#071d49';
+    for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) {
+      if (q.isDark(r, c)) ctx.fillRect(Math.floor(x + (c + margen) * celda), Math.floor(y + (r + margen) * celda), Math.ceil(celda), Math.ceil(celda));
+    }
+  }
+
+  function imagenQR(texto) {
+    var c = document.createElement('canvas');
+    c.width = c.height = 720;
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 720, 720);
+    dibujarQR(ctx, texto, 0, 0, 720, '#071d49');
+    return c.toDataURL('image/png');
+  }
+
+  var qrActual = { link: '', nombre: '' };
+  function abrirQR(titulo, link, nombre) {
+    qrActual = { link: link, nombre: nombre || 'qr' };
+    $('qr-img').src = imagenQR(link);
+    $('qr-titulo').textContent = titulo;
+    $('qr-link').textContent = link;
+    $('modal-qr').hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrarQR() { $('modal-qr').hidden = true; document.body.style.overflow = ''; }
+
+  $('cerrar-qr').addEventListener('click', cerrarQR);
+  $('modal-qr').addEventListener('click', function (e) { if (e.target === this) cerrarQR(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('modal-qr').hidden) cerrarQR(); });
+  $('qr-descargar').addEventListener('click', function () {
+    var a = document.createElement('a');
+    a.href = $('qr-img').src; a.download = 'qr-' + qrActual.nombre + '.png';
+    document.body.appendChild(a); a.click(); a.remove();
+    toast('QR descargado');
+  });
+  $('qr-copiar').addEventListener('click', function () {
+    copiar(qrActual.link).then(function () { toast('✓ Enlace copiado'); });
+  });
+
+  document.querySelectorAll('[data-qr-sitio]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var pag = b.getAttribute('data-qr-sitio');
+      abrirQR(b.textContent.replace(/^\W+\s*/, ''), SITIO + pag, pag ? pag.replace('.html', '') : 'sitio');
+    });
+  });
+
+  $('listo-qr').addEventListener('click', function () {
+    if (ultimoPublicado) abrirQR(ultimoPublicado.titulo, enlaceAnuncio(ultimoPublicado), slug(ultimoPublicado.titulo));
+  });
+
+  $('afiche-qr').addEventListener('change', function () {
+    E.qr = this.checked;
+    guardarBorrador();
+    if (E.imagenGenerada || (datos().titulo && datos().fecha)) crearAfiche();
+  });
 
 
   /* =====================================================
@@ -1216,6 +1338,7 @@
   function datos() {
     var d = { titulo: $('titulo').value.trim(), fecha: $('fecha').value };
     if ($('varios-dias').checked && $('hasta').value && $('hasta').value !== d.fecha) d.hasta = $('hasta').value;
+    if ($('programar').checked && $('desde').value && $('desde').value > hoyISO()) d.desde = $('desde').value;
     ['hora', 'lugar', 'descripcion', 'detalle'].forEach(function (k) {
       var v = $(k).value.trim();
       if (v) d[k] = v;
@@ -1229,6 +1352,7 @@
     if (!d.fecha) e.push('Falta la fecha.');
     else if ((d.hasta || d.fecha) < hoyISO()) e.push('La fecha ya pasó.');
     if (d.hasta && d.hasta < d.fecha) e.push('"Hasta" es antes de la fecha.');
+    if (d.desde && d.fecha && d.desde > (d.hasta || d.fecha)) e.push('La fecha para empezar a mostrarlo es después del evento.');
     return e;
   }
 
@@ -1264,6 +1388,7 @@
     filas.push([d.hora ? 'ok' : 'sug', 'Hora', d.hora || 'Recomendada']);
     filas.push([d.lugar ? 'ok' : 'sug', 'Lugar', d.lugar || 'Recomendado']);
     filas.push([d.detalle ? 'ok' : 'sug', 'Explicación', d.detalle ? '' : 'Recomendada']);
+    if (d.desde) filas.push(['ok', '⏰ Programado', 'Aparece desde el ' + fechaLarga(d.desde).toLowerCase()]);
     ul.innerHTML = '';
     filas.forEach(function (f) {
       var li = document.createElement('li');
@@ -1408,7 +1533,9 @@
       }
       actual.lista.forEach(function (a) {
         var fin = a.hasta || a.fecha;
-        var estado = fin < hoy ? ['vencido', 'Ya pasó'] : (a.fecha <= hoy ? ['hoy', 'Hoy'] : ['', 'Publicado']);
+        var estado = fin < hoy ? ['vencido', 'Ya pasó']
+          : (a.desde && a.desde > hoy ? ['programado', '⏰ Desde ' + fechaLarga(a.desde).replace(/^\S+\s/, '')]
+          : (a.fecha <= hoy ? ['hoy', 'Hoy'] : ['', 'Publicado']));
         var card = document.createElement('article');
         card.className = 'ed-pub' + (estado[0] === 'vencido' ? ' pasado' : '');
         card.innerHTML =
@@ -1419,6 +1546,7 @@
         var acc = card.querySelector('.ed-pub-acc');
         if (estado[0] !== 'vencido') boton(acc, '✎ Editar', 'soft', function () { editar(a); });
         boton(acc, '⧉ Duplicar', 'line', function () { duplicar(a); });
+        if (estado[0] !== 'vencido') boton(acc, '🔳', 'line', function () { abrirQR(a.titulo, enlaceAnuncio(a), slug(a.titulo)); }, 'Código QR de ' + a.titulo);
         boton(acc, '🗑', 'del', function (b) { quitar(a, b); }, 'Quitar ' + a.titulo);
         g.appendChild(card);
       });
@@ -1432,7 +1560,7 @@
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'ed-btn small ' + clase; b.textContent = texto;
     if (etiqueta) b.setAttribute('aria-label', etiqueta);
-    if (clase === 'del') b.style.flex = '0 0 46px';
+    if (clase === 'del' || texto === '🔳') b.style.flex = '0 0 46px';
     b.addEventListener('click', function () { accion(b); });
     cont.appendChild(b);
   }
@@ -1441,6 +1569,7 @@
     CAMPOS.forEach(function (k) { $(k).value = a[k] || ''; });
     $('varios-dias').checked = !!a.hasta;
     $('campo-hasta').hidden = !a.hasta;
+    $('programar').checked = !!a.desde; $('desde').value = a.desde || ''; $('campo-desde').hidden = !a.desde;
   }
 
   function editar(a) {
@@ -1489,6 +1618,55 @@
 
 
   /* =====================================================
+     AJUSTES: CONFIGURACIÓN DEL SITIO (config.json)
+     ===================================================== */
+
+  var config = { datos: {}, sha: '' };
+
+  function cargarConfig() {
+    limpiarMsg('msg-config');
+    return gh('config.json?ref=' + RAMA + '&t=' + Date.now()).then(function (r) {
+      config.sha = r.sha;
+      config.datos = JSON.parse(deBase64(r.content)) || {};
+    }).catch(function () {
+      config.sha = ''; config.datos = {};
+    }).then(function () {
+      $('cfg-goat').value = config.datos.goatcounter || '';
+      $('cfg-cal').value = config.datos.calendarioReservas || '';
+      pintarEnlaceStats();
+    });
+  }
+
+  function pintarEnlaceStats() {
+    var c = $('cfg-goat').value.trim().toLowerCase();
+    var ok = /^[a-z0-9-]{2,40}$/.test(c);
+    $('ver-estadisticas').hidden = !ok;
+    if (ok) $('ver-estadisticas').href = 'https://' + c + '.goatcounter.com';
+  }
+  $('cfg-goat').addEventListener('input', pintarEnlaceStats);
+
+  $('guardar-config').addEventListener('click', function () {
+    var goat = $('cfg-goat').value.trim().toLowerCase();
+    var cal = $('cfg-cal').value.trim();
+    var m = /[?&]src=([^&]+)/.exec(cal);              // si pegan el enlace completo, se saca el ID
+    if (m) { try { cal = decodeURIComponent(m[1]); } catch (e) {} }
+    if (goat && !/^[a-z0-9-]{2,40}$/.test(goat)) return mensaje('msg-config', 'err', 'El código de GoatCounter solo lleva letras, números y guiones.');
+    if (cal && !/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(cal)) return mensaje('msg-config', 'err', 'El ID del calendario parece incorrecto. Debe verse como algo@group.calendar.google.com');
+    var nuevo = Object.assign({}, config.datos, { goatcounter: goat, calendarioReservas: cal });
+    if (!nuevo._nota) nuevo._nota = 'Configuración del sitio. Se cambia desde el editor (subir.html → Ajustes → Configuración del sitio).';
+    var cuerpo = { message: 'Configuración del sitio', content: aBase64(JSON.stringify(nuevo, null, 2) + '\n'), branch: RAMA };
+    if (config.sha) cuerpo.sha = config.sha;
+    mensaje('msg-config', 'info', '⏳ Guardando…');
+    gh('config.json', { method: 'PUT', body: JSON.stringify(cuerpo) }).then(function (r) {
+      config.datos = nuevo;
+      if (r && r.content && r.content.sha) config.sha = r.content.sha;
+      $('cfg-cal').value = cal;
+      mensaje('msg-config', 'ok', '✓ Guardado. El sitio se actualiza en 1 o 2 minutos.');
+    }).catch(function (e) { mensaje('msg-config', 'err', e.message); });
+  });
+
+
+  /* =====================================================
      AJUSTES: ASISTENTE IA
      ===================================================== */
 
@@ -1500,6 +1678,7 @@
     ayudaIA();
     limpiarMsg('msg-ia');
     pintarIA();
+    cargarConfig();
   }
 
   function ayudaIA() {

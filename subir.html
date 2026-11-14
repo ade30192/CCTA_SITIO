@@ -15,8 +15,8 @@
   <!-- Mismos estilos de la página de anuncios: la vista previa es idéntica -->
   <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="extras.css?v=25">
-  <link rel="stylesheet" href="anuncios.css?v=3">
-  <link rel="stylesheet" href="editor.css?v=4">
+  <link rel="stylesheet" href="anuncios.css?v=5">
+  <link rel="stylesheet" href="editor.css?v=5">
 </head>
 <body class="ed-body">
 
@@ -190,6 +190,8 @@
                   <div class="ed-ilus" id="ilustraciones" role="radiogroup" aria-label="Ilustración del afiche"></div>
                 </div>
 
+                <label class="ed-check"><input type="checkbox" id="afiche-qr"> 🔳 Incluir código QR que lleve al anuncio (ideal para imprimir)</label>
+
                 <p class="ed-auto-tip">💡 <b>¿Querés una imagen hecha con IA?</b> Creala gratis en la app de <b>Gemini</b> (ej: "una paloma blanca sobre el mar al atardecer, estilo acuarela"), guardala en tu galería y subila con <b>📷 Mi imagen</b>.</p>
 
                 <div class="ed-actions" style="margin-top:12px">
@@ -292,6 +294,15 @@
                 <div><h2>Revisar y publicar</h2><p>Lo marcado en rojo es obligatorio.</p></div>
               </div>
 
+              <div class="ed-programar">
+                <label class="ed-check" style="margin-top:0"><input type="checkbox" id="programar"> ⏰ Programar: que aparezca en el sitio a partir de una fecha</label>
+                <div id="campo-desde" hidden>
+                  <label class="ed-label" for="desde">Mostrar a partir del</label>
+                  <input class="ed-input" id="desde" type="date">
+                  <div class="ed-chips" id="chips-desde"></div>
+                </div>
+              </div>
+
               <ul class="ed-checklist" id="checklist"></ul>
 
               <div class="ed-actions">
@@ -335,6 +346,7 @@
           <a class="ed-btn navy" href="anuncios.html">👁 Ver en la página</a>
           <button class="ed-btn wa" type="button" id="listo-wa">💬 Copiar para WhatsApp</button>
           <button class="ed-btn line" type="button" id="listo-descargar" hidden>⬇ Descargar afiche</button>
+          <button class="ed-btn line" type="button" id="listo-qr">🔳 Código QR</button>
           <button class="ed-btn gold" type="button" id="otro">✚ Crear otro</button>
         </div>
       </div>
@@ -399,6 +411,55 @@
         <div>
           <div class="ed-card">
             <div class="ed-card-head">
+              <span class="ed-card-ico" aria-hidden="true">🌐</span>
+              <div><h2>Configuración del sitio</h2><p>Se guarda en el sitio y aplica para todos los visitantes.</p></div>
+            </div>
+
+            <label class="ed-label" for="cfg-goat" style="margin-top:0">📊 Estadísticas de visitas (GoatCounter)</label>
+            <div class="ed-prefijo"><span>https://</span><input class="ed-input" id="cfg-goat" maxlength="40" placeholder="ccta" autocomplete="off"><span>.goatcounter.com</span></div>
+            <p class="ed-hint" style="margin:6px 0 0"><a href="#" id="ver-estadisticas" target="_blank" rel="noopener" hidden>📈 Ver las estadísticas →</a></p>
+            <details class="ed-help" style="margin-top:8px">
+              <summary>¿Cómo activo las estadísticas?</summary>
+              <ol>
+                <li>Entrá a <a href="https://www.goatcounter.com/signup" target="_blank" rel="noopener">goatcounter.com/signup</a> (gratis para iglesias y sitios sin fines de lucro).</li>
+                <li>En <b>Code</b> poné un nombre corto, por ejemplo <code>ccta</code>, y completá el correo y la contraseña.</li>
+                <li>Escribí ese mismo nombre aquí y tocá <b>Guardar configuración</b>.</li>
+                <li>Las visitas del equipo (dispositivos con el editor) no se cuentan.</li>
+              </ol>
+            </details>
+
+            <label class="ed-label" for="cfg-cal">🗓 Calendario de reservaciones (Google Calendar)</label>
+            <input class="ed-input" id="cfg-cal" maxlength="200" placeholder="ej: abc123@group.calendar.google.com" autocomplete="off">
+            <details class="ed-help" style="margin-top:8px">
+              <summary>¿Cómo creo el calendario de reservaciones?</summary>
+              <ol>
+                <li>En <a href="https://calendar.google.com" target="_blank" rel="noopener">calendar.google.com</a> (con la cuenta de la iglesia) tocá <b>+</b> junto a "Otros calendarios" → <b>Crear calendario</b>. Nombre: <code>Reservaciones templos</code>.</li>
+                <li>En su configuración, en <b>Permisos de acceso</b>, marcá <b>Hacer disponible públicamente</b> → <i>Ver solo libre/ocupado</i> (así no se ven los nombres de quienes reservan).</li>
+                <li>Más abajo, en <b>Integrar el calendario</b>, copiá el <b>ID del calendario</b> y pegalo aquí.</li>
+                <li>Cada vez que confirmen una reservación, agréguenla en ese calendario y aparecerá como ocupado en la página de reservar.</li>
+              </ol>
+            </details>
+
+            <div class="ed-actions">
+              <button class="ed-btn navy" id="guardar-config" type="button">Guardar configuración</button>
+            </div>
+            <div class="ed-msg" id="msg-config"></div>
+          </div>
+
+          <div class="ed-card">
+            <div class="ed-card-head">
+              <span class="ed-card-ico" aria-hidden="true">🔳</span>
+              <div><h2>Códigos QR del sitio</h2><p>Para imprimir y pegar en el templo, volantes o boletines.</p></div>
+            </div>
+            <div class="ed-actions" style="margin-top:0">
+              <button class="ed-btn soft" type="button" data-qr-sitio="">🏠 Página principal</button>
+              <button class="ed-btn soft" type="button" data-qr-sitio="anuncios.html">📣 Anuncios</button>
+              <button class="ed-btn soft" type="button" data-qr-sitio="donar.html">💛 Donaciones</button>
+            </div>
+          </div>
+
+          <div class="ed-card">
+            <div class="ed-card-head">
               <span class="ed-card-ico" aria-hidden="true">🔑</span>
               <div><h2>Cuenta de GitHub</h2><p>Con ella se guardan los anuncios en el sitio.</p></div>
             </div>
@@ -460,10 +521,30 @@
     </div>
   </div>
 
+  <!-- Ventana del código QR -->
+  <div class="ed-modal" id="modal-qr" hidden role="dialog" aria-modal="true" aria-labelledby="modal-qr-titulo">
+    <div class="ed-modal-box" style="max-width:420px">
+      <div class="ed-modal-head">
+        <h2 id="modal-qr-titulo">🔳 Código QR</h2>
+        <button class="ed-btn line small" type="button" id="cerrar-qr">✕ Cerrar</button>
+      </div>
+      <div class="ed-qr">
+        <img id="qr-img" alt="Código QR">
+        <strong id="qr-titulo"></strong>
+        <code id="qr-link"></code>
+        <div class="ed-actions">
+          <button class="ed-btn navy" type="button" id="qr-descargar">⬇ Descargar QR</button>
+          <button class="ed-btn line" type="button" id="qr-copiar">🔗 Copiar enlace</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="ed-toast" id="toast" role="status" aria-live="polite"></div>
 
   <!-- Dibuja la vista previa con el mismo código de la página de anuncios -->
-  <script src="anuncios.js?v=8"></script>
-  <script src="editor.js?v=2"></script>
+  <script src="anuncios.js?v=9"></script>
+  <script src="qrcode.js?v=1"></script>
+  <script src="editor.js?v=4"></script>
 </body>
 </html>

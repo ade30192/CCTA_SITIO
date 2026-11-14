@@ -14,12 +14,16 @@
 
   <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="extras.css?v=25">
-  <link rel="stylesheet" href="portada.css?v=2">
+  <link rel="stylesheet" href="portada.css?v=3">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CCTA">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_CR">
   <meta property="og:site_name" content="Centro Cristiano Tabernáculo de Adoración">
@@ -57,6 +61,8 @@
   <div class="topbar" role="complementary" aria-label="Redes sociales">
     <div class="container topbar-inner">
       <span>La iglesia para la familia</span>
+
+      <a class="topbar-app" href="#" data-instalar hidden>📲 Instalar la app</a>
 
       <div class="social">
         <a href="https://www.facebook.com/share/1DuQMBURgQ/"
@@ -941,6 +947,8 @@
           <a href="mailto:tabernaculodeadoracion1952@gmail.com"
              aria-label="Correo electrónico"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg></a>
         </div>
+
+        <a class="f-app" href="#" data-instalar hidden>📲 Instalar la app</a>
       </div>
 
     </div>
@@ -960,9 +968,11 @@
 
   <script src="script.js?v=9"></script>
   <script src="extras.js?v=8" defer></script>
-  <script src="portada.js?v=2" defer></script>
+  <script src="portada.js?v=3" defer></script>
 
   <script src="equipo.js?v=1" defer></script>
+
+  <script src="app.js?v=1" defer></script>
 
 </body>
 </html>

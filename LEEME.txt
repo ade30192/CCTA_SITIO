@@ -100,3 +100,17 @@ EDITOR NUEVO (subir.html + editor.css + editor.js)
 - Ajustes: asistente IA (Gemini o Claude) y cuenta de GitHub.
 - Afiche automático: fondo con fotos de la iglesia (miniaturas en fotos/mini/) o una imagen propia
   (por ejemplo, creada gratis en la app de Gemini), botón "Usar como fondo" y 10 ilustraciones de línea.
+
+
+APP, CALENDARIO, ESTADÍSTICAS Y MÁS HERRAMIENTAS (14 nov 2026)
+- App instalable: manifest.webmanifest, sw.js (funciona sin internet con lo ya visto), íconos icon-*.png.
+  Botón "📲 Instalar la app" en la barra superior y el pie (en iPhone muestra cómo agregarla).
+- Anuncios: botón "📅 Agendar" (Google Calendar o archivo para iPhone/Outlook) y enlace directo a cada anuncio.
+- app.js: script común (app instalable + estadísticas).
+- config.json: configuración del sitio, se edita desde subir.html → Ajustes → Configuración del sitio:
+  · goatcounter: código de GoatCounter para estadísticas (no cuenta las visitas del equipo).
+  · calendarioReservas: ID de un Google Calendar público; aparece en reservar.html como disponibilidad.
+- Editor: programar anuncios ("mostrar a partir del…"), códigos QR (de cada anuncio y del sitio),
+  QR opcional dentro del afiche automático.
+- El editor detecta solo la cuenta y el repositorio desde la dirección del sitio: si se transfiere
+  a la cuenta de la iglesia, no hay que cambiar el código.
