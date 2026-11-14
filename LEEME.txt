@@ -46,3 +46,14 @@ PÁGINA EXCLUSIVA DE PRÓXIMAS ACTIVIDADES
 - La página tiene un botón “Regresar a la página principal”.
 - Las tarjetas se editan en actividades.html. Se pueden agregar afiches en la carpeta actividades/ con los nombres campamento.jpg, congreso.jpg y campana-evangelistica.jpg.
 - Al publicar en GitHub Pages, subí también actividades.html junto con los archivos de siempre.
+
+
+SUBIR ANUNCIOS DESDE LA PÁGINA (subir.html)
+- Entrar a https://ade30192.github.io/CCTA_SITIO/subir.html (no aparece en el menú ni en Google).
+- La primera vez se pega una llave de GitHub (fine-grained token con permiso Contents: Read and write
+  solo en este repositorio). Queda guardada en ese dispositivo.
+- Se llena título, fecha, hora, lugar, descripción y opcionalmente el afiche. La imagen se achica sola
+  y se guarda en la carpeta anuncios/; los datos se agregan a anuncios.json.
+- El anuncio sale en "Próximos eventos" de la portada y desaparece solo cuando pasa la fecha.
+- En la misma página se pueden quitar anuncios publicados.
+- Si el sitio se muda a la cuenta de GitHub de la iglesia, cambiar USUARIO y REPO al inicio del script de subir.html.

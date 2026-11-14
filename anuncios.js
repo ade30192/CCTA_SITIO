@@ -11,7 +11,7 @@
   var lista = document.getElementById('anuncios-lista');
   if (!seccion || !lista) return;
 
-  var MAXIMO = 6;
+  var MAXIMO = 9;
   var MESES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
   var MESES_LARGOS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
 
@@ -40,6 +40,11 @@
     return el;
   }
 
+  // Solo imágenes guardadas dentro de la carpeta anuncios/ del sitio
+  function imagenSegura(ruta) {
+    return typeof ruta === 'string' && /^anuncios\/[\w.\-]+\.(jpe?g|png|webp)$/i.test(ruta.trim()) ? ruta.trim() : '';
+  }
+
   function enlaceSeguro(url) {
     return typeof url === 'string' && /^https:\/\/[^\s]+$/i.test(url.trim()) ? url.trim() : '';
   }
@@ -60,7 +65,8 @@
       lugar: texto(item.lugar, 80),
       descripcion: texto(item.descripcion, 220),
       url: url,
-      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || 'Más información'
+      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || 'Más información',
+      imagen: imagenSegura(item.imagen)
     };
   }
 
@@ -71,8 +77,54 @@
     return '';
   }
 
+  // Visor a pantalla completa para los afiches
+  var visor = null;
+  function abrirVisor(src, alt) {
+    if (!visor) {
+      visor = elemento('div', 'ann-viewer');
+      visor.setAttribute('role', 'dialog');
+      visor.setAttribute('aria-modal', 'true');
+      visor.setAttribute('aria-label', 'Afiche del evento');
+      var cerrar = elemento('button', 'ann-viewer-close', '×');
+      cerrar.type = 'button';
+      cerrar.setAttribute('aria-label', 'Cerrar');
+      var img = elemento('img', 'ann-viewer-img');
+      visor.appendChild(cerrar);
+      visor.appendChild(img);
+      visor.addEventListener('click', function (e) { if (e.target !== img) cerrarVisor(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrarVisor(); });
+      document.body.appendChild(visor);
+    }
+    var foto = visor.querySelector('img');
+    foto.src = src;
+    foto.alt = alt;
+    visor.hidden = false;
+    document.body.style.overflow = 'hidden';
+    visor.querySelector('button').focus();
+  }
+  function cerrarVisor() {
+    if (!visor || visor.hidden) return;
+    visor.hidden = true;
+    document.body.style.overflow = '';
+  }
+
   function tarjeta(ev, base) {
-    var art = elemento('li', 'ann-card');
+    var art = elemento('li', 'ann-card' + (ev.imagen ? ' has-poster' : ''));
+
+    if (ev.imagen) {
+      var boton = elemento('button', 'ann-poster');
+      boton.type = 'button';
+      boton.setAttribute('aria-label', 'Ver afiche completo: ' + ev.titulo);
+      var img = elemento('img');
+      img.src = ev.imagen;
+      img.alt = 'Afiche: ' + ev.titulo;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.onerror = function () { art.classList.remove('has-poster'); boton.remove(); };
+      boton.appendChild(img);
+      boton.addEventListener('click', function () { abrirVisor(ev.imagen, img.alt); });
+      art.appendChild(boton);
+    }
 
     var fecha = elemento('div', 'ann-date');
     fecha.setAttribute('aria-hidden', 'true');

@@ -990,3 +990,78 @@
     inset: -12px;
   }
 }
+
+
+/* ---------- Anuncios con afiche (imagen) ---------- */
+
+.ann-card.has-poster {
+  flex-wrap: wrap;
+  padding-top: 0;
+  border-left: 1px solid var(--line, #e3e9f2);
+  border-top: 4px solid var(--gold, #e5b957);
+}
+
+.ann-poster {
+  flex: 0 0 calc(100% + 48px);
+  margin: 0 -24px 2px;
+  padding: 0;
+  border: 0;
+  background: var(--navy, #071d49);
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.ann-poster img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  transition: transform .35s ease;
+}
+
+.ann-poster:hover img,
+.ann-poster:focus-visible img {
+  transform: scale(1.03);
+}
+
+.ann-poster:focus-visible {
+  outline: 3px solid var(--gold, #e5b957);
+  outline-offset: -3px;
+}
+
+.ann-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(7, 15, 35, .92);
+}
+
+.ann-viewer[hidden] {
+  display: none;
+}
+
+.ann-viewer-img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+}
+
+.ann-viewer-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: none;
+  color: #fff;
+  font-size: 2.4rem;
+  line-height: 1;
+  cursor: pointer;
+}

@@ -1,3 +1,41 @@
 {
-  "anuncios": []
+  "anuncios": [
+    {
+      "titulo": "No habrá culto: limpieza y proyecto cocina",
+      "fecha": "2026-11-15",
+      "lugar": "Templo C.C.T.A",
+      "descripcion": "Continuamos con la construcción de la cocina y la limpieza general del templo. ¡Invitamos a todos los hermanos a sumarse!",
+      "imagen": "anuncios/2026-11-15_aviso-no-hay-culto.jpg"
+    },
+    {
+      "titulo": "Ayuno congregacional",
+      "fecha": "2026-11-17",
+      "hora": "9:30 a.m.",
+      "lugar": "Iglesia C.C.T.A",
+      "descripcion": "El pueblo que conoce a su Dios se esforzará y actuará. Daniel 11:32",
+      "imagen": "anuncios/2026-11-17_ayuno-congregacional.jpg"
+    },
+    {
+      "titulo": "Red Adulto Mayor",
+      "fecha": "2026-11-19",
+      "hora": "11:00 a.m.",
+      "descripcion": "Corona de honra es la vejez que se halla en el camino de justicia. Proverbios 16:31",
+      "imagen": "anuncios/2026-11-19_red-adulto-mayor.jpg"
+    },
+    {
+      "titulo": "Red Juvenil: Filtro Activado",
+      "fecha": "2026-11-20",
+      "hora": "7:00 p.m.",
+      "lugar": "Tabernáculo de Adoración",
+      "imagen": "anuncios/2026-11-20_red-juvenil-filtro-activado.jpg"
+    },
+    {
+      "titulo": "Bautismo",
+      "fecha": "2026-11-29",
+      "hora": "10:00 a.m.",
+      "lugar": "Playa Margarita",
+      "descripcion": "Bautizándolos en el nombre del Padre, y del Hijo, y del Espíritu Santo.",
+      "imagen": "anuncios/2026-11-29_bautismo-playa-margarita.jpg"
+    }
+  ]
 }
