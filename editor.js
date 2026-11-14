@@ -1670,7 +1670,13 @@
      AJUSTES: ASISTENTE IA
      ===================================================== */
 
+  $('boton-equipo').addEventListener('change', function () {
+    guardar('ccta-boton-equipo', this.checked ? '' : 'no');
+    toast(this.checked ? 'El botón ✎ aparecerá en el sitio en este dispositivo' : 'El botón ✎ ya no aparecerá en el sitio en este dispositivo');
+  });
+
   function prepararAjustes() {
+    $('boton-equipo').checked = leer('ccta-boton-equipo') !== 'no';
     var c = configIA() || { proveedor: 'gemini', llave: '' };
     $('ia-proveedor').value = c.proveedor || 'gemini';
     $('ia-llave').value = '';
