@@ -1104,20 +1104,7 @@
 }
 
 
-/* ---------- Versículo: fechas de la semana y sin parpadeo al cargar ---------- */
-
-.verse-week {
-  display: block;
-  margin-top: 6px;
-  color: var(--muted, #66718a);
-  font-size: .78rem;
-  font-weight: 700;
-  letter-spacing: .04em;
-}
-
-.verse-week:empty {
-  display: none;
-}
+/* ---------- Versículo: sin parpadeo al cargar ---------- */
 
 .verse-text,
 .verse-ref {

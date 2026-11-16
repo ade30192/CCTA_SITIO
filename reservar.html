@@ -145,12 +145,18 @@
 
               <div class="rsv-field">
                 <label for="rsv-templo">Templo que deseás solicitar *</label>
-                <select id="rsv-templo" name="templo" aria-describedby="err-templo" required>
+                <select id="rsv-templo" name="templo" aria-describedby="hint-templo err-templo" required>
                   <option value="">Elegí una opción</option>
-                  <option>Nueva sede</option>
-                  <option>Antigua sede</option>
-                  <option>Cualquiera de los dos</option>
+                  <option value="Nueva sede">Nueva sede (donde nos reunimos actualmente)</option>
+                  <option value="Antigua sede">Antigua sede (templo anterior)</option>
+                  <option value="Cualquiera de los dos">Cualquiera de los dos</option>
                 </select>
+                <span class="rsv-hint" id="hint-templo">
+                  ¿No sabés cuál es cuál? Mirá dónde queda la
+                  <a href="https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7" target="_blank" rel="noopener noreferrer">nueva sede ↗</a>
+                  y la
+                  <a href="https://maps.app.goo.gl/YrNSQynUugQfBkUW6" target="_blank" rel="noopener noreferrer">antigua sede ↗</a>.
+                </span>
                 <span class="rsv-err" id="err-templo"></span>
               </div>
 

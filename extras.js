@@ -161,17 +161,6 @@
     var banda = document.getElementById('versiculo');
     function mostrar() { if (banda) banda.classList.remove('is-loading'); }
 
-    // Fechas de la semana (lunes a domingo) debajo de "Versículo de la semana"
-    var rango = document.getElementById('verse-week');
-    if (rango) {
-      var MES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
-      var lunes = new Date(Date.UTC(2024, 0, 1) + numeroSemana() * 7 * 86400000);
-      var domingo = new Date(lunes.getTime() + 6 * 86400000);
-      rango.textContent = 'Del ' + lunes.getUTCDate() +
-        (lunes.getUTCMonth() === domingo.getUTCMonth() ? '' : ' de ' + MES[lunes.getUTCMonth()]) +
-        ' al ' + domingo.getUTCDate() + ' de ' + MES[domingo.getUTCMonth()];
-    }
-
     fetch('versiculo.json', { cache: 'no-cache' })
       .then(function (res) { return res.ok ? res.json() : null; })
       .then(function (data) {
