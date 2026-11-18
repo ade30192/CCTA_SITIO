@@ -1,0 +1,10 @@
+// Configuración para publicar el sitio estático en Cloudflare (Workers).
+// No afecta a GitHub Pages ni a Netlify.
+{
+  "name": "ccta-sitio",
+  "compatibility_date": "2026-11-17",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "404-page"
+  }
+}
