@@ -10,6 +10,7 @@
   --muted: #66718a;
   --gold: #e5b957;
   --gold-dark: #8f6516;
+  --gold-text: #a87a22; /* dorado legible sobre fondos claros (contraste ≥ 3:1 en títulos grandes) */
   --gold-light: #f5df9d;
   --cream: #fbf8f0;
   --bg: #f7f9fc;
@@ -611,9 +612,14 @@ ul {
 
 .vision h2 em,
 .title em {
-  color: var(--gold);
+  color: var(--gold-text);
   font-family: Georgia, serif;
   font-weight: 400;
+}
+
+/* Sobre fondo azul se mantiene el dorado original */
+.vision h2 em {
+  color: var(--gold);
 }
 
 
@@ -774,13 +780,18 @@ ul {
   font-weight: 800;
 }
 
-.event h3 {
+.event h3,
+.event .event-title {
+  display: block;
   margin: 12px 0 6px;
+  font-weight: 700;
   color: var(--navy);
   font-size: 1.13rem;
 }
 
-.event p {
+.event p,
+.event .event-desc {
+  display: block;
   margin: 0 0 10px;
   color: var(--muted);
   font-size: .88rem;
@@ -1916,11 +1927,13 @@ details a {
     padding: 19px 15px;
   }
 
-  .event h3 {
+  .event h3,
+  .event .event-title {
     font-size: 1.05rem;
   }
 
-  .event p {
+  .event p,
+  .event .event-desc {
     font-size: .84rem;
   }
 
@@ -2308,4 +2321,102 @@ details a {
 .to-top:hover {
   background: var(--gold);
   color: var(--navy);
+}
+
+
+/* =====================================================
+   AUDITORÍA UX/UI · NOVIEMBRE 2026
+   Ajustes compartidos por todas las páginas.
+   ===================================================== */
+
+/* ---------- Botones de copiar: más claros y cómodos de tocar ---------- */
+
+.copy-button {
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: .78rem;
+  letter-spacing: .02em;
+  transition: background .2s, border-color .2s, color .2s;
+}
+
+.copy-button::before {
+  content: "";
+  flex: none;
+  width: 1.05em;
+  height: 1.05em;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='13' height='13' rx='2'/%3E%3Cpath d='M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.copy-button.copied::before,
+.copy-button.copy-error::before {
+  display: none;
+}
+
+/* SINPE sobre fondo azul: botón dorado, el más visible de la tarjeta */
+.copy-button-sinpe {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.copy-button-sinpe:hover {
+  border-color: var(--gold-light);
+  background: var(--gold-light);
+  color: var(--navy);
+}
+
+.copy-button-sinpe.copied {
+  border-color: #a8d27a;
+  background: #eef5e8;
+  color: #2f4f12;
+}
+
+.copy-button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.copy-button-sinpe:focus-visible {
+  outline-color: #fff;
+}
+
+
+/* ---------- Preguntas frecuentes: lista de horarios ---------- */
+
+.faq-horario {
+  margin: 0 20px 14px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+.faq-horario li + li {
+  margin-top: 6px;
+}
+
+.faq-horario strong {
+  color: var(--navy);
+}
+
+@media (max-width: 760px) {
+  .faq-horario {
+    margin: 0 14px 12px;
+    font-size: .86rem;
+  }
+}
+
+
+/* ---------- Submenú "Nosotros": se puede cerrar con Escape (WCAG 1.4.13) ---------- */
+
+.has-sub.sub-dismissed .sub {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
 }

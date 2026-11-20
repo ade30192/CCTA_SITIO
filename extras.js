@@ -47,7 +47,7 @@
     document.querySelectorAll('#agenda .event').forEach(function (card) {
       var dia = NOMBRES_DIA[sinTildes((card.querySelector('.event-day') || {}).textContent)];
       var hora = /(\d{1,2}):(\d{2})\s*([ap])/i.exec((card.querySelector('.time') || {}).textContent || '');
-      var nombre = ((card.querySelector('h3') || {}).textContent || '').trim();
+      var nombre = ((card.querySelector('.event-title, h3') || {}).textContent || '').trim();
       if (dia === undefined || !hora || !nombre) return;
       var h = Number(hora[1]) % 12 + (hora[3].toLowerCase() === 'p' ? 12 : 0);
       lista.push({ dia: dia, h: h, m: Number(hora[2]), nombre: nombre });

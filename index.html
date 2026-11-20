@@ -4,19 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071d49">
-  <meta name="description" content="Centro Cristiano Tabernáculo de Adoración en Paquera, Puntarenas, Costa Rica. La iglesia para la familia.">
+  <meta name="description" content="Centro Cristiano Tabernáculo de Adoración (CCTA), iglesia cristiana en Paquera, Puntarenas. Horarios de reuniones, cómo llegar, pastores, anuncios y donaciones.">
 
-  <title>Centro Cristiano Tabernáculo de Adoración | Paquera</title>
+  <title>Centro Cristiano Tabernáculo de Adoración | Iglesia cristiana en Paquera</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=9">
-  <link rel="stylesheet" href="extras.css?v=25">
-  <link rel="stylesheet" href="portada.css?v=3">
+  <!-- Primera foto del carrusel: se pide de inmediato (es lo primero que se ve) -->
+  <link rel="preload" as="image" href="fotos/hero-1-m.jpg?v=1" media="(max-width: 760px)" fetchpriority="high">
+  <link rel="preload" as="image" href="fotos/hero-1.jpg?v=3" media="(min-width: 761px)" fetchpriority="high">
+
+  <link rel="stylesheet" href="styles.css?v=10">
+  <link rel="stylesheet" href="extras.css?v=26">
+  <link rel="stylesheet" href="portada.css?v=4">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
+  <link rel="canonical" href="https://ade30192.github.io/CCTA_SITIO/">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -33,7 +38,44 @@
   <meta property="og:image" content="https://ade30192.github.io/CCTA_SITIO/logo-compartir.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo del Centro Cristiano Tabernáculo de Adoración, Paquera">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image:alt" content="Logo del Centro Cristiano Tabernáculo de Adoración, Paquera">
+  <!-- Datos estructurados para buscadores (solo información publicada en este sitio) -->
+  <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Church",
+    "@id": "https://ade30192.github.io/CCTA_SITIO/#iglesia",
+    "name": "Centro Cristiano Tabernáculo de Adoración",
+    "alternateName": [
+      "CCTA",
+      "CCTA Paquera"
+    ],
+    "slogan": "La iglesia para la familia",
+    "description": "Iglesia cristiana en Paquera, Puntarenas, Costa Rica. Una casa para toda la familia: niños, jóvenes, matrimonios y adultos mayores.",
+    "url": "https://ade30192.github.io/CCTA_SITIO/",
+    "logo": "https://ade30192.github.io/CCTA_SITIO/icon-512.png",
+    "image": "https://ade30192.github.io/CCTA_SITIO/logo-compartir.jpg",
+    "email": "tabernaculodeadoracion1952@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Paquera",
+      "addressRegion": "Puntarenas",
+      "addressCountry": "CR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 9.8129891,
+      "longitude": -84.9365265
+    },
+    "hasMap": "https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7",
+    "sameAs": [
+      "https://www.facebook.com/share/1DuQMBURgQ/",
+      "https://www.instagram.com/tabernaculodeadoracion1"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -54,6 +96,7 @@
     <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6L6 10H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.4 5.6a9 9 0 0 1 0 12.8"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
     <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
   </svg>
 
@@ -82,7 +125,7 @@
       <a class="brand" href="#inicio" aria-label="Centro Cristiano Tabernáculo de Adoración, ir al inicio">
         <img src="logo-iglesia.jpg"
              alt="Logo del Centro Cristiano Tabernáculo de Adoración"
-             class="brand-logo">
+             class="brand-logo" width="384" height="384">
 
         <span class="brand-copy">
           <strong>Centro Cristiano</strong>
@@ -163,7 +206,7 @@
   <main id="contenido">
 
     <!-- CARRUSEL PRINCIPAL -->
-    <section class="hero" id="inicio" aria-label="Presentación de la iglesia">
+    <section class="hero" id="inicio" aria-roledescription="carrusel" aria-label="Presentación de la iglesia">
 
       <h1 class="sr-only">Centro Cristiano Tabernáculo de Adoración · Paquera, Puntarenas</h1>
 
@@ -197,13 +240,17 @@
         </div>
       </div>
 
-      <button class="arrow prev" type="button" aria-label="Anterior">‹</button>
-      <button class="arrow next" type="button" aria-label="Siguiente">›</button>
+      <button class="arrow prev" type="button" aria-label="Diapositiva anterior">‹</button>
+      <button class="arrow next" type="button" aria-label="Diapositiva siguiente">›</button>
 
-      <div class="dots" role="group" aria-label="Elegir diapositiva">
-        <button class="dot active" type="button" aria-label="Diapositiva 1" aria-pressed="true"></button>
-        <button class="dot" type="button" aria-label="Diapositiva 2" aria-pressed="false"></button>
-        <button class="dot" type="button" aria-label="Diapositiva 3" aria-pressed="false"></button>
+      <div class="dots" role="group" aria-label="Controles del carrusel">
+        <button class="dot active" type="button" aria-label="Diapositiva 1 de 3" aria-pressed="true"></button>
+        <button class="dot" type="button" aria-label="Diapositiva 2 de 3" aria-pressed="false"></button>
+        <button class="dot" type="button" aria-label="Diapositiva 3 de 3" aria-pressed="false"></button>
+        <button class="carousel-toggle" type="button" aria-label="Pausar el carrusel" hidden>
+          <svg class="icon ct-pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5v14M15 5v14"/></svg>
+          <svg class="icon ct-play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z"/></svg>
+        </button>
       </div>
 
     </section>
@@ -318,8 +365,8 @@
               <span class="event-body">
                 <span class="time">7:00 p. m.</span>
                 <span class="event-badge">Culto principal</span>
-                <h3>Culto congregacional</h3>
-                <p>Nos reunimos como iglesia para adorar y compartir la fe.</p>
+                <span class="event-title">Culto congregacional</span>
+                <span class="event-desc">Nos reunimos como iglesia para adorar y compartir la fe.</span>
                 <span class="place">Nueva sede · Paquera</span>
                 <span class="event-more">Ver fotos <i>+</i></span>
               </span>
@@ -331,32 +378,50 @@
                 <div class="event-photos">
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-1.jpg?v=3" alt="Culto congregacional, fotografía 1" loading="lazy">
+                    <img src="fotos/media/culto-1.jpg?v=1"
+                         srcset="fotos/mini/culto-1.jpg 360w, fotos/media/culto-1.jpg?v=1 800w, fotos/culto-1.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Culto congregacional, fotografía 1" loading="lazy">
                     <span class="event-photo-empty">Foto 1</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-2.jpg?v=3" alt="Culto congregacional, fotografía 2" loading="lazy">
+                    <img src="fotos/media/culto-2.jpg?v=1"
+                         srcset="fotos/mini/culto-2.jpg 360w, fotos/media/culto-2.jpg?v=1 800w, fotos/culto-2.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Culto congregacional, fotografía 2" loading="lazy">
                     <span class="event-photo-empty">Foto 2</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-3.jpg?v=3" alt="Culto congregacional, fotografía 3" loading="lazy">
+                    <img src="fotos/media/culto-3.jpg?v=1"
+                         srcset="fotos/mini/culto-3.jpg 270w, fotos/media/culto-3.jpg?v=1 600w, fotos/culto-3.jpg?v=3 1200w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1200" height="1600" decoding="async" alt="Culto congregacional, fotografía 3" loading="lazy">
                     <span class="event-photo-empty">Foto 3</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-4.jpg?v=3" alt="Culto congregacional, fotografía 4" loading="lazy">
+                    <img src="fotos/media/culto-4.jpg?v=1"
+                         srcset="fotos/mini/culto-4.jpg 360w, fotos/media/culto-4.jpg?v=1 800w, fotos/culto-4.jpg?v=3 1600w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1600" height="1200" decoding="async" alt="Culto congregacional, fotografía 4" loading="lazy">
                     <span class="event-photo-empty">Foto 4</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-5.jpg?v=3" alt="Culto congregacional, fotografía 5" loading="lazy">
+                    <img src="fotos/media/culto-5.jpg?v=1"
+                         srcset="fotos/mini/culto-5.jpg 360w, fotos/media/culto-5.jpg?v=1 800w, fotos/culto-5.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Culto congregacional, fotografía 5" loading="lazy">
                     <span class="event-photo-empty">Foto 5</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/culto-6.jpg?v=3" alt="Culto congregacional, fotografía 6" loading="lazy">
+                    <img src="fotos/media/culto-6.jpg?v=1"
+                         srcset="fotos/mini/culto-6.jpg 360w, fotos/media/culto-6.jpg?v=1 800w, fotos/culto-6.jpg?v=3 1600w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1600" height="1200" decoding="async" alt="Culto congregacional, fotografía 6" loading="lazy">
                     <span class="event-photo-empty">Foto 6</span>
                   </figure>
 
@@ -375,8 +440,8 @@
 
               <span class="event-body">
                 <span class="time">9:30 a. m.</span>
-                <h3>Ayuno congregacional</h3>
-                <p>Un espacio de oración y búsqueda de Dios.</p>
+                <span class="event-title">Ayuno congregacional</span>
+                <span class="event-desc">Un espacio de oración y búsqueda de Dios.</span>
                 <span class="place">Nueva sede · Paquera</span>
                 <span class="event-more">Ver fotos <i>+</i></span>
               </span>
@@ -388,17 +453,26 @@
                 <div class="event-photos">
 
                   <figure class="event-photo">
-                    <img src="fotos/ayuno-1.jpg?v=3" alt="Ayuno congregacional, fotografía 1" loading="lazy">
+                    <img src="fotos/media/ayuno-1.jpg?v=1"
+                         srcset="fotos/mini/ayuno-1.jpg 360w, fotos/media/ayuno-1.jpg?v=1 800w, fotos/ayuno-1.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Ayuno congregacional, fotografía 1" loading="lazy">
                     <span class="event-photo-empty">Foto 1</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/ayuno-2.jpg?v=3" alt="Ayuno congregacional, fotografía 2" loading="lazy">
+                    <img src="fotos/media/ayuno-2.jpg?v=1"
+                         srcset="fotos/mini/ayuno-2.jpg 360w, fotos/media/ayuno-2.jpg?v=1 800w, fotos/ayuno-2.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Ayuno congregacional, fotografía 2" loading="lazy">
                     <span class="event-photo-empty">Foto 2</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/ayuno-3.jpg?v=3" alt="Ayuno congregacional, fotografía 3" loading="lazy">
+                    <img src="fotos/media/ayuno-3.jpg?v=1"
+                         srcset="fotos/mini/ayuno-3.jpg 360w, fotos/media/ayuno-3.jpg?v=1 800w, fotos/ayuno-3.jpg?v=3 1280w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1280" height="960" decoding="async" alt="Ayuno congregacional, fotografía 3" loading="lazy">
                     <span class="event-photo-empty">Foto 3</span>
                   </figure>
 
@@ -417,8 +491,8 @@
 
               <span class="event-body">
                 <span class="time">11:00 a. m.</span>
-                <h3>Red de adulto mayor</h3>
-                <p>Encuentro y compañerismo para nuestros adultos mayores.</p>
+                <span class="event-title">Red de adulto mayor</span>
+                <span class="event-desc">Encuentro y compañerismo para nuestros adultos mayores.</span>
                 <span class="place">Nueva sede · Paquera</span>
                 <span class="event-more">Ver fotos <i>+</i></span>
               </span>
@@ -430,17 +504,26 @@
                 <div class="event-photos">
 
                   <figure class="event-photo">
-                    <img src="fotos/adulto-mayor-1.jpg?v=3" alt="Red de adulto mayor, fotografía 1" loading="lazy">
+                    <img src="fotos/media/adulto-mayor-1.jpg?v=1"
+                         srcset="fotos/mini/adulto-mayor-1.jpg 360w, fotos/media/adulto-mayor-1.jpg?v=1 800w, fotos/adulto-mayor-1.jpg?v=3 1400w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1400" height="1050" decoding="async" alt="Red de adulto mayor, fotografía 1" loading="lazy">
                     <span class="event-photo-empty">Foto 1</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/adulto-mayor-2.jpg?v=3" alt="Red de adulto mayor, fotografía 2" loading="lazy">
+                    <img src="fotos/media/adulto-mayor-2.jpg?v=1"
+                         srcset="fotos/mini/adulto-mayor-2.jpg 270w, fotos/media/adulto-mayor-2.jpg?v=1 600w, fotos/adulto-mayor-2.jpg?v=3 1050w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1050" height="1400" decoding="async" alt="Red de adulto mayor, fotografía 2" loading="lazy">
                     <span class="event-photo-empty">Foto 2</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/adulto-mayor-3.jpg?v=3" alt="Red de adulto mayor, fotografía 3" loading="lazy">
+                    <img src="fotos/media/adulto-mayor-3.jpg?v=1"
+                         srcset="fotos/mini/adulto-mayor-3.jpg 270w, fotos/media/adulto-mayor-3.jpg?v=1 600w, fotos/adulto-mayor-3.jpg?v=3 1050w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1050" height="1400" decoding="async" alt="Red de adulto mayor, fotografía 3" loading="lazy">
                     <span class="event-photo-empty">Foto 3</span>
                   </figure>
 
@@ -459,8 +542,8 @@
 
               <span class="event-body">
                 <span class="time">7:00 p. m.</span>
-                <h3>Red de jóvenes</h3>
-                <p>Un tiempo para compartir, aprender y crecer juntos.</p>
+                <span class="event-title">Red de jóvenes</span>
+                <span class="event-desc">Un tiempo para compartir, aprender y crecer juntos.</span>
                 <span class="place">Nueva sede · Paquera</span>
                 <span class="event-more">Ver fotos <i>+</i></span>
               </span>
@@ -472,17 +555,26 @@
                 <div class="event-photos">
 
                   <figure class="event-photo">
-                    <img src="fotos/jovenes-1.jpg?v=3" alt="Red de jóvenes, fotografía 1" loading="lazy">
+                    <img src="fotos/media/jovenes-1.jpg?v=1"
+                         srcset="fotos/mini/jovenes-1.jpg 360w, fotos/media/jovenes-1.jpg?v=1 800w, fotos/jovenes-1.jpg?v=3 1400w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1400" height="1031" decoding="async" alt="Red de jóvenes, fotografía 1" loading="lazy">
                     <span class="event-photo-empty">Foto 1</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/jovenes-2.jpg?v=3" alt="Red de jóvenes, fotografía 2" loading="lazy">
+                    <img src="fotos/media/jovenes-2.jpg?v=1"
+                         srcset="fotos/mini/jovenes-2.jpg 270w, fotos/media/jovenes-2.jpg?v=1 600w, fotos/jovenes-2.jpg?v=3 1050w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1050" height="1400" decoding="async" alt="Red de jóvenes, fotografía 2" loading="lazy">
                     <span class="event-photo-empty">Foto 2</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/jovenes-3.jpg?v=3" alt="Red de jóvenes, fotografía 3" loading="lazy">
+                    <img src="fotos/media/jovenes-3.jpg?v=1"
+                         srcset="fotos/mini/jovenes-3.jpg 360w, fotos/media/jovenes-3.jpg?v=1 800w, fotos/jovenes-3.jpg?v=3 1400w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1400" height="1050" decoding="async" alt="Red de jóvenes, fotografía 3" loading="lazy">
                     <span class="event-photo-empty">Foto 3</span>
                   </figure>
 
@@ -501,8 +593,8 @@
 
               <span class="event-body">
                 <span class="time">10:00 a. m.</span>
-                <h3>Culto dominical</h3>
-                <p>Nos reunimos para compartir la Palabra, orar y fortalecer nuestra fe en comunidad.</p>
+                <span class="event-title">Culto dominical</span>
+                <span class="event-desc">Nos reunimos para compartir la Palabra, orar y fortalecer nuestra fe en comunidad.</span>
                 <span class="place">Nueva sede · Paquera</span>
                 <span class="event-more">Ver fotos <i>+</i></span>
               </span>
@@ -514,17 +606,26 @@
                 <div class="event-photos">
 
                   <figure class="event-photo">
-                    <img src="fotos/domingo-1.jpg?v=3" alt="Culto dominical, fotografía 1" loading="lazy">
+                    <img src="fotos/media/domingo-1.jpg?v=1"
+                         srcset="fotos/mini/domingo-1.jpg 270w, fotos/media/domingo-1.jpg?v=1 600w, fotos/domingo-1.jpg?v=3 1050w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1050" height="1400" decoding="async" alt="Culto dominical, fotografía 1" loading="lazy">
                     <span class="event-photo-empty">Foto 1</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/domingo-2.jpg?v=3" alt="Culto dominical, fotografía 2" loading="lazy">
+                    <img src="fotos/media/domingo-2.jpg?v=1"
+                         srcset="fotos/mini/domingo-2.jpg 270w, fotos/media/domingo-2.jpg?v=1 600w, fotos/domingo-2.jpg?v=3 1050w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1050" height="1400" decoding="async" alt="Culto dominical, fotografía 2" loading="lazy">
                     <span class="event-photo-empty">Foto 2</span>
                   </figure>
 
                   <figure class="event-photo">
-                    <img src="fotos/domingo-3.jpg?v=3" alt="Culto dominical, fotografía 3" loading="lazy">
+                    <img src="fotos/media/domingo-3.jpg?v=1"
+                         srcset="fotos/mini/domingo-3.jpg 360w, fotos/media/domingo-3.jpg?v=1 800w, fotos/domingo-3.jpg?v=3 1400w"
+                         sizes="(max-width: 900px) 45vw, 370px"
+                         width="1400" height="1050" decoding="async" alt="Culto dominical, fotografía 3" loading="lazy">
                     <span class="event-photo-empty">Foto 3</span>
                   </figure>
 
@@ -656,14 +757,18 @@
               <div class="location-actions">
                 <a class="btn btn-navy"
                    href="https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7"
-                   target="_blank" rel="noopener noreferrer">
-                  Google Maps ↗
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Abrir en Google Maps: nueva sede">
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+                  Abrir en Google Maps ↗
                 </a>
 
                 <a class="btn btn-waze"
                    href="https://waze.com/ul?ll=9.8129891,-84.9365265&amp;navigate=yes"
-                   target="_blank" rel="noopener noreferrer">
-                  Buscar en Waze ↗
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Ir con Waze: nueva sede">
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-nav"/></svg>
+                  Ir con Waze ↗
                 </a>
               </div>
             </div>
@@ -693,14 +798,18 @@
               <div class="location-actions">
                 <a class="btn btn-navy"
                    href="https://maps.app.goo.gl/YrNSQynUugQfBkUW6"
-                   target="_blank" rel="noopener noreferrer">
-                  Google Maps ↗
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Abrir en Google Maps: antigua sede">
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg>
+                  Abrir en Google Maps ↗
                 </a>
 
                 <a class="btn btn-waze"
                    href="https://waze.com/ul?ll=9.8148617,-84.9328948&amp;navigate=yes"
-                   target="_blank" rel="noopener noreferrer">
-                  Buscar en Waze ↗
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Ir con Waze: antigua sede">
+                  <svg class="icon" aria-hidden="true" focusable="false"><use href="#i-nav"/></svg>
+                  Ir con Waze ↗
                 </a>
               </div>
             </div>
@@ -717,7 +826,7 @@
         </div>
 
         <p class="map-disclaimer">
-          Los botones de Google Maps y Waze te llevan directo a la ubicación exacta de cada sede.
+          <strong>Google Maps</strong> te muestra el lugar en el mapa; <strong>Waze</strong> abre la navegación paso a paso hasta la sede elegida.
         </p>
 
         <div class="reserve-card">
@@ -758,10 +867,10 @@
           <div>
             <span class="donation-eyebrow">SINPE Móvil de la iglesia</span>
             <strong class="sinpe-number">8678-2826</strong>
-            <button class="copy-button" type="button"
+            <button class="copy-button copy-button-sinpe" type="button"
                     data-copy="86782826"
-                    aria-label="Copiar SINPE Móvil de la iglesia">
-              Copiar SINPE
+                    aria-label="Copiar número de SINPE Móvil: 8678-2826">
+              Copiar número
             </button>
           </div>
 
@@ -892,7 +1001,7 @@
     <div class="container footer-grid">
 
       <div class="f-brand">
-        <img src="logo-iglesia.jpg" alt="" class="brand-logo">
+        <img src="logo-iglesia.jpg" alt="" class="brand-logo" width="384" height="384" loading="lazy">
 
         <p>
           <strong>
@@ -965,12 +1074,12 @@
 
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
-  <script src="script.js?v=9"></script>
-  <script src="extras.js?v=9" defer></script>
+  <script src="script.js?v=10"></script>
+  <script src="extras.js?v=10" defer></script>
   <script src="portada.js?v=3" defer></script>
 
 
-  <script src="app.js?v=1" defer></script>
+  <script src="app.js?v=2" defer></script>
 
 </body>
 </html>

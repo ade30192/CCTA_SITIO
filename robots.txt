@@ -1,0 +1,9 @@
+# Nota: en GitHub Pages (ade30192.github.io/CCTA_SITIO/) los buscadores solo leen el robots.txt
+# de la raíz del dominio, así que este archivo aplica cuando el sitio esté en su propio dominio
+# (por ejemplo, Cloudflare o una cuenta de GitHub de la iglesia). El sitemap se puede enviar
+# igualmente desde Google Search Console.
+User-agent: *
+Disallow: /subir.html
+Allow: /
+
+Sitemap: https://ade30192.github.io/CCTA_SITIO/sitemap.xml

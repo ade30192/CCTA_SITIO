@@ -108,9 +108,32 @@
     }).catch(function () {});
   }
 
+  /* ---------- 3) Enlaces externos: avisar que abren otra pestaña ---------- */
+  // La flecha ↗ lo indica visualmente; esto lo dice también a los lectores de pantalla.
+
+  function avisarEnlacesExternos() {
+    var AVISO = ' (se abre en otra pestaña)';
+    document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
+      var rel = (a.getAttribute('rel') || '').toLowerCase();
+      if (rel.indexOf('noopener') === -1) a.setAttribute('rel', (rel + ' noopener noreferrer').trim());
+      if (a.hasAttribute('data-aviso-externo')) return;
+      a.setAttribute('data-aviso-externo', '');
+      var etiqueta = a.getAttribute('aria-label');
+      if (etiqueta) {
+        a.setAttribute('aria-label', etiqueta + AVISO);
+      } else {
+        var s = document.createElement('span');
+        s.className = 'sr-only';
+        s.textContent = AVISO;
+        a.appendChild(s);
+      }
+    });
+  }
+
   function iniciar() {
     iniciarBotones();
     iniciarEstadisticas();
+    try { avisarEnlacesExternos(); } catch (e) {}
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);

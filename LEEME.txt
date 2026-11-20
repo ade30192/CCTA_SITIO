@@ -114,3 +114,26 @@ APP, CALENDARIO, ESTADÍSTICAS Y MÁS HERRAMIENTAS (14 nov 2026)
   QR opcional dentro del afiche automático.
 - El editor detecta solo la cuenta y el repositorio desde la dirección del sitio: si se transfiere
   a la cuenta de la iglesia, no hay que cambiar el código.
+
+
+AUDITORÍA UX/UI, ACCESIBILIDAD Y SEO (20 nov 2026)
+- Títulos con palabra en dorado (<em>): sobre fondo claro usan --gold-text (#a87a22) para cumplir contraste
+  WCAG AA; sobre fondo azul siguen con el dorado original.
+- Carrusel: botón pequeño de pausa/reanudar junto a los puntos (WCAG 2.2.2). Si el visitante tiene
+  activado "reducir movimiento", el carrusel no se mueve y el botón no aparece. Puntos con área táctil de 36 px.
+- Menú "Nosotros" (computadora): la tecla Escape lo cierra.
+- Reuniones: dentro de cada botón se usan <span class="event-title"> y <span class="event-desc">
+  en lugar de <h3>/<p> (un botón no puede contener encabezados). Se ven igual.
+- Ubicaciones: botones "Abrir en Google Maps" e "Ir con Waze" con ícono y texto explicativo.
+- Donaciones: botón "Copiar número" dorado en SINPE; todos los botones de copiar tienen ícono y 44 px de alto.
+- Páginas secundarias: el botón "Volver" ya no se sale de la pantalla en celulares de 320–414 px.
+- Preguntas frecuentes: "¿Cuándo se reúnen?" muestra los horarios. Si cambia un horario, cambiarlo
+  en index.html (reuniones) Y en preguntas.html.
+- Enlaces que abren otra pestaña: app.js agrega el aviso para lectores de pantalla.
+- SEO: canonical en cada página, datos estructurados (Church en index, FAQPage en preguntas),
+  sitemap.xml y robots.txt. SI EL SITIO SE MUDA a otra dirección, reemplazar
+  "https://ade30192.github.io/CCTA_SITIO/" en: los <head> de las páginas, sitemap.xml y robots.txt.
+- Rendimiento: la primera foto del carrusel se precarga; las fotos de reuniones usan
+  fotos/media/ (800 px) o fotos/mini/ según la pantalla. Al agregar fotos nuevas de reuniones,
+  crear también su versión en fotos/media/ (o quitar el srcset de esa foto).
+- sw.js pasó a 'ccta-v3' para que las apps instaladas descarguen los cambios.
