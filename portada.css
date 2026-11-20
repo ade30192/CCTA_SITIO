@@ -1081,7 +1081,7 @@
    AUDITORÍA UX/UI · NOVIEMBRE 2026
    ===================================================== */
 
-/* ---------- Carrusel: botón pausar/reanudar y puntos fáciles de tocar ---------- */
+/* ---------- Carrusel: puntos fáciles de tocar ---------- */
 
 .hero .dots {
   align-items: center;
@@ -1097,48 +1097,6 @@
   position: absolute;
   inset: -12px;
 }
-
-.carousel-toggle {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  margin-left: 6px;
-  padding: 0;
-  border: 1.5px solid rgba(255, 255, 255, .75);
-  border-radius: 50%;
-  background: rgba(5, 13, 31, .45);
-  color: #fff;
-  font-size: 14px;
-  cursor: pointer;
-  pointer-events: auto;
-  transition: background .2s, color .2s, border-color .2s;
-}
-
-.carousel-toggle[hidden] {
-  display: none;
-}
-
-.carousel-toggle:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--navy);
-}
-
-.carousel-toggle .ct-play {
-  display: none;
-  fill: currentColor;
-  stroke-width: 1.5;
-}
-
-.carousel-toggle.is-paused .ct-pause {
-  display: none;
-}
-
-.carousel-toggle.is-paused .ct-play {
-  display: block;
-}
-
 
 /* ---------- Franja "Próxima reunión": enlace con área táctil cómoda ---------- */
 

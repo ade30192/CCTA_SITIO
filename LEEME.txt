@@ -119,8 +119,8 @@ APP, CALENDARIO, ESTADÍSTICAS Y MÁS HERRAMIENTAS (14 nov 2026)
 AUDITORÍA UX/UI, ACCESIBILIDAD Y SEO (20 nov 2026)
 - Títulos con palabra en dorado (<em>): sobre fondo claro usan --gold-text (#a87a22) para cumplir contraste
   WCAG AA; sobre fondo azul siguen con el dorado original.
-- Carrusel: botón pequeño de pausa/reanudar junto a los puntos (WCAG 2.2.2). Si el visitante tiene
-  activado "reducir movimiento", el carrusel no se mueve y el botón no aparece. Puntos con área táctil de 36 px.
+- Carrusel: puntos con área táctil de 36 px. (El botón de pausa se quitó a pedido el 20 nov 2026;
+  el carrusel sigue deteniéndose al pasar el mouse o el foco, y no se mueve con "reducir movimiento".)
 - Menú "Nosotros" (computadora): la tecla Escape lo cierra.
 - Reuniones: dentro de cada botón se usan <span class="event-title"> y <span class="event-desc">
   en lugar de <h3>/<p> (un botón no puede contener encabezados). Se ven igual.
@@ -136,4 +136,4 @@ AUDITORÍA UX/UI, ACCESIBILIDAD Y SEO (20 nov 2026)
 - Rendimiento: la primera foto del carrusel se precarga; las fotos de reuniones usan
   fotos/media/ (800 px) o fotos/mini/ según la pantalla. Al agregar fotos nuevas de reuniones,
   crear también su versión en fotos/media/ (o quitar el srcset de esa foto).
-- sw.js pasó a 'ccta-v3' para que las apps instaladas descarguen los cambios.
+- sw.js pasó a 'ccta-v4' para que las apps instaladas descarguen los cambios.

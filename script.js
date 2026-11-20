@@ -137,10 +137,6 @@ const reducedMotion = window.matchMedia(
 let currentSlide = 0;
 let carouselTimer = null;
 
-// Pausa elegida por el visitante (WCAG 2.2.2: todo movimiento automático
-// debe poder detenerse). Mientras esté en pausa, nada lo reanuda solo.
-let userPaused = false;
-const carouselToggle = document.querySelector('.carousel-toggle');
 
 
 function showSlide(index) {
@@ -204,8 +200,7 @@ function startCarousel() {
   if (
     slides.length <= 1 ||
     document.hidden ||
-    reducedMotion.matches ||
-    userPaused
+    reducedMotion.matches
   ) {
     return;
   }
@@ -292,44 +287,7 @@ heroSection?.addEventListener('focusin', stopCarousel);
 heroSection?.addEventListener('focusout', startCarousel);
 
 
-// Botón pausar / reanudar (solo aparece si el carrusel se mueve solo)
-
-function updateCarouselToggle() {
-
-  if (!carouselToggle) return;
-
-  carouselToggle.hidden = slides.length <= 1 || reducedMotion.matches;
-
-  carouselToggle.classList.toggle('is-paused', userPaused);
-
-  carouselToggle.setAttribute(
-    'aria-label',
-    userPaused ? 'Reanudar el carrusel' : 'Pausar el carrusel'
-  );
-
-}
-
-carouselToggle?.addEventListener('click', () => {
-
-  userPaused = !userPaused;
-
-  updateCarouselToggle();
-
-  if (userPaused) {
-    stopCarousel();
-  } else {
-    showSlide(currentSlide + 1);
-    startCarousel();
-  }
-
-});
-
-reducedMotion.addEventListener?.('change', updateCarouselToggle);
-
-
 // Inicialización
-
-updateCarouselToggle();
 
 if (slides.length) {
 
