@@ -137,3 +137,13 @@ AUDITORÍA UX/UI, ACCESIBILIDAD Y SEO (20 nov 2026)
   fotos/media/ (800 px) o fotos/mini/ según la pantalla. Al agregar fotos nuevas de reuniones,
   crear también su versión en fotos/media/ (o quitar el srcset de esa foto).
 - sw.js pasó a 'ccta-v4' para que las apps instaladas descarguen los cambios.
+
+VELOCIDAD DE LAS FOTOS (20 nov 2026)
+- Carrusel: las fotos ya no van en el atributo style del HTML sino en portada.css (sección "Fotos del carrusel").
+  La 1 se carga de inmediato; la 2 y la 3 cuando la página terminó de cargar. Cada foto tiene versión .webp
+  (más liviana) y .jpg (respaldo para navegadores viejos). Para cambiar una foto del carrusel: reemplazar
+  fotos/hero-N.jpg, hero-N-m.jpg y sus .webp, y subir el ?v= en portada.css.
+- Reuniones: cada foto usa <picture> con WebP (fotos/mini/*.webp y fotos/media/*.webp) y JPEG de respaldo.
+  Mientras cargan se ve un brillo suave y luego aparecen con un fundido.
+- Medido con internet de celular simulado: primera foto en iPad de 11,1 s a 4,4 s; en iPhone de 5,5 s a 2,8 s.
+- iPad: el menú "Nosotros" abre y cierra con un toque (antes se quedaba abierto).

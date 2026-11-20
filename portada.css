@@ -1114,3 +1114,65 @@
   align-items: center;
   min-height: 32px;
 }
+
+
+/* ---------- Fotos del carrusel ----------
+   - La primera se carga de inmediato; la 2 y la 3 esperan a que la página termine
+     de cargar (script.js agrega .hero-listo), así no le quitan velocidad a la primera.
+   - Navegadores modernos reciben WebP (35–40 % más liviano); los demás, JPEG. */
+
+.slide { --bg: none; --bg-m: none; }
+.slide-1 { --bg: url("fotos/hero-1.jpg?v=3"); --bg-m: url("fotos/hero-1-m.jpg?v=1"); }
+.hero-listo .slide-2 { --bg: url("fotos/hero-2.jpg?v=3"); --bg-m: url("fotos/hero-2-m.jpg?v=1"); }
+.hero-listo .slide-3 { --bg: url("fotos/hero-3.jpg?v=3"); --bg-m: url("fotos/hero-3-m.jpg?v=1"); }
+
+@supports (background-image: image-set(url("x.webp") type("image/webp"))) {
+  .slide-1 {
+    --bg: image-set(url("fotos/hero-1.webp?v=1") type("image/webp"), url("fotos/hero-1.jpg?v=3") type("image/jpeg"));
+    --bg-m: image-set(url("fotos/hero-1-m.webp?v=1") type("image/webp"), url("fotos/hero-1-m.jpg?v=1") type("image/jpeg"));
+  }
+  .hero-listo .slide-2 {
+    --bg: image-set(url("fotos/hero-2.webp?v=1") type("image/webp"), url("fotos/hero-2.jpg?v=3") type("image/jpeg"));
+    --bg-m: image-set(url("fotos/hero-2-m.webp?v=1") type("image/webp"), url("fotos/hero-2-m.jpg?v=1") type("image/jpeg"));
+  }
+  .hero-listo .slide-3 {
+    --bg: image-set(url("fotos/hero-3.webp?v=1") type("image/webp"), url("fotos/hero-3.jpg?v=3") type("image/jpeg"));
+    --bg-m: image-set(url("fotos/hero-3-m.webp?v=1") type("image/webp"), url("fotos/hero-3-m.jpg?v=1") type("image/jpeg"));
+  }
+}
+
+/* Mientras una diapositiva no tiene foto todavía, se ve el azul de la iglesia */
+.slide {
+  background-color: var(--navy);
+}
+
+
+/* ---------- Fotos de reuniones: brillo suave mientras cargan y aparición gradual ---------- */
+
+.event-photo {
+  background: linear-gradient(100deg, #e9eef6 30%, #f4f7fb 50%, #e9eef6 70%) 0 0 / 300% 100%;
+  animation: foto-cargando 1.4s linear infinite;
+}
+
+.event-photo.cargada,
+.event-photo.is-empty {
+  animation: none;
+  background: #e9eef6;
+}
+
+.js-fotos .event-photo img {
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.js-fotos .event-photo.cargada img {
+  opacity: 1;
+}
+
+@keyframes foto-cargando {
+  to { background-position: -150% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-photo { animation: none; }
+}

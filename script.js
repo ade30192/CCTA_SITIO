@@ -314,6 +314,23 @@ heroSection?.addEventListener('focusin', stopCarousel);
 heroSection?.addEventListener('focusout', startCarousel);
 
 
+// Fotos 2 y 3 del carrusel: se piden cuando la página ya cargó
+// (o antes, si el visitante toca las flechas o los puntos)
+
+function loadAllSlides() {
+  heroSection?.classList.add('hero-listo');
+}
+
+if (document.readyState === 'complete') {
+  loadAllSlides();
+} else {
+  window.addEventListener('load', loadAllSlides, { once: true });
+}
+
+heroSection?.addEventListener('pointerdown', loadAllSlides, { once: true });
+heroSection?.addEventListener('focusin', loadAllSlides, { once: true });
+
+
 // Inicialización
 
 if (slides.length) {
@@ -342,7 +359,45 @@ if (yearElement) {
    4. GALERÍAS DE FOTOGRAFÍAS
    ===================================================== */
 
+document.documentElement.classList.add('js-fotos');
+
+// Empieza a descargar las fotos de una reunión apenas el dedo o el mouse
+// toca el botón (antes de soltarlo), y sin esperar el modo "perezoso"
+function loadPanelPhotos(panel) {
+
+  if (!panel || panel.dataset.fotosPedidas) return;
+
+  panel.dataset.fotosPedidas = '1';
+
+  panel.querySelectorAll('img[loading="lazy"]').forEach(img => {
+    img.loading = 'eager';
+  });
+
+}
+
+document.querySelectorAll('.event-photo img').forEach(img => {
+
+  const figure = img.closest('.event-photo');
+
+  const done = () => figure?.classList.add('cargada');
+
+  if (img.complete && img.naturalWidth > 0) {
+    done();
+  } else {
+    img.addEventListener('load', done, { once: true });
+  }
+
+});
+
 document.querySelectorAll('.event-toggle').forEach(button => {
+
+  const intent = () => loadPanelPhotos(
+    document.getElementById(button.getAttribute('aria-controls'))
+  );
+
+  button.addEventListener('pointerenter', intent, { once: true });
+  button.addEventListener('pointerdown', intent, { once: true });
+  button.addEventListener('focus', intent, { once: true });
 
   button.addEventListener('click', () => {
 
@@ -351,6 +406,8 @@ document.querySelectorAll('.event-toggle').forEach(button => {
     const panel = document.getElementById(panelId);
 
     if (!panel) return;
+
+    loadPanelPhotos(panel);
 
     const expanded =
       button.getAttribute('aria-expanded') === 'true';
@@ -432,11 +489,11 @@ document.querySelectorAll('.event-photo img').forEach(image => {
 
   function showPlaceholder() {
 
-    const figure = image.parentElement;
+    const figure = image.closest('.event-photo');
 
     if (!figure) return;
 
-    image.remove();
+    (image.closest('picture') || image).remove();
 
     figure.classList.add('is-empty');
 

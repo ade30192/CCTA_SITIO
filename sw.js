@@ -5,7 +5,7 @@
    - Solo actúa sobre archivos del propio sitio; GitHub, Google, etc. pasan directo.
    ===================================================== */
 
-var VERSION = 'ccta-v5';
+var VERSION = 'ccta-v6';
 var BASICOS = [
   './', 'index.html', 'anuncios.html', 'donar.html', 'preguntas.html', 'nosotros.html', 'reservar.html', '404.html',
   'logo-iglesia.jpg', 'icon-192.png', 'favicon-32.png', 'anuncios.json', 'versiculo.json'
