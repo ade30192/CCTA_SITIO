@@ -21,6 +21,7 @@ function closeMenu() {
 
   document.querySelectorAll('.has-sub.open').forEach(item => {
     item.classList.remove('open');
+    item.querySelector('.sub-toggle')?.setAttribute('aria-expanded', 'false');
   });
 
 }
@@ -54,15 +55,26 @@ if (menuButton && mainNav) {
         '(max-width: 760px)'
       ).matches;
 
+      // Pantallas táctiles grandes (iPad, tabletas): no hay "pasar el mouse",
+      // así que "Nosotros" funciona como botón: un toque abre, otro toque cierra.
+      const isTouchDesktop = !isMobile && window.matchMedia(
+        '(hover: none)'
+      ).matches;
+
       if (
         parent &&
         link.classList.contains('sub-toggle') &&
-        isMobile
+        (isMobile || isTouchDesktop)
       ) {
 
         event.preventDefault();
 
-        parent.classList.toggle('open');
+        const nowOpen = parent.classList.toggle('open');
+
+        link.setAttribute('aria-expanded', String(nowOpen));
+
+        // Al cerrarlo se quita el foco para que no quede "pegado" abierto
+        if (!nowOpen && isTouchDesktop) link.blur();
 
         return;
 
@@ -90,6 +102,21 @@ if (menuButton && mainNav) {
 
       closeMenu();
     }
+
+  });
+
+
+  // Tocar fuera del menú "Nosotros" lo cierra (tabletas y celulares)
+  document.addEventListener('click', event => {
+
+    document.querySelectorAll('.has-sub.open').forEach(item => {
+
+      if (!item.contains(event.target)) {
+        item.classList.remove('open');
+        item.querySelector('.sub-toggle')?.setAttribute('aria-expanded', 'false');
+      }
+
+    });
 
   });
 

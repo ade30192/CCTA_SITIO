@@ -2420,3 +2420,23 @@ details a {
   visibility: hidden;
   transform: translateY(8px);
 }
+
+
+/* ---------- Menú "Nosotros" en tabletas (iPad): abre y cierra con un toque ----------
+   En pantallas táctiles no se usa "pasar el mouse" ni el foco para mostrarlo,
+   porque el foco se quedaba en "Nosotros" y el menú no se podía cerrar. */
+
+@media (hover: none) and (min-width: 761px) {
+  .has-sub:hover .sub,
+  .has-sub:focus-within .sub {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+  }
+
+  .has-sub.open .sub {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
