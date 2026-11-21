@@ -10,6 +10,8 @@
   var MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var DIAS = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   var DIA_MS = 24 * 60 * 60 * 1000;
+  var T = window.cctaT || function (s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && k in v ? v[k] : m; }); };
+  var L = window.cctaL || null;
 
 
   /* ---------- 1) Tarjeta de anuncios ---------- */
@@ -71,16 +73,16 @@
         var sl = ev.titulo.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'anuncio';
         tarjeta.href = 'anuncios.html#a-' + ev.fecha + '-' + sl;
 
-        var texto = ev.ini <= base ? 'Hoy' : DIAS[ev.ini.getDay()] + ' ' + ev.ini.getDate() + ' de ' + MESES[ev.ini.getMonth()];
+        var texto = ev.ini <= base ? T('Hoy') : (L ? L.fecha(ev.ini) : DIAS[ev.ini.getDay()] + ' ' + ev.ini.getDate() + ' de ' + MESES[ev.ini.getMonth()]);
         if (ev.hora) texto += ' · ' + ev.hora;
         fecha.textContent = texto;
 
         cuenta.textContent = String(eventos.length);
         cuenta.hidden = false;
-        cuenta.setAttribute('aria-label', eventos.length === 1 ? '1 anuncio' : eventos.length + ' anuncios');
+        cuenta.setAttribute('aria-label', eventos.length === 1 ? T('1 anuncio') : T('{n} anuncios', { n: eventos.length }));
 
         var dias = Math.round((ev.ini - base) / DIA_MS);
-        var tag = ev.ini <= base ? 'Hoy' : dias === 1 ? 'Mañana' : dias <= 7 ? 'En ' + dias + ' días' : '';
+        var tag = ev.ini <= base ? T('Hoy') : dias === 1 ? T('Mañana') : dias <= 7 ? T('En {n} días', { n: dias }) : '';
         if (tag) {
           etiqueta.textContent = tag;
           etiqueta.hidden = false;

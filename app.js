@@ -7,6 +7,8 @@
 (function () {
   'use strict';
 
+  var T = window.cctaT || function (s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && k in v ? v[k] : m; }); };
+
   /* ---------- 1) App instalable ---------- */
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
@@ -41,17 +43,17 @@
     caja.id = 'ayuda-instalar';
     caja.setAttribute('role', 'dialog');
     caja.setAttribute('aria-modal', 'true');
-    caja.setAttribute('aria-label', 'Cómo instalar la app');
+    caja.setAttribute('aria-label', T('Cómo instalar la app'));
     caja.innerHTML =
       '<div class="ai-caja">' +
         '<img src="icon-192.png" alt="" width="64" height="64">' +
-        '<h2>Instalá la app de la iglesia</h2>' +
+        '<h2>' + T('Instalá la app de la iglesia') + '</h2>' +
         '<ol>' +
-          '<li>Tocá el botón <b>Compartir</b> <span aria-hidden="true">⎙</span> del navegador.</li>' +
-          '<li>Elegí <b>"Agregar a pantalla de inicio"</b>.</li>' +
-          '<li>Tocá <b>Agregar</b>. ¡Listo! Queda el logo de la iglesia en tu celular.</li>' +
+          '<li>' + T('Tocá el botón <b>Compartir</b> <span aria-hidden="true">⎙</span> del navegador.') + '</li>' +
+          '<li>' + T('Elegí <b>"Agregar a pantalla de inicio"</b>.') + '</li>' +
+          '<li>' + T('Tocá <b>Agregar</b>. ¡Listo! Queda el logo de la iglesia en tu celular.') + '</li>' +
         '</ol>' +
-        '<button type="button" class="btn btn-gold">Entendido</button>' +
+        '<button type="button" class="btn btn-gold">' + T('Entendido') + '</button>' +
       '</div>';
     caja.addEventListener('click', function (e) {
       if (e.target === caja || e.target.tagName === 'BUTTON') caja.remove();
@@ -112,7 +114,7 @@
   // La flecha ↗ lo indica visualmente; esto lo dice también a los lectores de pantalla.
 
   function avisarEnlacesExternos() {
-    var AVISO = ' (se abre en otra pestaña)';
+    var AVISO = ' ' + T('(se abre en otra pestaña)');
     document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
       var rel = (a.getAttribute('rel') || '').toLowerCase();
       if (rel.indexOf('noopener') === -1) a.setAttribute('rel', (rel + ' noopener noreferrer').trim());
@@ -120,7 +122,7 @@
       a.setAttribute('data-aviso-externo', '');
       var etiqueta = a.getAttribute('aria-label');
       if (etiqueta) {
-        a.setAttribute('aria-label', etiqueta + AVISO);
+        a.setAttribute('aria-label', T(etiqueta) + AVISO);
       } else {
         var s = document.createElement('span');
         s.className = 'sr-only';

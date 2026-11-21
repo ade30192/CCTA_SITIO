@@ -26,7 +26,7 @@
   };
 
   Array.prototype.forEach.call(botones, function (b) {
-    if (etiquetas[pagina]) b.textContent = etiquetas[pagina];
+    if (etiquetas[pagina]) b.textContent = window.cctaT ? window.cctaT(etiquetas[pagina]) : etiquetas[pagina];
     b.addEventListener('click', function (e) {
       e.preventDefault();
       history.back();

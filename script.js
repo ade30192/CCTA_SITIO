@@ -7,6 +7,8 @@
    1. MENÚ DE NAVEGACIÓN
    ===================================================== */
 
+const T = window.cctaT || ((s, v) => String(s).replace(/\{(\w+)\}/g, (m, k) => (v && k in v ? v[k] : m)));
+
 const menuButton = document.querySelector('.menu-toggle');
 const mainNav = document.querySelector('#main-nav');
 
@@ -17,7 +19,7 @@ function closeMenu() {
   mainNav.classList.remove('open');
 
   menuButton.setAttribute('aria-expanded', 'false');
-  menuButton.setAttribute('aria-label', 'Abrir menú');
+  menuButton.setAttribute('aria-label', T('Abrir menú'));
 
   document.querySelectorAll('.has-sub.open').forEach(item => {
     item.classList.remove('open');
@@ -39,7 +41,7 @@ if (menuButton && mainNav) {
 
     menuButton.setAttribute(
       'aria-label',
-      isOpen ? 'Cerrar menú' : 'Abrir menú'
+      isOpen ? T('Cerrar menú') : T('Abrir menú')
     );
 
   });
@@ -188,7 +190,7 @@ function showSlide(index) {
 
     slide.setAttribute('role', 'group');
     slide.setAttribute('aria-roledescription', 'diapositiva');
-    slide.setAttribute('aria-label', (i + 1) + ' de ' + slides.length);
+    slide.setAttribute('aria-label', T('{i} de {n}', { i: i + 1, n: slides.length }));
 
   });
 
@@ -437,9 +439,9 @@ document.querySelectorAll('.event-toggle').forEach(button => {
 
       }
 
-      label.firstChild.textContent = nextExpanded
-        ? 'Ocultar fotos '
-        : 'Ver fotos ';
+      label.firstChild.textContent = (nextExpanded
+        ? T('Ocultar fotos')
+        : T('Ver fotos')) + ' ';
 
     }
 
@@ -476,7 +478,7 @@ function updatePhotoNote(gallery) {
     note.className = 'event-photos-note';
 
     note.textContent =
-      'Pronto compartiremos fotos de esta reunión.';
+      T('Pronto compartiremos fotos de esta reunión.');
 
     gallery.appendChild(note);
 
@@ -579,14 +581,14 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
       button.dataset.originalText = originalText;
 
-      button.textContent = 'Copiado ✓';
+      button.textContent = T('Copiado ✓');
 
       button.classList.add('copied');
 
       if (copyStatus) {
 
         copyStatus.textContent =
-          `Se copió correctamente: ${value}`;
+          T('Se copió correctamente: {v}', { v: value });
 
       }
 
@@ -607,14 +609,14 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
       button.dataset.originalText = originalText;
 
-      button.textContent = 'No se pudo copiar. Tocá el número para seleccionarlo';
+      button.textContent = T('No se pudo copiar. Tocá el número para seleccionarlo');
 
       button.classList.add('copy-error');
 
       if (copyStatus) {
 
         copyStatus.textContent =
-          'No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.';
+          T('No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.');
 
       }
 

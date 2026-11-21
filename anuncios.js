@@ -9,11 +9,16 @@
   'use strict';
 
   var lista = document.getElementById('anuncios-lista');
+  var T = window.cctaT || function (s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && k in v ? v[k] : m; }); };
+  var L = window.cctaL || null;
 
   var MESES = ['ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN', 'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'];
   var MESES_LARGOS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   var DIAS = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   var DIA_MS = 24 * 60 * 60 * 1000;
+  if (L && window.CCTA_LANG && window.CCTA_LANG !== 'es') {
+    MESES = L.mesesCortos.map(function (m) { return m.replace('.', '').toUpperCase(); });
+  }
   // Dirección de esta página (sirve igual si el sitio cambia de cuenta o de dominio)
   var SITIO = location.origin + location.pathname.replace(/[^/]*$/, '') + 'anuncios.html';
   if (!/^https?:/.test(SITIO)) SITIO = 'https://ade30192.github.io/CCTA_SITIO/anuncios.html';
@@ -93,7 +98,7 @@
       detalle: texto(item.detalle, 900),
       imagen: imagenSegura(item.imagen),
       url: item.enlace ? enlaceSeguro(item.enlace.url) : '',
-      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || 'Más información',
+      textoEnlace: texto(item.enlace && item.enlace.texto, 40) || T('Más información'),
       desde: leerFecha(item.desde),
       fechaTexto: String(item.fecha),
       id: 'a-' + item.fecha + '-' + slug(titulo)
@@ -101,15 +106,16 @@
   }
 
   function etiqueta(ev, base) {
-    if (ev.inicio <= base && ev.fin >= base) return { txt: 'Hoy', tipo: 'hoy' };
+    if (ev.inicio <= base && ev.fin >= base) return { txt: T('Hoy'), tipo: 'hoy' };
     var dias = Math.round((ev.inicio - base) / DIA_MS);
-    if (dias === 1) return { txt: 'Mañana', tipo: 'pronto' };
-    if (dias <= 7) return { txt: 'En ' + dias + ' días', tipo: 'pronto' };
-    return { txt: 'Próximamente', tipo: '' };
+    if (dias === 1) return { txt: T('Mañana'), tipo: 'pronto' };
+    if (dias <= 7) return { txt: T('En {n} días', { n: dias }), tipo: 'pronto' };
+    return { txt: T('Próximamente'), tipo: '' };
   }
 
   function fechaLarga(ev) {
     var d = ev.inicio;
+    if (L) return ev.fin > ev.inicio ? L.rango(d, ev.fin) : L.fecha(d);
     if (ev.fin > ev.inicio) {
       var mismoMes = ev.fin.getMonth() === d.getMonth();
       return 'Del ' + d.getDate() + (mismoMes ? '' : ' de ' + MESES_LARGOS[d.getMonth()]) +
@@ -128,14 +134,14 @@
       visor = el('div', 'ann-viewer');
       visor.setAttribute('role', 'dialog');
       visor.setAttribute('aria-modal', 'true');
-      visor.setAttribute('aria-label', 'Afiche del evento');
+      visor.setAttribute('aria-label', T('Afiche del evento'));
       var cerrar = el('button', 'ann-viewer-close');
       cerrar.type = 'button';
-      cerrar.innerHTML = '<span aria-hidden="true">✕</span> Cerrar';
+      cerrar.innerHTML = '<span aria-hidden="true">✕</span> ' + T('Cerrar');
       var img = el('img', 'ann-viewer-img');
       var abajo = el('button', 'ann-viewer-close ann-viewer-close-bottom');
       abajo.type = 'button';
-      abajo.innerHTML = '<span aria-hidden="true">←</span> Volver';
+      abajo.innerHTML = '<span aria-hidden="true">←</span> ' + T('Volver');
       visor.appendChild(cerrar);
       visor.appendChild(img);
       visor.appendChild(abajo);
@@ -243,14 +249,14 @@
 
   function botonCalendario(ev) {
     var cont = el('div', 'anx-cal');
-    var b = el('button', 'btn btn-outline-navy anx-btn', '📅 Agendar');
+    var b = el('button', 'btn btn-outline-navy anx-btn', T('📅 Agendar'));
     b.type = 'button';
     b.setAttribute('aria-expanded', 'false');
     var menu = el('div', 'anx-cal-menu');
     menu.hidden = true;
     var g = el('a', '', 'Google Calendar');
     g.href = enlaceGoogle(ev); g.target = '_blank'; g.rel = 'noopener';
-    var i = el('button', '', 'iPhone, Outlook u otro');
+    var i = el('button', '', T('iPhone, Outlook u otro'));
     i.type = 'button';
     i.addEventListener('click', function () { descargarICS(ev); cerrar(); });
     g.addEventListener('click', function () { cerrar(); });
@@ -290,17 +296,17 @@
     if (ev.imagen) {
       var marco = el('button', 'anx-poster');
       marco.type = 'button';
-      marco.setAttribute('aria-label', 'Ver en grande el afiche de ' + ev.titulo);
+      marco.setAttribute('aria-label', T('Ver en grande el afiche de {t}', { t: ev.titulo }));
       var fondo = el('span', 'anx-poster-bg');
       fondo.style.backgroundImage = 'url("' + ev.imagen + '")';
       fondo.setAttribute('aria-hidden', 'true');
       var img = el('img');
       img.src = ev.imagen;
-      img.alt = 'Afiche: ' + ev.titulo;
+      img.alt = T('Afiche: {t}', { t: ev.titulo });
       img.loading = 'lazy';
       img.decoding = 'async';
       img.onerror = function () { art.classList.add('sin-afiche'); marco.remove(); };
-      var lupa = el('span', 'anx-zoom', 'Ver en grande');
+      var lupa = el('span', 'anx-zoom', T('Ver en grande'));
       lupa.setAttribute('aria-hidden', 'true');
       marco.appendChild(fondo);
       marco.appendChild(img);
@@ -344,13 +350,13 @@
 
     var acciones = el('div', 'anx-actions');
     if (ev.imagen) {
-      var ver = el('button', 'btn btn-navy anx-btn', 'Ver afiche');
+      var ver = el('button', 'btn btn-navy anx-btn', T('Ver afiche'));
       ver.type = 'button';
-      ver.addEventListener('click', function () { abrirVisor(ev.imagen, 'Afiche: ' + ev.titulo, ver); });
+      ver.addEventListener('click', function () { abrirVisor(ev.imagen, T('Afiche: {t}', { t: ev.titulo }), ver); });
       acciones.appendChild(ver);
     }
     acciones.appendChild(botonCalendario(ev));
-    var comp = el('button', 'btn btn-outline-navy anx-btn', 'Compartir');
+    var comp = el('button', 'btn btn-outline-navy anx-btn', T('Compartir'));
     comp.type = 'button';
     comp.addEventListener('click', function () { compartir(ev, comp); });
     acciones.appendChild(comp);
@@ -370,7 +376,7 @@
   function vacio(msj) {
     lista.innerHTML = '';
     var caja = el('div', 'anx-vacio');
-    caja.appendChild(el('strong', '', 'Por ahora no hay anuncios'));
+    caja.appendChild(el('strong', '', T('Por ahora no hay anuncios')));
     caja.appendChild(el('p', '', msj));
     lista.appendChild(caja);
   }
@@ -426,13 +432,13 @@
         .filter(function (ev) { return ev && ev.fin >= base && (!ev.desde || ev.desde <= base); })
         .sort(function (a, b) { return a.inicio - b.inicio; });
 
-      if (!eventos.length) return vacio('Volvé pronto o revisá nuestras redes para enterarte de las próximas actividades.');
+      if (!eventos.length) return vacio(T('Volvé pronto o revisá nuestras redes para enterarte de las próximas actividades.'));
 
       lista.innerHTML = '';
       eventos.forEach(function (ev) { lista.appendChild(tarjeta(ev, base)); });
     })
     .catch(function () {
-      vacio('No pudimos cargar los anuncios en este momento. Intentá de nuevo en un ratito.');
+      vacio(T('No pudimos cargar los anuncios en este momento. Intentá de nuevo en un ratito.'));
     })
     .then(reubicar);
 })();

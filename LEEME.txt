@@ -147,3 +147,16 @@ VELOCIDAD DE LAS FOTOS (20 nov 2026)
   Mientras cargan se ve un brillo suave y luego aparecen con un fundido.
 - Medido con internet de celular simulado: primera foto en iPad de 11,1 s a 4,4 s; en iPhone de 5,5 s a 2,8 s.
 - iPad: el menú "Nosotros" abre y cierra con un toque (antes se quedaba abierto).
+
+IDIOMAS: ESPAÑOL, INGLÉS Y FRANCÉS (20 nov 2026)
+- Botón ES · EN · FR en la barra superior (portada) o en una franja delgada arriba (demás páginas).
+- i18n.js: el motor. i18n-textos.js: todas las traducciones, en formato
+  "Texto exacto en español": ["English", "Français"].
+- IMPORTANTE: si se cambia un texto en español de cualquier página, hay que cambiar esa misma línea
+  en i18n-textos.js (si no, ese texto se queda en español cuando alguien elige inglés o francés).
+- Los anuncios (anuncios.json) se publican solo en español; en inglés/francés aparece un aviso.
+- Versículo de la semana: inglés King James y francés Louis Segond 1910 (dominio público), en
+  i18n-textos.js → CCTA_VERSOS. Si se agrega un versículo nuevo a versiculo.json, agregar su traducción
+  ahí; si no, ese versículo se muestra en español.
+- Enlaces directos: index.html?lang=en o ?lang=fr. La elección queda guardada en el dispositivo.
+- El formulario de reservación envía a los pastores el mensaje en español e indica el idioma del visitante.

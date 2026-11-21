@@ -12,7 +12,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=11">
+  <!-- Idiomas (español, inglés, francés) -->
+
+  <script src="i18n.js?v=2"></script>
+
+
+  <link rel="stylesheet" href="styles.css?v=12">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
   <link rel="canonical" href="https://ade30192.github.io/CCTA_SITIO/reservar.html">
@@ -166,11 +171,11 @@
                 <label for="rsv-tipo">Tipo de actividad *</label>
                 <select id="rsv-tipo" name="tipo" aria-describedby="err-tipo" required>
                   <option value="">Elegí una opción</option>
-                  <option>Fiesta</option>
-                  <option>Cumpleaños</option>
-                  <option>Boda</option>
-                  <option>Reunión gerencial</option>
-                  <option>Otra actividad</option>
+                  <option value="Fiesta">Fiesta</option>
+                  <option value="Cumpleaños">Cumpleaños</option>
+                  <option value="Boda">Boda</option>
+                  <option value="Reunión gerencial">Reunión gerencial</option>
+                  <option value="Otra actividad">Otra actividad</option>
                 </select>
                 <span class="rsv-err" id="err-tipo"></span>
               </div>
@@ -262,6 +267,7 @@
       var form = document.getElementById('rsv-form');
       if (!form) return;
 
+      var T = window.cctaT || function (x, v) { return String(x).replace(/\{(\w+)\}/g, function (m, k) { return v && k in v ? v[k] : m; }); };
       var msg = document.getElementById('rsv-msg');
       var CORREO = 'tabernaculodeadoracion1952@gmail.com';
       var DIAS_ANTICIPACION = 7;
@@ -321,55 +327,55 @@
       var reglas = [
         { id: 'rsv-nombre', err: 'err-nombre', check: function () {
             var v = val('rsv-nombre');
-            if (!v) return 'Escribí tu nombre completo.';
+            if (!v) return T('Escribí tu nombre completo.');
             var partes = v.split(' ');
-            if (partes.length < 2) return 'Escribí tu nombre y apellido.';
-            if (!/^[\p{L}][\p{L}'’.\- ]*$/u.test(v)) return 'El nombre solo puede tener letras.';
+            if (partes.length < 2) return T('Escribí tu nombre y apellido.');
+            if (!/^[\p{L}][\p{L}'’.\- ]*$/u.test(v)) return T('El nombre solo puede tener letras.');
             for (var i = 0; i < partes.length; i++) {
-              if (partes[i].replace(/[^\p{L}]/gu, '').length < 2) return 'Escribí tu nombre y apellido completos.';
+              if (partes[i].replace(/[^\p{L}]/gu, '').length < 2) return T('Escribí tu nombre y apellido completos.');
             }
-            if (v.length < 5) return 'El nombre es demasiado corto.';
+            if (v.length < 5) return T('El nombre es demasiado corto.');
             return '';
         } },
         { id: 'rsv-telefono', err: 'err-telefono', check: function () {
             var v = val('rsv-telefono');
-            if (!v) return 'Escribí un teléfono para poder llamarte.';
+            if (!v) return T('Escribí un teléfono para poder llamarte.');
             var d = digitosTelefono(v);
-            if (!d) return 'Escribí un número de 8 dígitos, por ejemplo 8765 4321.';
-            if (!/^[2456789]/.test(d)) return 'Ese número no parece de Costa Rica. Revisalo, por favor.';
-            if (/^(\d)\1{7}$/.test(d)) return 'Revisá el número: parece inválido.';
+            if (!d) return T('Escribí un número de 8 dígitos, por ejemplo 8765 4321.');
+            if (!/^[2456789]/.test(d)) return T('Ese número no parece de Costa Rica. Revisalo, por favor.');
+            if (/^(\d)\1{7}$/.test(d)) return T('Revisá el número: parece inválido.');
             return '';
         } },
         { id: 'rsv-templo', err: 'err-templo', check: function () {
-            return val('rsv-templo') ? '' : 'Elegí el templo que querés solicitar.';
+            return val('rsv-templo') ? '' : T('Elegí el templo que querés solicitar.');
         } },
         { id: 'rsv-tipo', err: 'err-tipo', check: function () {
-            return val('rsv-tipo') ? '' : 'Elegí el tipo de actividad.';
+            return val('rsv-tipo') ? '' : T('Elegí el tipo de actividad.');
         } },
         { id: 'rsv-fecha', err: 'err-fecha', check: function () {
             var v = val('rsv-fecha');
-            if (!v) return 'Elegí una fecha tentativa.';
-            if (v < fechaMinima()) return 'La fecha debe ser con al menos ' + DIAS_ANTICIPACION + ' días de anticipación (desde el ' + formatoFecha(fechaMinima()) + ').';
-            if (v > fechaMaxima()) return 'Elegí una fecha dentro de los próximos ' + MESES_MAXIMO + ' meses.';
+            if (!v) return T('Elegí una fecha tentativa.');
+            if (v < fechaMinima()) return T('La fecha debe ser con al menos {n} días de anticipación (desde el {f}).', { n: DIAS_ANTICIPACION, f: formatoFecha(fechaMinima()) });
+            if (v > fechaMaxima()) return T('Elegí una fecha dentro de los próximos {n} meses.', { n: MESES_MAXIMO });
             return '';
         } },
         { id: 'rsv-personas', err: 'err-personas', check: function () {
             var v = val('rsv-personas');
-            if (!v) return 'Indicá la cantidad aproximada de personas.';
+            if (!v) return T('Indicá la cantidad aproximada de personas.');
             var n = Number(v);
-            if (!/^\d+$/.test(v) || n < 1 || n > 1000) return 'Escribí un número entre 1 y 1000.';
+            if (!/^\d+$/.test(v) || n < 1 || n > 1000) return T('Escribí un número entre 1 y 1000.');
             return '';
         } },
         { id: 'rsv-pastor', err: 'err-pastor', check: function () {
-            return val('rsv-pastor') ? '' : 'Elegí a quién querés enviar la solicitud.';
+            return val('rsv-pastor') ? '' : T('Elegí a quién querés enviar la solicitud.');
         } },
         { id: 'rsv-detalles', err: 'err-detalles', check: function () {
             var v = val('rsv-detalles');
-            if (val('rsv-tipo') === 'Otra actividad' && v.length < 10) return 'Contanos brevemente qué actividad es (mínimo 10 caracteres).';
+            if (val('rsv-tipo') === 'Otra actividad' && v.length < 10) return T('Contanos brevemente qué actividad es (mínimo 10 caracteres).');
             return '';
         } },
         { id: 'rsv-acepto', err: 'err-acepto', check: function () {
-            return $('rsv-acepto').checked ? '' : 'Tenés que aceptar para poder enviar la solicitud.';
+            return $('rsv-acepto').checked ? '' : T('Tenés que aceptar para poder enviar la solicitud.');
         } }
       ];
 
@@ -396,7 +402,7 @@
           if (validarCampo(r) && !primero) primero = $(r.id);
         });
         if (primero) {
-          msg.textContent = 'Revisá los campos marcados antes de enviar.';
+          msg.textContent = T('Revisá los campos marcados antes de enviar.');
           primero.focus();
           return false;
         }
@@ -439,6 +445,7 @@
         lineas.push('Cantidad de personas: ' + val('rsv-personas'));
         if (val('rsv-detalles')) lineas.push('Detalles: ' + val('rsv-detalles'));
         lineas.push('', 'Entiendo que es una solicitud sujeta a disponibilidad y aprobación, y que me llamarán para confirmarla.');
+        if (window.CCTA_LANG && window.CCTA_LANG !== 'es') lineas.push('', 'Idioma del visitante: ' + (window.CCTA_LANG === 'en' ? 'inglés' : 'francés') + '.');
         return lineas.join('\n');
       }
 
@@ -449,7 +456,7 @@
         var url = 'https://wa.me/' + val('rsv-pastor') + '?text=' + encodeURIComponent(construirMensaje());
         window.open(url, '_blank', 'noopener');
         msg.className = 'rsv-msg rsv-ok';
-        msg.textContent = 'Se abrió WhatsApp con tu solicitud. Presioná enviar allí para completarla.';
+        msg.textContent = T('Se abrió WhatsApp con tu solicitud. Presioná enviar allí para completarla.');
       });
 
       $('rsv-btn-mail').addEventListener('click', function () {
@@ -459,7 +466,7 @@
           '?subject=' + encodeURIComponent(asunto) +
           '&body=' + encodeURIComponent(construirMensaje());
         msg.className = 'rsv-msg rsv-ok';
-        msg.textContent = 'Se abrió tu aplicación de correo con la solicitud lista para enviar.';
+        msg.textContent = T('Se abrió tu aplicación de correo con la solicitud lista para enviar.');
       });
     })();
   </script>
@@ -471,18 +478,18 @@
         var id = String(c && c.calendarioReservas || '').trim();
         if (!/^[\w.+-]+@[\w.-]+\.[a-z]{2,}$/i.test(id)) return;
         var movil = window.matchMedia('(max-width: 640px)').matches;
-        var p = new URLSearchParams({ src: id, ctz: 'America/Costa_Rica', hl: 'es', mode: movil ? 'AGENDA' : 'MONTH',
+        var p = new URLSearchParams({ src: id, ctz: 'America/Costa_Rica', hl: window.CCTA_LANG || 'es', mode: movil ? 'AGENDA' : 'MONTH',
           showTitle: '0', showPrint: '0', showCalendars: '0', showTz: '0', wkst: '1', bgcolor: '#ffffff' });
         document.getElementById('rsv-cal-iframe').src = 'https://calendar.google.com/calendar/embed?' + p.toString();
         document.getElementById('disponibilidad').hidden = false;
       }).catch(function () {});
     })();
   </script>
-  <script src="volver.js?v=1" defer></script>
+  <script src="volver.js?v=2" defer></script>
 
   <script src="equipo.js?v=2" defer></script>
 
-  <script src="app.js?v=2" defer></script>
+  <script src="app.js?v=3" defer></script>
 
 </body>
 </html>

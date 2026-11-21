@@ -12,7 +12,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css?v=11">
+  <!-- Idiomas (español, inglés, francés) -->
+
+  <script src="i18n.js?v=2"></script>
+
+
+  <link rel="stylesheet" href="styles.css?v=12">
   <link rel="stylesheet" href="extras.css?v=28">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
@@ -174,6 +179,7 @@
   </script>
 
   <script>
+const T = window.cctaT || ((s, v) => String(s).replace(/\{(\w+)\}/g, (m, k) => (v && k in v ? v[k] : m)));
 const copyStatus = document.querySelector('#copy-status');
 
 document.querySelectorAll('[data-copy]').forEach(button => {
@@ -233,14 +239,14 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
       button.dataset.originalText = originalText;
 
-      button.textContent = 'Copiado ✓';
+      button.textContent = T('Copiado ✓');
 
       button.classList.add('copied');
 
       if (copyStatus) {
 
         copyStatus.textContent =
-          `Se copió correctamente: ${value}`;
+          T('Se copió correctamente: {v}', { v: value });
 
       }
 
@@ -261,14 +267,14 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
       button.dataset.originalText = originalText;
 
-      button.textContent = 'No se pudo copiar. Tocá el número para seleccionarlo';
+      button.textContent = T('No se pudo copiar. Tocá el número para seleccionarlo');
 
       button.classList.add('copy-error');
 
       if (copyStatus) {
 
         copyStatus.textContent =
-          'No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.';
+          T('No se pudo copiar automáticamente. Seleccioná el número y copialo manualmente.');
 
       }
 
@@ -289,11 +295,11 @@ document.querySelectorAll('[data-copy]').forEach(button => {
 
 
 
-  <script src="volver.js?v=1" defer></script>
+  <script src="volver.js?v=2" defer></script>
 
   <script src="equipo.js?v=2" defer></script>
 
-  <script src="app.js?v=2" defer></script>
+  <script src="app.js?v=3" defer></script>
 
 </body>
 </html>

@@ -2440,3 +2440,91 @@ details a {
     transform: none;
   }
 }
+
+
+/* =====================================================
+   IDIOMAS: botón ES · EN · FR (i18n.js)
+   ===================================================== */
+
+/* Mientras se aplican las traducciones no se muestra el español un instante */
+.i18n-cargando body {
+  visibility: hidden;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  margin-right: 14px;
+  padding: 2px;
+  border: 1px solid rgba(245, 223, 157, .35);
+  border-radius: 999px;
+}
+
+.topbar-app:not([hidden]) ~ .lang-switch {
+  margin-left: 0;
+}
+
+.lang-switch button {
+  min-width: 34px;
+  min-height: 26px;
+  padding: 3px 8px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #c9d6ee;
+  font: 800 .7rem/1 var(--head);
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.lang-switch button:hover {
+  color: var(--gold-light);
+}
+
+.lang-switch button[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.lang-switch button:focus-visible {
+  outline: 2px solid var(--gold-light);
+  outline-offset: 2px;
+}
+
+/* Franja con el selector en las páginas que no tienen barra superior */
+.lang-bar {
+  background: #050d1f;
+}
+
+.lang-bar-inner {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 36px;
+}
+
+.lang-bar .lang-switch {
+  margin-right: 0;
+}
+
+/* Aviso en anuncios cuando la página está en inglés o francés */
+.aviso-idioma {
+  max-width: 760px;
+  margin: 0 auto 18px;
+  padding: 10px 16px;
+  border-left: 3px solid var(--gold);
+  background: #fff;
+  color: var(--muted);
+  font-size: .88rem;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .lang-switch {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}

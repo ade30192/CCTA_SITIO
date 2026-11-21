@@ -19,6 +19,8 @@
     { dia: 0, h: 10, m: 0,  nombre: 'Culto dominical' }
   ];
   var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  var T = window.cctaT || function (s, v) { return String(s).replace(/\{(\w+)\}/g, function (m, k) { return v && k in v ? v[k] : m; }); };
+  var L = window.cctaL || null;
   var EN_CURSO_MIN = 90;
 
   // Hora actual en Costa Rica (UTC-6, sin horario de verano), sin importar el reloj del visitante.
@@ -28,6 +30,7 @@
   }
 
   function formatoHora(h, m) {
+    if (L) return L.hora(h, m);
     var suf = h < 12 ? 'a. m.' : 'p. m.';
     var h12 = h % 12 === 0 ? 12 : h % 12;
     return h12 + ':' + (m < 10 ? '0' + m : m) + ' ' + suf;
@@ -72,6 +75,7 @@
       var d = DIAS[r.dia];
       d = d.charAt(0).toUpperCase() + d.slice(1);
       if (!/s$/.test(d)) d += 's';
+      if (L) d = L.diasPlural[r.dia];
       return d + ' ' + formatoHora(r.h, r.m);
     }).join(' · ');
   }
@@ -100,18 +104,18 @@
     var now = ahoraCR();
     var cuando;
     if (p.enCurso) {
-      cuando = 'Ahora';
+      cuando = T('Ahora');
     } else if (p.r.dia === now.dia && p.delta < 1440) {
-      cuando = 'Hoy';
+      cuando = T('Hoy');
     } else if (p.r.dia === (now.dia + 1) % 7 && p.delta < 2 * 1440) {
-      cuando = 'Mañana';
+      cuando = T('Mañana');
     } else {
-      cuando = DIAS[p.r.dia].charAt(0).toUpperCase() + DIAS[p.r.dia].slice(1);
+      cuando = L ? L.dias[p.r.dia] : DIAS[p.r.dia].charAt(0).toUpperCase() + DIAS[p.r.dia].slice(1);
     }
 
     txt.textContent = '';
     var strong = document.createElement('strong');
-    strong.textContent = p.r.nombre;
+    strong.textContent = T(p.r.nombre);
     txt.appendChild(strong);
     txt.appendChild(document.createTextNode(' · ' + cuando + (p.enCurso ? '' : ', ' + formatoHora(p.r.h, p.r.m))));
     cont.hidden = false;
@@ -169,8 +173,11 @@
         }) : [];
         if (!lista.length) return;
         var v = lista[indiceAleatorio(numeroSemana(), lista.length)];
-        t.textContent = v.texto;
-        r.textContent = v.cita;
+        var tr = window.CCTA_VERSOS && window.CCTA_LANG && window.CCTA_VERSOS[v.cita] && window.CCTA_VERSOS[v.cita][window.CCTA_LANG];
+        t.textContent = tr ? tr[0] : v.texto;
+        r.textContent = tr ? tr[1] : v.cita;
+        t.setAttribute('data-sin-traducir', '');
+        r.setAttribute('data-sin-traducir', '');
       })
       .catch(function () { /* se queda el versículo que trae la página */ })
       .then(mostrar);
@@ -198,7 +205,7 @@
       v.controls = true;
       v.preload = 'metadata';
       v.setAttribute('playsinline', '');
-      v.setAttribute('aria-label', 'Video de los pastores');
+      v.setAttribute('aria-label', T('Video de los pastores'));
       marco.appendChild(v);
       caja.hidden = false;
       return;
@@ -209,13 +216,13 @@
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'pv-play';
-    btn.setAttribute('aria-label', 'Reproducir el video de los pastores');
+    btn.setAttribute('aria-label', T('Reproducir el video de los pastores'));
     btn.style.backgroundImage = 'url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)';
     btn.innerHTML = '<span class="pv-play-icon" aria-hidden="true"></span>';
     btn.addEventListener('click', function () {
       var f = document.createElement('iframe');
       f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
-      f.title = 'Video de los pastores';
+      f.title = T('Video de los pastores');
       f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
       f.setAttribute('allowfullscreen', '');
       marco.replaceChild(f, btn);
@@ -304,6 +311,7 @@
   if (!masthead || !nav || !toggle || !('IntersectionObserver' in window)) return;
 
   var movil = window.matchMedia('(max-width: 760px)');
+  var T = window.cctaT || function (x) { return x; };
 
   var barra = document.createElement('div');
   barra.className = 'mini-bar';
@@ -314,7 +322,7 @@
       '<span><strong>Tabernáculo</strong> de Adoración</span>' +
     '</a>' +
     '<button class="mini-menu" type="button" tabindex="-1" aria-controls="main-nav" aria-expanded="false">' +
-      '<span class="mini-menu-txt">Menú</span>' +
+      '<span class="mini-menu-txt">' + T('Menú') + '</span>' +
       '<span class="mini-lines" aria-hidden="true"><i></i><i></i><i></i></span>' +
     '</button>';
   document.body.appendChild(barra);
@@ -335,8 +343,8 @@
     var abierto = nav.classList.contains('open');
     document.body.classList.toggle('menu-abierto', abierto);
     boton.setAttribute('aria-expanded', String(abierto));
-    boton.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
-    boton.querySelector('.mini-menu-txt').textContent = abierto ? 'Cerrar' : 'Menú';
+    boton.setAttribute('aria-label', abierto ? T('Cerrar menú') : T('Abrir menú'));
+    boton.querySelector('.mini-menu-txt').textContent = abierto ? T('Cerrar') : T('Menú');
   }
 
   // Mostrar la barra solo cuando el encabezado salió de la pantalla (y en celular)
