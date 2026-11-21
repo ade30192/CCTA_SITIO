@@ -249,7 +249,9 @@
 
   function botonCalendario(ev) {
     var cont = el('div', 'anx-cal');
-    var b = el('button', 'btn btn-outline-navy anx-btn', T('📅 Agendar'));
+    var b = el('button', 'btn btn-outline-navy anx-btn');
+    b.innerHTML = '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>';
+    b.appendChild(document.createTextNode(T('Agendar')));
     b.type = 'button';
     b.setAttribute('aria-expanded', 'false');
     var menu = el('div', 'anx-cal-menu');

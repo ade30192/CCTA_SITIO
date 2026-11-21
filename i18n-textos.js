@@ -22,10 +22,6 @@ window.CCTA_TEXTOS = {
   "The church for the family.",
   "L’église pour la famille."
  ],
- "📲 Instalar la app": [
-  "📲 Install the app",
-  "📲 Installer l’app"
- ],
  "Centro Cristiano Tabernáculo de Adoración, ir al inicio": [
   "Centro Cristiano Tabernáculo de Adoración, go to home",
   "Centro Cristiano Tabernáculo de Adoración, aller à l’accueil"
@@ -962,10 +958,6 @@ window.CCTA_TEXTOS = {
   "Back",
   "Retour"
  ],
- "📅 Agendar": [
-  "📅 Add to calendar",
-  "📅 Ajouter à l’agenda"
- ],
  "iPhone, Outlook u otro": [
   "iPhone, Outlook or other",
   "iPhone, Outlook ou autre"
@@ -1613,6 +1605,22 @@ window.CCTA_TEXTOS = {
  "Culto dominical, fotografía 3": [
   "Sunday service, photo 3",
   "Culte du dimanche, photo 3"
+ ],
+ "Instalar la app": [
+  "Install the app",
+  "Installer l’app"
+ ],
+ "Agendar": [
+  "Add to calendar",
+  "Ajouter à l’agenda"
+ ],
+ "Compartir versículo": [
+  "Share verse",
+  "Partager le verset"
+ ],
+ "Versículo copiado para compartir.": [
+  "Verse copied to share.",
+  "Verset copié pour le partager."
  ]
 };
 

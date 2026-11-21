@@ -153,6 +153,39 @@
     return a[pos];
   }
 
+  // Versión bíblica de cada idioma (se muestra debajo de la cita)
+  var VERSIONES = { es: 'Reina-Valera 1960', en: 'King James Version', fr: 'Louis Segond 1910' };
+
+  function iniciarCompartirVersiculo() {
+    var b = document.getElementById('verse-share');
+    var t = document.getElementById('verse-text');
+    var r = document.getElementById('verse-ref');
+    var ver = document.getElementById('verse-version');
+    if (!b || !t || !r) return;
+    if (ver) ver.textContent = VERSIONES[window.CCTA_LANG] || VERSIONES.es;
+    var etiqueta = b.querySelector('span');
+    var original = etiqueta ? etiqueta.textContent : '';
+    b.addEventListener('click', function () {
+      var url = location.origin + location.pathname + '#versiculo';
+      var texto = '\u201C' + t.textContent.trim() + '\u201D \u2014 ' + r.textContent.trim() +
+        ' (' + (ver ? ver.textContent : '') + ')';
+      if (navigator.share) {
+        navigator.share({ title: T('Versículo de la semana'), text: texto, url: url }).catch(function () {});
+        return;
+      }
+      var listo = function () {
+        if (!etiqueta) return;
+        etiqueta.textContent = T('Copiado ✓');
+        setTimeout(function () { etiqueta.textContent = original; }, 2200);
+        var st = document.getElementById('copy-status');
+        if (st) st.textContent = T('Versículo copiado para compartir.');
+      };
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(texto + '\n' + url).then(listo).catch(function () {});
+      }
+    });
+  }
+
   function iniciarVersiculo() {
     var t = document.getElementById('verse-text');
     var r = document.getElementById('verse-ref');
@@ -283,8 +316,9 @@
     try { iniciarResumenHorario(); } catch (e) {}
     try { iniciarProxima(); } catch (e) {}
     try { iniciarVersiculo(); } catch (e) {}
+    try { iniciarCompartirVersiculo(); } catch (e) {}
     try { iniciarVideoPastores(); } catch (e) {}
-    try { iniciarReveal(); } catch (e) {}
+    // La aparición animada al hacer scroll se desactivó (dirección visual sobria de CCTA 2.0)
   }
 
   if (document.readyState === 'loading') {

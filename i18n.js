@@ -98,7 +98,7 @@
 
   if (LANG !== 'es') {
     // Se cargan las traducciones antes de que se dibuje la página (evita ver el español un instante)
-    document.write('<script src="' + BASE + 'i18n-textos.js?v=1"><\/script>');
+    document.write('<script src="' + BASE + 'i18n-textos.js?v=2"><\/script>');
     document.documentElement.classList.add('i18n-cargando');
     setTimeout(function () { document.documentElement.classList.remove('i18n-cargando'); }, 2500);
   }
@@ -165,6 +165,8 @@
       b.addEventListener('click', function () {
         if (l === LANG) return;
         try { localStorage.setItem(CLAVE, l); } catch (e) {}
+        // Se recuerda en qué parte de la página estaba, para volver ahí mismo
+        try { sessionStorage.setItem('ccta-scroll', JSON.stringify({ p: location.pathname, y: window.scrollY })); } catch (e) {}
         // Se recarga la página en el nuevo idioma (sin ?lang= viejo, conservando la sección)
         var u = new URL(location.href);
         u.searchParams.delete('lang');
@@ -195,6 +197,74 @@
     document.body.insertBefore(franja, salto ? salto.nextSibling : document.body.firstChild);
   }
 
+  /* ---------- Botón flotante: el idioma siempre a mano ----------
+     Aparece al bajar por la página (mismo estilo que "volver arriba"),
+     así nadie tiene que volver hasta arriba si cambió el idioma sin querer. */
+
+  var NOMBRES = { es: 'Español', en: 'English', fr: 'Français' };
+  var TITULO = { es: 'Cambiar idioma', en: 'Change language', fr: 'Changer de langue' };
+
+  function ponerFlotante() {
+    var caja = document.createElement('div');
+    caja.className = 'lang-float';
+    caja.setAttribute('data-sin-traducir', '');
+    if (document.getElementById('to-top')) caja.classList.add('con-arriba');
+
+    var boton = document.createElement('button');
+    boton.type = 'button';
+    boton.className = 'lang-float-btn';
+    boton.setAttribute('aria-expanded', 'false');
+    boton.setAttribute('aria-label', TITULO[LANG] + ' · ' + NOMBRES[LANG]);
+    boton.title = TITULO[LANG];
+    boton.innerHTML =
+      '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>' +
+      '<span>' + LANG.toUpperCase() + '</span>';
+
+    var menu = document.createElement('div');
+    menu.className = 'lang-float-menu';
+    menu.setAttribute('role', 'group');
+    menu.setAttribute('aria-label', 'Idioma · Language · Langue');
+    menu.hidden = true;
+    var sel = crearSelector();
+    Array.prototype.forEach.call(sel.querySelectorAll('button'), function (b) {
+      b.textContent = NOMBRES[b.lang];
+      b.removeAttribute('title');
+      b.removeAttribute('aria-label');
+      menu.appendChild(b);
+    });
+    var menuId = 'lang-float-menu';
+    menu.id = menuId;
+    boton.setAttribute('aria-controls', menuId);
+
+    function abrir(si) {
+      menu.hidden = !si;
+      boton.setAttribute('aria-expanded', String(si));
+      caja.classList.toggle('abierto', si);
+      if (si) {
+        var actual = menu.querySelector('[aria-pressed="true"]');
+        (actual || menu.firstChild).focus();
+      }
+    }
+
+    boton.addEventListener('click', function () { abrir(menu.hidden); });
+    document.addEventListener('click', function (e) { if (!caja.contains(e.target) && !menu.hidden) abrir(false); });
+    caja.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.hidden) { abrir(false); boton.focus(); }
+    });
+
+    caja.appendChild(menu);
+    caja.appendChild(boton);
+    document.body.appendChild(caja);
+
+    function revisar() {
+      var ver = window.scrollY > 500;
+      caja.classList.toggle('show', ver);
+      if (!ver && !menu.hidden) abrir(false);
+    }
+    window.addEventListener('scroll', revisar, { passive: true });
+    revisar();
+  }
+
   function aviso() {
     // En anuncios: avisar que los anuncios se publican en español
     if (LANG === 'es') return;
@@ -218,9 +288,22 @@
         aviso();
       }
       ponerSelector();
+      ponerFlotante();
     } catch (e) {}
     document.documentElement.classList.remove('i18n-cargando');
   }
+
+  // Después de cambiar de idioma, volver a la misma parte de la página
+  function restaurarPosicion() {
+    var dato = null;
+    try { dato = JSON.parse(sessionStorage.getItem('ccta-scroll') || 'null'); sessionStorage.removeItem('ccta-scroll'); } catch (e) {}
+    if (!dato || dato.p !== location.pathname || !(dato.y > 0)) return;
+    var ir = function () { window.scrollTo({ top: dato.y, left: 0, behavior: 'instant' }); };
+    ir();
+    window.addEventListener('load', function () { ir(); setTimeout(ir, 150); }, { once: true });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { try { restaurarPosicion(); } catch (e) {} });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', iniciar);
   else iniciar();

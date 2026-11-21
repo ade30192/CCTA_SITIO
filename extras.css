@@ -1374,3 +1374,42 @@
     grid-column: auto;
   }
 }
+
+
+/* ---------- Versículo: versión bíblica y botón compartir ---------- */
+
+.verse-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 18px;
+  margin: 18px 0 0;
+}
+
+.verse-version {
+  color: var(--muted, #66718a);
+  font-size: .78rem;
+  letter-spacing: .02em;
+}
+
+.verse-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 16px;
+  border: 1px solid rgba(143, 101, 22, .45);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold-dark, #8f6516);
+  font: 800 .78rem/1 var(--head, "Manrope", Arial, sans-serif);
+  cursor: pointer;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.verse-share:hover {
+  border-color: var(--gold-dark, #8f6516);
+  background: var(--gold-dark, #8f6516);
+  color: #fff;
+}

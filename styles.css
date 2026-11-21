@@ -2528,3 +2528,121 @@ details a {
     margin-right: 0;
   }
 }
+
+
+/* ---------- Botón flotante de idioma (aparece al bajar, encima de "volver arriba") ---------- */
+
+.lang-float {
+  position: fixed;
+  z-index: 51;
+  right: 18px;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity .25s, transform .25s, visibility .25s;
+}
+
+.lang-float.con-arriba {
+  bottom: calc(max(18px, env(safe-area-inset-bottom)) + 56px);
+}
+
+.lang-float.show {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.lang-float-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  box-shadow: 0 8px 20px rgba(5, 13, 31, .28);
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+
+.lang-float-btn .icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+
+.lang-float-btn span {
+  font: 800 .62rem/1 var(--head);
+  letter-spacing: .06em;
+}
+
+.lang-float-btn:hover,
+.lang-float.abierto .lang-float-btn {
+  background: var(--gold);
+  color: var(--navy);
+}
+
+.lang-float-btn:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.lang-float-menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(5, 13, 31, .22);
+}
+
+.lang-float-menu[hidden] {
+  display: none;
+}
+
+.lang-float-menu button {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font: 700 .9rem/1.2 var(--head);
+  text-align: left;
+  cursor: pointer;
+}
+
+.lang-float-menu button:hover {
+  background: var(--bg);
+}
+
+.lang-float-menu button[aria-pressed="true"] {
+  background: var(--navy);
+  color: #fff;
+}
+
+.lang-float-menu button[aria-pressed="true"]::after {
+  content: " ✓";
+  color: var(--gold);
+}
+
+.lang-float-menu button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+@media print {
+  .lang-float { display: none; }
+}
