@@ -318,7 +318,7 @@
     try { iniciarVersiculo(); } catch (e) {}
     try { iniciarCompartirVersiculo(); } catch (e) {}
     try { iniciarVideoPastores(); } catch (e) {}
-    // La aparición animada al hacer scroll se desactivó (dirección visual sobria de CCTA 2.0)
+    try { iniciarReveal(); } catch (e) {}
   }
 
   if (document.readyState === 'loading') {

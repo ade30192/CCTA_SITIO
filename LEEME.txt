@@ -164,8 +164,8 @@ IDIOMAS: ESPAÑOL, INGLÉS Y FRANCÉS (20 nov 2026)
 FASE A DE CCTA 2.0 (20 nov 2026)
 - Botón flotante de idioma (círculo con globo, encima de "volver arriba"): aparece al bajar por la página
   en todas las páginas; al cambiar de idioma la página se queda en el mismo lugar.
-- Se quitaron las animaciones de aparición al hacer scroll y el brillo animado de las fotos (dirección
-  visual sobria). El carrusel de la portada se mantiene como estaba.
+- Las animaciones de aparición al hacer scroll y el brillo de las fotos se mantienen (se probó quitarlas
+  y se decidió conservarlas). El carrusel de la portada se mantiene como estaba.
 - "Instalar la app" y "Agendar" usan íconos en lugar de emojis.
 - Versículo de la semana: muestra la versión bíblica (Reina-Valera 1960 / King James Version /
   Louis Segond 1910) y tiene botón "Compartir versículo" (en celular abre el menú de compartir; en
