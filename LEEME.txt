@@ -162,8 +162,9 @@ IDIOMAS: ESPAÑOL, INGLÉS Y FRANCÉS (20 nov 2026)
 - El formulario de reservación envía a los pastores el mensaje en español e indica el idioma del visitante.
 
 FASE A DE CCTA 2.0 (20 nov 2026)
-- Botón flotante de idioma (círculo con globo, encima de "volver arriba"): aparece al bajar por la página
-  en todas las páginas; al cambiar de idioma la página se queda en el mismo lugar.
+- Botón flotante de idioma (círculo con globo, encima de "volver arriba"): aparece apenas el selector de
+  arriba deja de verse, en todas las páginas. Al cambiar de idioma (desde cualquiera de los dos), la página
+  vuelve a la misma sección donde estaba la persona (i18n.js → guardarPosicion / restaurarPosicion).
 - Las animaciones de aparición al hacer scroll y el brillo de las fotos se mantienen (se probó quitarlas
   y se decidió conservarlas). El carrusel de la portada se mantiene como estaba.
 - "Instalar la app" y "Agendar" usan íconos en lugar de emojis.

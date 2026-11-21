@@ -166,7 +166,7 @@
         if (l === LANG) return;
         try { localStorage.setItem(CLAVE, l); } catch (e) {}
         // Se recuerda en qué parte de la página estaba, para volver ahí mismo
-        try { sessionStorage.setItem('ccta-scroll', JSON.stringify({ p: location.pathname, y: window.scrollY })); } catch (e) {}
+        guardarPosicion();
         // Se recarga la página en el nuevo idioma (sin ?lang= viejo, conservando la sección)
         var u = new URL(location.href);
         u.searchParams.delete('lang');
@@ -256,13 +256,20 @@
     caja.appendChild(boton);
     document.body.appendChild(caja);
 
-    function revisar() {
-      var ver = window.scrollY > 500;
+    function mostrar(ver) {
       caja.classList.toggle('show', ver);
       if (!ver && !menu.hidden) abrir(false);
     }
-    window.addEventListener('scroll', revisar, { passive: true });
-    revisar();
+
+    // Aparece apenas el selector de arriba deja de verse (sirve también en páginas cortas)
+    var arriba = document.querySelector('.topbar .lang-switch, .lang-bar');
+    if (arriba && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) { mostrar(!e[0].isIntersecting); }, { threshold: 0 }).observe(arriba);
+    } else {
+      var revisar = function () { mostrar(window.scrollY > 300); };
+      window.addEventListener('scroll', revisar, { passive: true });
+      revisar();
+    }
   }
 
   function aviso() {
@@ -293,14 +300,62 @@
     document.documentElement.classList.remove('i18n-cargando');
   }
 
-  // Después de cambiar de idioma, volver a la misma parte de la página
+  /* ---------- Conservar el lugar de la página al cambiar de idioma ----------
+     Se guarda la sección que se estaba viendo (no solo los píxeles, porque en
+     otro idioma los textos cambian de largo) y se vuelve ahí al recargar.
+     Se reintenta mientras la página termina de acomodarse (fotos, traducciones). */
+
+  var CLAVE_POS = 'ccta-posicion';
+
+  function arribaDe(el) {
+    var y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  }
+
+  function guardarPosicion() {
+    var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+    var ancla = null;
+    // La última sección con id cuyo inicio ya pasó por arriba de la pantalla
+    Array.prototype.forEach.call(document.querySelectorAll('main [id], main'), function (el) {
+      if (el.offsetParent === null && el.tagName !== 'MAIN') return;
+      if (arribaDe(el) <= y + 90) ancla = el;
+    });
+    var dato = { p: location.pathname, y: y };
+    if (ancla && ancla.id) { dato.id = ancla.id; dato.off = y - arribaDe(ancla); }
+    try { sessionStorage.setItem(CLAVE_POS, JSON.stringify(dato)); } catch (e) {}
+  }
+
   function restaurarPosicion() {
     var dato = null;
-    try { dato = JSON.parse(sessionStorage.getItem('ccta-scroll') || 'null'); sessionStorage.removeItem('ccta-scroll'); } catch (e) {}
+    try { dato = JSON.parse(sessionStorage.getItem(CLAVE_POS) || 'null'); sessionStorage.removeItem(CLAVE_POS); } catch (e) {}
     if (!dato || dato.p !== location.pathname || !(dato.y > 0)) return;
-    var ir = function () { window.scrollTo({ top: dato.y, left: 0, behavior: 'instant' }); };
+
+    try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+
+    var tocado = false;
+    var parar = function () { tocado = true; };
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (ev) {
+      window.addEventListener(ev, parar, { once: true, passive: true });
+    });
+
+    var root = document.documentElement;
+    function ir() {
+      if (tocado) return;
+      var el = dato.id && document.getElementById(dato.id);
+      var destino = el ? arribaDe(el) + (dato.off || 0) : dato.y;
+      var antes = root.style.scrollBehavior;
+      root.style.scrollBehavior = 'auto';            // sin desplazamiento suave: llega directo
+      window.scrollTo(0, Math.max(0, destino));
+      root.style.scrollBehavior = antes;
+    }
+
     ir();
-    window.addEventListener('load', function () { ir(); setTimeout(ir, 150); }, { once: true });
+    requestAnimationFrame(ir);
+    window.addEventListener('load', function () {
+      ir();
+      [150, 400, 900, 1600].forEach(function (ms) { setTimeout(ir, ms); });
+    }, { once: true });
   }
 
   document.addEventListener('DOMContentLoaded', function () { try { restaurarPosicion(); } catch (e) {} });
