@@ -1351,3 +1351,27 @@
     animation: none;
   }
 }
+
+
+/* ---------- Reuniones de los otros días: al abrirlas ocupan todo el ancho ----------
+   Así las fotos salen igual de grandes que las del culto principal
+   (en iPad y computadora se veían muy pequeñas dentro de la tarjeta de media columna). */
+.agenda-grid .event:has(.event-toggle[aria-expanded="true"]) {
+  grid-column: 1 / -1;
+}
+
+.agenda-grid .event:has(.event-toggle[aria-expanded="true"]) .event-photos {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* iPad y celular: 2 fotos por fila, más grandes */
+@media (max-width: 1100px) {
+  .agenda-grid .event:has(.event-toggle[aria-expanded="true"]) .event-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agenda-grid .event:not(.event-principal) .event-photo:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
+}
