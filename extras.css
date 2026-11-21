@@ -1430,3 +1430,384 @@
 .agenda-grid .event:not(.event-principal) .place {
   margin-bottom: 16px;
 }
+
+
+/* =====================================================
+   PLANIFICÁ TU VISITA (visita.html)
+   ===================================================== */
+
+.visita .section {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.visita-intro {
+  background: white;
+}
+
+.visita-pasos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visita-pasos a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 6px 18px 6px 6px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--navy);
+  font-family: var(--head);
+  font-size: .9rem;
+  font-weight: 800;
+  transition: border-color .2s, background .2s;
+}
+
+.visita-pasos a:hover {
+  border-color: var(--gold);
+  background: var(--cream);
+}
+
+.visita-pasos span,
+.visita-num {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-family: var(--head);
+  font-size: .85rem;
+  font-weight: 800;
+}
+
+.visita-bloque {
+  background: var(--bg);
+  scroll-margin-top: 20px;
+}
+
+.visita-bloque.alt {
+  background: white;
+}
+
+.visita-titulo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.visita-num {
+  width: 44px;
+  height: 44px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 0 4px rgba(229, 185, 87, .35);
+}
+
+.visita-titulo h2 {
+  margin: 2px 0 6px;
+  color: var(--navy);
+  font-family: var(--head);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-weight: 800;
+}
+
+.visita-titulo p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Días */
+.visita-dias {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visita-dias li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 2px 14px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--navy);
+  border-radius: 12px;
+  background: white;
+}
+
+.visita-dias li.destacado {
+  border-left-color: var(--gold);
+  box-shadow: 0 10px 24px rgba(7, 29, 73, .07);
+}
+
+.vd-dia {
+  grid-row: span 2;
+  min-width: 82px;
+  color: var(--navy);
+  font-family: var(--head);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.vd-hora {
+  color: var(--navy-2);
+  font-weight: 800;
+}
+
+.vd-nombre {
+  color: var(--muted);
+  font-size: .92rem;
+}
+
+.vd-tag {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: var(--gold-light);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.visita-nota {
+  margin: 18px 0 0;
+  color: var(--muted);
+  font-size: .9rem;
+  text-align: center;
+}
+
+/* Cómo llegar */
+.visita-mapa {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.visita-mapa .map-embed {
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+
+.visita-mapa .map-embed iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  border: 0;
+}
+
+.visita-rutas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ruta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 72px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: white;
+  color: var(--navy);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.ruta:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 24px rgba(7, 29, 73, .09);
+}
+
+.ruta:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.ruta .icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  border-radius: 12px;
+  background: var(--navy);
+  color: var(--gold-light);
+}
+
+.ruta-waze {
+  border-color: #9bd5ed;
+  background: #e8f5fb;
+}
+
+.ruta-waze .icon {
+  background: #075078;
+  color: white;
+}
+
+.ruta span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ruta strong {
+  font-family: var(--head);
+  font-weight: 800;
+}
+
+.ruta small {
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+/* Qué esperar */
+.visita-esperar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.visita-esperar article {
+  padding: 24px 22px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: white;
+}
+
+.ve-icono {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  border-radius: 14px;
+  background: var(--cream);
+  color: var(--gold-text);
+}
+
+.ve-icono .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.visita-esperar h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-family: var(--head);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.visita-esperar p {
+  margin: 0;
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.6;
+}
+
+/* Avisanos que venís */
+.visita-cta {
+  background: white;
+}
+
+.visita-cta-caja {
+  padding: 40px 28px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-2));
+  color: white;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(7, 29, 73, .18);
+}
+
+.visita-cta-caja h2 {
+  margin: 0 0 10px;
+  color: var(--gold-light);
+  font-family: var(--head);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 800;
+}
+
+.visita-cta-caja p {
+  margin: 0 auto 22px;
+  max-width: 480px;
+  color: #c9d6ee;
+}
+
+.visita-cta-botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.visita-cta-botones .btn {
+  margin: 0;
+}
+
+.visita-faq {
+  display: inline-block;
+  margin-top: 22px;
+  color: #c9d6ee;
+  font-size: .9rem;
+}
+
+.visita-faq strong {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .visita .section {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .visita-dias,
+  .visita-mapa,
+  .visita-esperar {
+    grid-template-columns: 1fr;
+  }
+
+  .visita-mapa .map-embed,
+  .visita-mapa .map-embed iframe {
+    min-height: 240px;
+  }
+
+  .visita-cta-botones .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* Página principal: botón "Planificá tu visita" en "¿Primera vez?" */
+.nh-plan {
+  margin: 4px 0 18px;
+}

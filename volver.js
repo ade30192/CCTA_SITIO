@@ -22,7 +22,8 @@
     'donar.html': '← Volver a donaciones',
     'preguntas.html': '← Volver a preguntas',
     'nosotros.html': '← Volver a nosotros',
-    'reservar.html': '← Volver a reservación'
+    'reservar.html': '← Volver a reservación',
+    'visita.html': '← Volver a tu visita'
   };
 
   Array.prototype.forEach.call(botones, function (b) {

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071d49">
+  <meta name="description" content="Todo para tu primera visita al Centro Cristiano Tabernáculo de Adoración en Paquera: horarios, cómo llegar con Waze o Google Maps y qué esperar.">
+
+  <title>Planificá tu visita | Centro Cristiano Tabernáculo de Adoración</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Roboto+Slab:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Idiomas (español, inglés, francés) -->
+  <script src="i18n.js?v=8"></script>
+
+  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="extras.css?v=30">
+
+  <!-- Ícono de pestaña y vista previa al compartir -->
+  <link rel="canonical" href="https://ade30192.github.io/CCTA_SITIO/visita.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CCTA">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CR">
+  <meta property="og:site_name" content="Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:title" content="Planificá tu visita | Centro Cristiano Tabernáculo de Adoración">
+  <meta property="og:description" content="Horarios, cómo llegar con Waze o Google Maps y qué esperar en tu primera visita. ¡Te esperamos en Paquera!">
+  <meta property="og:url" content="https://ade30192.github.io/CCTA_SITIO/visita.html">
+  <meta property="og:image" content="https://ade30192.github.io/CCTA_SITIO/logo-compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo del Centro Cristiano Tabernáculo de Adoración, Paquera">
+  <meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+
+  <!-- ENCABEZADO SIMPLE -->
+  <header class="masthead">
+    <div class="container masthead-inner">
+
+      <a class="brand" href="index.html" aria-label="Centro Cristiano Tabernáculo de Adoración, ir al inicio">
+        <img src="logo-iglesia.jpg"
+             alt="Logo del Centro Cristiano Tabernáculo de Adoración"
+             class="brand-logo">
+
+        <span class="brand-copy">
+          <strong>Centro Cristiano</strong>
+          <span>Tabernáculo de Adoración</span>
+        </span>
+      </a>
+
+      <a class="btn btn-outline-navy sub-top-btn" href="index.html#nuevo">← Volver al sitio</a>
+
+    </div>
+  </header>
+
+
+  <!-- Próxima reunión (la calcula extras.js con la hora de Costa Rica) -->
+  <div class="next-meeting" id="next-meeting" hidden>
+    <div class="container next-meeting-inner">
+      <span class="next-meeting-label">Próxima reunión</span>
+      <span class="next-meeting-text" id="next-meeting-text"></span>
+      <a class="next-meeting-link" href="#como-llegar">Cómo llegar →</a>
+    </div>
+  </div>
+
+
+  <main id="contenido" class="sub-page visita">
+
+    <!-- PRESENTACIÓN -->
+    <section class="section visita-intro">
+      <div class="container narrow">
+        <header class="sec-head">
+          <span class="label dark">Bienvenido a casa</span>
+          <h1 class="title center">Planificá tu <em>visita</em></h1>
+          <p class="sub-note">
+            Todo lo que necesitás saber para tu primera vez con nosotros: cuándo venir, cómo llegar y qué esperar. Vení tal como sos.
+          </p>
+        </header>
+
+        <ol class="visita-pasos" aria-label="Tu visita en tres pasos">
+          <li><a href="#elegi-un-dia"><span aria-hidden="true">1</span>Elegí un día</a></li>
+          <li><a href="#como-llegar"><span aria-hidden="true">2</span>Cómo llegar</a></li>
+          <li><a href="#que-esperar"><span aria-hidden="true">3</span>Qué esperar</a></li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- 1. ELEGÍ UN DÍA -->
+    <section class="section visita-bloque" id="elegi-un-dia">
+      <div class="container narrow">
+        <div class="visita-titulo">
+          <span class="visita-num" aria-hidden="true">1</span>
+          <div>
+            <h2>Elegí un día</h2>
+            <p>Si es tu primera vez, te recomendamos los cultos del sábado o del domingo.</p>
+          </div>
+        </div>
+
+        <ul class="visita-dias">
+          <li class="destacado">
+            <span class="vd-dia">Sábado</span>
+            <span class="vd-hora">7:00 p. m.</span>
+            <span class="vd-nombre">Culto congregacional</span>
+            <span class="vd-tag">Culto principal</span>
+          </li>
+          <li class="destacado">
+            <span class="vd-dia">Domingo</span>
+            <span class="vd-hora">10:00 a. m.</span>
+            <span class="vd-nombre">Culto dominical</span>
+            <span class="vd-tag">Recomendado</span>
+          </li>
+          <li>
+            <span class="vd-dia">Martes</span>
+            <span class="vd-hora">9:30 a. m.</span>
+            <span class="vd-nombre">Ayuno congregacional</span>
+          </li>
+          <li>
+            <span class="vd-dia">Jueves</span>
+            <span class="vd-hora">11:00 a. m.</span>
+            <span class="vd-nombre">Red de adulto mayor</span>
+          </li>
+          <li>
+            <span class="vd-dia">Viernes</span>
+            <span class="vd-hora">7:00 p. m.</span>
+            <span class="vd-nombre">Red de jóvenes</span>
+          </li>
+        </ul>
+
+        <p class="visita-nota">
+          Estos son los horarios habituales; cualquier cambio se anuncia en nuestras redes oficiales y en la página de <a href="anuncios.html">anuncios</a>.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- 2. CÓMO LLEGAR -->
+    <section class="section visita-bloque alt" id="como-llegar">
+      <div class="container narrow">
+        <div class="visita-titulo">
+          <span class="visita-num" aria-hidden="true">2</span>
+          <div>
+            <h2>Cómo llegar</h2>
+            <p>Todas las reuniones son en la nueva sede, en Paquera, Puntarenas.</p>
+          </div>
+        </div>
+
+        <div class="visita-mapa">
+          <div class="map-embed">
+            <iframe title="Mapa de la nueva sede"
+                    src="https://www.google.com/maps?q=9.8129891,-84.9365265&amp;hl=es&amp;z=16&amp;output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    allowfullscreen></iframe>
+          </div>
+
+          <div class="visita-rutas">
+            <a class="ruta ruta-waze"
+               href="https://waze.com/ul?ll=9.8129891,-84.9365265&amp;navigate=yes"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Ir con Waze: nueva sede">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+              <span><strong>Ir con Waze</strong><small>Navegación paso a paso</small></span>
+            </a>
+
+            <a class="ruta ruta-maps"
+               href="https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7"
+               target="_blank" rel="noopener noreferrer"
+               aria-label="Abrir en Google Maps: nueva sede">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>Abrir en Google Maps</strong><small>Ver el lugar y la ruta</small></span>
+            </a>
+
+            <button class="ruta ruta-copiar" type="button" data-copiar="Nueva sede del Centro Cristiano Tabernáculo de Adoración, Paquera, Puntarenas, Costa Rica. https://maps.app.goo.gl/1FFF9h1yUEk9TKFH7">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              <span><strong>Compartir ubicación</strong><small>Para quien venga con vos</small></span>
+            </button>
+          </div>
+        </div>
+
+        <p class="visita-nota">
+          La antigua sede ya no tiene reuniones; se usa para consultas y reservaciones.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- 3. QUÉ ESPERAR -->
+    <section class="section visita-bloque" id="que-esperar">
+      <div class="container narrow">
+        <div class="visita-titulo">
+          <span class="visita-num" aria-hidden="true">3</span>
+          <div>
+            <h2>Qué esperar</h2>
+            <p>Una congregación que te recibirá con los brazos abiertos.</p>
+          </div>
+        </div>
+
+        <div class="visita-esperar">
+          <article>
+            <span class="ve-icono" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></span>
+            <h3>Adoración y Palabra</h3>
+            <p>Nos reunimos para adorar, orar y compartir la Palabra de Dios en comunidad.</p>
+          </article>
+
+          <article>
+            <span class="ve-icono" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M20.4 14.5 16 10 4 20"/><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/></svg></span>
+            <h3>Vení tal como sos</h3>
+            <p>Vení con la ropa con la que te sintás cómodo, procurando vestir con respeto.</p>
+          </article>
+
+          <article>
+            <span class="ve-icono" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>Pastores cercanos</h3>
+            <p>Los pastores Danixa Villalobos Gutiérrez y Gabriel Quirós Leal están para ayudarte con cualquier consulta.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- AVISANOS QUE VENÍS -->
+    <section class="section visita-cta">
+      <div class="container narrow">
+        <div class="visita-cta-caja">
+          <h2>¿Querés avisarnos que venís?</h2>
+          <p>Escribile a uno de los pastores por WhatsApp y con gusto te esperamos.</p>
+
+          <div class="visita-cta-botones">
+            <a class="btn btn-gold"
+               href="https://wa.me/50687572168?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20la%20iglesia%20y%20me%20gustar%C3%ADa%20visitarlos."
+               target="_blank" rel="noopener noreferrer">Escribir a Danixa</a>
+            <a class="btn btn-gold"
+               href="https://wa.me/50688302005?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20la%20iglesia%20y%20me%20gustar%C3%ADa%20visitarlos."
+               target="_blank" rel="noopener noreferrer">Escribir a Gabriel</a>
+          </div>
+
+          <a class="visita-faq" href="preguntas.html">¿Tenés más dudas? <strong>Ver preguntas frecuentes</strong></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- PIE DE PÁGINA SIMPLE -->
+  <footer class="footer">
+    <div class="container footer-bottom">
+      <span>
+        © <span id="year"></span> Centro Cristiano Tabernáculo de Adoración. Todos los derechos reservados.
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var year = document.getElementById('year');
+      if (year) year.textContent = new Date().getFullYear();
+
+      // "Compartir ubicación": menú de compartir del celular o, si no hay, copiar
+      var b = document.querySelector('[data-copiar]');
+      if (!b) return;
+      var T = window.cctaT || function (s) { return s; };
+      b.addEventListener('click', function () {
+        var texto = b.getAttribute('data-copiar');
+        var titulo = b.querySelector('strong');
+        function listo() {
+          var antes = titulo.textContent;
+          titulo.textContent = T('¡Ubicación copiada!');
+          setTimeout(function () { titulo.textContent = antes; }, 2200);
+        }
+        if (navigator.share) {
+          navigator.share({ title: 'Centro Cristiano Tabernáculo de Adoración', text: texto }).catch(function () {});
+        } else if (navigator.clipboard) {
+          navigator.clipboard.writeText(texto).then(listo, function () {});
+        }
+      });
+    })();
+  </script>
+
+  <script src="extras.js?v=14" defer></script>
+  <script src="volver.js?v=3" defer></script>
+  <script src="equipo.js?v=2" defer></script>
+  <script src="app.js?v=3" defer></script>
+
+</body>
+</html>
