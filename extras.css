@@ -1413,3 +1413,20 @@
   background: var(--gold-dark, #8f6516);
   color: #fff;
 }
+
+
+/* ---------- Reuniones: mismo alto y "Ver fotos" alineado abajo ----------
+   (el alto lo iguala extras.js; aquí el botón se va al fondo de cada tarjeta) */
+.agenda-grid .event:not(.event-principal) .event-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.agenda-grid .event:not(.event-principal) .event-more {
+  margin-top: auto;
+}
+
+.agenda-grid .event:not(.event-principal) .place {
+  margin-bottom: 16px;
+}

@@ -18,11 +18,11 @@
 
   <!-- Idiomas (español, inglés, francés) -->
 
-  <script src="i18n.js?v=6"></script>
+  <script src="i18n.js?v=7"></script>
 
 
-  <link rel="stylesheet" href="styles.css?v=13">
-  <link rel="stylesheet" href="extras.css?v=28">
+  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="extras.css?v=29">
   <link rel="stylesheet" href="portada.css?v=8">
 
   <!-- Ícono de pestaña y vista previa al compartir -->
@@ -205,6 +205,26 @@
       <li><a href="#contacto" class="accent">Contacto</a></li>
 
     </ul>
+
+    <!-- Solo en celular: lo que estaba en la barra superior vive aquí, dentro del menú -->
+    <div class="nav-extra">
+      <div class="nav-extra-fila">
+        <span class="nav-extra-titulo">Idioma</span>
+        <div class="nav-lang"></div>
+      </div>
+
+      <a class="nav-app" href="#" data-instalar hidden><svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M12 7v7"/><path d="m9 11 3 3 3-3"/></svg><span>Instalar la app</span></a>
+
+      <div class="nav-extra-fila">
+        <span class="nav-extra-titulo">Seguinos</span>
+        <div class="social nav-social">
+          <a href="https://www.facebook.com/share/1DuQMBURgQ/"
+             target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg></a>
+          <a href="https://www.instagram.com/tabernaculodeadoracion1?cplk=bXNycDRzZTFvM3R6"
+             target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true" focusable="false"><use href="#i-instagram"/></svg></a>
+        </div>
+      </div>
+    </div>
   </nav>
 
 
@@ -1152,7 +1172,7 @@
   <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
 
   <script src="script.js?v=14"></script>
-  <script src="extras.js?v=13" defer></script>
+  <script src="extras.js?v=14" defer></script>
   <script src="portada.js?v=4" defer></script>
 
 

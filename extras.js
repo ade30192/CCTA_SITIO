@@ -312,8 +312,38 @@
   }
 
 
+
+  /* ---------- Reuniones: todas las tarjetas del mismo alto ----------
+     La de domingo tiene la descripción más larga y en algunos celulares
+     queda una línea más alta. Se mide la más alta y las demás la igualan
+     (se recalcula al girar el teléfono, al cargar las letras o al cambiar idioma). */
+
+  function iniciarIgualarReuniones() {
+    var botones = Array.prototype.slice.call(
+      document.querySelectorAll('.agenda-grid .event:not(.event-principal) > .event-toggle')
+    );
+    if (botones.length < 2) return;
+
+    function medir() {
+      botones.forEach(function (b) { b.style.minHeight = ''; });
+      var alto = 0;
+      botones.forEach(function (b) { alto = Math.max(alto, b.offsetHeight); });
+      botones.forEach(function (b) { b.style.minHeight = alto + 'px'; });
+    }
+
+    medir();
+    var espera;
+    window.addEventListener('resize', function () {
+      clearTimeout(espera);
+      espera = setTimeout(medir, 150);
+    });
+    window.addEventListener('load', medir);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
+  }
+
   function iniciar() {
     try { iniciarResumenHorario(); } catch (e) {}
+    try { iniciarIgualarReuniones(); } catch (e) {}
     try { iniciarProxima(); } catch (e) {}
     try { iniciarVersiculo(); } catch (e) {}
     try { iniciarCompartirVersiculo(); } catch (e) {}

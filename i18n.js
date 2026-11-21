@@ -180,6 +180,9 @@
 
   function ponerSelector() {
     var barra = document.querySelector('.topbar-inner');
+    // Celular: el selector también va dentro del menú ☰ (la barra superior se oculta)
+    var enMenu = document.querySelector('.nav-lang');
+    if (enMenu) enMenu.appendChild(crearSelector());
     if (barra) {
       barra.insertBefore(crearSelector(), barra.querySelector('.social'));
       return;
@@ -261,10 +264,16 @@
       if (!ver && !menu.hidden) abrir(false);
     }
 
-    // Aparece apenas el selector de arriba deja de verse (sirve también en páginas cortas)
-    var arriba = document.querySelector('.topbar .lang-switch, .lang-bar');
-    if (arriba && 'IntersectionObserver' in window) {
-      new IntersectionObserver(function (e) { mostrar(!e[0].isIntersecting); }, { threshold: 0 }).observe(arriba);
+    // Aparece cuando ya no se ve ni el selector de arriba ni el encabezado
+    // (en celular la barra superior está oculta y el idioma está en el menú del encabezado)
+    var arriba = Array.prototype.slice.call(document.querySelectorAll('.topbar .lang-switch, .lang-bar, .masthead'));
+    if (arriba.length && 'IntersectionObserver' in window) {
+      var visibles = arriba.map(function () { return true; });
+      var io = new IntersectionObserver(function (lista) {
+        lista.forEach(function (e) { visibles[arriba.indexOf(e.target)] = e.isIntersecting; });
+        mostrar(visibles.indexOf(true) === -1);
+      }, { threshold: 0 });
+      arriba.forEach(function (el) { io.observe(el); });
     } else {
       var revisar = function () { mostrar(window.scrollY > 300); };
       window.addEventListener('scroll', revisar, { passive: true });

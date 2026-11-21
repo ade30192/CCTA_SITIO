@@ -2646,3 +2646,91 @@ details a {
 @media print {
   .lang-float { display: none; }
 }
+
+
+/* =====================================================
+   CELULAR: BARRA SUPERIOR DENTRO DEL MENÚ
+   Idioma, "Instalar la app" y redes pasan al menú ☰
+   para que la parte de arriba se vea limpia.
+   ===================================================== */
+
+.nav-extra {
+  display: none;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    display: none;
+  }
+
+  .mainnav.open .nav-extra {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 20px 18px;
+    background: #061536;
+    border-top: 1px solid rgba(245, 223, 157, .18);
+  }
+
+  .nav-extra-fila {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .nav-extra-titulo {
+    color: var(--gold-light);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .nav-lang .lang-switch {
+    margin: 0;
+  }
+
+  .nav-lang .lang-switch button {
+    min-width: 46px;
+    min-height: 36px;
+    font-size: .76rem;
+  }
+
+  .nav-social {
+    gap: 12px;
+  }
+
+  .nav-social a {
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-app {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border: 1px solid rgba(229, 185, 87, .6);
+    border-radius: 999px;
+    color: var(--gold-light, #f5df9d);
+    font-size: .82rem;
+    font-weight: 800;
+  }
+
+  .nav-app:hover {
+    background: var(--gold, #e5b957);
+    color: var(--navy, #071d49);
+  }
+
+  .nav-app[hidden] {
+    display: none !important;
+  }
+
+  .nav-app .icon {
+    width: 1.1em;
+    height: 1.1em;
+  }
+}

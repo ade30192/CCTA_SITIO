@@ -10,6 +10,14 @@ window.CCTA_TEXTOS = {
   "Skip to content",
   "Aller au contenu"
  ],
+ "Idioma": [
+  "Language",
+  "Langue"
+ ],
+ "Seguinos": [
+  "Follow us",
+  "Suivez-nous"
+ ],
  "Redes sociales": [
   "Social media",
   "Réseaux sociaux"
