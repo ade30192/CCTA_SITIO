@@ -98,7 +98,7 @@
 
   if (LANG !== 'es') {
     // Se cargan las traducciones antes de que se dibuje la página (evita ver el español un instante)
-    document.write('<script src="' + BASE + 'i18n-textos.js?v=3"><\/script>');
+    document.write('<script src="' + BASE + 'i18n-textos.js?v=4"><\/script>');
     document.documentElement.classList.add('i18n-cargando');
     setTimeout(function () { document.documentElement.classList.remove('i18n-cargando'); }, 2500);
   }

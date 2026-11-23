@@ -1117,7 +1117,7 @@
 
 
 /* ---------- Fotos del carrusel ----------
-   - La primera se carga de inmediato; la 2 y la 3 esperan a que la página termine
+   - La primera se carga de inmediato; de la 2 a la 5 esperan a que la página termine
      de cargar (script.js agrega .hero-listo), así no le quitan velocidad a la primera.
    - Navegadores modernos reciben WebP (35–40 % más liviano); los demás, JPEG. */
 
@@ -1125,6 +1125,8 @@
 .slide-1 { --bg: url("fotos/hero-1.jpg?v=3"); --bg-m: url("fotos/hero-1-m.jpg?v=1"); }
 .hero-listo .slide-2 { --bg: url("fotos/hero-2.jpg?v=3"); --bg-m: url("fotos/hero-2-m.jpg?v=1"); }
 .hero-listo .slide-3 { --bg: url("fotos/hero-3.jpg?v=3"); --bg-m: url("fotos/hero-3-m.jpg?v=1"); }
+.hero-listo .slide-4 { --bg: url("fotos/hero-4.jpg?v=1"); --bg-m: url("fotos/hero-4-m.jpg?v=1"); }
+.hero-listo .slide-5 { --bg: url("fotos/hero-5.jpg?v=1"); --bg-m: url("fotos/hero-5-m.jpg?v=1"); }
 
 @supports (background-image: image-set(url("x.webp") type("image/webp"))) {
   .slide-1 {
@@ -1138,6 +1140,14 @@
   .hero-listo .slide-3 {
     --bg: image-set(url("fotos/hero-3.webp?v=1") type("image/webp"), url("fotos/hero-3.jpg?v=3") type("image/jpeg"));
     --bg-m: image-set(url("fotos/hero-3-m.webp?v=1") type("image/webp"), url("fotos/hero-3-m.jpg?v=1") type("image/jpeg"));
+  }
+  .hero-listo .slide-4 {
+    --bg: image-set(url("fotos/hero-4.webp?v=1") type("image/webp"), url("fotos/hero-4.jpg?v=1") type("image/jpeg"));
+    --bg-m: image-set(url("fotos/hero-4-m.webp?v=1") type("image/webp"), url("fotos/hero-4-m.jpg?v=1") type("image/jpeg"));
+  }
+  .hero-listo .slide-5 {
+    --bg: image-set(url("fotos/hero-5.webp?v=1") type("image/webp"), url("fotos/hero-5.jpg?v=1") type("image/jpeg"));
+    --bg-m: image-set(url("fotos/hero-5-m.webp?v=1") type("image/webp"), url("fotos/hero-5-m.jpg?v=1") type("image/jpeg"));
   }
 }
 

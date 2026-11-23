@@ -9,3 +9,13 @@ Red de jóvenes (viernes):        jovenes-1.jpg, jovenes-2.jpg, jovenes-3.jpg
 Culto congregacional (sábado):   culto-1.jpg, culto-2.jpg, culto-3.jpg
 
 Evitá espacios y tildes en los nombres. Si una foto no existe, se muestra un espacio de reserva.
+
+MEMORIAS (memorias.html y la franja "Memorias" de la portada)
+- Las fotos están en fotos/memorias/ (grandes, para el visor) y en
+  fotos/memorias/mini/ (miniaturas). Cada foto va en .webp y en .jpg.
+- Nombre: álbum-número. Álbumes: adoracion, alabanza, palabra,
+  encuentros, mujeres, servicio (ej.: alabanza-8.webp).
+- Para sumar una foto: copiá un bloque <button class="mem-foto"> del
+  álbum en memorias.html y cambiá los nombres de archivo y el texto alt.
+  Si se quiere en inglés/francés, agregá el alt nuevo en i18n-textos.js.
+- Carrusel de la portada: ahora tiene 5 fotos (hero-1 a hero-5).

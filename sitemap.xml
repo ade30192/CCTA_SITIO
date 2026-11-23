@@ -3,6 +3,7 @@
   <url><loc>https://ade30192.github.io/CCTA_SITIO/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://ade30192.github.io/CCTA_SITIO/anuncios.html</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
   <url><loc>https://ade30192.github.io/CCTA_SITIO/visita.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ade30192.github.io/CCTA_SITIO/memorias.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ade30192.github.io/CCTA_SITIO/preguntas.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ade30192.github.io/CCTA_SITIO/nosotros.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ade30192.github.io/CCTA_SITIO/donar.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
