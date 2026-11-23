@@ -209,6 +209,9 @@
         var tr = window.CCTA_VERSOS && window.CCTA_LANG && window.CCTA_VERSOS[v.cita] && window.CCTA_VERSOS[v.cita][window.CCTA_LANG];
         t.textContent = tr ? tr[0] : v.texto;
         r.textContent = tr ? tr[1] : v.cita;
+        // En español se indica la versión de cada versículo (RVR1960 o RV1909)
+        var ver = document.getElementById('verse-version');
+        if (ver && !tr) ver.textContent = typeof v.version === 'string' && v.version ? v.version : VERSIONES.es;
         t.setAttribute('data-sin-traducir', '');
         r.setAttribute('data-sin-traducir', '');
       })

@@ -1,5 +1,5 @@
 {
-  "_nota": "Versículos en Reina-Valera 1960. Cada semana se muestra uno al azar (el mismo para todos los visitantes esa semana) y no se repite ninguno hasta haber pasado todos. Podés agregar, quitar o cambiar versículos con el formato {\"texto\": \"...\", \"cita\": \"Libro 1:1\"}.",
+  "_nota": "Cada semana se muestra uno al azar (el mismo para todos los visitantes esa semana) y no se repite ninguno hasta haber pasado todos. Los primeros 52 están en Reina-Valera 1960; los demás llevan \"version\": \"Reina-Valera 1909\" (dominio público) y así aparece debajo del versículo. Formato: {\"texto\": \"...\", \"cita\": \"Libro 1:1\"} y, si no es RVR1960, \"version\". Las traducciones al inglés y francés están en i18n-textos.js (CCTA_VERSOS).",
   "versiculos": [
     {
       "texto": "Yo me alegré con los que me decían: A la casa de Jehová iremos.",
@@ -208,6 +208,691 @@
     {
       "texto": "Nosotros le amamos a él, porque él nos amó primero.",
       "cita": "1 Juan 4:19"
+    },
+    {
+      "texto": "Y he aquí, yo soy contigo, y te guardaré por donde quiera que fueres, y te volveré a esta tierra; porque no te dejaré hasta tanto que haya hecho lo que te he dicho.",
+      "cita": "Génesis 28:15",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová te bendiga, y te guarde: Haga resplandecer Jehová su rostro sobre ti, y haya de ti misericordia: Jehová alce a ti su rostro, y ponga en ti paz.",
+      "cita": "Números 6:24-26",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Esforzaos y cobrad ánimo; no temáis, ni tengáis miedo de ellos: que Jehová tu Dios es el que va contigo: no te dejará ni te desamparará.",
+      "cita": "Deuteronomio 31:6",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y Jehová es el que va delante de ti; él será contigo, no te dejará, ni te desamparará; no temas, ni te intimides.",
+      "cita": "Deuteronomio 31:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "El libro de aquesta ley nunca se apartará de tu boca: antes de día y de noche meditarás en él, para que guardes y hagas conforme a todo lo que en él está escrito: porque entonces harás prosperar tu camino, y todo te saldrá bien.",
+      "cita": "Josué 1:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y Jehová respondio a Samuel: No mires a su parecer, ni a lo grande de su estatura, porque yo lo desecho; porque Jehová mira no lo que el hombre mira; pues que el hombre mira lo que está delante de sus ojos, mas Jehová mira el corazón.",
+      "cita": "1 Samuel 16:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Buscad a Jehová y su fortaleza; buscad su rostro continuamente.",
+      "cita": "1 Crónicas 16:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Si se humillare mi pueblo, sobre los cuales mi nombre es invocado, y oraren, y buscaren mi rostro, y se convirtieren de sus malos caminos; entonces yo oiré desde los cielos, y perdonaré sus pecados, y sanaré su tierra.",
+      "cita": "2 Crónicas 7:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "En paz me acostaré, y asimismo dormiré; porque solo tú, Jehová, me harás estar confiado.",
+      "cita": "Salmos 4:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Oh Jehová, de mañana oirás mi voz; de mañana me presentaré a ti, y esperaré.",
+      "cita": "Salmos 5:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Te alabaré, oh Jehová, con todo mi corazón; contaré todas tus maravillas.",
+      "cita": "Salmos 9:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová, roca mía y castillo mío, y mi libertador; Dios mío, fuerte mío, en él confiaré; escudo mío, y el cuerno de mi salud, mi refugio.",
+      "cita": "Salmos 18:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Sean gratos los dichos de mi boca y la meditación de mi corazón delante de ti, oh Jehová, roca mía, y redentor mío.",
+      "cita": "Salmos 19:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Aunque ande en valle de sombra de muerte, no temeré mal alguno; porque tú estarás conmigo: tu vara y tu cayado me infundirán aliento.",
+      "cita": "Salmos 23:4",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Muéstrame, oh Jehová, tus caminos; enséñame tus sendas.",
+      "cita": "Salmos 25:4",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Aguarda a Jehová; esfuerzate, y aliéntese tu corazón: sí, espera a Jehová.",
+      "cita": "Salmos 27:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová es mi fortaleza y mi escudo: en él esperó mi corazón, y fui ayudado; por lo que se gozó mi corazón, y con mi canción le alabaré.",
+      "cita": "Salmos 28:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque un momento será su furor; mas en su voluntad está la vida: por la tarde durará el lloro, y a la mañana vendrá la alegría.",
+      "cita": "Salmos 30:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Esforzaos todos vosotros los que esperáis en Jehová, y tome vuestro corazón aliento.",
+      "cita": "Salmos 31:24",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Te haré entender, y te enseñaré el camino en que debes andar: sobre ti fijaré mis ojos.",
+      "cita": "Salmos 32:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bienaventurada la gente de que Jehová es su Dios; el pueblo a quien escogió por heredad para sí.",
+      "cita": "Salmos 33:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Busqué a Jehová, y él me oyó, y libróme de todos mis temores.",
+      "cita": "Salmos 34:4",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Cercano está Jehová a los quebrantados de corazón; y salvará a los contritos de espíritu.",
+      "cita": "Salmos 34:18",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Encomienda a Jehová tu camino, y espera en él; y él hará.",
+      "cita": "Salmos 37:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Resignadamente esperé a Jehová, e inclinóse a mí, y oyó mi clamor.",
+      "cita": "Salmos 40:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "¿Por qué te abates, oh alma mía, y por qué te conturbas en mí? Espera a Dios; porque aun le tengo de alabar; es él salvamento delante de mí, y el Dios mío.",
+      "cita": "Salmos 42:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Estad quietos, y conoced que yo soy Dios: ensalzado he de ser entre las gentes, ensalzado seré en la tierra.",
+      "cita": "Salmos 46:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Crea en mí, oh Dios, un corazón limpio; y renueva un espíritu recto dentro de mí.",
+      "cita": "Salmos 51:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "En el día que temo, yo en ti confío.",
+      "cita": "Salmos 56:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "En Dios solamente está acallada mi alma: de él viene mi salud.",
+      "cita": "Salmos 62:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Dios, Dios mío eres tú: levantaréme a ti de mañana: mi alma tiene sed de ti, mi carne te desea, en tierra de sequedad y transida sin aguas.",
+      "cita": "Salmos 63:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mi carne y mi corazón desfallecen: mas la roca de mi corazón y mi porción es Dios para siempre.",
+      "cita": "Salmos 73:26",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque mejor es un día en tus atrios que mil fuera de ellos: escogería antes estar a la puerta de la casa de mi Dios, que habitar en las moradas de maldad.",
+      "cita": "Salmos 84:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque tú, Señor, eres bueno y perdonador, y grande en misericordia para con todos los que te invocan.",
+      "cita": "Salmos 86:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Enséñanos de tal modo a contar nuestros días, que traigamos al corazón sabiduría.",
+      "cita": "Salmos 90:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Diré yo a Jehová: Esperanza mía, y castillo mío; mi Dios, en él confiaré.",
+      "cita": "Salmos 91:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Pues que a sus ángeles mandará acerca de ti, que te guarden en todos tus caminos.",
+      "cita": "Salmos 91:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Cantad a Jehová canción nueva; cantad a Jehová, toda la tierra.",
+      "cita": "Salmos 96:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Entrad por sus puertas con reconocimiento, por sus atrios con alabanza: alabadle, bendecid su nombre.",
+      "cita": "Salmos 100:4",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque Jehová es bueno: para siempre es su misericordia, y su verdad por todas las generaciones.",
+      "cita": "Salmos 100:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bendice, alma mía a Jehová, y no olvides ninguno de sus beneficios.",
+      "cita": "Salmos 103:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Cuanto está lejos el oriente del occidente, hizo alejar de nosotros nuestras rebeliones.",
+      "cita": "Salmos 103:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Desde el nacimiento del sol hasta donde se pone, sea alabado el nombre de Jehová.",
+      "cita": "Salmos 113:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Amo a Jehová, pues ha oído mi voz y mis súplicas.",
+      "cita": "Salmos 116:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "En mi corazón he guardado tus dichos, para no pecar contra ti.",
+      "cita": "Salmos 119:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová guardará tu salida y tu entrada, desde ahora y para siempre.",
+      "cita": "Salmos 121:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Grandes cosas ha hecho Jehová con nosotros; estaremos alegres.",
+      "cita": "Salmos 126:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Si Jehová no edificare la casa, en vano trabajan los que la edifican: si Jehová no guardare la ciudad, en vano vela la guarda.",
+      "cita": "Salmos 127:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Alabad a Jehová, porque es bueno; porque para siempre es su misericordia.",
+      "cita": "Salmos 136:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová cumplirá por mí: tu misericordia, oh Jehová, es para siempre; no dejarás la obra de tus manos.",
+      "cita": "Salmos 138:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Te alabaré; porque formidables, maravillosas son tus obras: estoy maravillado, y mi alma lo conoce mucho.",
+      "cita": "Salmos 139:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Cercano está Jehová a todos los que le invocan, a todos los que le invocan de veras.",
+      "cita": "Salmos 145:18",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Él sana a los quebrantados de corazón, y liga sus heridas.",
+      "cita": "Salmos 147:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Sobre toda cosa guardada guarda tu corazón; porque de él mana la vida.",
+      "cita": "Proverbios 4:23",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Encomienda a Jehová tus obras, y tus pensamientos serán afirmados.",
+      "cita": "Proverbios 16:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "El corazón del hombre piensa su camino: mas Jehová endereza sus pasos.",
+      "cita": "Proverbios 16:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "En todo tiempo ama el amigo; y el hermano para la angustia es nacido.",
+      "cita": "Proverbios 17:17",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Instruye al niño en su carrera: aun cuando fuere viejo no se apartará de ella.",
+      "cita": "Proverbios 22:6",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Para todas las cosas hay sazón, y todo lo que se quiere debajo del cielo, tiene su tiempo.",
+      "cita": "Eclesiastés 3:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque un niño nos es nacido, hijo nos es dado; y el principado sobre su hombro: y llamaráse su nombre Admirable, Consejero, Dios fuerte, Padre eterno, Príncipe de paz.",
+      "cita": "Isaías 9:6",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "He aquí Dios es salud mía; aseguraréme, y no temeré; porque mi fortaleza y mi canción es JAH Jehová, el cual ha sido salud para mí.",
+      "cita": "Isaías 12:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Tú le guardarás en completa paz, cuyo pensamiento en ti persevera; porque en ti se ha confiado.",
+      "cita": "Isaías 26:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Sécase la hierba, cáese la flor: mas la palabra del Dios nuestro permanece para siempre.",
+      "cita": "Isaías 40:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Él da esfuerzo al cansado, y multiplica las fuerzas al que no tiene ningunas.",
+      "cita": "Isaías 40:29",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Cuando pasares por las aguas, yo seré contigo; y por los ríos, no te anegarán. Cuando pasares por el fuego, no te quemarás, ni la llama arderá en ti.",
+      "cita": "Isaías 43:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas él herido fue por nuestras rebeliones, molido por nuestros pecados: el castigo de nuestra paz sobre él; y por su llaga fuimos nosotros curados.",
+      "cita": "Isaías 53:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque los montes se moverán, y los collados temblarán; mas no se apartará de ti mi misericordia, ni el pacto de mi paz vacilará, dijo Jehová, el que tiene misericordia de ti.",
+      "cita": "Isaías 54:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Buscad a Jehová mientras puede ser hallado, llamadle en tanto que está cercano.",
+      "cita": "Isaías 55:6",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Levántate, resplandece; que ha venido tu lumbre, y la gloria de Jehová ha nacido sobre ti.",
+      "cita": "Isaías 60:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bendito el varón que se fía en Jehová, y cuya confianza es Jehová.",
+      "cita": "Jeremías 17:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Clama a mí, y te responderé, y te enseñaré cosas grandes y dificultosas que tú no sabes.",
+      "cita": "Jeremías 33:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Es por la misericordia de Jehová que no somos consumidos, porque nunca decayeron sus misericordias.",
+      "cita": "Lamentaciones 3:22",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Oh hombre, él te ha declarado qué sea lo bueno, y qué pida de ti Jehová: solamente hacer juicio, y amar misericordia, y humillarte para andar con tu Dios.",
+      "cita": "Miqueas 6:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bueno es Jehová para fortaleza en el día de la angustia; y conoce a los que en él confían.",
+      "cita": "Nahúm 1:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Jehová en medio de ti, poderoso, él salvará; gozaráse sobre ti con alegría, callará de amor, se regocijará sobre ti con cantar.",
+      "cita": "Sofonías 3:17",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bienaventurados los de limpio corazón: porque ellos verán a Dios.",
+      "cita": "Mateo 5:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Bienaventurados los pacificadores: porque ellos serán llamados hijos de Dios.",
+      "cita": "Mateo 5:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Así que, no os congojéis por el día de mañana; que el día de mañana traerá su fatiga: basta al día su afán.",
+      "cita": "Mateo 6:34",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Pedid, y se os dará; buscad, y hallaréis; llamad, y se os abrirá.",
+      "cita": "Mateo 7:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Llevad mi yugo sobre vosotros, y aprended de mí, que soy manso y humilde de corazón; y hallaréis descanso para vuestras almas.",
+      "cita": "Mateo 11:29",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y Jesús le dijo: Amarás al Señor tu Dios de todo tu corazón, y de toda tu alma, y de toda tu mente.",
+      "cita": "Mateo 22:37",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Enseñándoles que guarden todas las cosas que os he mandado: y he aquí, yo estoy con vosotros todos los días, hasta el fin del mundo. Amén.",
+      "cita": "Mateo 28:20",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Entonces Jesús mirándolos, dice: Para los hombres es imposible; mas para Dios, no; porque todas las cosas son posibles para Dios.",
+      "cita": "Marcos 10:27",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Por tanto, os digo que todo lo que orando pidiereis, creed que lo recibiréis, y os vendrá.",
+      "cita": "Marcos 11:24",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque ninguna cosa es imposible para Dios.",
+      "cita": "Lucas 1:37",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y como queréis que os hagan los hombres, así hacedles también vosotros.",
+      "cita": "Lucas 6:31",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque el Hijo del hombre vino a buscar y a salvar lo que se había perdido.",
+      "cita": "Lucas 19:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas a todos los que le recibieron, dioles potestad de ser hechos hijos de Dios, a los que creen en su nombre.",
+      "cita": "Juan 1:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y Jesús les dijo: Yo soy el pan de vida: el que a mí viene, nunca tendrá hambre; y el que en mí cree, no tendrá sed jamás.",
+      "cita": "Juan 6:35",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y conoceréis la verdad, y la verdad os libertará.",
+      "cita": "Juan 8:32",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "El ladrón no viene sino para hurtar, y matar, y destruir: yo he venido para que tengan vida, y para que la tengan en abundancia.",
+      "cita": "Juan 10:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Yo soy el buen pastor: el buen pastor su vida da por las ovejas.",
+      "cita": "Juan 10:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Dícele Jesús: Yo soy la resurrección y la vida: el que cree en mí, aunque esté muerto, vivirá.",
+      "cita": "Juan 11:25",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "No se turbe vuestro corazón: creéis en Dios, creed también en mí.",
+      "cita": "Juan 14:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Yo soy la vid, vosotros los pámpanos: el que está en mí, y yo en él, éste lleva mucho fruto; porque sin mí nada podéis hacer.",
+      "cita": "Juan 15:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Este es mi mandamiento: Que os améis los unos a los otros, como yo os he amado.",
+      "cita": "Juan 15:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Estas cosas os he hablado, para que en mí tengáis paz. En el mundo tendréis aflicción: mas confiad, yo he vencido al mundo.",
+      "cita": "Juan 16:33",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas recibiréis la virtud del Espíritu Santo que vendrá sobre vosotros; y me seréis testigos en Jerusalem, y en toda Judea, y Samaria, y hasta lo último de la tierra.",
+      "cita": "Hechos 1:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y ellos dijeron: Cree en el Señor Jesucristo, y serás salvo tú, y tu casa.",
+      "cita": "Hechos 16:31",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas Dios encarece su caridad para con nosotros, porque siendo aún pecadores, Cristo murió por nosotros.",
+      "cita": "Romanos 5:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque la paga del pecado es muerte: mas la dádiva de Dios es vida eterna en Cristo Jesús Señor nuestro.",
+      "cita": "Romanos 6:23",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "¿Pues qué diremos a esto? Si Dios por nosotros, ¿quién contra nosotros?",
+      "cita": "Romanos 8:31",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Que si confesares con tu boca al Señor Jesús, y creyeres en tu corazón que Dios le levantó de los muertos, serás salvo.",
+      "cita": "Romanos 10:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y no os conforméis a este siglo; mas reformaos por la renovación de vuestro entendimiento, para que experimentéis cuál sea la buena voluntad de Dios, agradable y perfecta.",
+      "cita": "Romanos 12:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Gozosos en la esperanza; sufridos en la tribulación; constantes en la oración.",
+      "cita": "Romanos 12:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "No os ha tomado tentación, sino humana: mas fiel es Dios, que no os dejará ser tentados más de lo que podéis llevar; antes dará también juntamente con la tentación la salida, para que podáis aguantar.",
+      "cita": "1 Corintios 10:13",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Así que, hermanos míos amados, estad firmes y constantes, creciendo en la obra del Señor siempre, sabiendo que vuestro trabajo en el Señor no es vano.",
+      "cita": "1 Corintios 15:58",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Todas vuestras cosas sean hechas con caridad.",
+      "cita": "1 Corintios 16:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Porque por fe andamos, no por vista.",
+      "cita": "2 Corintios 5:7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y me ha dicho: Bástate mi gracia; porque mi potencia en la flaqueza se perfecciona. Por tanto, de buena gana me gloriaré más bien en mis flaquezas, porque habite en mí la potencia de Cristo.",
+      "cita": "2 Corintios 12:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Con Cristo estoy juntamente crucificado, y vivo, no ya yo, mas vive Cristo en mí: y lo que ahora vivo en la carne, lo vivo en la fe del Hijo de Dios, el cual me amó, y se entregó a sí mismo por mí.",
+      "cita": "Gálatas 2:20",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas el fruto del Espíritu es: caridad, gozo, paz, tolerancia, benignidad, bondad, fe, mansedumbre, templanza: contra tales cosas no hay ley.",
+      "cita": "Gálatas 5:22-23",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "No nos cansemos, pues, de hacer bien; que a su tiempo segaremos, si no hubiéremos desmayado.",
+      "cita": "Gálatas 6:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y a Aquel que es poderoso para hacer todas las cosas mucho más abundantemente de lo que pedimos o entendemos, por la potencia que obra en nosotros, a él sea gloria en la iglesia por Cristo Jesús, por todas edades del siglo de los siglos. Amén.",
+      "cita": "Efesios 3:20-21",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Antes sed los unos con los otros benignos, misericordiosos, perdonándoos los unos a los otros, como también Dios os perdonó en Cristo.",
+      "cita": "Efesios 4:32",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Por lo demás, hermanos míos, confortaos en el Señor, y en la potencia de su fortaleza.",
+      "cita": "Efesios 6:10",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Estando confiado de esto, que el que comenzó en vosotros la buena obra, la perfeccionará hasta el día de Jesucristo.",
+      "cita": "Filipenses 1:6",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Por nada estéis afanosos; sino sean notorias vuestras peticiones delante de Dios en toda oración y ruego, con hacimiento de gracias. Y la paz de Dios, que sobrepuja todo entendimiento, guardará vuestros corazones y vuestros entendimientos en Cristo Jesús.",
+      "cita": "Filipenses 4:6-7",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mi Dios, pues, suplirá todo lo que os falta conforme a sus riquezas en gloria en Cristo Jesús.",
+      "cita": "Filipenses 4:19",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Poned la mira en las cosas de arriba, no en las de la tierra.",
+      "cita": "Colosenses 3:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Por lo cual, consolaos los unos a los otros, y edificaos los unos a los otros, así como lo hacéis.",
+      "cita": "1 Tesalonicenses 5:11",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas fiel es el Señor, que os confirmará y guardará del mal.",
+      "cita": "2 Tesalonicenses 3:3",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Ninguno tenga en poco tu juventud; pero sé ejemplo de los fieles en palabra, en conversación, en caridad, en espíritu, en fe, en limpieza.",
+      "cita": "1 Timoteo 4:12",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Toda Escritura es inspirada divinamente y útil para enseñar, para redargüir, para corregir, para instituir en justicia, para que el hombre de Dios sea perfecto, enteramente instruido para toda buena obra.",
+      "cita": "2 Timoteo 3:16-17",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Lleguémonos pues confiadamente al trono de la gracia, para alcanzar misericordia, y hallar gracia para el oportuno socorro.",
+      "cita": "Hebreos 4:16",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Puestos los ojos en el autor y consumador de la fe, en Jesús; el cual, habiéndole sido propuesto gozo, sufrió la cruz, menospreciando la vergüenza, y sentóse a la diestra del trono de Dios.",
+      "cita": "Hebreos 12:2",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Sean las costumbres vuestras sin avaricia; contentos de lo presente; porque él dijo: No te desampararé, ni te dejaré.",
+      "cita": "Hebreos 13:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y si alguno de vosotros tiene falta de sabiduría, demándela a Dios, el cual da a todos abundantemente, y no zahiere; y le será dada.",
+      "cita": "Santiago 1:5",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Toda buena dádiva y todo don perfecto es de lo alto, que desciende del Padre de las luces, en el cual no hay mudanza, ni sombra de variación.",
+      "cita": "Santiago 1:17",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas sed hacedores de la palabra, y no tan solamente oidores, engañándoos a vosotros mismos.",
+      "cita": "Santiago 1:22",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mas vosotros sois linaje escogido, real sacerdocio, gente santa, pueblo adquirido, para que anunciéis las virtudes de aquel que os ha llamado de las tinieblas a su luz admirable.",
+      "cita": "1 Pedro 2:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Si confesamos nuestros pecados, él es fiel y justo para que nos perdone nuestros pecados, y nos limpie de toda maldad.",
+      "cita": "1 Juan 1:9",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Mirad cuál amor nos ha dado el Padre, que seamos llamados hijos de Dios: por esto el mundo no nos conoce, porque no le conoce a él.",
+      "cita": "1 Juan 3:1",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "El que no ama, no conoce a Dios; porque Dios es amor.",
+      "cita": "1 Juan 4:8",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y esta es la confianza que tenemos en él, que si demandáremos alguna cosa conforme a su voluntad, él nos oye.",
+      "cita": "1 Juan 5:14",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "He aquí, yo estoy a la puerta y llamo: si alguno oyere mi voz y abriere la puerta, entraré a él, y cenaré con él, y él conmigo.",
+      "cita": "Apocalipsis 3:20",
+      "version": "Reina-Valera 1909"
+    },
+    {
+      "texto": "Y limpiará Dios toda lágrima de los ojos de ellos; y la muerte no será más; y no habrá más llanto, ni clamor, ni dolor: porque las primeras cosas son pasadas.",
+      "cita": "Apocalipsis 21:4",
+      "version": "Reina-Valera 1909"
     }
   ]
 }

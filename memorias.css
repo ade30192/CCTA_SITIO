@@ -5,167 +5,75 @@
    ===================================================== */
 
 
-/* ---------- Franja de memorias en la portada ---------- */
+/* ---------- Franja de memorias en la portada (sin fotos: solo invitación) ---------- */
 
 .memorias-band {
   position: relative;
-  padding: 90px 0;
+  padding: 80px 0;
   background:
-    radial-gradient(circle at 12% 0%, rgba(229, 185, 87, .16), transparent 42%),
+    radial-gradient(circle at 15% 10%, rgba(229, 185, 87, .18), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(13, 46, 104, .07), transparent 45%),
     var(--cream, #fbf8f0);
-  overflow: hidden;
-}
-
-.mb-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px 40px;
-  flex-wrap: wrap;
-  margin-bottom: 34px;
-}
-
-.mb-head .title {
-  margin-bottom: 10px;
-}
-
-.mb-head .sub-note {
-  margin: 0;
-  max-width: 560px;
-}
-
-.mb-mosaic {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: 210px;
-  gap: 14px;
-}
-
-.mb-tile {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  border-radius: 18px;
-  background: #e9eef6;
-  box-shadow: 0 14px 30px rgba(7, 29, 73, .10);
-  isolation: isolate;
-  min-height: 0;
-}
-
-.mb-tile.big {
-  grid-column: span 2;
-  grid-row: span 2;
-}
-
-.mb-tile picture {
-  position: absolute;
-  inset: 0;
-}
-
-.mb-tile img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .6s ease;
-}
-
-.mb-tile::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(7, 29, 73, .55), transparent 55%);
-  opacity: .75;
-  transition: opacity .35s ease;
-  z-index: 1;
-}
-
-.mb-tile:hover img,
-.mb-tile:focus-visible img {
-  transform: scale(1.05);
-}
-
-.mb-tile:hover::after,
-.mb-tile:focus-visible::after {
-  opacity: 1;
-}
-
-.mb-cap {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 14px;
-  z-index: 2;
-  color: #fff;
-  font-size: .78rem;
-  font-weight: 800;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, .35);
-}
-
-.mb-tile.big .mb-cap {
-  font-size: .9rem;
-}
-
-.mb-tile.mb-todas::after {
-  background: rgba(7, 29, 73, .62);
-  opacity: 1;
-}
-
-.mb-tile.mb-todas .mb-cap {
-  top: 50%;
-  bottom: auto;
-  transform: translateY(-50%);
   text-align: center;
-  font-size: .85rem;
+  overflow: hidden;
 }
 
-.mb-tile.mb-todas .mb-cap b {
-  display: block;
-  margin-bottom: 4px;
+.mb-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mb-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 18px;
+  border-radius: 50%;
+  background: var(--navy, #071d49);
   color: var(--gold, #e5b957);
-  font-family: Georgia, serif;
-  font-size: 2.1rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
+  box-shadow: 0 0 0 8px rgba(229, 185, 87, .18);
+}
+
+.mb-icon .icon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.memorias-band .title {
+  margin-bottom: 14px;
+}
+
+.memorias-band .sub-note {
+  margin-bottom: 28px;
+}
+
+.mb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mb-btn .icon {
+  width: 18px;
+  height: 18px;
+  transition: transform .25s ease;
+}
+
+.mb-btn:hover .icon,
+.mb-btn:focus-visible .icon {
+  transform: translateX(4px);
 }
 
 @media (max-width: 760px) {
   .memorias-band {
-    padding: 64px 0;
-  }
-
-  .mb-head {
-    margin-bottom: 24px;
-  }
-
-  .mb-head .btn {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .mb-mosaic {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 150px;
-    gap: 10px;
-  }
-
-  .mb-tile {
-    border-radius: 14px;
-  }
-
-  .mb-cap {
-    left: 12px;
-    right: 12px;
-    bottom: 10px;
-    font-size: .66rem;
-  }
-
-  .mb-tile.big .mb-cap {
-    font-size: .74rem;
+    padding: 60px 0;
   }
 }
 

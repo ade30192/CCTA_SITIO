@@ -7,10 +7,11 @@
    ===================================================== */
 window.CCTA_TEXTOS = {
  /* ---------- Memorias (memorias.html y franja de la portada) ---------- */
+ "atesoramos": ["cherish", "chérissons"],
+ "Ver galería": ["View gallery", "Voir la galerie"],
  "Memorias | Centro Cristiano Tabernáculo de Adoración": ["Memories | Centro Cristiano Tabernáculo de Adoración", "Souvenirs | Centro Cristiano Tabernáculo de Adoración"],
  "Memorias": ["Memories", "Souvenirs"],
  "Momentos que": ["Moments we", "Des moments que nous"],
- "guardamos": ["treasure", "gardons"],
  "Una mirada a lo que Dios ha hecho entre nosotros: cultos, alabanza, encuentros y una familia que crece unida. Tocá cualquier foto para verla en grande.": ["A look at what God has done among us: services, praise, gatherings and a family growing together. Tap any photo to see it full size.", "Un regard sur ce que Dieu a fait parmi nous : cultes, louange, rencontres et une famille qui grandit unie. Touchez une photo pour l’agrandir."],
  "Cultos, alabanza, encuentros y una familia que crece unida. Así se vive la fe en el Tabernáculo.": ["Services, praise, gatherings and a family growing together. This is how we live our faith at the Tabernacle.", "Cultes, louange, rencontres et une famille qui grandit unie. C’est ainsi que l’on vit la foi au Tabernacle."],
  "Ver memorias": ["See memories", "Voir les souvenirs"],
@@ -2261,6 +2262,1376 @@ window.CCTA_VERSOS = {
   "fr": [
    "Pour nous, nous l’aimons, parce qu’il nous a aimés le premier.",
    "1 Jean 4:19"
+  ]
+ },
+ "Génesis 28:15": {
+  "en": [
+   "And, behold, I am with thee, and will keep thee in all places whither thou goest, and will bring thee again into this land; for I will not leave thee, until I have done that which I have spoken to thee of.",
+   "Genesis 28:15"
+  ],
+  "fr": [
+   "Voici, je suis avec toi, je te garderai partout où tu iras, et je te ramènerai dans ce pays; car je ne t’abandonnerai point, que je n’aie exécuté ce que je te dis.",
+   "Genèse 28:15"
+  ]
+ },
+ "Números 6:24-26": {
+  "en": [
+   "The LORD bless thee, and keep thee: The LORD make his face shine upon thee, and be gracious unto thee: The LORD lift up his countenance upon thee, and give thee peace.",
+   "Numbers 6:24-26"
+  ],
+  "fr": [
+   "Que l’Éternel te bénisse, et qu’il te garde! Que l’Éternel fasse luire sa face sur toi, et qu’il t’accorde sa grâce! Que l’Éternel tourne sa face vers toi, et qu’il te donne la paix!",
+   "Nombres 6:24-26"
+  ]
+ },
+ "Deuteronomio 31:6": {
+  "en": [
+   "Be strong and of a good courage, fear not, nor be afraid of them: for the LORD thy God, he it is that doth go with thee; he will not fail thee, nor forsake thee.",
+   "Deuteronomy 31:6"
+  ],
+  "fr": [
+   "Fortifiez-vous et ayez du courage! Ne craignez point et ne soyez point effrayés devant eux; car l’Éternel, ton Dieu, marchera lui-même avec toi, il ne te délaissera point, il ne t’abandonnera point.",
+   "Deutéronome 31:6"
+  ]
+ },
+ "Deuteronomio 31:8": {
+  "en": [
+   "And the LORD, he it is that doth go before thee; he will be with thee, he will not fail thee, neither forsake thee: fear not, neither be dismayed.",
+   "Deuteronomy 31:8"
+  ],
+  "fr": [
+   "L’Éternel marchera lui-même devant toi, il sera lui-même avec toi, il ne te délaissera point, il ne t’abandonnera point; ne crains point, et ne t’effraie point.",
+   "Deutéronome 31:8"
+  ]
+ },
+ "Josué 1:8": {
+  "en": [
+   "This book of the law shall not depart out of thy mouth; but thou shalt meditate therein day and night, that thou mayest observe to do according to all that is written therein: for then thou shalt make thy way prosperous, and then thou shalt have good success.",
+   "Joshua 1:8"
+  ],
+  "fr": [
+   "Que ce livre de la loi ne s’éloigne point de ta bouche; médite-le jour et nuit, pour agir fidèlement selon tout ce qui y est écrit; car c’est alors que tu auras du succès dans tes entreprises, c’est alors que tu réussiras.",
+   "Josué 1:8"
+  ]
+ },
+ "1 Samuel 16:7": {
+  "en": [
+   "But the LORD said unto Samuel, Look not on his countenance, or on the height of his stature; because I have refused him: for the LORD seeth not as man seeth; for man looketh on the outward appearance, but the LORD looketh on the heart.",
+   "1 Samuel 16:7"
+  ],
+  "fr": [
+   "Et l’Éternel dit à Samuel: Ne prends point garde à son apparence et à la hauteur de sa taille, car je l’ai rejeté. L’Éternel ne considère pas ce que l’homme considère; l’homme regarde à ce qui frappe les yeux, mais l’Éternel regarde au cœur.",
+   "1 Samuel 16:7"
+  ]
+ },
+ "1 Crónicas 16:11": {
+  "en": [
+   "Seek the LORD and his strength, seek his face continually.",
+   "1 Chronicles 16:11"
+  ],
+  "fr": [
+   "Ayez recours à l’Éternel et à son appui, Cherchez continuellement sa face!",
+   "1 Chroniques 16:11"
+  ]
+ },
+ "2 Crónicas 7:14": {
+  "en": [
+   "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
+   "2 Chronicles 7:14"
+  ],
+  "fr": [
+   "Si mon peuple sur qui est invoqué mon nom s’humilie, prie, et cherche ma face, et s’il se détourne de ses mauvaises voies, je l’exaucerai des cieux, je lui pardonnerai son péché, et je guérirai son pays.",
+   "2 Chroniques 7:14"
+  ]
+ },
+ "Salmos 4:8": {
+  "en": [
+   "I will both lay me down in peace, and sleep: for thou, LORD, only makest me dwell in safety.",
+   "Psalm 4:8"
+  ],
+  "fr": [
+   "Je me couche et je m’endors en paix, Car toi seul, ô Éternel! tu me donnes la sécurité dans ma demeure.",
+   "Psaume 4:8"
+  ]
+ },
+ "Salmos 5:3": {
+  "en": [
+   "My voice shalt thou hear in the morning, O LORD; in the morning will I direct my prayer unto thee, and will look up.",
+   "Psalm 5:3"
+  ],
+  "fr": [
+   "Éternel! le matin tu entends ma voix; Le matin je me tourne vers toi, et je regarde.",
+   "Psaume 5:3"
+  ]
+ },
+ "Salmos 9:1": {
+  "en": [
+   "I will praise thee, O LORD, with my whole heart; I will shew forth all thy marvellous works.",
+   "Psalm 9:1"
+  ],
+  "fr": [
+   "Je louerai l’Éternel de tout mon cœur, Je raconterai toutes tes merveilles.",
+   "Psaume 9:1"
+  ]
+ },
+ "Salmos 18:2": {
+  "en": [
+   "The LORD is my rock, and my fortress, and my deliverer; my God, my strength, in whom I will trust; my buckler, and the horn of my salvation, and my high tower.",
+   "Psalm 18:2"
+  ],
+  "fr": [
+   "Éternel, mon rocher, ma forteresse, mon libérateur! Mon Dieu, mon rocher, où je trouve un abri! Mon bouclier, la force qui me sauve, ma haute retraite!",
+   "Psaume 18:2"
+  ]
+ },
+ "Salmos 19:14": {
+  "en": [
+   "Let the words of my mouth, and the meditation of my heart, be acceptable in thy sight, O LORD, my strength, and my redeemer.",
+   "Psalm 19:14"
+  ],
+  "fr": [
+   "Reçois favorablement les paroles de ma bouche Et les sentiments de mon cœur, Ô Éternel, mon rocher et mon libérateur!",
+   "Psaume 19:14"
+  ]
+ },
+ "Salmos 23:4": {
+  "en": [
+   "Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me; thy rod and thy staff they comfort me.",
+   "Psalm 23:4"
+  ],
+  "fr": [
+   "Quand je marche dans la vallée de l’ombre de la mort, Je ne crains aucun mal, car tu es avec moi: Ta houlette et ton bâton me rassurent.",
+   "Psaume 23:4"
+  ]
+ },
+ "Salmos 25:4": {
+  "en": [
+   "Shew me thy ways, O LORD; teach me thy paths.",
+   "Psalm 25:4"
+  ],
+  "fr": [
+   "Éternel! fais-moi connaître tes voies, Enseigne-moi tes sentiers.",
+   "Psaume 25:4"
+  ]
+ },
+ "Salmos 27:14": {
+  "en": [
+   "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
+   "Psalm 27:14"
+  ],
+  "fr": [
+   "Espère en l’Éternel! Fortifie-toi et que ton cœur s’affermisse! Espère en l’Éternel!",
+   "Psaume 27:14"
+  ]
+ },
+ "Salmos 28:7": {
+  "en": [
+   "The LORD is my strength and my shield; my heart trusted in him, and I am helped: therefore my heart greatly rejoiceth; and with my song will I praise him.",
+   "Psalm 28:7"
+  ],
+  "fr": [
+   "L’Éternel est ma force et mon bouclier; En lui mon cœur se confie, et je suis secouru; J’ai de l’allégresse dans le cœur, Et je le loue par mes chants.",
+   "Psaume 28:7"
+  ]
+ },
+ "Salmos 30:5": {
+  "en": [
+   "For his anger endureth but a moment; in his favour is life: weeping may endure for a night, but joy cometh in the morning.",
+   "Psalm 30:5"
+  ],
+  "fr": [
+   "Car sa colère dure un instant, Mais sa grâce toute la vie; Le soir arrivent les pleurs, Et le matin l’allégresse.",
+   "Psaume 30:5"
+  ]
+ },
+ "Salmos 31:24": {
+  "en": [
+   "Be of good courage, and he shall strengthen your heart, all ye that hope in the LORD.",
+   "Psalm 31:24"
+  ],
+  "fr": [
+   "Fortifiez-vous et que votre cœur s’affermisse, Vous tous qui espérez en l’Éternel!",
+   "Psaume 31:24"
+  ]
+ },
+ "Salmos 32:8": {
+  "en": [
+   "I will instruct thee and teach thee in the way which thou shalt go: I will guide thee with mine eye.",
+   "Psalm 32:8"
+  ],
+  "fr": [
+   "Je t’instruirai et te montrerai la voie que tu dois suivre; Je te conseillerai, j’aurai le regard sur toi.",
+   "Psaume 32:8"
+  ]
+ },
+ "Salmos 33:12": {
+  "en": [
+   "Blessed is the nation whose God is the LORD; and the people whom he hath chosen for his own inheritance.",
+   "Psalm 33:12"
+  ],
+  "fr": [
+   "Heureuse la nation dont l’Éternel est le Dieu! Heureux le peuple qu’il choisit pour son héritage!",
+   "Psaume 33:12"
+  ]
+ },
+ "Salmos 34:4": {
+  "en": [
+   "I sought the LORD, and he heard me, and delivered me from all my fears.",
+   "Psalm 34:4"
+  ],
+  "fr": [
+   "J’ai cherché l’Éternel, et il m’a répondu; Il m’a délivré de toutes mes frayeurs.",
+   "Psaume 34:4"
+  ]
+ },
+ "Salmos 34:18": {
+  "en": [
+   "The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit.",
+   "Psalm 34:18"
+  ],
+  "fr": [
+   "L’Éternel est près de ceux qui ont le cœur brisé, Et il sauve ceux qui ont l’esprit dans l’abattement.",
+   "Psaume 34:18"
+  ]
+ },
+ "Salmos 37:5": {
+  "en": [
+   "Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
+   "Psalm 37:5"
+  ],
+  "fr": [
+   "Recommande ton sort à l’Éternel, Mets en lui ta confiance, et il agira.",
+   "Psaume 37:5"
+  ]
+ },
+ "Salmos 40:1": {
+  "en": [
+   "I waited patiently for the LORD; and he inclined unto me, and heard my cry.",
+   "Psalm 40:1"
+  ],
+  "fr": [
+   "J’avais mis en l’Éternel mon espérance; Et il s’est incliné vers moi, il a écouté mes cris.",
+   "Psaume 40:1"
+  ]
+ },
+ "Salmos 42:11": {
+  "en": [
+   "Why art thou cast down, O my soul? and why art thou disquieted within me? hope thou in God: for I shall yet praise him, who is the health of my countenance, and my God.",
+   "Psalm 42:11"
+  ],
+  "fr": [
+   "Pourquoi t’abats-tu, mon âme, et gémis-tu au dedans de moi? Espère en Dieu, car je le louerai encore; Il est mon salut et mon Dieu.",
+   "Psaume 42:11"
+  ]
+ },
+ "Salmos 46:10": {
+  "en": [
+   "Be still, and know that I am God: I will be exalted among the heathen, I will be exalted in the earth.",
+   "Psalm 46:10"
+  ],
+  "fr": [
+   "Arrêtez, et sachez que je suis Dieu: Je domine sur les nations, je domine sur la terre.",
+   "Psaume 46:10"
+  ]
+ },
+ "Salmos 51:10": {
+  "en": [
+   "Create in me a clean heart, O God; and renew a right spirit within me.",
+   "Psalm 51:10"
+  ],
+  "fr": [
+   "Ô Dieu! crée en moi un cœur pur, Renouvelle en moi un esprit bien disposé.",
+   "Psaume 51:10"
+  ]
+ },
+ "Salmos 56:3": {
+  "en": [
+   "What time I am afraid, I will trust in thee.",
+   "Psalm 56:3"
+  ],
+  "fr": [
+   "Quand je suis dans la crainte, En toi je me confie.",
+   "Psaume 56:3"
+  ]
+ },
+ "Salmos 62:1": {
+  "en": [
+   "Truly my soul waiteth upon God: from him cometh my salvation.",
+   "Psalm 62:1"
+  ],
+  "fr": [
+   "Oui, c’est en Dieu que mon âme se confie; De lui vient mon salut.",
+   "Psaume 62:1"
+  ]
+ },
+ "Salmos 63:1": {
+  "en": [
+   "O God, thou art my God; early will I seek thee: my soul thirsteth for thee, my flesh longeth for thee in a dry and thirsty land, where no water is.",
+   "Psalm 63:1"
+  ],
+  "fr": [
+   "Ô Dieu! tu es mon Dieu, je te cherche; Mon âme a soif de toi, mon corps soupire après toi, Dans une terre aride, desséchée, sans eau.",
+   "Psaume 63:1"
+  ]
+ },
+ "Salmos 73:26": {
+  "en": [
+   "My flesh and my heart faileth: but God is the strength of my heart, and my portion for ever.",
+   "Psalm 73:26"
+  ],
+  "fr": [
+   "Ma chair et mon cœur peuvent se consumer: Dieu sera toujours le rocher de mon cœur et mon partage.",
+   "Psaume 73:26"
+  ]
+ },
+ "Salmos 84:10": {
+  "en": [
+   "For a day in thy courts is better than a thousand. I had rather be a doorkeeper in the house of my God, than to dwell in the tents of wickedness.",
+   "Psalm 84:10"
+  ],
+  "fr": [
+   "Mieux vaut un jour dans tes parvis que mille ailleurs; Je préfère me tenir sur le seuil de la maison de mon Dieu, Plutôt que d’habiter sous les tentes de la méchanceté.",
+   "Psaume 84:10"
+  ]
+ },
+ "Salmos 86:5": {
+  "en": [
+   "For thou, Lord, art good, and ready to forgive; and plenteous in mercy unto all them that call upon thee.",
+   "Psalm 86:5"
+  ],
+  "fr": [
+   "Car tu es bon, Seigneur, tu pardonnes, Tu es plein d’amour pour tous ceux qui t’invoquent.",
+   "Psaume 86:5"
+  ]
+ },
+ "Salmos 90:12": {
+  "en": [
+   "So teach us to number our days, that we may apply our hearts unto wisdom.",
+   "Psalm 90:12"
+  ],
+  "fr": [
+   "Enseigne-nous à bien compter nos jours, Afin que nous appliquions notre cœur à la sagesse.",
+   "Psaume 90:12"
+  ]
+ },
+ "Salmos 91:2": {
+  "en": [
+   "I will say of the LORD, He is my refuge and my fortress: my God; in him will I trust.",
+   "Psalm 91:2"
+  ],
+  "fr": [
+   "Je dis à l’Éternel: Mon refuge et ma forteresse, Mon Dieu en qui je me confie!",
+   "Psaume 91:2"
+  ]
+ },
+ "Salmos 91:11": {
+  "en": [
+   "For he shall give his angels charge over thee, to keep thee in all thy ways.",
+   "Psalm 91:11"
+  ],
+  "fr": [
+   "Car il ordonnera à ses anges De te garder dans toutes tes voies.",
+   "Psaume 91:11"
+  ]
+ },
+ "Salmos 96:1": {
+  "en": [
+   "O sing unto the LORD a new song: sing unto the LORD, all the earth.",
+   "Psalm 96:1"
+  ],
+  "fr": [
+   "Chantez à l’Éternel un cantique nouveau! Chantez à l’Éternel, vous tous, habitants de la terre!",
+   "Psaume 96:1"
+  ]
+ },
+ "Salmos 100:4": {
+  "en": [
+   "Enter into his gates with thanksgiving, and into his courts with praise: be thankful unto him, and bless his name.",
+   "Psalm 100:4"
+  ],
+  "fr": [
+   "Entrez dans ses portes avec des louanges, Dans ses parvis avec des cantiques! Célébrez-le, bénissez son nom!",
+   "Psaume 100:4"
+  ]
+ },
+ "Salmos 100:5": {
+  "en": [
+   "For the LORD is good; his mercy is everlasting; and his truth endureth to all generations.",
+   "Psalm 100:5"
+  ],
+  "fr": [
+   "Car l’Éternel est bon; sa bonté dure toujours, Et sa fidélité de génération en génération.",
+   "Psaume 100:5"
+  ]
+ },
+ "Salmos 103:2": {
+  "en": [
+   "Bless the LORD, O my soul, and forget not all his benefits.",
+   "Psalm 103:2"
+  ],
+  "fr": [
+   "Mon âme, bénis l’Éternel, Et n’oublie aucun de ses bienfaits!",
+   "Psaume 103:2"
+  ]
+ },
+ "Salmos 103:12": {
+  "en": [
+   "As far as the east is from the west, so far hath he removed our transgressions from us.",
+   "Psalm 103:12"
+  ],
+  "fr": [
+   "Autant l’orient est éloigné de l’occident, Autant il éloigne de nous nos transgressions.",
+   "Psaume 103:12"
+  ]
+ },
+ "Salmos 113:3": {
+  "en": [
+   "From the rising of the sun unto the going down of the same the LORD’s name is to be praised.",
+   "Psalm 113:3"
+  ],
+  "fr": [
+   "Du lever du soleil jusqu’à son couchant, Que le nom de l’Éternel soit célébré!",
+   "Psaume 113:3"
+  ]
+ },
+ "Salmos 116:1": {
+  "en": [
+   "I love the LORD, because he hath heard my voice and my supplications.",
+   "Psalm 116:1"
+  ],
+  "fr": [
+   "J’aime l’Éternel, car il entend Ma voix, mes supplications.",
+   "Psaume 116:1"
+  ]
+ },
+ "Salmos 119:11": {
+  "en": [
+   "Thy word have I hid in mine heart, that I might not sin against thee.",
+   "Psalm 119:11"
+  ],
+  "fr": [
+   "Je serre ta parole dans mon cœur, Afin de ne pas pécher contre toi.",
+   "Psaume 119:11"
+  ]
+ },
+ "Salmos 121:8": {
+  "en": [
+   "The LORD shall preserve thy going out and thy coming in from this time forth, and even for evermore.",
+   "Psalm 121:8"
+  ],
+  "fr": [
+   "L’Éternel gardera ton départ et ton arrivée, Dès maintenant et à jamais.",
+   "Psaume 121:8"
+  ]
+ },
+ "Salmos 126:3": {
+  "en": [
+   "The LORD hath done great things for us; whereof we are glad.",
+   "Psalm 126:3"
+  ],
+  "fr": [
+   "L’Éternel a fait pour nous de grandes choses; Nous sommes dans la joie.",
+   "Psaume 126:3"
+  ]
+ },
+ "Salmos 127:1": {
+  "en": [
+   "Except the LORD build the house, they labour in vain that build it: except the LORD keep the city, the watchman waketh but in vain.",
+   "Psalm 127:1"
+  ],
+  "fr": [
+   "Si l’Éternel ne bâtit la maison, Ceux qui la bâtissent travaillent en vain; Si l’Éternel ne garde la ville, Celui qui la garde veille en vain.",
+   "Psaume 127:1"
+  ]
+ },
+ "Salmos 136:1": {
+  "en": [
+   "O give thanks unto the LORD; for he is good: for his mercy endureth for ever.",
+   "Psalm 136:1"
+  ],
+  "fr": [
+   "Louez l’Éternel, car il est bon, Car sa miséricorde dure à toujours!",
+   "Psaume 136:1"
+  ]
+ },
+ "Salmos 138:8": {
+  "en": [
+   "The LORD will perfect that which concerneth me: thy mercy, O LORD, endureth for ever: forsake not the works of thine own hands.",
+   "Psalm 138:8"
+  ],
+  "fr": [
+   "L’Éternel agira en ma faveur. Éternel, ta bonté dure toujours, N’abandonne pas les œuvres de tes mains!",
+   "Psaume 138:8"
+  ]
+ },
+ "Salmos 139:14": {
+  "en": [
+   "I will praise thee; for I am fearfully and wonderfully made: marvellous are thy works; and that my soul knoweth right well.",
+   "Psalm 139:14"
+  ],
+  "fr": [
+   "Je te loue de ce que je suis une créature si merveilleuse. Tes œuvres sont admirables, Et mon âme le reconnaît bien.",
+   "Psaume 139:14"
+  ]
+ },
+ "Salmos 145:18": {
+  "en": [
+   "The LORD is nigh unto all them that call upon him, to all that call upon him in truth.",
+   "Psalm 145:18"
+  ],
+  "fr": [
+   "L’Éternel est près de tous ceux qui l’invoquent, De tous ceux qui l’invoquent avec sincérité.",
+   "Psaume 145:18"
+  ]
+ },
+ "Salmos 147:3": {
+  "en": [
+   "He healeth the broken in heart, and bindeth up their wounds.",
+   "Psalm 147:3"
+  ],
+  "fr": [
+   "Il guérit ceux qui ont le cœur brisé, Et il panse leurs blessures.",
+   "Psaume 147:3"
+  ]
+ },
+ "Proverbios 4:23": {
+  "en": [
+   "Keep thy heart with all diligence; for out of it are the issues of life.",
+   "Proverbs 4:23"
+  ],
+  "fr": [
+   "Garde ton cœur plus que toute autre chose, Car de lui viennent les sources de la vie.",
+   "Proverbes 4:23"
+  ]
+ },
+ "Proverbios 16:3": {
+  "en": [
+   "Commit thy works unto the LORD, and thy thoughts shall be established.",
+   "Proverbs 16:3"
+  ],
+  "fr": [
+   "Recommande à l’Éternel tes œuvres, Et tes projets réussiront.",
+   "Proverbes 16:3"
+  ]
+ },
+ "Proverbios 16:9": {
+  "en": [
+   "A man’s heart deviseth his way: but the LORD directeth his steps.",
+   "Proverbs 16:9"
+  ],
+  "fr": [
+   "Le cœur de l’homme médite sa voie, Mais c’est l’Éternel qui dirige ses pas.",
+   "Proverbes 16:9"
+  ]
+ },
+ "Proverbios 17:17": {
+  "en": [
+   "A friend loveth at all times, and a brother is born for adversity.",
+   "Proverbs 17:17"
+  ],
+  "fr": [
+   "L’ami aime en tout temps, Et dans le malheur il se montre un frère.",
+   "Proverbes 17:17"
+  ]
+ },
+ "Proverbios 22:6": {
+  "en": [
+   "Train up a child in the way he should go: and when he is old, he will not depart from it.",
+   "Proverbs 22:6"
+  ],
+  "fr": [
+   "Instruis l’enfant selon la voie qu’il doit suivre; Et quand il sera vieux, il ne s’en détournera pas.",
+   "Proverbes 22:6"
+  ]
+ },
+ "Eclesiastés 3:1": {
+  "en": [
+   "To every thing there is a season, and a time to every purpose under the heaven.",
+   "Ecclesiastes 3:1"
+  ],
+  "fr": [
+   "Il y a un temps pour tout, un temps pour toute chose sous les cieux.",
+   "Ecclésiaste 3:1"
+  ]
+ },
+ "Isaías 9:6": {
+  "en": [
+   "For unto us a child is born, unto us a son is given: and the government shall be upon his shoulder: and his name shall be called Wonderful, Counsellor, The mighty God, The everlasting Father, The Prince of Peace.",
+   "Isaiah 9:6"
+  ],
+  "fr": [
+   "Car un enfant nous est né, un fils nous est donné, Et la domination reposera sur son épaule; On l’appellera Admirable, Conseiller, Dieu puissant, Père éternel, Prince de la paix.",
+   "Ésaïe 9:6"
+  ]
+ },
+ "Isaías 12:2": {
+  "en": [
+   "Behold, God is my salvation; I will trust, and not be afraid: for the LORD Jehovah is my strength and my song; he also is become my salvation.",
+   "Isaiah 12:2"
+  ],
+  "fr": [
+   "Voici, Dieu est ma délivrance, Je serai plein de confiance, et je ne craindrai rien; Car l’Éternel, l’Éternel est ma force et le sujet de mes louanges; C’est lui qui m’a sauvé.",
+   "Ésaïe 12:2"
+  ]
+ },
+ "Isaías 26:3": {
+  "en": [
+   "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.",
+   "Isaiah 26:3"
+  ],
+  "fr": [
+   "A celui qui est ferme dans ses sentiments Tu assures la paix, la paix, Parce qu’il se confie en toi.",
+   "Ésaïe 26:3"
+  ]
+ },
+ "Isaías 40:8": {
+  "en": [
+   "The grass withereth, the flower fadeth: but the word of our God shall stand for ever.",
+   "Isaiah 40:8"
+  ],
+  "fr": [
+   "L’herbe sèche, la fleur tombe; Mais la parole de notre Dieu subsiste éternellement.",
+   "Ésaïe 40:8"
+  ]
+ },
+ "Isaías 40:29": {
+  "en": [
+   "He giveth power to the faint; and to them that have no might he increaseth strength.",
+   "Isaiah 40:29"
+  ],
+  "fr": [
+   "Il donne de la force à celui qui est fatigué, Et il augmente la vigueur de celui qui tombe en défaillance.",
+   "Ésaïe 40:29"
+  ]
+ },
+ "Isaías 43:2": {
+  "en": [
+   "When thou passest through the waters, I will be with thee; and through the rivers, they shall not overflow thee: when thou walkest through the fire, thou shalt not be burned; neither shall the flame kindle upon thee.",
+   "Isaiah 43:2"
+  ],
+  "fr": [
+   "Si tu traverses les eaux, je serai avec toi; Et les fleuves, ils ne te submergeront point; Si tu marches dans le feu, tu ne te brûleras pas, Et la flamme ne t’embrasera pas.",
+   "Ésaïe 43:2"
+  ]
+ },
+ "Isaías 53:5": {
+  "en": [
+   "But he was wounded for our transgressions, he was bruised for our iniquities: the chastisement of our peace was upon him; and with his stripes we are healed.",
+   "Isaiah 53:5"
+  ],
+  "fr": [
+   "Mais il était blessé pour nos péchés, Brisé pour nos iniquités; Le châtiment qui nous donne la paix est tombé sur lui, Et c’est par ses meurtrissures que nous sommes guéris.",
+   "Ésaïe 53:5"
+  ]
+ },
+ "Isaías 54:10": {
+  "en": [
+   "For the mountains shall depart, and the hills be removed; but my kindness shall not depart from thee, neither shall the covenant of my peace be removed, saith the LORD that hath mercy on thee.",
+   "Isaiah 54:10"
+  ],
+  "fr": [
+   "Quand les montagnes s’éloigneraient, Quand les collines chancelleraient, Mon amour ne s’éloignera point de toi, Et mon alliance de paix ne chancellera point, Dit l’Éternel, qui a compassion de toi.",
+   "Ésaïe 54:10"
+  ]
+ },
+ "Isaías 55:6": {
+  "en": [
+   "Seek ye the LORD while he may be found, call ye upon him while he is near.",
+   "Isaiah 55:6"
+  ],
+  "fr": [
+   "Cherchez l’Éternel pendant qu’il se trouve; Invoquez-le, tandis qu’il est près.",
+   "Ésaïe 55:6"
+  ]
+ },
+ "Isaías 60:1": {
+  "en": [
+   "Arise, shine; for thy light is come, and the glory of the LORD is risen upon thee.",
+   "Isaiah 60:1"
+  ],
+  "fr": [
+   "Lève-toi, sois éclairée, car ta lumière arrive, Et la gloire de l’Éternel se lève sur toi.",
+   "Ésaïe 60:1"
+  ]
+ },
+ "Jeremías 17:7": {
+  "en": [
+   "Blessed is the man that trusteth in the LORD, and whose hope the LORD is.",
+   "Jeremiah 17:7"
+  ],
+  "fr": [
+   "Béni soit l’homme qui se confie dans l’Éternel, Et dont l’Éternel est l’espérance!",
+   "Jérémie 17:7"
+  ]
+ },
+ "Jeremías 33:3": {
+  "en": [
+   "Call unto me, and I will answer thee, and shew thee great and mighty things, which thou knowest not.",
+   "Jeremiah 33:3"
+  ],
+  "fr": [
+   "Invoque-moi, et je te répondrai; Je t’annoncerai de grandes choses, des choses cachées, Que tu ne connais pas.",
+   "Jérémie 33:3"
+  ]
+ },
+ "Lamentaciones 3:22": {
+  "en": [
+   "It is of the LORD’s mercies that we are not consumed, because his compassions fail not.",
+   "Lamentations 3:22"
+  ],
+  "fr": [
+   "Les bontés de l’Éternel ne sont pas épuisées, Ses compassions ne sont pas à leur terme.",
+   "Lamentations 3:22"
+  ]
+ },
+ "Miqueas 6:8": {
+  "en": [
+   "He hath shewed thee, O man, what is good; and what doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly with thy God?",
+   "Micah 6:8"
+  ],
+  "fr": [
+   "On t’a fait connaître, ô homme, ce qui est bien; Et ce que l’Éternel demande de toi, C’est que tu pratiques la justice, Que tu aimes la miséricorde, Et que tu marches humblement avec ton Dieu.",
+   "Michée 6:8"
+  ]
+ },
+ "Nahúm 1:7": {
+  "en": [
+   "The LORD is good, a strong hold in the day of trouble; and he knoweth them that trust in him.",
+   "Nahum 1:7"
+  ],
+  "fr": [
+   "L’Éternel est bon, Il est un refuge au jour de la détresse; Il connaît ceux qui se confient en lui.",
+   "Nahum 1:7"
+  ]
+ },
+ "Sofonías 3:17": {
+  "en": [
+   "The LORD thy God in the midst of thee is mighty; he will save, he will rejoice over thee with joy; he will rest in his love, he will joy over thee with singing.",
+   "Zephaniah 3:17"
+  ],
+  "fr": [
+   "L’Éternel, ton Dieu, est au milieu de toi, comme un héros qui sauve; Il fera de toi sa plus grande joie; Il gardera le silence dans son amour; Il aura pour toi des transports d’allégresse.",
+   "Sophonie 3:17"
+  ]
+ },
+ "Mateo 5:8": {
+  "en": [
+   "Blessed are the pure in heart: for they shall see God.",
+   "Matthew 5:8"
+  ],
+  "fr": [
+   "Heureux ceux qui ont le cœur pur, car ils verront Dieu!",
+   "Matthieu 5:8"
+  ]
+ },
+ "Mateo 5:9": {
+  "en": [
+   "Blessed are the peacemakers: for they shall be called the children of God.",
+   "Matthew 5:9"
+  ],
+  "fr": [
+   "Heureux ceux qui procurent la paix, car ils seront appelés fils de Dieu!",
+   "Matthieu 5:9"
+  ]
+ },
+ "Mateo 6:34": {
+  "en": [
+   "Take therefore no thought for the morrow: for the morrow shall take thought for the things of itself. Sufficient unto the day is the evil thereof.",
+   "Matthew 6:34"
+  ],
+  "fr": [
+   "Ne vous inquiétez donc pas du lendemain; car le lendemain aura soin de lui-même. A chaque jour suffit sa peine.",
+   "Matthieu 6:34"
+  ]
+ },
+ "Mateo 7:7": {
+  "en": [
+   "Ask, and it shall be given you; seek, and ye shall find; knock, and it shall be opened unto you.",
+   "Matthew 7:7"
+  ],
+  "fr": [
+   "Demandez, et l’on vous donnera; cherchez, et vous trouverez; frappez, et l’on vous ouvrira.",
+   "Matthieu 7:7"
+  ]
+ },
+ "Mateo 11:29": {
+  "en": [
+   "Take my yoke upon you, and learn of me; for I am meek and lowly in heart: and ye shall find rest unto your souls.",
+   "Matthew 11:29"
+  ],
+  "fr": [
+   "Prenez mon joug sur vous et recevez mes instructions, car je suis doux et humble de cœur; et vous trouverez du repos pour vos âmes.",
+   "Matthieu 11:29"
+  ]
+ },
+ "Mateo 22:37": {
+  "en": [
+   "Jesus said unto him, Thou shalt love the Lord thy God with all thy heart, and with all thy soul, and with all thy mind.",
+   "Matthew 22:37"
+  ],
+  "fr": [
+   "Jésus lui répondit: Tu aimeras le Seigneur, ton Dieu, de tout ton cœur, de toute ton âme, et de toute ta pensée.",
+   "Matthieu 22:37"
+  ]
+ },
+ "Mateo 28:20": {
+  "en": [
+   "Teaching them to observe all things whatsoever I have commanded you: and, lo, I am with you alway, even unto the end of the world. Amen.",
+   "Matthew 28:20"
+  ],
+  "fr": [
+   "Et enseignez-leur à observer tout ce que je vous ai prescrit. Et voici, je suis avec vous tous les jours, jusqu’à la fin du monde.",
+   "Matthieu 28:20"
+  ]
+ },
+ "Marcos 10:27": {
+  "en": [
+   "And Jesus looking upon them saith, With men it is impossible, but not with God: for with God all things are possible.",
+   "Mark 10:27"
+  ],
+  "fr": [
+   "Jésus les regarda, et dit: Cela est impossible aux hommes, mais non à Dieu: car tout est possible à Dieu.",
+   "Marc 10:27"
+  ]
+ },
+ "Marcos 11:24": {
+  "en": [
+   "Therefore I say unto you, What things soever ye desire, when ye pray, believe that ye receive them, and ye shall have them.",
+   "Mark 11:24"
+  ],
+  "fr": [
+   "C’est pourquoi je vous dis: Tout ce que vous demanderez en priant, croyez que vous l’avez reçu, et vous le verrez s’accomplir.",
+   "Marc 11:24"
+  ]
+ },
+ "Lucas 1:37": {
+  "en": [
+   "For with God nothing shall be impossible.",
+   "Luke 1:37"
+  ],
+  "fr": [
+   "Car rien n’est impossible à Dieu.",
+   "Luc 1:37"
+  ]
+ },
+ "Lucas 6:31": {
+  "en": [
+   "And as ye would that men should do to you, do ye also to them likewise.",
+   "Luke 6:31"
+  ],
+  "fr": [
+   "Ce que vous voulez que les hommes fassent pour vous, faites-le de même pour eux.",
+   "Luc 6:31"
+  ]
+ },
+ "Lucas 19:10": {
+  "en": [
+   "For the Son of man is come to seek and to save that which was lost.",
+   "Luke 19:10"
+  ],
+  "fr": [
+   "Car le Fils de l’homme est venu chercher et sauver ce qui était perdu.",
+   "Luc 19:10"
+  ]
+ },
+ "Juan 1:12": {
+  "en": [
+   "But as many as received him, to them gave he power to become the sons of God, even to them that believe on his name.",
+   "John 1:12"
+  ],
+  "fr": [
+   "Mais à tous ceux qui l’ont reçue, à ceux qui croient en son nom, elle a donné le pouvoir de devenir enfants de Dieu.",
+   "Jean 1:12"
+  ]
+ },
+ "Juan 6:35": {
+  "en": [
+   "And Jesus said unto them, I am the bread of life: he that cometh to me shall never hunger; and he that believeth on me shall never thirst.",
+   "John 6:35"
+  ],
+  "fr": [
+   "Jésus leur dit: Je suis le pain de vie. Celui qui vient à moi n’aura jamais faim, et celui qui croit en moi n’aura jamais soif.",
+   "Jean 6:35"
+  ]
+ },
+ "Juan 8:32": {
+  "en": [
+   "And ye shall know the truth, and the truth shall make you free.",
+   "John 8:32"
+  ],
+  "fr": [
+   "Vous connaîtrez la vérité, et la vérité vous affranchira.",
+   "Jean 8:32"
+  ]
+ },
+ "Juan 10:10": {
+  "en": [
+   "The thief cometh not, but for to steal, and to kill, and to destroy: I am come that they might have life, and that they might have it more abundantly.",
+   "John 10:10"
+  ],
+  "fr": [
+   "Le voleur ne vient que pour dérober, égorger et détruire; moi, je suis venu afin que les brebis aient la vie, et qu’elles soient dans l’abondance.",
+   "Jean 10:10"
+  ]
+ },
+ "Juan 10:11": {
+  "en": [
+   "I am the good shepherd: the good shepherd giveth his life for the sheep.",
+   "John 10:11"
+  ],
+  "fr": [
+   "Je suis le bon berger. Le bon berger donne sa vie pour ses brebis.",
+   "Jean 10:11"
+  ]
+ },
+ "Juan 11:25": {
+  "en": [
+   "Jesus said unto her, I am the resurrection, and the life: he that believeth in me, though he were dead, yet shall he live.",
+   "John 11:25"
+  ],
+  "fr": [
+   "Jésus lui dit: Je suis la résurrection et la vie. Celui qui croit en moi vivra, quand même il serait mort.",
+   "Jean 11:25"
+  ]
+ },
+ "Juan 14:1": {
+  "en": [
+   "Let not your heart be troubled: ye believe in God, believe also in me.",
+   "John 14:1"
+  ],
+  "fr": [
+   "Que votre cœur ne se trouble point. Croyez en Dieu, et croyez en moi.",
+   "Jean 14:1"
+  ]
+ },
+ "Juan 15:5": {
+  "en": [
+   "I am the vine, ye are the branches: He that abideth in me, and I in him, the same bringeth forth much fruit: for without me ye can do nothing.",
+   "John 15:5"
+  ],
+  "fr": [
+   "Je suis le cep, vous êtes les sarments. Celui qui demeure en moi et en qui je demeure porte beaucoup de fruit, car sans moi vous ne pouvez rien faire.",
+   "Jean 15:5"
+  ]
+ },
+ "Juan 15:12": {
+  "en": [
+   "This is my commandment, That ye love one another, as I have loved you.",
+   "John 15:12"
+  ],
+  "fr": [
+   "C’est ici mon commandement: Aimez-vous les uns les autres, comme je vous ai aimés.",
+   "Jean 15:12"
+  ]
+ },
+ "Juan 16:33": {
+  "en": [
+   "These things I have spoken unto you, that in me ye might have peace. In the world ye shall have tribulation: but be of good cheer; I have overcome the world.",
+   "John 16:33"
+  ],
+  "fr": [
+   "Je vous ai dit ces choses, afin que vous ayez la paix en moi. Vous aurez des tribulations dans le monde; mais prenez courage, j’ai vaincu le monde.",
+   "Jean 16:33"
+  ]
+ },
+ "Hechos 1:8": {
+  "en": [
+   "But ye shall receive power, after that the Holy Ghost is come upon you: and ye shall be witnesses unto me both in Jerusalem, and in all Judea, and in Samaria, and unto the uttermost part of the earth.",
+   "Acts 1:8"
+  ],
+  "fr": [
+   "Mais vous recevrez une puissance, le Saint-Esprit survenant sur vous, et vous serez mes témoins à Jérusalem, dans toute la Judée, dans la Samarie, et jusqu’aux extrémités de la terre.",
+   "Actes 1:8"
+  ]
+ },
+ "Hechos 16:31": {
+  "en": [
+   "And they said, Believe on the Lord Jesus Christ, and thou shalt be saved, and thy house.",
+   "Acts 16:31"
+  ],
+  "fr": [
+   "Paul et Silas répondirent: Crois au Seigneur Jésus, et tu seras sauvé, toi et ta famille.",
+   "Actes 16:31"
+  ]
+ },
+ "Romanos 5:8": {
+  "en": [
+   "But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us.",
+   "Romans 5:8"
+  ],
+  "fr": [
+   "Mais Dieu prouve son amour envers nous, en ce que, lorsque nous étions encore des pécheurs, Christ est mort pour nous.",
+   "Romains 5:8"
+  ]
+ },
+ "Romanos 6:23": {
+  "en": [
+   "For the wages of sin is death; but the gift of God is eternal life through Jesus Christ our Lord.",
+   "Romans 6:23"
+  ],
+  "fr": [
+   "Car le salaire du péché, c’est la mort; mais le don gratuit de Dieu, c’est la vie éternelle en Jésus-Christ notre Seigneur.",
+   "Romains 6:23"
+  ]
+ },
+ "Romanos 8:31": {
+  "en": [
+   "What shall we then say to these things? If God be for us, who can be against us?",
+   "Romans 8:31"
+  ],
+  "fr": [
+   "Que dirons-nous donc à l’égard de ces choses? Si Dieu est pour nous, qui sera contre nous?",
+   "Romains 8:31"
+  ]
+ },
+ "Romanos 10:9": {
+  "en": [
+   "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.",
+   "Romans 10:9"
+  ],
+  "fr": [
+   "Si tu confesses de ta bouche le Seigneur Jésus, et si tu crois dans ton cœur que Dieu l’a ressuscité des morts, tu seras sauvé.",
+   "Romains 10:9"
+  ]
+ },
+ "Romanos 12:2": {
+  "en": [
+   "And be not conformed to this world: but be ye transformed by the renewing of your mind, that ye may prove what is that good, and acceptable, and perfect, will of God.",
+   "Romans 12:2"
+  ],
+  "fr": [
+   "Ne vous conformez pas au siècle présent, mais soyez transformés par le renouvellement de l’intelligence, afin que vous discerniez quelle est la volonté de Dieu, ce qui est bon, agréable et parfait.",
+   "Romains 12:2"
+  ]
+ },
+ "Romanos 12:12": {
+  "en": [
+   "Rejoicing in hope; patient in tribulation; continuing instant in prayer.",
+   "Romans 12:12"
+  ],
+  "fr": [
+   "Réjouissez-vous en espérance. Soyez patients dans l’affliction. Persévérez dans la prière.",
+   "Romains 12:12"
+  ]
+ },
+ "1 Corintios 10:13": {
+  "en": [
+   "There hath no temptation taken you but such as is common to man: but God is faithful, who will not suffer you to be tempted above that ye are able; but will with the temptation also make a way to escape, that ye may be able to bear it.",
+   "1 Corinthians 10:13"
+  ],
+  "fr": [
+   "Aucune tentation ne vous est survenue qui n’ait été humaine, et Dieu, qui est fidèle, ne permettra pas que vous soyez tentés au delà de vos forces; mais avec la tentation il préparera aussi le moyen d’en sortir, afin que vous puissiez la supporter.",
+   "1 Corinthiens 10:13"
+  ]
+ },
+ "1 Corintios 15:58": {
+  "en": [
+   "Therefore, my beloved brethren, be ye stedfast, unmoveable, always abounding in the work of the Lord, forasmuch as ye know that your labour is not in vain in the Lord.",
+   "1 Corinthians 15:58"
+  ],
+  "fr": [
+   "Ainsi, mes frères bien-aimés, soyez fermes, inébranlables, travaillant de mieux en mieux à l’œuvre du Seigneur, sachant que votre travail ne sera pas vain dans le Seigneur.",
+   "1 Corinthiens 15:58"
+  ]
+ },
+ "1 Corintios 16:14": {
+  "en": [
+   "Let all your things be done with charity.",
+   "1 Corinthians 16:14"
+  ],
+  "fr": [
+   "Que tout ce que vous faites se fasse avec charité!",
+   "1 Corinthiens 16:14"
+  ]
+ },
+ "2 Corintios 5:7": {
+  "en": [
+   "For we walk by faith, not by sight.",
+   "2 Corinthians 5:7"
+  ],
+  "fr": [
+   "Car nous marchons par la foi et non par la vue.",
+   "2 Corinthiens 5:7"
+  ]
+ },
+ "2 Corintios 12:9": {
+  "en": [
+   "And he said unto me, My grace is sufficient for thee: for my strength is made perfect in weakness. Most gladly therefore will I rather glory in my infirmities, that the power of Christ may rest upon me.",
+   "2 Corinthians 12:9"
+  ],
+  "fr": [
+   "Et il m’a dit: Ma grâce te suffit, car ma puissance s’accomplit dans la faiblesse. Je me glorifierai donc bien plus volontiers de mes faiblesses, afin que la puissance de Christ repose sur moi.",
+   "2 Corinthiens 12:9"
+  ]
+ },
+ "Gálatas 2:20": {
+  "en": [
+   "I am crucified with Christ: nevertheless I live; yet not I, but Christ liveth in me: and the life which I now live in the flesh I live by the faith of the Son of God, who loved me, and gave himself for me.",
+   "Galatians 2:20"
+  ],
+  "fr": [
+   "J’ai été crucifié avec Christ; et si je vis, ce n’est plus moi qui vis, c’est Christ qui vit en moi; si je vis maintenant dans la chair, je vis dans la foi au Fils de Dieu, qui m’a aimé et qui s’est livré lui-même pour moi.",
+   "Galates 2:20"
+  ]
+ },
+ "Gálatas 5:22-23": {
+  "en": [
+   "But the fruit of the Spirit is love, joy, peace, longsuffering, gentleness, goodness, faith, meekness, temperance: against such there is no law.",
+   "Galatians 5:22-23"
+  ],
+  "fr": [
+   "Mais le fruit de l’Esprit, c’est l’amour, la joie, la paix, la patience, la bonté, la bénignité, la fidélité, la douceur, la tempérance; la loi n’est pas contre ces choses.",
+   "Galates 5:22-23"
+  ]
+ },
+ "Gálatas 6:9": {
+  "en": [
+   "And let us not be weary in well doing: for in due season we shall reap, if we faint not.",
+   "Galatians 6:9"
+  ],
+  "fr": [
+   "Ne nous lassons pas de faire le bien; car nous moissonnerons au temps convenable, si nous ne nous relâchons pas.",
+   "Galates 6:9"
+  ]
+ },
+ "Efesios 3:20-21": {
+  "en": [
+   "Now unto him that is able to do exceeding abundantly above all that we ask or think, according to the power that worketh in us, unto him be glory in the church by Christ Jesus throughout all ages, world without end. Amen.",
+   "Ephesians 3:20-21"
+  ],
+  "fr": [
+   "Or, à celui qui peut faire, par la puissance qui agit en nous, infiniment au delà de tout ce que nous demandons ou pensons, lui soit la gloire dans l’Église et en Jésus-Christ, dans toutes les générations, aux siècles des siècles! Amen!",
+   "Éphésiens 3:20-21"
+  ]
+ },
+ "Efesios 4:32": {
+  "en": [
+   "And be ye kind one to another, tenderhearted, forgiving one another, even as God for Christ’s sake hath forgiven you.",
+   "Ephesians 4:32"
+  ],
+  "fr": [
+   "Soyez bons les uns envers les autres, compatissants, vous pardonnant réciproquement, comme Dieu vous a pardonné en Christ.",
+   "Éphésiens 4:32"
+  ]
+ },
+ "Efesios 6:10": {
+  "en": [
+   "Finally, my brethren, be strong in the Lord, and in the power of his might.",
+   "Ephesians 6:10"
+  ],
+  "fr": [
+   "Au reste, fortifiez-vous dans le Seigneur, et par sa force toute-puissante.",
+   "Éphésiens 6:10"
+  ]
+ },
+ "Filipenses 1:6": {
+  "en": [
+   "Being confident of this very thing, that he which hath begun a good work in you will perform it until the day of Jesus Christ.",
+   "Philippians 1:6"
+  ],
+  "fr": [
+   "Je suis persuadé que celui qui a commencé en vous cette bonne œuvre la rendra parfaite pour le jour de Jésus-Christ.",
+   "Philippiens 1:6"
+  ]
+ },
+ "Filipenses 4:6-7": {
+  "en": [
+   "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+   "Philippians 4:6-7"
+  ],
+  "fr": [
+   "Ne vous inquiétez de rien; mais en toute chose faites connaître vos besoins à Dieu par des prières et des supplications, avec des actions de grâces. Et la paix de Dieu, qui surpasse toute intelligence, gardera vos cœurs et vos pensées en Jésus-Christ.",
+   "Philippiens 4:6-7"
+  ]
+ },
+ "Filipenses 4:19": {
+  "en": [
+   "But my God shall supply all your need according to his riches in glory by Christ Jesus.",
+   "Philippians 4:19"
+  ],
+  "fr": [
+   "Et mon Dieu pourvoira à tous vos besoins selon sa richesse, avec gloire, en Jésus-Christ.",
+   "Philippiens 4:19"
+  ]
+ },
+ "Colosenses 3:2": {
+  "en": [
+   "Set your affection on things above, not on things on the earth.",
+   "Colossians 3:2"
+  ],
+  "fr": [
+   "Affectionnez-vous aux choses d’en haut, et non à celles qui sont sur la terre.",
+   "Colossiens 3:2"
+  ]
+ },
+ "1 Tesalonicenses 5:11": {
+  "en": [
+   "Wherefore comfort yourselves together, and edify one another, even as also ye do.",
+   "1 Thessalonians 5:11"
+  ],
+  "fr": [
+   "C’est pourquoi exhortez-vous réciproquement, et édifiez-vous les uns les autres, comme en réalité vous le faites.",
+   "1 Thessaloniciens 5:11"
+  ]
+ },
+ "2 Tesalonicenses 3:3": {
+  "en": [
+   "But the Lord is faithful, who shall stablish you, and keep you from evil.",
+   "2 Thessalonians 3:3"
+  ],
+  "fr": [
+   "Le Seigneur est fidèle, il vous affermira et vous préservera du malin.",
+   "2 Thessaloniciens 3:3"
+  ]
+ },
+ "1 Timoteo 4:12": {
+  "en": [
+   "Let no man despise thy youth; but be thou an example of the believers, in word, in conversation, in charity, in spirit, in faith, in purity.",
+   "1 Timothy 4:12"
+  ],
+  "fr": [
+   "Que personne ne méprise ta jeunesse; mais sois un modèle pour les fidèles, en parole, en conduite, en charité, en foi, en pureté.",
+   "1 Timothée 4:12"
+  ]
+ },
+ "2 Timoteo 3:16-17": {
+  "en": [
+   "All scripture is given by inspiration of God, and is profitable for doctrine, for reproof, for correction, for instruction in righteousness: that the man of God may be perfect, throughly furnished unto all good works.",
+   "2 Timothy 3:16-17"
+  ],
+  "fr": [
+   "Toute Écriture est inspirée de Dieu, et utile pour enseigner, pour convaincre, pour corriger, pour instruire dans la justice, afin que l’homme de Dieu soit accompli et propre à toute bonne œuvre.",
+   "2 Timothée 3:16-17"
+  ]
+ },
+ "Hebreos 4:16": {
+  "en": [
+   "Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.",
+   "Hebrews 4:16"
+  ],
+  "fr": [
+   "Approchons-nous donc avec assurance du trône de la grâce, afin d’obtenir miséricorde et de trouver grâce, pour être secourus dans nos besoins.",
+   "Hébreux 4:16"
+  ]
+ },
+ "Hebreos 12:2": {
+  "en": [
+   "Looking unto Jesus the author and finisher of our faith; who for the joy that was set before him endured the cross, despising the shame, and is set down at the right hand of the throne of God.",
+   "Hebrews 12:2"
+  ],
+  "fr": [
+   "Ayant les regards sur Jésus, le chef et le consommateur de la foi, qui, en vue de la joie qui lui était réservée, a souffert la croix, méprisé l’ignominie, et s’est assis à la droite du trône de Dieu.",
+   "Hébreux 12:2"
+  ]
+ },
+ "Hebreos 13:5": {
+  "en": [
+   "Let your conversation be without covetousness; and be content with such things as ye have: for he hath said, I will never leave thee, nor forsake thee.",
+   "Hebrews 13:5"
+  ],
+  "fr": [
+   "Ne vous livrez pas à l’amour de l’argent; contentez- vous de ce que vous avez; car Dieu lui-même a dit: Je ne te délaisserai point, et je ne t’abandonnerai point.",
+   "Hébreux 13:5"
+  ]
+ },
+ "Santiago 1:5": {
+  "en": [
+   "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+   "James 1:5"
+  ],
+  "fr": [
+   "Si quelqu’un d’entre vous manque de sagesse, qu’il la demande à Dieu, qui donne à tous simplement et sans reproche, et elle lui sera donnée.",
+   "Jacques 1:5"
+  ]
+ },
+ "Santiago 1:17": {
+  "en": [
+   "Every good gift and every perfect gift is from above, and cometh down from the Father of lights, with whom is no variableness, neither shadow of turning.",
+   "James 1:17"
+  ],
+  "fr": [
+   "Toute grâce excellente et tout don parfait descendent d’en haut, du Père des lumières, chez lequel il n’y a ni changement ni ombre de variation.",
+   "Jacques 1:17"
+  ]
+ },
+ "Santiago 1:22": {
+  "en": [
+   "But be ye doers of the word, and not hearers only, deceiving your own selves.",
+   "James 1:22"
+  ],
+  "fr": [
+   "Mettez en pratique la parole, et ne vous bornez pas à l’écouter, en vous trompant vous-mêmes par de faux raisonnements.",
+   "Jacques 1:22"
+  ]
+ },
+ "1 Pedro 2:9": {
+  "en": [
+   "But ye are a chosen generation, a royal priesthood, an holy nation, a peculiar people; that ye should shew forth the praises of him who hath called you out of darkness into his marvellous light.",
+   "1 Peter 2:9"
+  ],
+  "fr": [
+   "Vous, au contraire, vous êtes une race élue, un sacerdoce royal, une nation sainte, un peuple acquis, afin que vous annonciez les vertus de celui qui vous a appelés des ténèbres à son admirable lumière.",
+   "1 Pierre 2:9"
+  ]
+ },
+ "1 Juan 1:9": {
+  "en": [
+   "If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.",
+   "1 John 1:9"
+  ],
+  "fr": [
+   "Si nous confessons nos péchés, il est fidèle et juste pour nous les pardonner, et pour nous purifier de toute iniquité.",
+   "1 Jean 1:9"
+  ]
+ },
+ "1 Juan 3:1": {
+  "en": [
+   "Behold, what manner of love the Father hath bestowed upon us, that we should be called the sons of God: therefore the world knoweth us not, because it knew him not.",
+   "1 John 3:1"
+  ],
+  "fr": [
+   "Voyez quel amour le Père nous a témoigné, pour que nous soyons appelés enfants de Dieu! Et nous le sommes. Si le monde ne nous connaît pas, c’est qu’il ne l’a pas connu.",
+   "1 Jean 3:1"
+  ]
+ },
+ "1 Juan 4:8": {
+  "en": [
+   "He that loveth not knoweth not God; for God is love.",
+   "1 John 4:8"
+  ],
+  "fr": [
+   "Celui qui n’aime pas n’a pas connu Dieu, car Dieu est amour.",
+   "1 Jean 4:8"
+  ]
+ },
+ "1 Juan 5:14": {
+  "en": [
+   "And this is the confidence that we have in him, that, if we ask any thing according to his will, he heareth us.",
+   "1 John 5:14"
+  ],
+  "fr": [
+   "Nous avons auprès de lui cette assurance, que si nous demandons quelque chose selon sa volonté, il nous écoute.",
+   "1 Jean 5:14"
+  ]
+ },
+ "Apocalipsis 3:20": {
+  "en": [
+   "Behold, I stand at the door, and knock: if any man hear my voice, and open the door, I will come in to him, and will sup with him, and he with me.",
+   "Revelation 3:20"
+  ],
+  "fr": [
+   "Voici, je me tiens à la porte, et je frappe. Si quelqu’un entend ma voix et ouvre la porte, j’entrerai chez lui, je souperai avec lui, et lui avec moi.",
+   "Apocalypse 3:20"
+  ]
+ },
+ "Apocalipsis 21:4": {
+  "en": [
+   "And God shall wipe away all tears from their eyes; and there shall be no more death, neither sorrow, nor crying, neither shall there be any more pain: for the former things are passed away.",
+   "Revelation 21:4"
+  ],
+  "fr": [
+   "Il essuiera toute larme de leurs yeux, et la mort ne sera plus, et il n’y aura plus ni deuil, ni cri, ni douleur, car les premières choses ont disparu.",
+   "Apocalypse 21:4"
   ]
  }
 };
